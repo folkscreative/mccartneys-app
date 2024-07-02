@@ -72,7 +72,7 @@
 				<img src="<?php echo get_template_directory_uri()?>/assets/images/hamburger-icon.svg" alt="">
 				</a>
 				<a href="<?php echo site_url(); ?>">
-				<img src="<?php echo get_template_directory_uri()?>/assets/images/McCartneys logo - white.svg" alt="" class="site-logo">
+				<img src="<?php echo get_template_directory_uri()?>/assets/images/mask-group-home.svg" alt="" class="site-logo">
 				</a>
 				<img src="<?php echo get_template_directory_uri()?>/assets/images/Icon - Search.svg" alt="" class="search-icn">
 			</div>
@@ -92,7 +92,7 @@
 			<?php
 			wp_nav_menu(
 				array(
-					'menu' => 'Header-main-menu',
+					'menu' => 'Header-menu-mobile',
 				)
 			);
 			?>

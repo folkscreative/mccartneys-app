@@ -869,7 +869,7 @@ h4{
     width: 100%;
     column-gap: 25px;
     row-gap: 10px;
-    margin: 12px 0 46px;
+    margin: 20px 0 46px;
     flex-grow: 1;
 }
 .property-wrapper .tab-content .outer-wrap .col-left .office-cat-wrap li{ 
@@ -878,6 +878,7 @@ h4{
     align-items: center;
     column-gap: 6px;
     width: fit-content;
+    height: fit-content;
 }
 .property-wrapper .tab-content .outer-wrap .col-left .office-cat-wrap li span{  
     color: #707070;
@@ -2124,7 +2125,7 @@ body.show{
     right: 30px;
     cursor: pointer;
 }
-.main-popup .main-menu-header ul{
+.main-popup .main-menu-header #menu-header-menu-mobile{
     display: flex;
     flex-direction: column;
     row-gap: 25px;
@@ -2132,21 +2133,17 @@ body.show{
     padding: 42px 0 34px;
     margin-bottom: 39px;
 }
-.main-popup .main-menu-header ul li{
+.main-popup .main-menu-header #menu-header-menu-mobile .outer{
     position: relative;
     cursor: pointer;
 }
-.main-popup .main-menu-header ul li::after{
-    content: "";
-    font-family: dashicons;
+.main-popup .main-menu-header #menu-header-menu-mobile .outer .list-arrow{
     position: absolute;
     right: 0;
     top: 0;
-    transform: rotate(270deg);
     color: #8D1F56;
-    font-size: 20px;
 }
-.main-popup .main-menu-header ul li a{
+.main-popup .main-menu-header #menu-header-menu-mobile .outer a:first-child{
     display: block;
     font-size: 18px;
     line-height: 21px;
@@ -2154,6 +2151,29 @@ body.show{
     color: #000;
     text-transform: uppercase;
     padding-right: 20px;
+}
+.main-popup .main-menu-header #menu-header-menu-mobile .outer .sub-menu.show{
+    display: block;
+}
+.main-popup .main-menu-header #menu-header-menu-mobile .outer .sub-menu{
+    background-color: #fff;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    top: 0;
+    display: none;
+    z-index: 1;
+    overflow-y: scroll;
+    padding-bottom: 20px;
+}
+.main-popup .main-menu-header #menu-header-menu-mobile .outer .sub-menu::-webkit-scrollbar{
+    width: 5px;
+}
+.main-popup .main-menu-header #menu-header-menu-mobile .outer .sub-menu::-webkit-scrollbar-thumb{
+    background: #8D1F56;
+    border-radius: 0;
 }
 .main-popup .top-menu-header ul{
     display: flex;
@@ -2181,5 +2201,74 @@ body.show{
     line-height: 21px;
     font-weight: 500;
     color: #8D1F56;
+}
+.main-popup .outer .sub-menu .outer-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 37px 30px;
+    border-bottom: 1px solid #D0D3D4;
+    margin-bottom: 45px;
+}
+.main-popup .outer .sub-menu .outer-item .prepend{
+    font-size: 18px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 500;
+    position: relative;
+    padding-left: 32px;
+}
+.main-popup .outer .sub-menu .outer-item .prepend::after{
+    content: "";
+    font-family: dashicons;
+    position: absolute;
+    left: 0;
+    color: #8D1F56;
+    transform: rotate(90deg);
+}
+.main-popup .outer .sub-menu li{
+    padding: 0 30px;
+}
+.main-popup .outer .sub-menu .title-pr a{
+    text-transform: capitalize !important;
+    margin-bottom: 28px;
+    margin-top: 45px;
+}
+.main-popup .outer .sub-menu .pr-sale a{ 
+    font-weight: 300 !important;
+    padding: 9px 0;
+    text-transform: capitalize !important;
+    border-left: 1px solid #D0D3D4;
+    padding-left: 20px;
+}
+.main-popup .outer .sub-menu .pr-sale.agri{
+    margin-bottom: 20px;
+}
+.main-popup .outer .sub-menu li.item a{
+    font-weight: 300 !important;
+    padding: 9px 0;
+    text-transform: unset !important;
+}
+.main-popup .outer .sub-menu .btn a{
+    text-transform: unset !important;
+    position: relative; 
+    margin-top: 25px;
+}
+.main-popup .outer .sub-menu .btn a::after{
+    content: "";
+    font-family: dashicons;
+    position: absolute;
+    right: -4px;
+    color: #8D1F56;
+    transform: rotate(270deg);
+    font-size: 14px;
+}
+.main-popup .sub-menu .outer-item .cross-icon{
+    background-image: url(../images/cross-icon.svg);
+    width: 22px;
+    height: 22px;
+    background-size: 100% 100%;
 }
 /* popup ends */

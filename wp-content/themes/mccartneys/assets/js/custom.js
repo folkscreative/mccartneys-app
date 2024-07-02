@@ -1,7 +1,26 @@
+$('.main-popup .sub-menu').prepend('<div class="outer-item"><p class="prepend"></p><span class="cross-icon"></span></div>');
+$('.main-popup .menu-item-has-children').append('<span class="list-arrow"><i class="fa-solid fa-angle-right"></i>');
+
+  $('.list-arrow').click(function(){
+    var $anchortext = $(this).siblings('a').text();
+    $('.main-popup .sub-menu .prepend').html($anchortext);
+  });
+
+  $('.main-popup .outer').click(function() {
+    $(this).find('.sub-menu').addClass('show');
+  });
 // popup
 $('.hamburger-icn').click(function() {
   $('.page').toggleClass('show');
   $('.main-popup').toggleClass('active');
+});
+$(document).on('click', '.cross-icon', function()  {
+  $('.page').removeClass('show');
+  $('.main-popup').removeClass('active');
+  $(this).closest('ul.sub-menu').removeClass('show');
+});
+$(document).on('click', '.outer-item .prepend', function()  {
+  $(this).closest('ul.sub-menu').removeClass('show');
 });
 // slick refresh
 $(document).ready(function () {
