@@ -121,6 +121,9 @@ h4{
     line-height: 20px;
     font-weight: 700;
 }
+P{
+    font-weight: 300;
+}
 .container {
     max-width: 1315px;
     width: 100%;
@@ -1173,6 +1176,9 @@ h4{
     color: #fff;
     margin: 20px 0 44px;
 }
+.cta-banner .col-left a{
+    max-width: 199px;
+}
 .cta-banner .col-right{
     width: 101%;
 }
@@ -1472,72 +1478,212 @@ footer .cookies-menu ul li a{
 }
 /* footer ends */
 
-
-/* Popup css */
-#popup {
-    display: none;
+/* Pedigree Sales */
+.inner-banner-wrapper{
+    position: relative;
+    padding: 38px 0 139px;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-
-.popup-container {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(96 95 127 / 70%);
+.inner-banner-wrapper::after{
+    content: "";
     position: absolute;
+    background-image: url(../images/inner-banner-bg.png);
+    height: 100%;
+    width: 80%;
     top: 0;
     left: 0;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
-
-.popup {
-    background-color: #ffffff;
-    padding: 20px 30px;
-    width: 50%;
-    border-radius: 15px;
+.inner-banner-wrapper .container{
+    max-width: 974px;
 }
-
-.close-popup {
-    display: flex;
-    justify-content: flex-end;
+.inner-banner-wrapper .content{
+    position: relative;
+    z-index: 1;
+    max-width: 396px;
+    width: 100%;
 }
-
-.close-popup a {
-    font-size: 1.2rem;
-    background-color: rebeccapurple;
+.inner-banner-wrapper .content .breadcrumb{
     color: #fff;
-    padding: 5px 10px;
-    font-weight: bold;
-    text-decoration: none;
+}
+.inner-banner-wrapper .content .breadcrumb a{
+    color: #fff;
+}
+.inner-banner-wrapper .content h1{
+    color: #fff;
+    margin: 87px 0 47px;
+}
+.inner-banner-wrapper .content p{
+    color: #fff;
+}
+/* Pedigree Sales ends */
+
+/* Pedigree Center */
+.pedigree-center{
+    padding: 110px 0 124px;
+}
+.pedigree-center .container{
+    max-width: 1170px;
+}
+.pedigree-center .title{
+    max-width: 360px;
+    width: 100%;
+    color: #707070;
+    margin-bottom: 40px;
+}
+.pedigree-center .col-left{
+    max-width: 360px;
+    width: 100%;
+}
+.pedigree-center .col-left img{
     border-radius: 10px;
-    display: inline-block;
+    margin: 0 0 49px;
 }
-
-.popup>h2 {
-    font-size: 1.6rem;
-    margin-bottom: 10px;
+.pedigree-center .col-left a{
+    max-width: 270px;
+    margin: 12px 0;
 }
-
-.popup>p {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+.pedigree-center .col-right p{
+    margin-bottom: 30px;
 }
-
-.popup-btn {
-    display: inline-block;
-    text-decoration: none;
-    border: 2px solid rebeccapurple;
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin: 10px 0px;
-    transition: .2s all ease-in;
+.pedigree-center .col-right .descr p{
+    font-size: 20px;
+    line-height: 31px;
+    color: #707070;
+    font-weight: 700;
 }
+/* Pedigree Center ends */
 
-.popup-btn:hover {
-    background-color: rebeccapurple;
+/* Entry Forms */
+.btn-rural{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    border-radius: 30px;
+    padding: 10px 10px;
+    max-width: 140px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: #fff !important;
+    background-color: #8CB85B;
+}
+.btn-rural:hover{
+    background-color: #8D9091;
     color: #fff;
 }
+.btn-rural span {
+    font-size: 12px;
+    line-height: 15px;
+    padding-left: 10px;
+    color: #8D1F56;
+}
+.entry-forms{
+    padding-bottom: 110px;
+}
+.entry-forms .container{
+    max-width: 1170px;
+}
+.entry-forms .content{
+    max-width: 639px;
+    width: 100%;
+    margin: 0 auto 64px;
+    text-align: center;
+}
+.entry-forms .content h2{
+    color: #707070;
+    margin-bottom: 29px;
+}
+.entry-forms .content p{
+    color: #707070;
+}
+.entry-forms .entry-form-slider{
+    margin: 0 -10px;
+}
+.entry-forms .inner-wrapper .item{
+    position: relative;
+    background-color: #8D1F56;
+    padding: 31px 33px 40px;
+    margin: 0 10px;
+    border-radius: 10px;
+}
+.entry-forms .inner-wrapper .item h3{ 
+    font-size: 19px;
+    line-height: 26px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.entry-forms .inner-wrapper .item .divider{ 
+    height: 1px;
+    background-color: #fff;
+    width: 100px;
+    display: flex;
+    position: absolute;
+    left: 0;
+}
+.entry-forms .inner-wrapper .item .info{
+    display: inline-block;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 300; 
+    color: #fff;
+    margin: 20px 0 23px;
+}
+.entry-forms .slick-dots{
+    display: none !important;
+}
+.entry-forms .inner-wrapper .slick-arrow {
+    font-size: 0;
+    width: 33px;
+    height: 33px;
+    background-image: url(../images/de-arrows.png);
+    background-color: #fff;
+    background-size: 100% 100%;
+    border: none;
+    box-shadow: 0px 0px 4px #0003;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+.entry-forms .inner-wrapper .slick-prev{
+    left: 0;
+}
+.entry-forms .inner-wrapper .slick-next{
+    background-image: url(../images/de-arrow-right.png);
+    right: 0 !important;
+}
+
+/* Entry Forms ends */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Responsieness */
 @media (max-width: 1200px){
     .main-header .container{
@@ -1905,6 +2051,9 @@ footer .cookies-menu ul li a{
     }
     .recent-property-wrapper .btn-cs-dark{
         margin: 0 auto;
+    }
+    .recent-property-wrapper .inner-tabs .office-slider .col-left img{
+        height: auto;
     }
     .recent-property-wrapper .inner-tabs .office-slider .col-right h4{
         font-size: 17px;

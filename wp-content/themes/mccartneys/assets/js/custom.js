@@ -128,3 +128,22 @@ $('.insigh').slick({
     $('.filter-btn a').removeClass('active'); // Remove the class from all elements
     $(this).addClass('active'); // Add the class to the clicked element
 });
+// entry forms slider
+  $('.entry-form-slider.inner-wrapper').slick({
+    dots: true,
+    arrows: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 4,
+    slideToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 991,
+        settings: {
+        slidesToShow: 2,
+        centerMode: false, /* set centerMode to false to show complete slide instead of 3 */
+        slidesToScroll: 1
+        }
+      }
+     ]
+  });
