@@ -213,6 +213,9 @@ function hide_editor() {
   if($pagetitle == 'Home'){
     remove_post_type_support('page', 'editor');
   }
+  if($pagetitle == 'Livestock'){
+    remove_post_type_support('page', 'editor');
+  }
 }
 
 
@@ -404,7 +407,7 @@ if ( $query->have_posts() ) {?>
                     <div class="row g-0 flex-column-reverse flex-md-row">
 						<div class="col-12 col-md-7">
 						<div class="col-left">
-							<h2 class="d-none d-md-block"><?php the_title();?></h2>
+							<h4 class="d-none d-md-block"><?php the_title();?></h4>
 							<?php the_excerpt(); ?>
 							
 							<div class="sale-nmbr">
@@ -467,7 +470,7 @@ if ( $query->have_posts() ) {?>
 						<?php if ( has_post_thumbnail() ) {?>
                         <div class="col-12 col-md-5">
 						<div class="col-right">
-						<h2 class="d-block d-md-none"><?php the_title();?></h2>
+						<h4 class="d-block d-md-none"><?php the_title();?></h4>
                        <?php  the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );?>   
 					</div>
 						</div>

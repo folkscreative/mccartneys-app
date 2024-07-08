@@ -28,6 +28,13 @@ $(document).ready(function () {
     $('.inner-tabs.pr').slick('refresh');
   });
 });
+// tabs
+$(document).on('click', '.top-bar', function()  {
+  $(this).siblings('.bottom-bar').addClass('show');
+});
+$(document).on('click', '.bottom-bar .x-icon', function()  {
+  $(this).parent().removeClass('show');
+});
 // daper
 $('.depar').slick({
     dots: true,
@@ -68,6 +75,34 @@ $('.insigh').slick({
       breakpoint: 767,
       settings: {
       slidesToShow: 1,
+      centerMode: false, /* set centerMode to false to show complete slide instead of 3 */
+      slidesToScroll: 1
+      }
+    }
+   ]
+});
+// livestock service
+ // insigh
+ $('.livestocks').slick({
+  dots: true,
+  arrows: true,
+  infinite: true,
+  speed: 300,
+  slidesToShow: 4,
+  slideToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 991,
+      settings: {
+      slidesToShow: 2,
+      centerMode: false, /* set centerMode to false to show complete slide instead of 3 */
+      slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 767,
+      settings: {
+      slidesToShow: 2,
       centerMode: false, /* set centerMode to false to show complete slide instead of 3 */
       slidesToScroll: 1
       }
@@ -147,3 +182,41 @@ $('.insigh').slick({
       }
      ]
   });
+  // entry forms slider store
+  $('.entry-form-slider.inner-wrapper.store').slick({
+    dots: true,
+    arrows: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 2,
+    slideToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 991,
+        settings: {
+        slidesToShow: 2,
+        centerMode: false, /* set centerMode to false to show complete slide instead of 3 */
+        slidesToScroll: 1
+        }
+      }
+     ]
+  });
+  // event slider
+$('.events-slider').slick({
+  dots: false,
+  arrows: true,
+  infinite: true,
+  speed: 300,
+  centerMode: false,
+  slidesToShow: 1,
+  slideToScroll: 1,
+
+});
+// on window scroll
+$(window).scroll(function(){
+  if ($(this).scrollTop() > 850) {
+     $('.banner-menu').addClass('fixed');
+  } else {
+     $('.banner-menu').removeClass('fixed');
+  }
+});

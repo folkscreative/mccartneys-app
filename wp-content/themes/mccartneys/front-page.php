@@ -73,7 +73,7 @@
     <!-- filter ends -->
 
     <!-- Departments -->
-     <section class="departments">
+     <section class="departments global">
         <div class="container">
             <div class="content">
                 <?php if( get_field('mccartneys_department_title') ): ?>
@@ -182,7 +182,7 @@
             <?php endif; ?>
                 <div class="col-12 col-md-5">
                     <div class="col-left">
-                    <h3><?php the_field('cta_box_title');?></h3>
+                    <h2><?php the_field('cta_box_title');?></h2>
                     <p><?php the_field('cta_box_description'); ?></p>
                     <?php 
                         $cta_box_link = get_field('cta_box_button');
@@ -272,7 +272,7 @@
                         <img src="<?php echo $showcase_logo['url']; ?>" alt="<?php echo $showcase_logo['alt']; ?>" class="w-100">
                         <?php endif; ?>
                         <div class="col-right">
-                            <h4><?php the_sub_field('showcase_number_title'); ?></h4>
+                            <h2><?php the_sub_field('showcase_number_title'); ?></h2>
                             <span><?php the_sub_field('showcase_number_tagline'); ?></span>
                         </div>
                         </div>
