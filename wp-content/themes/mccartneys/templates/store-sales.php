@@ -11,7 +11,9 @@ get_header(); ?>
      <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/store-banner-bg.jpg);">
         <div class="container">
             <div class="content">
-            <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
+            <div class="breadcrumb">
+            <?php echo get_breadcrumb(); ?>
+            </div>
                 <h1>Store Sales</h1>
                 <p>Held regularly at our markets in Ludlow, Worcester, Kington, Knighton, and Brecon, these sales offer a trusted platform for trading top-quality store cattle and sheep.
                 </p>
@@ -90,9 +92,9 @@ get_header(); ?>
     <!-- Entry Forms ends -->
 
     <!-- Cta banner -->
-     <section class="cta-banner">
+     <section class="cta-banner dark">
           <div class="container">
-            <div class="row g-0 align-items-center" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/calendar-cta-bg.png);">
+            <div class="row g-0 align-items-center">
             
                 <div class="col-12 col-md-5">
                     <div class="col-left">

@@ -11,7 +11,9 @@ get_header(); ?>
      <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/primestock-banner.jpg);">
         <div class="container">
             <div class="content">
-            <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
+            <div class="breadcrumb">
+            <?php echo get_breadcrumb(); ?>
+            </div>
                 <h1>Primestock Sales</h1>
                 <p>McCartneys' Primestock Sales offer a premier marketplace for 
                     high-quality cattle, sheep, and pigs. With a commitment to animal welfare and market 
@@ -93,9 +95,9 @@ get_header(); ?>
     <!-- Entry Forms ends -->
 
     <!-- Cta banner -->
-     <section class="cta-banner">
+     <section class="cta-banner dark">
           <div class="container">
-            <div class="row g-0 align-items-center" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/calendar-cta-bg.png);">
+            <div class="row g-0 align-items-center">
             
                 <div class="col-12 col-md-5">
                     <div class="col-left">

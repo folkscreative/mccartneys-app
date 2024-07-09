@@ -8,7 +8,14 @@ get_header(); ?>
 
 <main class="livestock page-wrap"> 
      <!-- Main Banner -->
-        <section class="main-banner" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/livestock-bg.png);">
+     <?php if( have_rows('blocks') ): ?>
+        <?php while( have_rows('blocks') ): the_row(); ?>
+        <?php if( get_row_layout() == 'livestock_banner' ): ?>
+            <?php
+            $livestock_bg_main = get_sub_field('livestock_background_image');
+            if( !empty($livestock_bg_main) ):?>
+            <section class="main-banner" style="background-image: url(<?php echo $livestock_bg_main['url']; ?>);">
+        <?php endif; ?>
             <div class="container">
                 <div class="breadcrumbs">
                     <ul>
@@ -17,11 +24,12 @@ get_header(); ?>
                     </ul>
                 </div>
                 <div class="content">
-                    <h1>Livestock Services</h1>
-                    <p>Connecting Farmers and Markets for Generations</p>
+                    <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
+                    <?php the_sub_field('livestock_banner_content'); ?>
                 </div>
             </div>
         </section>
+        
     <!-- Main Banner ends -->
     <section class="main-banner-sticky">
                 <div class="banner-menu"> 
@@ -35,199 +43,183 @@ get_header(); ?>
                 </div>
         </section>
     <!-- Main Banner ends -->
+    <?php endif; endwhile; endif; ?>
     
     <!-- Department Services -->
+    <?php if( have_rows('blocks') ): ?>
+        <?php while( have_rows('blocks') ): the_row(); ?>
+    <?php if( get_row_layout() == 'livestock_services' ): ?>
     <section class="livestocks-departments">
         <div class="container">
             <div class="content">
-                <h2>Our range of Livestock services</h2>
-                <p>McCartneys provides comprehensive livestock services, including weekly primestock sales, store sales, pedigree sales, horse sales, and private dairy cattle exchanges. With a legacy of supporting the countryside economy, we operate in five main markets: Brecon, Kington, Knighton, Ludlow, and Worcester.</p>
+                <h2><?php the_sub_field('livestock_service_title'); ?></h2>
+                <p><?php the_sub_field('livestock_service_title_copy'); ?></p>
             </div>
-            
             <div class="slider-wrapper livestocks">
-        
+            <?php if( have_rows('services_details') ):
+                while ( have_rows('services_details') ) : the_row();
+                $sv_image = get_sub_field('service_image');
+            ?>
             <div class="slide-wrap">
-                <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/prime-stock-img.png" alt="">
+            <?php    
+                $sv_image = get_sub_field('inner_service_image');
+                if( !empty($sv_image) ):?>
+                <img src="<?php echo $sv_image['url']; ?>" alt="<?php echo $sv_image['alt']; ?>">
+                <?php endif; ?>
                 <div class="inner-content">
-                    <h4>Primestock Sale</h4>
+                    <h4><?php the_sub_field('inner_service_title'); ?></h4>
                     <span class="divider"></span>
                     <div class="contex">
-                    <p>lorem ipsum dolor sit amet dolor sit consectetur</p>
-                    <a class="btn-rural" href="#">Read more</a>
+                    <p><?php the_sub_field('inner_service_description'); ?></p>
+                    <?php 
+                        $sr_btn_link = get_sub_field('inner_service_button');
+                        if( $sr_btn_link ): 
+                            $sr_btn_link_url = $sr_btn_link['url'];
+                            $sr_btn_link_title = $sr_btn_link['title'];
+                            $sr_btn_link_target = $sr_btn_link['target'] ? $sr_btn_link['target'] : '_self';
+                            ?>
+                            <a class="btn-rural" href="<?php echo esc_url( $sr_btn_link_url ); ?>" target="<?php echo esc_attr( $sr_btn_link_target ); ?>"><?php echo esc_html( $sr_btn_link_title ); ?></a>
+                        <?php endif; ?>
                     </div>
                 </div>
                 </div>
-                <div class="slide-wrap">
-                <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/prime-stock-img.png" alt="">
-                <div class="inner-content">
-                    <h4>Store Sale</h4>
-                    <span class="divider"></span>
-                    <div class="contex">
-                    <p>lorem ipsum dolor sit amet dolor sit consectetur</p>
-                    <a class="btn-rural" href="#">Read more</a>
-                    </div>
-                </div>
-                </div>
-                <div class="slide-wrap">
-                <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/prime-stock-img.png" alt="">
-                <div class="inner-content">
-                    <h4>Pedigree Sale</h4>
-                    <span class="divider"></span>
-                    <div class="contex">
-                    <p>lorem ipsum dolor sit amet dolor sit consectetur</p>
-                    <a class="btn-rural" href="#">Read more</a>
-                    </div>
-                </div>
-                </div>
-                <div class="slide-wrap">
-                <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/prime-stock-img.png" alt="">
-                <div class="inner-content">
-                    <h4>Private Sale</h4>
-                    <span class="divider"></span>
-                    <div class="contex">
-                    <p>lorem ipsum dolor sit amet dolor sit consectetur</p>
-                    <a class="btn-rural" href="#">Read more</a>
-                    </div>
-                </div>
-                </div>
-                <div class="slide-wrap">
-                <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/prime-stock-img.png" alt="">
-                <div class="inner-content">
-                    <h4>Primestock Sale</h4>
-                    <span class="divider"></span>
-                    <div class="contex">
-                    <p>lorem ipsum dolor sit amet dolor sit consectetur</p>
-                    <a class="btn-rural" href="#">Read more</a>
-                    </div>
-                </div>
-                </div>
+                <?php endwhile; ?>
+            <?php endif;?>
             </div>             
         </div>
      </section>
+     <?php endif; endwhile; endif; ?>
     <!-- Department Services -->
 
     <!-- Our Marketer section start here -->
+    <?php if( have_rows('blocks') ): ?>
+        <?php while( have_rows('blocks') ): the_row(); ?>
+    <?php if( get_row_layout() == 'about_markets_section' ): ?>
     <section class="our-marketer">
         <div class="container">
             <div class="row g-4">
                 <div class="col-12 col-md-6">
                     <div class="col-left">
-                        <h2>About Our Markets</h2>
-                        <p>At McCartneys, our livestock markets are the backbone of our agricultural services. We operate five main markets—Brecon, Kington, Knighton, Ludlow, and Worcester—providing robust platforms for weekly primestock sales, store sales,
-                            pedigree sales, and horse sales. Our markets are not just transaction points but community hubs where farmers and buyers connect, ensuring the highest standards of animal welfare and market transparency.</p>
-                            <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/farm-img.jpg" class="w-100 d-block d-md-none">
+                        <h2><?php the_sub_field('about_our_market_title'); ?></h2>
+                        <p><?php the_sub_field('about_our_market_description');?></p>
+                        <?php    
+                            $about_mr_image = get_sub_field('about_market_image');
+                            if( !empty($about_mr_image) ):?>
+                            <img src="<?php echo $about_mr_image['url']; ?>" alt="<?php echo $about_mr_image['alt']; ?>" class="w-100 d-block d-md-none">
+                            <?php endif; ?>
+                        
                         <div class="marketer-buttons">
-                            <a href="#" class="btn-cs-dark">View more<span><i class="fa-solid fa-angle-right"></i></span></a>
-                            <a href="#" class="btn-cs-white">LAA condtions of sale</a>
+                        <?php 
+                        $view_btn_link = get_sub_field('about_market_view_button');
+                        if( $view_btn_link ): 
+                            $view_btn_link_url = $view_btn_link['url'];
+                            $view_btn_link_title = $view_btn_link['title'];
+                            $view_btn_link_target = $view_btn_link['target'] ? $view_btn_link['target'] : '_self';
+                            ?>
+                            <a class="btn-cs-dark" href="<?php echo esc_url( $view_btn_link_url ); ?>" target="<?php echo esc_attr( $view_btn_link_target ); ?>"><?php echo esc_html( $view_btn_link_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                        <?php endif; ?>
+                        <?php 
+                        $condition_btn_link = get_sub_field('about_market_condition_button');
+                        if( $condition_btn_link ): 
+                            $condition_btn_link_url = $condition_btn_link['url'];
+                            $condition_btn_link_title = $condition_btn_link['title'];
+                            $condition_btn_link_target = $condition_btn_link['target'] ? $condition_btn_link['target'] : '_self';
+                            ?>
+                            <a class="btn-cs-white" href="<?php echo esc_url( $condition_btn_link_url ); ?>" target="<?php echo esc_attr( $condition_btn_link_target ); ?>"><?php echo esc_html( $condition_btn_link_title ); ?></a>
+                        <?php endif; ?>
                         </div>
+
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="col-right">
-                        <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/farm-img.jpg" class="w-100 d-none d-md-block">
+                    <?php    
+                        $about_mr_image = get_sub_field('about_market_image');
+                        if( !empty($about_mr_image) ):?>
+                        <img src="<?php echo $about_mr_image['url']; ?>" alt="<?php echo $about_mr_image['alt']; ?>" class="w-100 d-none d-md-block">
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <?php endif; endwhile; endif; ?>
     <!-- Our Marketer section ends here -->
 
     <!-- Cta banner -->
-    <section class="cta-banner">
+    <?php if( have_rows('blocks') ): ?>
+        <?php while( have_rows('blocks') ): the_row(); ?>
+    <?php if( get_row_layout() == 'call_to_action' ): ?>
+    <section class="cta-banner light">
           <div class="container">
-            <div class="row g-0 align-items-center" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/06/cta-bg.png);">
-            
+            <div class="row g-0 align-items-center">
                 <div class="col-12 col-md-5">
                     <div class="col-left">
-                    <h2>Stay Updated with McCartneys</h2>
-                    <p>Our newsletter delivers timely information on upcoming livestock auctions, market trends, and valuable insights directly to your inbox.</p>
-                    <a class="btn-rural" href="#">Subscribe<span><i class="fa-solid fa-angle-right"></i></span></a>
+                    <h2><?php the_sub_field('call_to_action_title');?></h2>
+                    <p><?php the_sub_field('call_to_action_content'); ?></p>
+                    <?php 
+                    $cta_btn_link = get_sub_field('call_to_action_link');
+                    if( $cta_btn_link ): 
+                        $cta_btn_link_url = $cta_btn_link['url'];
+                        $cta_btn_link_title = $cta_btn_link['title'];
+                        $cta_btn_link_target = $cta_btn_link['target'] ? $cta_btn_link['target'] : '_self';
+                        ?>
+                        <a class="btn-rural" href="<?php echo esc_url( $cta_btn_link_url ); ?>" target="<?php echo esc_attr( $cta_btn_link_target ); ?>"><?php echo esc_html( $cta_btn_link_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                    <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-12 col-md-7">
                     <div class="col-right">
-                    <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/sheeps-image-hd.png" alt="" class="w-100 d-none d-md-block">
-                    <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/sheep-image-mb.png" alt="" class="w-100 d-block d-md-none">
+                    <?php    
+                        $cta_image_dktp = get_sub_field('call_to_action_image');
+                        if( !empty($cta_image_dktp) ):?>
+                        <img src="<?php echo $cta_image_dktp['url']; ?>" alt="<?php echo $cta_image_dktp['alt']; ?>" class="w-100 d-none d-md-block">
+                        <?php endif; ?>
+                        <?php    
+                        $cta_image_mb = get_sub_field('call_to_action_image_mb');
+                        if( !empty($cta_image_mb) ):?>
+                        <img src="<?php echo $cta_image_mb['url']; ?>" alt="<?php echo $cta_image_mb['alt']; ?>" class="w-100 d-block d-md-none">
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
           </div>
         </section>
+        <?php endif; endwhile; endif; ?>
     <!-- Cta banner ends -->
 
     <!-- Livestock Auctioneers start here -->
-    <section class="livestock-auctioneers d-none d-md-block">
+    <?php if( have_rows('blocks') ): ?>
+        <?php while( have_rows('blocks') ): the_row(); ?>
+    <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
+    <section class="livestock-auctioneers d-none d-md-block" id="livestock-action">
         <div class="container">
             <div class="row g-4">
                 <div class="col-4 col-lg-3">
                     <div class="livestock-auctioneers-content col-left">
-                        <h2>Livestock Auctioneers</h2>
-                        <p>Introducing the McCartneys team.</p>
+                        <h2><?php the_sub_field('livestock_auctioneers_title'); ?></h2>
+                        <p><?php the_sub_field('livestock_auctioneers_description'); ?></p>
                     </div>
                 </div>
-                <div class="col-4 col-lg-3">
+
+                <?php if( have_rows('livestock_auctioneers_details') ): ?>
+            
+            <?php while( have_rows('livestock_auctioneers_details') ): the_row(); ?>
+            <div class="col-4 col-lg-3">
                     <div class="livestock-auctioneers-content">
-                        <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/man-with-cup-of-coffee.jpg" class="w-100">
+                    <?php    
+                        $author_auctioneer_image = get_sub_field('livestock_auctioneers_image');
+                        if( !empty($author_auctioneer_image) ):?>
+                        <img src="<?php echo $author_auctioneer_image['url']; ?>" alt="<?php echo $author_auctioneer_image['alt']; ?>" class="w-100">
+                        <?php endif; ?>
                         <div class="team-content">
-                            <h4>David Miller</h4>
-                            <p>Partner & Auctioneer</p>
+                            <h4><?php the_sub_field('livestock_auctioneers_name'); ?></h4>
+                            <p><?php the_sub_field('livestock_auctioneers_post_title'); ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-4 col-lg-3">
-                    <div class="livestock-auctioneers-content">
-                        <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/man-with-cup-of-coffee.jpg" class="w-100">
-                        <div class="team-content">
-                            <h4>Sarah Jones</h4>
-                            <p>Consultant</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 col-lg-3">
-                    <div class="livestock-auctioneers-content">
-                        <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/man-with-cup-of-coffee.jpg" class="w-100">
-                        <div class="team-content">
-                            <h4>Ethan Lee</h4>
-                            <p>Consultant</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 col-lg-3">
-                    <div class="livestock-auctioneers-content">
-                        <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/man-with-cup-of-coffee.jpg" class="w-100">
-                        <div class="team-content">
-                            <h4>Zoe Wright</h4>
-                            <p>Partner & Auctioneer</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 col-lg-3">
-                    <div class="livestock-auctioneers-content">
-                        <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/man-with-cup-of-coffee.jpg" class="w-100">
-                        <div class="team-content">
-                            <h4>Michael Thompson</h4>
-                            <p>Partner & Auctioneer</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 col-lg-3">
-                    <div class="livestock-auctioneers-content">
-                        <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/man-with-cup-of-coffee.jpg" class="w-100">
-                        <div class="team-content">
-                            <h4>William Davis</h4>
-                            <p>Consultant</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 col-lg-3">
-                    <div class="livestock-auctioneers-content">
-                        <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/man-with-cup-of-coffee.jpg" class="w-100">
-                        <div class="team-content">
-                            <h4>Madison Lee</h4>
-                            <p>Associate Partner</p>
-                        </div>
-                    </div>
-                </div>
+                <?php endwhile; ?>
+                <?php endif; ?> 
             </div>
         </div>
     </section>
@@ -236,48 +228,42 @@ get_header(); ?>
     <!-- Livestock Auctioneers for mobile start here -->
     <section class="livestock-auctioneers d-block d-md-none">
         <div class="container">
-            <div class="row g-4">
+            <div class="outer">
                 <div class="items">
                     <div class="livestock-auctioneers-content col-left">
-                        <h2>Livestock Auctioneers</h2>
-                        <p>Introducing the McCartneys team.</p>
+                    <h2><?php the_sub_field('livestock_auctioneers_title'); ?></h2>
+                    <p><?php the_sub_field('livestock_auctioneers_description'); ?></p>
                     </div>
                 </div>
                 </div>
                 <div class="wrapp livestocks">
+                <?php if( have_rows('livestock_auctioneers_details') ): ?>
+                <?php while( have_rows('livestock_auctioneers_details') ): the_row(); ?>
                 <div class="items">
                     <div class="livestock-auctioneers-content">
-                        <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/man-with-cup-of-coffee.jpg" class="w-100">
+                    <?php    
+                        $author_auctioneer_image = get_sub_field('livestock_auctioneers_image');
+                        if( !empty($author_auctioneer_image) ):?>
+                        <img src="<?php echo $author_auctioneer_image['url']; ?>" alt="<?php echo $author_auctioneer_image['alt']; ?>" class="w-100">
+                        <?php endif; ?>
                         <div class="team-content">
-                            <h4>David Miller</h4>
-                            <p>Partner & Auctioneer</p>
+                            <h4><?php the_sub_field('livestock_auctioneers_name'); ?></h4>
+                            <p><?php the_sub_field('livestock_auctioneers_post_title'); ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="items">
-                    <div class="livestock-auctioneers-content">
-                        <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/man-with-cup-of-coffee.jpg" class="w-100">
-                        <div class="team-content">
-                            <h4>Sarah Jones</h4>
-                            <p>Consultant</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="items">
-                    <div class="livestock-auctioneers-content">
-                        <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/man-with-cup-of-coffee.jpg" class="w-100">
-                        <div class="team-content">
-                            <h4>Ethan Lee</h4>
-                            <p>Consultant</p>
-                        </div>
-                    </div>
-                </div>
+                <?php endwhile; ?>
+                <?php endif; ?> 
             </div>
         </div>
     </section>
+    <?php endif; endwhile; endif; ?>
     <!-- Livestock Auctioneers for mobile ends here -->
 
     <!-- Livestock faqs -->
+    <?php if( have_rows('blocks') ): ?>
+        <?php while( have_rows('blocks') ): the_row(); ?>
+    <?php if( get_row_layout() == 'know_more_faqs' ): ?>
     <section class="livestock-faqs">
         <div class="container">
             <div class="row g-3">
@@ -288,7 +274,36 @@ get_header(); ?>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
+
                      <div class="faqs-wrapper">
+
+
+                     <?php if( have_rows('livestock_auctioneers_details') ): ?>
+            
+            <?php while( have_rows('livestock_auctioneers_details') ): the_row(); ?>
+            <div class="faqs-item">
+                             <div class="top-bar">
+                                <h4><?php the_sub_field('kington_livestock_market_question'); ?></h4>
+                                <span class="plus-icon"><i class="fa-solid fa-plus"></i></span>
+                             </div>
+                             <div class="bottom-bar">
+                             <div class="content">
+                                 <h4>Kington Livestock Market</h4>
+                                 <p>Lorem ipsum dolor sit amet dolor sit consectetur eget maecenas sapien fusce egestas risus purus suspendisse turpis volutpat onare.</p>
+                                 <ul>
+                                    <li>Love Lane, Kington, Herefordshire, HR5 3BT</li>
+                                 </ul>
+                                 <div class="phone">
+                                 
+                                <a href="#">01544 231154</a>
+                                 </div>
+                             </div>
+                             <span class="x-icon"><i class="fa-solid fa-xmark"></i></span>
+                             </div>
+                        </div>
+                <?php endwhile; ?>
+                <?php endif; ?> 
+
                         <div class="faqs-item">
                              <div class="top-bar">
                                 <h4>Brecon Livestock Market</h4>
@@ -299,45 +314,24 @@ get_header(); ?>
                                  <h4>Kington Livestock Market</h4>
                                  <p>Lorem ipsum dolor sit amet dolor sit consectetur eget maecenas sapien fusce egestas risus purus suspendisse turpis volutpat onare.</p>
                                  <ul>
-                                    <li><span>Love Lane, Kington, Herefordshire, HR5 3BT</span></li>
+                                    <li>Love Lane, Kington, Herefordshire, HR5 3BT</li>
                                  </ul>
                                  <div class="phone">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8CB85B" class="bi bi-telephone" viewBox="0 0 16 16">
-                                 <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-                                </svg>
+                                 
                                 <a href="#">01544 231154</a>
                                  </div>
                              </div>
                              <span class="x-icon"><i class="fa-solid fa-xmark"></i></span>
                              </div>
                         </div>
-                        <div class="faqs-item">
-                             <div class="top-bar">
-                                <h4>Brecon Livestock Market</h4>
-                                <span class="plus-icon"><i class="fa-solid fa-plus"></i></span>
-                             </div>
-                             <div class="bottom-bar">
-                             <div class="content">
-                                 <h4>Kington Livestock Market</h4>
-                                 <p>Lorem ipsum dolor sit amet dolor sit consectetur eget maecenas sapien fusce egestas risus purus suspendisse turpis volutpat onare.</p>
-                                 <ul>
-                                    <li><span>Love Lane, Kington, Herefordshire, HR5 3BT</span></li>
-                                 </ul>
-                                 <div class="phone">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8CB85B" class="bi bi-telephone" viewBox="0 0 16 16">
-                                 <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-                                </svg>
-                                <a href="#">01544 231154</a>
-                                 </div>
-                             </div>
-                             <span class="x-icon"><i class="fa-solid fa-xmark"></i></span>
-                             </div>
-                        </div>
+                        
+
                      </div>
                 </div>
             </div>
         </div>
     </section>
+    <?php endif; endwhile; endif; ?>
     <!-- Livestock faqs ends -->
 
     <!-- Events section start here -->
@@ -346,7 +340,7 @@ get_header(); ?>
 
             <div class="wrapper" style="background-image: url('http://localhost/mccartneys-app/wp-content/uploads/2024/07/nature-beautiful-image.jpg')">
                 
-                    <div class="events-slider" style="background-image: url('http://localhost/mccartneys-app/wp-content/uploads/2024/07/events-bg-image.jpg')">
+                    <div class="events-slider">
                         <div class="event-wrapper">
                             <h2>Next Event Name</h2>
                             <p>Lorem ipsum dolor sit amet <br>consectetur adipiscing eli mattis.</p>
@@ -366,7 +360,7 @@ get_header(); ?>
     <!-- Events section ends here -->
 
     <!-- Livestock faqs -->
-    <section class="livestock-faqs faqs-wrap">
+    <section class="livestock-faqs faqs-wrap" id="faqs-action">
         <div class="container">
             <div class="row g-0">
                 <div class="col-12">

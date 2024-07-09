@@ -11,7 +11,9 @@ get_header(); ?>
      <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/Rectangle-6002.jpg);">
         <div class="container">
             <div class="content">
-            <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
+            <div class="breadcrumb">
+                <?php echo get_breadcrumb(); ?>
+            </div>
                 <h1>Pedigree Sales</h1>
                 <p>McCartneys's Pedigree Sales offer a premier platform for buying and selling
                     high-quality pedigree livestock. With a reputation for excellence, our sales attract
@@ -92,9 +94,9 @@ get_header(); ?>
     <!-- Entry Forms ends -->
 
     <!-- Cta banner -->
-     <section class="cta-banner">
+     <section class="cta-banner dark">
           <div class="container">
-            <div class="row g-0 align-items-center" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/calendar-cta-bg.png);">
+            <div class="row g-0 align-items-center">
             
                 <div class="col-12 col-md-5">
                     <div class="col-left">
@@ -215,12 +217,9 @@ get_header(); ?>
                                  <h4>Kington Livestock Market</h4>
                                  <p>Lorem ipsum dolor sit amet dolor sit consectetur eget maecenas sapien fusce egestas risus purus suspendisse turpis volutpat onare.</p>
                                  <ul>
-                                    <li><span>Love Lane, Kington, Herefordshire, HR5 3BT</span></li>
+                                    <li>Love Lane, Kington, Herefordshire, HR5 3BT</li>
                                  </ul>
                                  <div class="phone">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8CB85B" class="bi bi-telephone" viewBox="0 0 16 16">
-                                 <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-                                </svg>
                                 <a href="#">01544 231154</a>
                                  </div>
                              </div>

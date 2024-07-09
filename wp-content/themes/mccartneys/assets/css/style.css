@@ -1155,6 +1155,12 @@ P{
 .cta-banner .container{
     max-width: 1170px;
 }
+.cta-banner.light .row{
+    background-image: url(../images/cta-bg.png);
+}
+.cta-banner.dark .row{
+    background-image: url(../images/calendar-cta-bg.png);
+}
 .cta-banner .row{
     background-size: cover;
     background-repeat: no-repeat;
@@ -1496,10 +1502,47 @@ footer .cookies-menu ul li a{
     width: 100%;
 }
 .inner-banner-wrapper .content .breadcrumb{
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 24px;
     color: #fff;
 }
-.inner-banner-wrapper .content .breadcrumb a{
+.inner-banner-wrapper .content .breadcrumb ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.inner-banner-wrapper .content .breadcrumb ul li{
+    position: relative;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 24px;
     color: #fff;
+    padding-right: 25px;
+}
+.inner-banner-wrapper .content .breadcrumb ul li::after{
+    content: "";
+    font-family: dashicons;
+    position: absolute;
+    color: #8CB85B;
+    right: 5px;
+    transform: rotate(-90deg);
+}
+.inner-banner-wrapper .content .breadcrumb ul li:last-child:after{
+    display: none;
+}
+.inner-banner-wrapper .content .breadcrumb a{
+    position: relative;
+    color: #fff;
+    padding-right: 20px;
+}
+.inner-banner-wrapper .content .breadcrumb a::after{
+    content: "";
+    font-family: dashicons;
+    position: absolute;
+    color: #8CB85B;
+    right: 5px;
+    transform: rotate(-90deg);
 }
 .inner-banner-wrapper .content h1{
     color: #fff;
@@ -1771,17 +1814,28 @@ footer .cookies-menu ul li a{
     color: #fff;
     margin: 10px 0 17px;
 }
-.livestock-faqs .faqs-wrapper .bottom-bar .content ul li span{ 
+.livestock-faqs .faqs-wrapper .bottom-bar .content ul li{ 
     font-size: 14px;
     line-height: 21px;
     color: #fff;
 }
 .livestock-faqs .faqs-wrapper .bottom-bar .content .phone{
+    position: relative;
     display: flex;
     flex-direction: row;
     column-gap: 10px;
     align-items: center;
     margin-top: 6px;
+    padding-left: 28px;
+}
+.livestock-faqs .faqs-wrapper .bottom-bar .content .phone::after{
+    content: "";
+    position: absolute;
+    background-image: url(../images/phone-green.svg);
+    width: 16px;
+    height: 16px;
+    left: 0;
+    background-repeat: no-repeat;
 }
 .livestock-faqs .faqs-wrapper .bottom-bar .content .phone a{ 
     font-size: 15px;
@@ -2115,6 +2169,7 @@ footer .cookies-menu ul li a{
 }
 
 .events .events-slider {
+    background-image: url(../images/events-bg-image.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
