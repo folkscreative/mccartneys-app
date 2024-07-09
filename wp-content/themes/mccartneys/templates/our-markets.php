@@ -8,16 +8,17 @@ get_header(); ?>
 
 <main class="pedigree-sales page-wrap"> 
     <!-- Inner Banner -->
-     <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/our-markets-banner.jpg);">
+    <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/our-markets-banner.jpg);">
         <div class="container">
             <div class="content">
-            <div class="breadcrumb">
-            <?php echo get_breadcrumb(); ?>
+            <div class="breadcrumb d-none d-md-block">
+                <?php echo get_breadcrumb(); ?>
+            </div>
+            <div class="back-btn d-block d-md-none">
+                <a href="#">Back to Department</a>
             </div>
                 <h1>About Our Markets</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                </p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
             </div>
         </div>
      </section>

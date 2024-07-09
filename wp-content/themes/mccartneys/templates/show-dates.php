@@ -8,11 +8,14 @@ get_header(); ?>
 
 <main class="pedigree-sales page-wrap"> 
     <!-- Inner Banner -->
-     <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/show-dates-banner.jpg);">
+    <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/show-dates-banner.jpg);">
         <div class="container">
             <div class="content">
-            <div class="breadcrumb">
-            <?php echo get_breadcrumb(); ?>
+            <div class="breadcrumb d-none d-md-block">
+                <?php echo get_breadcrumb(); ?>
+            </div>
+            <div class="back-btn d-block d-md-none">
+                <a href="#">Back to Department</a>
             </div>
                 <h1>Show Dates</h1>
                 <p>Each year McCartneys attends agricultural and livestock shows across the country, in an opportunity to meet new and old faces and provide direction on how McCartneys can help you.

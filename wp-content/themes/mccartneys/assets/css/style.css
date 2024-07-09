@@ -155,8 +155,8 @@ P{
     column-gap: 40px;
 }
 .top-nav ul a{
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 14px;
+    line-height: 16px;
     color: #fff;
     font-weight: 300;
 }
@@ -215,6 +215,7 @@ P{
 }
 .main-header .header-inner-wrap #mega-menu-main-menu .mega-menu-item-has-children .mega-menu-link{ 
     position: relative !important;
+    font-size: 15px !important;
 }
 .main-header .header-inner-wrap #mega-menu-main-menu .mega-menu-item-has-children:hover .mega-menu-link::after{
     content: "";
@@ -1501,6 +1502,22 @@ footer .cookies-menu ul li a{
     max-width: 396px;
     width: 100%;
 }
+.inner-banner-wrapper .content .back-btn a{
+    position: relative;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 24px;
+    color: #fff;
+    padding-left: 20px;
+}
+.inner-banner-wrapper .content .back-btn a::after{
+    content: "";
+    font-family: dashicons;
+    position: absolute;
+    color: #fff;
+    left: 0;
+    transform: rotate(90deg);
+}
 .inner-banner-wrapper .content .breadcrumb{
     font-size: 13px;
     font-weight: 300;
@@ -1647,12 +1664,17 @@ footer .cookies-menu ul li a{
 .entry-forms .entry-form-slider{
     margin: 0 -10px;
 }
+.entry-forms .entry-form-slider .slick-track{
+    display: flex !important;
+}
+
 .entry-forms .inner-wrapper .item{
     position: relative;
     background-color: #8D1F56;
     padding: 31px 33px 40px;
     margin: 0 10px;
     border-radius: 10px;
+    height: inherit !important;
 }
 .entry-forms .inner-wrapper .item h3{ 
     font-size: 19px;
@@ -2501,14 +2523,29 @@ footer .cookies-menu ul li a{
     .property-wrapper .tab-content .tab-pane .outer-wrap{
         padding: 0 18px 0 30px;
     }
+    .inner-banner-wrapper{
+        padding: 38px 0 80px;
+    }
 }
 @media (max-width: 991px){
     .container{
         padding: 0 30px;
     }
     .header-mb-wrapper{
+        background-color: #fff;
+        padding: 18px 0;
+    }
+    .home .header-mb-wrapper{
         background-color: #602644;
-        padding: 24px 0;
+    }
+    .home .header-mb-wrapper .wrapper{
+        display: none;
+    }
+    .home .header-mb-wrapper .wrapper.home{
+        display: flex !important;
+    }
+    .header-mb-wrapper .wrapper.home{
+        display: none;
     }
     .header-mb-wrapper .container{
         padding: 0 30px;
@@ -2591,6 +2628,9 @@ footer .cookies-menu ul li a{
     }
     .main-banner-sticky .banner-menu ul .sub-menu{
         width: 170px;
+    }
+    .our-marketers-wrapper .tab-content{
+        padding: 55px 40px 52px;
     }
 }
 @media (max-width: 767px){
@@ -2887,7 +2927,8 @@ footer .cookies-menu ul li a{
     }
     .cta-banner .col-right{
         position: relative;
-        min-height: 250px
+        min-height: 250px;
+        width: 108%;
     }
     .cta-banner .col-right img{
         margin-top: -185px;
@@ -2896,6 +2937,9 @@ footer .cookies-menu ul li a{
         height: 450px;
         right: 0;
         bottom: 0;
+    }
+    .cta-banner .row{
+        border-radius: 5px;
     }
     .fine-country{
         padding: 70px 0 72px;
@@ -3175,6 +3219,172 @@ footer .cookies-menu ul li a{
     .departments.others{
         padding: 0 0 90px;
     }
+    .pedigree-center .col-left{
+        max-width: 100%;
+    }
+    .inner-banner-wrapper .content{
+        max-width: 267px;
+    }
+    .inner-banner-wrapper{
+        padding: 35px 0 51px;
+        min-height: 338px;
+        overflow-x: hidden;
+        background-position: center;
+    }
+    .inner-banner-wrapper .content h1 {
+        margin: 36px 0 30px;
+    }
+    .inner-banner-wrapper::after{
+        background-image: url(../images/inner-bg-mb.png);
+        width: 110%;
+        left: -38px;
+    }
+    .pedigree-center {
+        padding: 75px 0 76px;
+    }    
+    .pedigree-center .col-right .descr p{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .pedigree-center .title{
+        margin-bottom: 25px;
+    }
+    .pedigree-center.private .col-left img{
+        margin: 0;
+    }
+    .pedigree-center .col-right ul li {
+        font-size: 14px;
+        margin-bottom: 14px;
+    }
+    .pedigree-center .col-right h3{
+        margin-bottom: 22px;
+    }
+    .pedigree-center .col-right p{
+        margin-bottom: 16px;
+    }
+    .pedigree-center .col-left img {
+        border-radius: 5px;
+        margin: 0 0 32px;
+    } 
+    .entry-forms .content{
+        text-align: left;
+        margin: 0 0 38px;
+    }   
+    .entry-forms .content h2{
+        margin-bottom: 20px;
+    }
+    .entry-forms .inner-wrapper .slick-arrow {
+        display: none !important;
+    }
+    .entry-forms .inner-wrapper .slick-dots {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+        column-gap: 5px;
+        margin-top: 15px;
+    }
+    .entry-forms .inner-wrapper .slick-dots li button {
+        font-size: 0;
+        padding: 0;
+        width: 8px;
+        height: 8px;
+        background-color: #D0D3D4;
+        border: none;
+        border-radius: 50%;
+    }
+    .entry-forms .inner-wrapper .slick-dots .slick-active button {
+        background-color: #8D1F56;
+    }
+    .entry-forms .inner-wrapper .item h3{
+        font-size: 15px;
+        line-height: 18px;
+    }
+    .entry-forms .entry-form-slider {
+        margin: 0 -5px;
+    }
+    .btn-rural{
+        font-size: 13px;
+    }
+    .entry-forms .inner-wrapper .item {
+        padding: 22px 20px 24px;
+        border-radius: 5px;
+        margin: 0 5px;
+    }
+    .entry-forms{
+        padding-bottom: 89px;
+    }
+    .entry-forms .inner-wrapper .item .info {
+        font-size: 14px;
+        line-height: 16px;
+        margin: 12px 0 12px;
+    }
+    .entry-forms .inner-wrapper .item .btn-rural{
+        max-width: 99px;
+        line-height: 12px;
+    }
+    .departments.other {
+        padding: 81px 0 82px;
+    }
+    .show-dates {
+        padding: 33px 0 30px;
+    }
+    .show-dates .show-dates-content{
+        padding: 28px 0 28px;
+    }
+    .show-dates .show-dates-content ul li{
+        font-size: 14px;
+    }
+    .our-marketers-wrapper .our-marketers-wrapper-content button.nav-link{
+        padding: 20px 15px;
+        font-size: 15px;
+        line-height: 20px;
+        min-height: 80px;
+    }
+    .our-marketers-wrapper .tab-content{
+        padding: 55px 25px 52px;
+    }
+    .our-marketers-wrapper .our-marketers-wrapper-content .our-marketers-body-content p{
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .our-marketers-wrapper .our-marketers-wrapper-content .our-marketers-body-content .our-marketers-body-card{
+        padding: 39px 20px 94px;
+        justify-content: space-between;
+        min-height: 275px;
+    }
+}
+@media (max-width: 575px){
+    .our-marketers-wrapper .our-marketers-wrapper-content button.nav-link {
+        padding: 12px 5px;
+        font-size: 10px;
+        line-height: 20px;
+        min-height: 50px;
+    }
+    .our-marketers-wrapper .our-marketers-wrapper-content .our-marketers-body-content .our-marketers-body-card{
+        flex-direction: column;
+        row-gap: 30px;
+        padding: 35px 20px 50px
+    }
+    .our-marketers-wrapper .our-marketers-wrapper-content .our-marketers-body-content .our-marketers-body-card .col-left{
+        width: 100%;
+        max-width: 100%;
+    }
+    .our-marketers-wrapper .our-marketers-wrapper-content .our-marketers-body-content .our-marketers-body-card .col-right{
+        max-width: 100%;
+        width: 100%;
+    }
+    .our-marketers-wrapper .our-marketers-wrapper-content button.nav-link {
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+    .our-marketers-wrapper .tab-content {
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+    .our-marketers-wrapper::after {
+        height: 80%;
+        background-size: cover;
+    }
 }
 /* popups */
 body.show{
@@ -3211,7 +3421,7 @@ body.show{
     flex-grow: 1;
     justify-content: center;
     display: flex;
-    padding-left: 30px
+    padding-left: 10px
 }
 .main-popup .menu-mb-top .hamburger-icn{
     position: absolute;

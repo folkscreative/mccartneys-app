@@ -11,8 +11,11 @@ get_header(); ?>
      <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/Rectangle-6002.jpg);">
         <div class="container">
             <div class="content">
-            <div class="breadcrumb">
+            <div class="breadcrumb d-none d-md-block">
                 <?php echo get_breadcrumb(); ?>
+            </div>
+            <div class="back-btn d-block d-md-none">
+                <a href="#">Back to Department</a>
             </div>
                 <h1>Pedigree Sales</h1>
                 <p>McCartneys's Pedigree Sales offer a premier platform for buying and selling
@@ -28,15 +31,15 @@ get_header(); ?>
     <section class="pedigree-center">
         <div class="container">
         <h2 class="title">Pedigree Center based at Worcster</h2>
-            <div class="row g-4">
-                <div class="col-12 col-lg-6">
+            <div class="flex-column-reverse flex-md-row g-4 row">
+                <div class="col-12 col-md-6">
                      <div class="col-left">
                      <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/boy-sitting-on-a-table.jpg" alt="" class="w-100">
                      <a href="#" class="btn-cs-dark">Forthocoming Sales & Catalogues</a>
                      <a href="#" class="btn-cs-darker">Pedigree Sales Reports</a>
                      </div>
                 </div>
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-md-6">
                     <div class="col-right">
                     <p>McCartneys main Pedigree Centre is based at Worcester under the supervision of new Head of Pedigree Sales James Amphlett. James specialises in Pedigree Livestock and has taken on the role from Clive Roads, who will continue to assist James. McCartneys are very well respected within the Pedigree sector and have a sound base of contacts. We are Official Auctioneers for many Societies and currently act for over 25 cattle and sheep breed societies.</p> 
                     <p>Worcester Market is ideally situated in the Midlands and adjacent to the M5 motorway, which gives us excellent transport links. The Market has excellent facilities and are now able to offer Live Streaming of sales along with online bidding being available. Other Pedigree Sales are held at Brecon & Ludlow Livestock Markets, with Production & Dispersal Sales held on farms across the country. A personal service is always on offer and a full back up of knowledgeable, keen and enthusiastic staff are always available.</p>
@@ -118,16 +121,16 @@ get_header(); ?>
         <!-- Cta banner ends -->
 
         <!-- Livestock Auctioneers start here -->
-    <section class="livestock-auctioneers">
+    <section class="livestock-auctioneers d-none d-md-block">
         <div class="container">
             <div class="row g-4">
-                <div class="col-3">
+                <div class="col-4 col-lg-3">
                     <div class="livestock-auctioneers-content col-left">
                         <h2>Livestock Auctioneers</h2>
                         <p>Introducing the McCartneys team.</p>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-4 col-lg-3">
                     <div class="livestock-auctioneers-content">
                         <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/man-with-cup-of-coffee.jpg" class="w-100">
                         <div class="team-content">
@@ -136,7 +139,7 @@ get_header(); ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-4 col-lg-3">
                     <div class="livestock-auctioneers-content">
                         <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/sarah-jones.jpg" class="w-100">
                         <div class="team-content">
@@ -145,7 +148,7 @@ get_header(); ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-4 col-lg-3">
                     <div class="livestock-auctioneers-content">
                         <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/etham-lee.jpg" class="w-100">
                         <div class="team-content">
@@ -154,7 +157,7 @@ get_header(); ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-4 col-lg-3">
                     <div class="livestock-auctioneers-content">
                         <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/zoe-wright.jpg" class="w-100">
                         <div class="team-content">
@@ -163,7 +166,7 @@ get_header(); ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-4 col-lg-3">
                     <div class="livestock-auctioneers-content">
                         <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/michael-thompson.jpg" class="w-100">
                         <div class="team-content">
@@ -172,7 +175,7 @@ get_header(); ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-4 col-lg-3">
                     <div class="livestock-auctioneers-content">
                         <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/william-davis.jpg" class="w-100">
                         <div class="team-content">
@@ -181,7 +184,7 @@ get_header(); ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-4 col-lg-3">
                     <div class="livestock-auctioneers-content">
                         <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/madison-lee.jpg" class="w-100">
                         <div class="team-content">
@@ -194,18 +197,64 @@ get_header(); ?>
         </div>
     </section>
     <!-- Livestock Auctioneers ends here -->
+
+    <!-- For mobile -->
+    <section class="livestock-auctioneers d-block d-md-none">
+        <div class="container">
+            <div class="outer">
+                <div class="items">
+                    <div class="livestock-auctioneers-content col-left">
+                    <h2>Livestock Auctioneers</h2>
+                    <p>Introducing the McCartneys team.</p>
+                    </div>
+                </div>
+                </div>
+                <div class="wrapp livestocks">
+                
+                <div class="items">
+                    <div class="livestock-auctioneers-content">
+                    <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/madison-lee.jpg" class="w-100">
+                        <div class="team-content">
+                            <h4>Madison Lee</h4>
+                            <p>Associate Partner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="items">
+                    <div class="livestock-auctioneers-content">
+                    <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/madison-lee.jpg" class="w-100">
+                        <div class="team-content">
+                            <h4>Madison Lee</h4>
+                            <p>Associate Partner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="items">
+                    <div class="livestock-auctioneers-content">
+                    <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/madison-lee.jpg" class="w-100">
+                        <div class="team-content">
+                            <h4>Madison Lee</h4>
+                            <p>Associate Partner</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+     <!-- For mobile ends -->
      
     <!-- Livestock faqs -->
     <section class="livestock-faqs">
         <div class="container">
             <div class="row g-3">
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-md-6">
                     <div class="col-left">
                          <h2>Would you like to know more?</h2>
                          <p>For more information contact the relevant livestock market below.</p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-md-6">
                      <div class="faqs-wrapper">
                         <div class="faqs-item">
                              <div class="top-bar">
@@ -239,9 +288,6 @@ get_header(); ?>
                                     <li><span>Love Lane, Kington, Herefordshire, HR5 3BT</span></li>
                                  </ul>
                                  <div class="phone">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8CB85B" class="bi bi-telephone" viewBox="0 0 16 16">
-                                 <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-                                </svg>
                                 <a href="#">01544 231154</a>
                                  </div>
                              </div>

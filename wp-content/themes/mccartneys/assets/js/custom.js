@@ -6,8 +6,8 @@ $('.main-popup .menu-item-has-children').append('<span class="list-arrow"><i cla
     $('.main-popup .sub-menu .prepend').html($anchortext);
   });
 
-  $('.main-popup .outer').click(function() {
-    $(this).find('.sub-menu').addClass('show');
+  $('.main-popup .outer .list-arrow').click(function() {
+    $(this).siblings('.sub-menu').addClass('show');
   });
 // popup
 $('.hamburger-icn').click(function() {

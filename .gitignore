@@ -38,6 +38,11 @@
 /wp-content/plugins/hello.php
 
 
+# main theme
+/wp-content/themes/mccartneys/templates/
+/wp-content/themes/mccartneys/functions.php
+/wp-content/themes/mccartneys/front-page.php
+
 # htaccess
 /.htaccess
 

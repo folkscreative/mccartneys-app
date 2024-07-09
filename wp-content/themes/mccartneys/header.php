@@ -68,7 +68,7 @@
 	<!-- For Mobile -->
 	<header class="header-mb-wrapper d-block d-lg-none">
 		<div class="container">
-			<div class="wrapper">
+			<div class="wrapper home">
 				<a href="#" class="hamburger-icn">
 				<img src="<?php echo get_template_directory_uri()?>/assets/images/hamburger-icon.svg" alt="">
 				</a>
@@ -76,6 +76,15 @@
 				<img src="<?php echo get_template_directory_uri()?>/assets/images/mask-group-home.svg" alt="" class="site-logo">
 				</a>
 				<img src="<?php echo get_template_directory_uri()?>/assets/images/Icon - Search.svg" alt="" class="search-icn">
+			</div>
+			<div class="wrapper">
+				<a href="#" class="hamburger-icn">
+				<img src="<?php echo get_template_directory_uri()?>/assets/images/ham-icon-dark-mb.svg" alt="">
+				</a>
+				<a href="<?php echo site_url(); ?>">
+				<img src="<?php echo get_template_directory_uri()?>/assets/images/site-logo-dark-mb.svg" alt="" class="site-logo">
+				</a>
+				<img src="<?php echo get_template_directory_uri()?>/assets/images/search-dark-mb.svg" alt="" class="search-icn">
 			</div>
 		</div>
 	</header>

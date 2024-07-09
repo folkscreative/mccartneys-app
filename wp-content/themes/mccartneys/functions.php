@@ -213,9 +213,6 @@ function hide_editor() {
   if($pagetitle == 'Home'){
     remove_post_type_support('page', 'editor');
   }
-  if($pagetitle == 'Livestock'){
-    remove_post_type_support('page', 'editor');
-  }
 }
 
 
@@ -237,12 +234,12 @@ function register_my_menus() {
                 'name' => __( 'Insights' ),
                 'singular_name' => __( 'Insight' )
             ),
-			'supports' => array('title','editor','author','thumbnail' ),
+            'supports' => array('title','editor','author','thumbnail' ),
             'public' => true,
             'has_archive' => true,
             'rewrite' => array('slug' => 'insights'),
             'show_in_rest' => true,
-  
+
         )
     );
 }
@@ -288,14 +285,14 @@ add_shortcode('custom_list', 'custom_list_shortcode');
 // Register Custom Post Type
 function create_property_cpt() {
     $labels = array(
-        'name' => _x( 'Properties', 'Post Type General Name', 'textdomain' ),
-        'singular_name' => _x( 'Property', 'Post Type Singular Name', 'textdomain' ),
-        'menu_name' => _x( 'Properties', 'Admin Menu text', 'textdomain' ),
-        'name_admin_bar' => _x( 'Property', 'Add New on Toolbar', 'textdomain' ),
+        'name' => _x( 'Offices', 'Post Type General Name', 'textdomain' ),
+        'singular_name' => _x( 'Office', 'Post Type Singular Name', 'textdomain' ),
+        'menu_name' => _x( 'Offices', 'Admin Menu text', 'textdomain' ),
+        'name_admin_bar' => _x( 'Office', 'Add New on Toolbar', 'textdomain' ),
     );
     $args = array(
-        'label' => __( 'Property', 'textdomain' ),
-        'description' => __( 'Property Description', 'textdomain' ),
+        'label' => __( 'Office', 'textdomain' ),
+        'description' => __( 'Office Description', 'textdomain' ),
         'labels' => $labels,
         'supports' => array( 'title', 'editor', 'thumbnail' ),
         'taxonomies' => array( 'office' ),
@@ -311,16 +308,16 @@ function create_property_cpt() {
         'publicly_queryable' => true,
         'capability_type' => 'post',
     );
-    register_post_type( 'property', $args );
+    register_post_type( 'office', $args );
 }
 add_action( 'init', 'create_property_cpt', 0 );
 
 // Register Custom Taxonomy
 function create_office_taxonomy() {
     $labels = array(
-        'name' => _x( 'Offices', 'Taxonomy General Name', 'textdomain' ),
-        'singular_name' => _x( 'Office', 'Taxonomy Singular Name', 'textdomain' ),
-        'menu_name' => __( 'Offices', 'textdomain' ),
+        'name' => _x( 'Offices Location', 'Taxonomy General Name', 'textdomain' ),
+        'singular_name' => _x( 'Office Location', 'Taxonomy Singular Name', 'textdomain' ),
+        'menu_name' => __( 'Offices Location', 'textdomain' ),
     );
     $args = array(
         'labels' => $labels,
@@ -332,7 +329,7 @@ function create_office_taxonomy() {
         'show_tagcloud' => true,
 
     );
-    register_taxonomy( 'office', array( 'property' ), $args );
+    register_taxonomy( 'office location', array( 'office' ), $args );
 }
 add_action( 'init', 'create_office_taxonomy', 0 );
 
@@ -340,9 +337,9 @@ add_action( 'init', 'create_office_taxonomy', 0 );
 // Register Custom Taxonomy
 function create_property_type_taxonomy() {
     $labels = array(
-        'name' => _x( 'Property Types', 'Taxonomy General Name', 'textdomain' ),
-        'singular_name' => _x( 'Property Type', 'Taxonomy Singular Name', 'textdomain' ),
-        'menu_name' => __( 'Property Types', 'textdomain' ),
+        'name' => _x( 'Office Types', 'Taxonomy General Name', 'textdomain' ),
+        'singular_name' => _x( 'Office Type', 'Taxonomy Singular Name', 'textdomain' ),
+        'menu_name' => __( 'Office Types', 'textdomain' ),
     );
     $args = array(
         'labels' => $labels,
@@ -353,19 +350,15 @@ function create_property_type_taxonomy() {
         'show_in_nav_menus' => true,
         'show_tagcloud' => true,
     );
-    register_taxonomy( 'property type', array( 'property' ), $args );
+    register_taxonomy( 'office type', array( 'office' ), $args );
 }
 add_action( 'init', 'create_property_type_taxonomy', 0 );
-
-
-
-
 
 // office tabs
 function property_tabs_shortcode() {
     // Get all office categories
     $terms = get_terms( array(
-        'taxonomy' => 'office',
+        'taxonomy' => 'office location',
         'hide_empty' => false,
     ) );
 
@@ -388,17 +381,17 @@ function property_tabs_shortcode() {
             echo '<div class="tab-pane fade' . ( $first_tab ? ' show active' : '' ) . '" id="' . esc_attr( $term->slug ) . '" role="tabpanel" aria-labelledby="tab-' . esc_attr( $term->slug ) . '">';
             
             $query = new WP_Query( array(
-                'post_type' => 'property',
+                'post_type' => 'office',
                 'tax_query' => array(
                     array(
-                        'taxonomy' => 'office',
+                        'taxonomy' => 'office location',
                         'field'    => 'slug',
                         'terms'    => $term->slug,
                     ),
                 ),
             ) );
 
-if ( $query->have_posts() ) {?>
+    if ( $query->have_posts() ) {?>
         <div class="outer-wrap">
 			<?php
                 while ( $query->have_posts() ) {
@@ -407,47 +400,78 @@ if ( $query->have_posts() ) {?>
                     <div class="row g-0 flex-column-reverse flex-md-row">
 						<div class="col-12 col-md-7">
 						<div class="col-left">
-							<h4 class="d-none d-md-block"><?php the_title();?></h4>
+							<h2 class="d-none d-md-block"><?php the_title();?></h2>
 							<?php the_excerpt(); ?>
 							
 							<div class="sale-nmbr">
-							<?php
-							$sales_number_icon = get_field('sales_number_icon');
-							if( !empty($sales_number_icon) ):?>
-							<img src="<?php echo $sales_number_icon['url']; ?>" alt="<?php echo $sales_number_icon['alt']; ?>">
-							<?php endif; ?>
-							<span><?php the_field('sales_number');?></span>
+							<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
+							<span><strong>Sales </strong><?php the_field('sales_number');?></span>
 							</div>
 							
 							<div class="sale-nmbr d-none d-md-block">
-							<?php
-							$letting_number_icon = get_field('lettings_number_icon');
-							if( !empty($letting_number_icon) ):?>
-							<img src="<?php echo $letting_number_icon['url']; ?>" alt="<?php echo $letting_number_icon['alt']; ?>">
-							<?php endif; ?>
-							<span><?php the_field('lettings_number');?></span>
+							<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
+							<span><strong>Lettings </strong><?php the_field('lettings_number');?></span>
 							</div>
-							<?php if( have_rows('office_category_location_home') ): ?>
+							
+							<?php $properties_data=get_field('properties',get_the_ID());
+								  $livestock_data=get_field('livestock',get_the_ID());
+								 $planning_survey_data=get_field('planning_survey',get_the_ID());
+								 $antiques_data=get_field('antiques',get_the_ID());
+					             $equine_data=get_field('equine',get_the_ID());
+								 $rural_data=get_field('rural',get_the_ID());
+							?>
+							
 							<ul class="office-cat-wrap">
-							<?php while( have_rows('office_category_location_home') ): the_row(); ?>
+								<?php if($properties_data=='True') { ?>
 								<li class="items-wrap">
-								<?php
-								$cat_pr_logo = get_sub_field('office_category_image');
-								if( !empty($cat_pr_logo) ):?>
-								<img src="<?php echo $cat_pr_logo['url']; ?>" alt="<?php echo $cat_pr_logo['alt']; ?>">
-								<?php endif; ?>
-								<span><?php the_sub_field('office_category_text'); ?></span>
+								<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/properties-vector-1.svg">
+								<span>Properties</span>
 								</li>
-								<?php endwhile; ?>
-								</ul>
-								<?php endif; ?> 
+								<?Php }
+							?>
+								<?php if($livestock_data=='True') { ?>
+								<li class="items-wrap">
+								<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/livestock-logo-1.svg">
+								<span>Livestock</span>
+								</li>
+								<?Php }?>
+								
+								<?php if($planning_survey_data=='True') { ?>
+								<li class="items-wrap">
+								<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/planning-logo-1.svg">
+								<span>Planning & Survay</span>
+								</li>
+								<?Php }?>
+								
+								<?php if($antiques_data=='True') { ?>
+								<li class="items-wrap">
+								<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/antiques-logo-1.svg">
+								<span>Antiques</span>
+								</li>
+								<?Php }?>
+								
+								
+								<?php if($equine_data=='True') { ?>
+								<li class="items-wrap">
+								<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/equine-icon.svg">
+								<span>Equine</span>
+								</li>
+								<?Php }?>
+								
+								<?php if($rural_data=='True') { ?>
+								<li class="items-wrap">
+								<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/rural-icon.svg">
+								<span>Rural</span>
+								</li>
+								<?Php }?>
+							</ul>
 								<div class="bottom-btn-wrap">
 								<a href="<?php the_permalink(); ?>" class="btn-cs-dark">View more <span><i class="fa-solid fa-angle-right"></i></span></a>
 
 
-								<?php if( have_rows('office_share_buttons') ): ?>
+								<?php if( have_rows('office_share_buttons', 'option') ): ?>
 							<ul class="share-buttons-wrap d-none d-md-flex">
-							<?php while( have_rows('office_share_buttons') ): the_row(); ?>
+							<?php while( have_rows('office_share_buttons','option') ): the_row(); ?>
 								
 										<li class="item">
 
@@ -470,7 +494,7 @@ if ( $query->have_posts() ) {?>
 						<?php if ( has_post_thumbnail() ) {?>
                         <div class="col-12 col-md-5">
 						<div class="col-right">
-						<h4 class="d-block d-md-none"><?php the_title();?></h4>
+						<h2 class="d-block d-md-none"><?php the_title();?></h2>
                        <?php  the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );?>   
 					</div>
 						</div>
@@ -493,17 +517,11 @@ if ( $query->have_posts() ) {?>
 }
 add_shortcode( 'property_tabs', 'property_tabs_shortcode' );
 
-
-
-
-
-
-
 // recent tabs
 function recent_property_tabs_shortcode() {
     // Get all office categories
     $terms = get_terms( array(
-        'taxonomy' => 'property type',
+        'taxonomy' => 'office type',
         'hide_empty' => false,
 		'order'=>'DESC',
     ) );
@@ -530,10 +548,10 @@ function recent_property_tabs_shortcode() {
             echo '<div class="tab-pane fade' . ( $first_tab ? ' show active' : '' ) . '" id="' . esc_attr( $term->slug ) . '" role="tabpanel" aria-labelledby="tab-' . esc_attr( $term->slug ) . '">';
             
             $query = new WP_Query( array(
-                'post_type' => 'property',
+                'post_type' => 'office',
                 'tax_query' => array(
                     array(
-                        'taxonomy' => 'property type',
+                        'taxonomy' => 'office type',
                         'field'    => 'slug',
                         'terms'    => $term->slug,
                     ),
@@ -588,7 +606,6 @@ function recent_property_tabs_shortcode() {
     }
 }
 add_shortcode( 'recent_property_tabs', 'recent_property_tabs_shortcode' );
-
 // breadcrumbs
 function get_breadcrumb() {
     echo '<a href="'.home_url().'" rel="nofollow">Home</a>';
@@ -609,13 +626,3 @@ function get_breadcrumb() {
         echo '</em>"';
     }
 }
-
-
-/** * Completely Remove jQuery From WordPress */
-function my_init() {
-    if (!is_admin()) {
-        wp_deregister_script('jquery');
-        wp_register_script('jquery', false);
-    }
-}
-add_action('init', 'my_init');
