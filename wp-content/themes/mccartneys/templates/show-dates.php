@@ -1,84 +1,70 @@
 <?php
 
 /**
- * Template Name: Show Dates
+ * Template Name: Show Date
  */
 
 get_header(); ?>
 
 <main class="pedigree-sales page-wrap"> 
     <!-- Inner Banner -->
-    <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/show-dates-banner.jpg);">
+    <?php if( have_rows('blocks') ): ?>
+        <?php while( have_rows('blocks') ): the_row(); ?>
+        <?php if( get_row_layout() == 'livestock_banner' ): ?>
+           <?php
+            $image_private = get_sub_field( 'livestock_background_image' );
+if ( !empty( $image_private ) ) { ?>
+    <section class="inner-banner-wrapper" style="background-image:url('<?php echo $image_private['url']; ?>');">
+<?php }?>
         <div class="container">
             <div class="content">
-            <div class="breadcrumb d-none d-md-block">
-                <?php echo get_breadcrumb(); ?>
-            </div>
-            <div class="back-btn d-block d-md-none">
-                <a href="#">Back to Department</a>
-            </div>
-                <h1>Show Dates</h1>
-                <p>Each year McCartneys attends agricultural and livestock shows across the country, in an opportunity to meet new and old faces and provide direction on how McCartneys can help you.
-                </p>
+            <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
+            <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
+            <p><?php the_sub_field('livestock_banner_content'); ?></p>
             </div>
         </div>
      </section>
     <!-- Inner Bnner ends -->
-    
+    <?php endif; ?>
+   
     <!-- Show Dates -->
+    <?php if( get_row_layout() == 'show_dates_content_section' ): ?>
     <section class="show-dates">
         <div class="container">
             <div class="row g-0">
                 <div class="col-12">
-                    <div class="show-dates-content">
-                        <h3>Royal Three Counties Show</h3>
-                        <ul>
-                            <li>Friday 16th June - Sunday 18th June</li>
-                            <li>Three Counties Showground, Malvern, Worcestershire, WR13 6NW</li>
-                        </ul>
-                        <a href="#" class="btn-cs-dark">Download Brochure</a>
-                    </div>
-                    <div class="show-dates-content">
-                        <h3>Royal Three Counties Show</h3>
-                        <ul>
-                            <li>Friday 16th June - Sunday 18th June</li>
-                            <li>Three Counties Showground, Malvern, Worcestershire, WR13 6NW</li>
-                        </ul>
-                    </div>
-                    <div class="show-dates-content">
-                        <h3>Royal Three Counties Show</h3>
-                        <ul>
-                            <li>Friday 16th June - Sunday 18th June</li>
-                            <li>Three Counties Showground, Malvern, Worcestershire, WR13 6NW</li>
-                        </ul>
-                    </div>
-                    <div class="show-dates-content">
-                        <h3>Royal Three Counties Show</h3>
-                        <ul>
-                            <li>Friday 16th June - Sunday 18th June</li>
-                            <li>Three Counties Showground, Malvern, Worcestershire, WR13 6NW</li>
-                        </ul>
-                    </div>
-                    <div class="show-dates-content">
-                        <h3>Royal Three Counties Show</h3>
-                        <ul>
-                            <li>Friday 16th June - Sunday 18th June</li>
-                            <li>Three Counties Showground, Malvern, Worcestershire, WR13 6NW</li>
-                        </ul>
-                    </div>
-                    <div class="show-dates-content">
-                        <h3>Royal Three Counties Show</h3>
-                        <ul>
-                            <li>Friday 16th June - Sunday 18th June</li>
-                            <li>Three Counties Showground, Malvern, Worcestershire, WR13 6NW</li>
-                        </ul>
-                    </div>
+                <?php if( have_rows('show_dates_content') ): ?>
+                        <?php while( have_rows('show_dates_content') ): the_row(); ?>
+                            <div class="show-dates-content">
+                                <h3><?php the_sub_field('show_dates_title'); ?></h3>
+                                <?php if( have_rows('dates_content') ): ?>
+                                    <ul>
+                                        <?php while( have_rows('dates_content') ): the_row(); ?>
+                                            <li><?php the_sub_field('dates_label'); ?></li>
+                                        <?php endwhile; ?>
+                                    </ul>
+                                <?php endif; ?>
+                                <?php 
+                                $show_dt_button = get_sub_field('show_dates_download_button');
+                                if( $show_dt_button ): 
+                                    $show_dt_button_url = $show_dt_button['url'];
+                                    $show_dt_button_title = $show_dt_button['title'];
+                                    $show_dt_button_target = $show_dt_button['target'] ? $show_dt_button['target'] : '_self';
+                                    ?>
+                                    <a class="btn-cs-dark" href="<?php echo esc_url( $show_dt_button_url ); ?>" target="<?php echo esc_attr( $show_dt_button_target ); ?>"><?php echo esc_html( $show_dt_button_title ); ?></a>
+                                <?php endif; ?>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </section>
     <!-- Show Dates ends -->
-     
+    <?php endif; ?>
+    <?php endwhile; ?>
+    <?php endif; ?>
+    
      <!-- Departments -->
      <section class="departments other">
         <div class="container">

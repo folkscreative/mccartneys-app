@@ -8,122 +8,80 @@ get_header(); ?>
 
 <main class="pedigree-sales page-wrap"> 
     <!-- Inner Banner -->
-    <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/our-markets-banner.jpg);">
+    <?php if( have_rows('blocks') ): ?>
+        <?php while( have_rows('blocks') ): the_row(); ?>
+        <?php if( get_row_layout() == 'livestock_banner' ): ?>
+           <?php
+            $image_private = get_sub_field( 'livestock_background_image' );
+if ( !empty( $image_private ) ) { ?>
+    <section class="inner-banner-wrapper" style="background-image:url('<?php echo $image_private['url']; ?>');">
+<?php }?>
         <div class="container">
             <div class="content">
-            <div class="breadcrumb d-none d-md-block">
-                <?php echo get_breadcrumb(); ?>
-            </div>
-            <div class="back-btn d-block d-md-none">
-                <a href="#">Back to Department</a>
-            </div>
-                <h1>About Our Markets</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+            <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
+            <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
+            <p><?php the_sub_field('livestock_banner_content'); ?></p>
             </div>
         </div>
      </section>
     <!-- Inner Bnner ends -->
-    
+    <?php endif; ?>
    <!-- our-marketers section start here -->
+   <?php if( get_row_layout() == 'livestock_market_tabs' ): ?>
    <section class="our-marketers-wrapper">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="our-marketers-wrapper-content">
-                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Brecon</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Kington</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Worcester</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Ludlow</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Ludlow</button>
-                            </li>
-
+                <?php if( have_rows('marketer_tab_detail') ): ?>
+            <div class="our-marketers-wrapper-content">
+                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                    <?php 
+                    $tab_index = 0;
+                    while( have_rows('marketer_tab_detail') ) : the_row(); 
+                        $tab_title = get_sub_field('marketer_label');
+                        $tab_id = sanitize_title($tab_title); // Create a unique ID based on the tab title
+                    ?>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link <?php echo $tab_index === 0 ? 'active' : ''; ?>" 
+                                    id="pills-<?php echo $tab_id; ?>-tab" 
+                                    data-bs-toggle="pill" 
+                                    data-bs-target="#pills-<?php echo $tab_id; ?>" 
+                                    type="button" 
+                                    role="tab" 
+                                    aria-controls="pills-<?php echo $tab_id; ?>" 
+                                    aria-selected="<?php echo $tab_index === 0 ? 'true' : 'false'; ?>">
+                                <?php echo $tab_title; ?>
+                            </button>
+                                </li>
+                            <?php $tab_index++; endwhile; ?>
                         </ul>
                         <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-                                <div class="our-marketers-body-content">
-                                    <div class="marketers-top-content">
-                                    <h3>Brecon Livestock Market</h3>
-                                    <p>Brecon Market moved to its current site on the edge of town in the heart of the Brecon Beacons National Park in June 1999. The market has a national reputation for its monthly sales of suckler bred store cattle, which
-                                        draws buyers from all over the UK. The sales peak at around 1000 cattle in April and October, which are traditionally un-catalogued sales.</p>
-                                    <ul class="address">
-                                        <li>The Livestock Market,<br> Warren Road,<br> Brecon, Powys, LD3 8EX</li>
-                                        <li><a href="tel:01874 622386">01874 622386</a></li>
-                                    </ul>
-                                    </div>
-
-                                    <div class="our-marketers-body-card">
-                                        <div class="col-left">
-                                            <h4>Pedigree Sales</h4>
-                                            <ul>
-                                                <li><strong>Tuesdays</strong> - Finished Sheep and Cull Ewes</li>
-                                                <li><strong>Last Friday of every month</strong> - Store Cattle</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-right">
-                                            <h4>Evening Sales</h4>
-                                            <p>Every 2 weeks on a Thursday night there are special sales of breeding rams, ewes, and store and ewe lambs.</p>
-                                        </div>
-                                    </div>
-                                    <div class="our-marketers-body-card">
-                                        <div class="col-left">
-                                            <h4>Pedigree Sales</h4>
-                                            <p>Brecon Market is used by several breed Societies for sales, including Limousin Cattle, Charollais Sheep, the Beltex Sheep Society and the Texel Society.</p>
-                                        </div>
-                                        <div class="col-right">
-                                            <h4>Evening Sales</h4>
-                                            <p>Every 2 weeks on a Thursday night there are special sales of breeding rams, ewes, and store and ewe lambs.</p>
-                                        </div>
-                                    </div>
-                                    <div class="our-marketers-body-card">
-                                        <div class="col-left">
-                                            <h4>Pedigree Sales</h4>
-                                            <p>Brecon Market is used by several breed Societies for sales, including Limousin Cattle, Charollais Sheep, the Beltex Sheep Society and the Texel Society.</p>
-                                        </div>
-                                        <div class="col-right">
-                                            <h4>Evening Sales</h4>
-                                            <p>Every 2 weeks on a Thursday night there are special sales of breeding rams, ewes, and store and ewe lambs.</p>
-                                        </div>
-                                    </div>
-                                    <div class="our-marketers-body-card">
-                                        <div class="col-left">
-                                            <h4>Pedigree Sales</h4>
-                                            <p>Brecon Market is used by several breed Societies for sales, including Limousin Cattle, Charollais Sheep, the Beltex Sheep Society and the Texel Society.</p>
-                                        </div>
-                                        <div class="col-right">
-                                            <h4>Evening Sales</h4>
-                                            <p>Every 2 weeks on a Thursday night there are special sales of breeding rams, ewes, and store and ewe lambs.</p>
-                                        </div>
-                                    </div>
-                                    <div class="direction-content">
-                                        <h4>Evening Sales</h4>
-                                        <p>Brecon Market is currently located on the roundabout adjacent to Brecon Town on the bypass. There are signs erected by the County Council for the Livestock Market. This roundabout is the main junction off the A470
-                                            from Cardiff, Merthyr Tydfil and the Village and A40 from South West Wales and the main trunk road to Abergavenny. From North Wales the market is best approached from Builth Wells along the A470 which runs parallel
-                                            to the River Wye, then turn into the village of llyswen along the A470, proceed to the junction on the A438 and then follow the road towards Brecon turning right and continue towards Cardiff on the A40 off the
-                                            first roundabout. The market is located at the next roundabout (2nd exit). The postcode is LD3 8EX.</p>
-                                    </div>
+                            <?php 
+                            $tab_index = 0;
+                            while( have_rows('marketer_tab_detail') ) : the_row(); 
+                                $tab_title = get_sub_field('marketer_label');
+                                $tab_content = get_sub_field('marketer_content');
+                                $tab_id = sanitize_title($tab_title);
+                            ?>
+                                <div class="tab-pane fade <?php echo $tab_index === 0 ? 'show active' : ''; ?>" 
+                                    id="pills-<?php echo $tab_id; ?>" 
+                                    role="tabpanel" 
+                                    aria-labelledby="pills-<?php echo $tab_id; ?>-tab" 
+                                    tabindex="0">
+                                    <?php echo $tab_content; ?>
                                 </div>
-                            </div>
-                        
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">Test content</div>
-                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">Test content</div>
+                            <?php $tab_index++; endwhile; ?>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </section>
     <!-- show dates section ends here -->
-     
+    <?php endif; ?>
+    <?php endwhile; ?>
+    <?php endif; ?>
      <!-- Departments -->
      <section class="departments other">
         <div class="container">

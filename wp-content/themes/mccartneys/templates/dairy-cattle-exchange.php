@@ -1,115 +1,116 @@
 <?php
 
 /**
- * Template Name: Dairy Cattle Exchange 
+ * Template Name: Dairy Cattle Exchanges 
  */
 
 get_header(); ?>
 
 <main class="pedigree-sales page-wrap"> 
     <!-- Inner Banner -->
-    <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/dairy-bg.jpeg);">
+     <!-- Inner Banner -->
+     <?php if( have_rows('blocks') ): ?>
+        <?php while( have_rows('blocks') ): the_row(); ?>
+        <?php if( get_row_layout() == 'livestock_banner' ): ?>
+
+           <?php
+            $img = get_sub_field( 'livestock_background_image' );
+if ( !empty( $img ) ) { ?>
+    <section class="inner-banner-wrapper" style="background-image:url('<?php echo $img['url']; ?>');">
+<?php }?>
+
         <div class="container">
             <div class="content">
-            <div class="breadcrumb d-none d-md-block">
-                <?php echo get_breadcrumb(); ?>
-            </div>
-            <div class="back-btn d-block d-md-none">
-                <a href="#">Back to Department</a>
-            </div>
-                <h1>Dairy Cattle Exchange</h1>
-                <p>McCartneys specialises in the private sale of dairy cattle directly from farms throughout Wales and the West Country.
-                </p>
+            <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
+            <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
+            <p><?php the_sub_field('livestock_banner_content'); ?></p>
             </div>
         </div>
      </section>
     <!-- Inner Bnner ends -->
-    <!-- Pedigree Center -->
-    <section class="pedigree-center private">
+    <?php endif; ?>
+   <!-- Pedigree Center -->
+   <?php if( get_row_layout() == 'livestock_sales' ): ?>
+    <section class="pedigree-center">
         <div class="container">
-        <h2 class="title">High-Quality Dairy Cattle</h2>
-            <div class="flex-column-reverse flex-md-row g-4 row">
+        <h2 class="title"><?php the_sub_field('livestock_sales_title'); ?></h2>
+            <div class="row flex-column-reverse flex-md-row g-4">
                 <div class="col-12 col-md-6">
                      <div class="col-left">
-                     <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/dairy-img.jpg" alt="" class="w-100">
+                     <?php
+                     $livestock_sale = get_sub_field('livestock_left_image');
+                if( !empty($livestock_sale) ):?>
+                <img src="<?php echo $livestock_sale['url']; ?>" alt="<?php echo $livestock_sale['alt']; ?>"  class="w-100">
+                <?php endif; ?>
+                <?php 
+                        $pc_top_button = get_sub_field('forthcoming_sales_&_catalogues_cta_link');
+                        if( $pc_top_button ): 
+                            $pc_top_button_url = $pc_top_button['url'];
+                            $pc_top_button_title = $pc_top_button['title'];
+                            $pc_top_button_target = $pc_top_button['target'] ? $pc_top_button['target'] : '_self';
+                            ?>
+                            <a class="btn-cs-dark" href="<?php echo esc_url( $pc_top_button_url ); ?>" target="<?php echo esc_attr( $pc_top_button_target ); ?>"><?php echo esc_html( $pc_top_button_title ); ?></a>
+                        <?php endif; ?>
+                     <?php 
+                        $pc_bottom_button = get_sub_field('forthcoming_sales_report_cta_link');
+                        if( $pc_bottom_button ): 
+                            $pc_bottom_button_url = $pc_bottom_button['url'];
+                            $pc_bottom_button_title = $pc_bottom_button['title'];
+                            $pc_bottom_button_target = $pc_bottom_button['target'] ? $pc_bottom_button['target'] : '_self';
+                            ?>
+                            <a class="btn-cs-white" href="<?php echo esc_url( $pc_bottom_button_url ); ?>" target="<?php echo esc_attr( $pc_bottom_button_target ); ?>"><?php echo esc_html( $pc_bottom_button_title ); ?></a>
+                        <?php endif; ?>
                      </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="col-right">
-                    <p>Serving Wales and the West Country, our regularly updated listings provide a reliable source for farmers seeking to enhance their dairy herds. See availability below.</p>
-                    <h3>Available Dairy Sales:</h3>  
-                    <ul>
-                        <li>30 In Calf Friesian and Crossbred Heifers due March/April 2020, to a dairy bull.</li>
-                        <li>65 Pedigree Holstien In Calf Heifers, Due August/September 19</li>
-                        <li>200 Friesan x Norwegian Red Served Heifers</li>
-                        <li>200 Friesan x Norwegian Red Bulling Heifers</li>
-                        <li>70 Pedigree Holstien Cows, All Year-Round Calving (whole herd dispersal)</li>
-                        <li>80 Fresh Calved Cows & Heifers</li>
-                    </ul>
+                    <?php the_sub_field('forthcoming_sales_right_content_area'); ?>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Pedigree Center ends -->
+    <?php endif; ?>
     
-   <!-- Livestock faqs -->
-   <section class="livestock-faqs">
+    <!-- Livestock faqs -->
+    <?php if( get_row_layout() == 'kington_livestock_market' ): ?>
+    <section class="livestock-faqs">
         <div class="container">
             <div class="row g-3">
                 <div class="col-12 col-md-6">
                     <div class="col-left">
-                         <h2>Would you like to know more?</h2>
-                         <p>For more information contact the relevant livestock market below.</p>
+                         <h2><?php the_sub_field('kington_livestock_market_title'); ?></h2>
+                         <p><?php the_sub_field('kington_livestock_market_description'); ?></p>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                      <div class="faqs-wrapper">
+                     <?php if( have_rows('kington_livestock_market_detail') ):
+                     while ( have_rows('kington_livestock_market_detail') ) : the_row();?>
                         <div class="faqs-item">
                              <div class="top-bar">
-                                <h4>Brecon Livestock Market</h4>
+                                <h4><?php the_sub_field('kington_livestock_market_question'); ?></h4>
                                 <span class="plus-icon"><i class="fa-solid fa-plus"></i></span>
                              </div>
                              <div class="bottom-bar">
                              <div class="content">
-                                 <h4>Kington Livestock Market</h4>
-                                 <p>Lorem ipsum dolor sit amet dolor sit consectetur eget maecenas sapien fusce egestas risus purus suspendisse turpis volutpat onare.</p>
-                                 <ul>
-                                    <li>Love Lane, Kington, Herefordshire, HR5 3BT</li>
-                                 </ul>
-                                 <div class="phone">
-                                <a href="#">01544 231154</a>
-                                 </div>
+                             <?php the_sub_field('kington_livestock_market_answer'); ?>
                              </div>
                              <span class="x-icon"><i class="fa-solid fa-xmark"></i></span>
                              </div>
                         </div>
-                        <div class="faqs-item">
-                             <div class="top-bar">
-                                <h4>Brecon Livestock Market</h4>
-                                <span class="plus-icon"><i class="fa-solid fa-plus"></i></span>
-                             </div>
-                             <div class="bottom-bar">
-                             <div class="content">
-                                 <h4>Kington Livestock Market</h4>
-                                 <p>Lorem ipsum dolor sit amet dolor sit consectetur eget maecenas sapien fusce egestas risus purus suspendisse turpis volutpat onare.</p>
-                                 <ul>
-                                    <li><span>Love Lane, Kington, Herefordshire, HR5 3BT</span></li>
-                                 </ul>
-                                 <div class="phone">
-                                <a href="#">01544 231154</a>
-                                 </div>
-                             </div>
-                             <span class="x-icon"><i class="fa-solid fa-xmark"></i></span>
-                             </div>
-                        </div>
+                        <?php endwhile; ?>
+                        <?php endif; ?>
                      </div>
                 </div>
             </div>
         </div>
     </section>
-      
     <!-- Livestock faqs ends -->
+    <?php endif; ?>
+    <?php endwhile; ?>
+    <?php endif; ?>
 
      <!-- Departments -->
      <section class="departments other">
