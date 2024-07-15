@@ -8,7 +8,7 @@ get_header(); ?>
 
 <main class="pedigree-sales page-wrap"> 
     <!-- Inner Banner -->
-     <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/Rectangle-6002.jpg);">
+     <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/dairy-bg.jpeg);">
         <div class="container">
             <div class="content">
             <div class="breadcrumb d-none d-md-block">
@@ -36,7 +36,7 @@ get_header(); ?>
                      <div class="col-left">
                      <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/boy-sitting-on-a-table.jpg" alt="" class="w-100">
                      <a href="#" class="btn-cs-dark">Forthocoming Sales & Catalogues</a>
-                     <a href="#" class="btn-cs-darker">Pedigree Sales Reports</a>
+                     <a href="#" class="btn-cs-white">Pedigree Sales Reports</a>
                      </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -52,7 +52,7 @@ get_header(); ?>
         </div>
     </section>
     <!-- Pedigree Center ends -->
-    
+       
     <!-- Entry Forms -->
     <section class="entry-forms">
         <div class="container">
@@ -306,12 +306,12 @@ get_header(); ?>
      <section class="departments other">
         <div class="container">
             <div class="content">
-                <?php if( get_field('our_departments_title', 'option') ): ?>
+                
                         <h2><?php the_field('our_departments_title', 'option'); ?></h2>
-                    <?php endif; ?>
-                    <?php if( get_field('our_departments_description', 'option') ): ?>
+                    
+                    
                         <p><?php the_field('our_departments_description', 'option'); ?></p>
-                    <?php endif; ?>
+                    
             </div>
             <?php if( have_rows('our_departments_slider', 'option') ): ?>
             <div class="depart-slider depar">

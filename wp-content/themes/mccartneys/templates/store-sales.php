@@ -35,6 +35,7 @@ get_header(); ?>
                      <div class="col-left">
                      <img src="http://localhost/mccartneys-app/wp-content/uploads/2024/07/sheeps-in-hands.jpg" alt="" class="w-100">
                      <a href="#" class="btn-cs-darker">Pedigree Sales Reports</a>
+                     <a href="#" class="btn-cs-white">Store Sales Reports</a>
                      </div>
                 </div>
                 <div class="col-12 col-md-6">

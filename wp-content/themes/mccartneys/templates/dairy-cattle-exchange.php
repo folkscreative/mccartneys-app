@@ -8,7 +8,7 @@ get_header(); ?>
 
 <main class="pedigree-sales page-wrap"> 
     <!-- Inner Banner -->
-    <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/dairy-cattle-banner.jpg);">
+    <section class="inner-banner-wrapper" style="background-image: url(http://localhost/mccartneys-app/wp-content/uploads/2024/07/dairy-bg.jpeg);">
         <div class="container">
             <div class="content">
             <div class="breadcrumb d-none d-md-block">

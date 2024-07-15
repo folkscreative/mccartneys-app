@@ -400,19 +400,19 @@ function property_tabs_shortcode() {
                     <div class="row g-0 flex-column-reverse flex-md-row">
 						<div class="col-12 col-md-7">
 						<div class="col-left">
-							<h2 class="d-none d-md-block"><?php the_title();?></h2>
+							<h4 class="d-none d-md-block"><?php the_title();?></h4>
 							<?php the_excerpt(); ?>
 							
 							<div class="sale-nmbr">
 							<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
 							<span><strong>Sales </strong><?php the_field('sales_number');?></span>
 							</div>
-							
-							<div class="sale-nmbr d-none d-md-block">
+							<?php if( get_field('lettings_number') ): ?>
+							<div class="sale-nmbr d-none d-md-flex">
 							<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
 							<span><strong>Lettings </strong><?php the_field('lettings_number');?></span>
 							</div>
-							
+							<?php endif; ?>
 							<?php $properties_data=get_field('properties',get_the_ID());
 								  $livestock_data=get_field('livestock',get_the_ID());
 								 $planning_survey_data=get_field('planning_survey',get_the_ID());
@@ -494,7 +494,7 @@ function property_tabs_shortcode() {
 						<?php if ( has_post_thumbnail() ) {?>
                         <div class="col-12 col-md-5">
 						<div class="col-right">
-						<h2 class="d-block d-md-none"><?php the_title();?></h2>
+						<h4 class="d-block d-md-none"><?php the_title();?></h4>
                        <?php  the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );?>   
 					</div>
 						</div>
@@ -607,20 +607,35 @@ function recent_property_tabs_shortcode() {
 }
 add_shortcode( 'recent_property_tabs', 'recent_property_tabs_shortcode' );
 // breadcrumbs
+
+
+// breadcrumb
 function get_breadcrumb() {
-    echo '<a href="'.home_url().'" rel="nofollow">Home</a>';
+    echo '<a href="' . home_url() . '" rel="nofollow">Home</a>';
+    
     if (is_category() || is_single()) {
-        echo ">";
+        echo " > ";
         the_category(' &bull; ');
-            if (is_single()) {
-                echo " > ";
-                the_title();
-            }
+        if (is_single()) {
+            echo ">";
+            the_title();
+        }
     } elseif (is_page()) {
-        echo "";
+        global $post;
+        if ($post->post_parent) {
+            $parent_id  = $post->post_parent;
+            $breadcrumbs = [];
+            while ($parent_id) {
+                $page = get_page($parent_id);
+                $breadcrumbs[] = '<a href="' . get_permalink($page->ID) . '">' . get_the_title($page->ID) . '</a>';
+                $parent_id  = $page->post_parent;
+            }
+            $breadcrumbs = array_reverse($breadcrumbs);
+            foreach ($breadcrumbs as $crumb) echo $crumb . '';
+        }
         echo the_title();
     } elseif (is_search()) {
-        echo "&nbsp;&nbsp;&#187;&nbsp;&nbsp;Search Results for... ";
+        echo " > Search Results for... ";
         echo '"<em>';
         echo the_search_query();
         echo '</em>"';

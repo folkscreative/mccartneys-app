@@ -36,6 +36,7 @@ get_header(); ?>
                             <li>Friday 16th June - Sunday 18th June</li>
                             <li>Three Counties Showground, Malvern, Worcestershire, WR13 6NW</li>
                         </ul>
+                        <a href="#" class="btn-cs-dark">Download Brochure</a>
                     </div>
                     <div class="show-dates-content">
                         <h3>Royal Three Counties Show</h3>

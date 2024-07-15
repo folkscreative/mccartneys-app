@@ -71,38 +71,33 @@
         </div>
     </section>
     <!-- filter ends -->
-
-    <!-- Departments -->
-     <section class="departments global">
+     <!-- Departments -->
+    <section class="departments global">
         <div class="container">
             <div class="content">
-                <?php if( get_field('mccartneys_department_title') ): ?>
-                        <h2><?php the_field('mccartneys_department_title'); ?></h2>
-                    <?php endif; ?>
-                    <?php if( get_field('mccartneys_department_description') ): ?>
-                        <p><?php the_field('mccartneys_department_description'); ?></p>
-                    <?php endif; ?>
+            <h2><?php the_field('mccartneys_department_title'); ?></h2>
+            <p><?php the_field('mccartneys_department_description'); ?></p>
             </div>
-            <?php if( have_rows('cartneys_department_slider') ): ?>
+            <?php if( have_rows('our_departments_slider', 'option') ): ?>
             <div class="depart-slider depar">
-            <?php while( have_rows('cartneys_department_slider') ): the_row(); ?>
+            <?php while( have_rows('our_departments_slider', 'option') ): the_row(); ?>
             <div class="slide-wrap">
             <?php
-                $slider_bg_image = get_sub_field('cartneys_department_thumnail');
-                if( !empty($slider_bg_image) ):?>
-                <img src="<?php echo $slider_bg_image['url']; ?>" alt="<?php echo $slider_bg_image['alt']; ?>">
+                $department_slider_bg_image = get_sub_field('our_departments_thumbnail', 'option');
+                if( !empty($department_slider_bg_image) ):?>
+                <img src="<?php echo $department_slider_bg_image['url']; ?>" alt="<?php echo $department_slider_bg_image['alt']; ?>">
                 <?php endif; ?>
                 <div class="inner-content">
-                    <h3><?php the_sub_field('cartneys_department_title'); ?></h3>
-                    <p><?php the_sub_field('cartneys_department_description'); ?></p>
+                    <h3><?php the_sub_field('department_cart_title', 'option'); ?></h3>
+                    <p><?php the_sub_field('department_cart_description', 'option'); ?></p>
                     <?php 
-                        $cartneys_slider_link = get_sub_field('cartneys_slider_button');
-                        if( $cartneys_slider_link ): 
-                            $cartneys_slider_link_url = $cartneys_slider_link['url'];
-                            $cartneys_slider_link_title = $cartneys_slider_link['title'];
-                            $cartneys_slider_link_target = $cartneys_slider_link['target'] ? $cartneys_slider_link['target'] : '_self';
+                        $department_cartneys_slider_link = get_sub_field('department_slider_button', 'option');
+                        if( $department_cartneys_slider_link ): 
+                            $department_cartneys_slider_link_url = $department_cartneys_slider_link['url'];
+                            $department_cartneys_slider_link_title = $department_cartneys_slider_link['title'];
+                            $department_cartneys_slider_link_target = $department_cartneys_slider_link['target'] ? $department_cartneys_slider_link['target'] : '_self';
                             ?>
-                            <a class="btn-cs-light" href="<?php echo esc_url( $cartneys_slider_link_url ); ?>" target="<?php echo esc_attr( $cartneys_slider_link_target ); ?>"><?php echo esc_html( $cartneys_slider_link_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                            <a class="btn-cs-light" href="<?php echo esc_url( $department_cartneys_slider_link_url ); ?>" target="<?php echo esc_attr( $department_cartneys_slider_link_target ); ?>"><?php echo esc_html( $department_cartneys_slider_link_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
                         <?php endif; ?>
                 </div>
                 </div>
@@ -112,7 +107,7 @@
         </div>
      </section>
      <!-- Departments ends -->
-
+    
     <!-- Start Property section here -->
      <section class="property-wrapper">
         <div class="container">

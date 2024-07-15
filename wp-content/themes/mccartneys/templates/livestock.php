@@ -17,11 +17,8 @@ get_header(); ?>
             <section class="main-banner" style="background-image: url(<?php echo $livestock_bg_main['url']; ?>);">
         <?php endif; ?>
             <div class="container">
-                <div class="breadcrumbs">
-                    <ul>
-                        <li>Home</li>
-                        <li>Livestock</li>
-                    </ul>
+                <div class="breadcrumb">
+                <?php echo get_breadcrumb(); ?>
                 </div>
                 <div class="content">
                     <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
@@ -57,29 +54,21 @@ get_header(); ?>
             </div>
             <div class="slider-wrapper livestocks">
             <?php if( have_rows('services_details') ):
-                while ( have_rows('services_details') ) : the_row();
-                $sv_image = get_sub_field('service_image');
-            ?>
+                while ( have_rows('services_details') ) : the_row();?>
             <div class="slide-wrap">
             <?php    
-                $sv_image = get_sub_field('inner_service_image');
+                $sv_image = get_sub_field('service_image');
                 if( !empty($sv_image) ):?>
                 <img src="<?php echo $sv_image['url']; ?>" alt="<?php echo $sv_image['alt']; ?>">
                 <?php endif; ?>
                 <div class="inner-content">
-                    <h4><?php the_sub_field('inner_service_title'); ?></h4>
+                    <h4><?php the_sub_field('service_image_copy'); ?></h4>
                     <span class="divider"></span>
                     <div class="contex">
-                    <p><?php the_sub_field('inner_service_description'); ?></p>
-                    <?php 
-                        $sr_btn_link = get_sub_field('inner_service_button');
-                        if( $sr_btn_link ): 
-                            $sr_btn_link_url = $sr_btn_link['url'];
-                            $sr_btn_link_title = $sr_btn_link['title'];
-                            $sr_btn_link_target = $sr_btn_link['target'] ? $sr_btn_link['target'] : '_self';
-                            ?>
-                            <a class="btn-rural" href="<?php echo esc_url( $sr_btn_link_url ); ?>" target="<?php echo esc_attr( $sr_btn_link_target ); ?>"><?php echo esc_html( $sr_btn_link_title ); ?></a>
-                        <?php endif; ?>
+                    <p><?php the_sub_field('service_content'); ?></p>
+                    <?php if( get_sub_field('service_cta_label') ): ?>
+                    <a href="<?php the_sub_field('service_cta_link');?>" class="btn-rural"><?php the_sub_field('service_cta_label');?></a>
+                    <?php endif; ?>
                     </div>
                 </div>
                 </div>
@@ -324,7 +313,6 @@ get_header(); ?>
                              <span class="x-icon"><i class="fa-solid fa-xmark"></i></span>
                              </div>
                         </div>
-                        
 
                      </div>
                 </div>
@@ -494,12 +482,8 @@ get_header(); ?>
     <section class="departments others">
         <div class="container">
             <div class="content">
-                <?php if( get_field('our_departments_title', 'option') ): ?>
-                        <h2><?php the_field('our_departments_title', 'option'); ?></h2>
-                    <?php endif; ?>
-                    <?php if( get_field('our_departments_description', 'option') ): ?>
-                        <p><?php the_field('our_departments_description', 'option'); ?></p>
-                    <?php endif; ?>
+                    <h2><?php the_field('our_departments_title', 'option'); ?></h2>
+                    <p><?php the_field('our_departments_description', 'option'); ?></p>
             </div>
             <?php if( have_rows('our_departments_slider', 'option') ): ?>
             <div class="depart-slider depar">
