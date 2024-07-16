@@ -335,6 +335,14 @@ P{
 .header-inner-wrap .col-right #mega-menu-main-menu li .mega-sub-menu li:first-child{
     padding-right: 15px !important;
 }
+.header-inner-wrap .col-right #mega-menu-main-menu .livestck-nav .mega-sub-menu .mega-menu-item:nth-child(2){
+    align-items: start !important;
+    padding-top: 40px !important;
+}
+.header-inner-wrap .col-right #mega-menu-main-menu .livestck-nav .mega-sub-menu .mega-menu-item:nth-child(3){
+    align-items: start !important;
+    padding-top: 40px !important;
+}
 .header-inner-wrap .col-right #mega-menu-main-menu li .mega-sub-menu .mega-menu-item:nth-child(2){
     padding-right: 30px !important;
 }
@@ -1584,6 +1592,9 @@ footer .cookies-menu ul li a{
 .inner-banner-wrapper .container{
     max-width: 974px;
 }
+.inner-banner-wrapper.sale .content{
+    max-width: 100%;
+}
 .inner-banner-wrapper .content{
     position: relative;
     z-index: 1;
@@ -1654,11 +1665,71 @@ footer .cookies-menu ul li a{
     color: #fff;
     margin: 87px 0 47px;
 }
+.inner-banner-wrapper.sale .content h1{
+    color: #fff;
+    margin: 87px 0 18px;
+}
+.inner-banner-wrapper.sale .content p{
+    max-width: 420px;
+    width: 100%;
+    margin-bottom: 36px;
+}
 .inner-banner-wrapper .content p{
     color: #fff;
 }
-
-
+.inner-banner-wrapper .inner{
+    position: relative;
+    z-index: 2;
+    max-width: 506px;
+    background: #fff;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 10px;
+    border-radius: 30px;
+    padding: 6px 10px;
+}
+.inner-banner-wrapper .inner .middle-col{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-left: 30px;
+}
+.inner-banner-wrapper .middle-col .item{
+    width: 38%;
+    padding: 0 9px;
+    border-right: 1px solid #706F70;
+}
+.inner-banner-wrapper .middle-col .item:last-child{
+    width: 24%;
+    border: none;
+}
+.inner-banner-wrapper .middle-col input{
+    font-size: 13px;
+    line-height: 18px;
+    color: #707070;
+    padding: 10px 0;
+    border: none;
+    width: 99%
+}
+.inner-banner-wrapper .middle-col select{
+    font-size: 13px;
+    line-height: 18px;
+    color: #707070;
+    padding: 10px 0;
+    border: none;
+    width: 99%;
+}
+.inner-banner-wrapper .inner .search-btn a{
+    font-size: 11px;
+    padding: 8px 21px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 /* Pedigree Center */
 .pedigree-center{
     padding: 110px 0 124px;
@@ -1836,6 +1907,9 @@ footer .cookies-menu ul li a{
 /* Entry Forms ends */
 
 /* Livestock auctioneers */
+.livestock-auctioneers.sale{
+    padding: 110px 0 0;
+}
 .livestock-auctioneers {
     padding: 100px 0 110px;
 }
@@ -2723,7 +2797,79 @@ footer .cookies-menu ul li a{
 .need-more-info .content .btn a{
     min-width: 50%;
 }
+/* Property center */
+.properties-center{
+    padding: 110px 0 114px;
+}
+.properties-center .container{
+    max-width: 1170px;
+}
+.properties-center .col-left img{
+    max-width: 500px;
+    border-radius: 8px;
+}
+.properties-center .col-right {
+    color: #707070;
+}
+.properties-center h2.title{
+    margin-bottom: 22px;
+}
+.properties-center .col-right p{
+    margin-bottom: 18px;
+}
+.properties-center .col-right a{
+    min-width: 199px;
+    margin-top: 36px;
+}
+/* Property center ends */
+
+/* Sell properties blocks starts */
+.sell-properties-blocks{
+    padding: 87px 0 162px;
+}
+.sell-properties-blocks .container{
+    max-width: 1170px;
+}
+.sell-properties-blocks .contex{
+    color: #707070;
+}
+.sell-properties-blocks .contex h2{
+    margin-bottom: 22px;
+}
+.sell-properties-blocks .blocks{
+    background-color: #602644;
+    color: #fff;
+    height: 100%;
+    padding: 33px 40px 25px;
+    border-radius: 6px;
+}
+.sell-properties-blocks .blocks h4{
+    margin-bottom: 21px;
+}
+/* Sell properties blocks ernds */
+
+
 /* Property page ends */
+
+/* Property Listing starts */
+.property-listing .container{
+    max-width: 1150px;
+}
+.property-listing .property-wrap .item-wrapper{
+    display: flex;
+    flex-direction: row;
+}
+.property-listing .property-wrap .item-wrapper .col-left{
+    max-width: 568px;
+    width: 100%;
+}
+.property-listing .property-wrap .item-wrapper .col-right{
+    width: -webkit-fill-available;
+}
+/* Property Listing ends */
+
+
+
 
 /* Responsieness */
 @media (max-width: 1200px){
@@ -2909,6 +3055,9 @@ footer .cookies-menu ul li a{
     }
     .home-filter-cs .middle-col .item {
         padding: 0 4px;
+    }
+    .sell-properties-blocks .blocks{
+        padding: 28px 25px 20px;
     }
 }
 @media (max-width: 767px){
@@ -3325,18 +3474,6 @@ footer .cookies-menu ul li a{
         /* width: calc(33% - 7px); */
         width: 80px;
     }
-    /* footer .logos-wrap img:nth-child(4){
-        width: calc(25% - 7px);
-    }
-    footer .logos-wrap img:nth-child(5){
-        width: calc(25% - 7px);
-    }
-    footer .logos-wrap img:nth-child(6){
-        width: calc(25% - 7px);
-    }
-    footer .logos-wrap img:nth-child(7){
-        width: calc(25% - 7px);
-    } */
     footer .divider{
         margin-top: 55px;
     }
@@ -3656,6 +3793,27 @@ footer .cookies-menu ul li a{
     }
     .recent-property-wrapper.property-pg {
         padding: 0 0 70px;
+    }
+    .inner-banner-wrapper.sale .content{
+        max-width: 267px;
+    }
+    .inner-banner-wrapper.sale .content h1{
+        margin: 36px 0 30px;
+    }
+    .inner-banner-wrapper .inner{
+        display: none;
+    }
+    .properties-center .col-left img{
+        max-width: 100%;
+    }
+    .properties-center{
+        padding: 65px 0 80px;
+    }
+    .sell-properties-blocks{
+        padding: 70px 0 55px;
+    }
+    .livestock-auctioneers.sale{
+        padding: 60px 0 0;
     }
 }
 @media (max-width: 575px){
