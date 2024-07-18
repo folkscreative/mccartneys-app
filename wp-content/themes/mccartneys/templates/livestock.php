@@ -300,7 +300,15 @@ if ( !empty( $sale_banner ) ) { ?>
                             <h2><?php the_sub_field('event_title'); ?></h2>
                             <?php the_sub_field('event_description'); ?>
                             <h3> <?php echo esc_html ( get_sub_field( 'livestock_event_date' ) ); ?></h3>
-                            <a class="btn-rural" href="<?php the_sub_field('event_detail_link'); ?>"><?php the_sub_field('event_detail_label'); ?>  <span><i class="fa-solid fa-angle-right"></i></span></a>
+                            <?php 
+                        $events_cf_button = get_sub_field('event_detail_link');
+                        if( $events_cf_button ): 
+                            $events_cf_button_url = $events_cf_button['url'];
+                            $events_cf_button_title = $events_cf_button['title'];
+                            $events_cf_button_target = $events_cf_button['target'] ? $events_cf_button['target'] : '_self';
+                            ?>
+                            <a class="btn-rural" href="<?php echo esc_url( $events_cf_button_url ); ?>" target="<?php echo esc_attr( $events_cf_button_target ); ?>"><?php echo esc_html( $events_cf_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                        <?php endif; ?>
                         </div>
                         <?php endwhile; ?>
                         <?php endif; ?>

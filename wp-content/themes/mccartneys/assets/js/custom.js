@@ -30,11 +30,12 @@ $(document).ready(function () {
 });
 // tabs
 $(document).on('click', '.top-bar', function()  {
-  $(this).siblings('.bottom-bar').addClass('show');
+  $(this).siblings('.bottom-bar').slideToggle(350);
 });
 $(document).on('click', '.bottom-bar .x-icon', function()  {
-  $(this).parent().removeClass('show');
+  $(this).parent().slideToggle(350);
 });
+
 // daper
 $('.depar').slick({
     dots: true,
@@ -118,7 +119,8 @@ $('.insigh').slick({
     dots: true,
     arrows: false,
     infinite: true,
-    speed: 300,
+    autoplay: true,
+    autoplaySpeed: 2000,
     slidesToShow: 3,
     slideToScroll: 1,
     responsive: [
