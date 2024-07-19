@@ -2026,10 +2026,19 @@ footer .cookies-menu ul li a{
     flex-direction: column;
     row-gap: 24px;
 }
-.livestock-faqs .faqs-wrapper .top-bar{
-    background-color: #fff;
+.livestock-faqs .faqs-wrapper .faqs-item{
     border: 2px solid #8D1F56;
     border-radius: 8px;
+    background-color: #fff;
+    transition: all .3s ease;
+}
+.livestock-faqs .faqs-wrapper .faqs-item.active{
+    background-color: #8D1F56;
+}
+.livestock-faqs .faqs-wrapper .faqs-item.active .top-bar h4{
+    color: #fff;
+}
+.livestock-faqs .faqs-wrapper .top-bar{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -2043,9 +2052,14 @@ footer .cookies-menu ul li a{
     color: #707070;
     font-weight: 700;
 }
+.livestock-faqs .faqs-wrapper .faqs-item.active .top-bar .plus-icon{
+    color: #fff;
+    transform: rotate(45deg);
+}
 .livestock-faqs .faqs-wrapper .top-bar .plus-icon{
     cursor: pointer;
     color: #8D1F56;
+    transition: all .3s ease;
 }
 .livestock-faqs .faqs-wrapper .bottom-bar.show{
     display: flex !important;
@@ -2055,10 +2069,7 @@ footer .cookies-menu ul li a{
     position: relative;
     display: none;
     overflow: hidden;
-    background-color: #8D1F56;
-    padding: 20px 24px;
-    border-radius: 8px;
-    margin-top: 24px;
+    padding: 0 24px 20px;
     flex-direction: row;
     column-gap: 15px;
     justify-content: space-between;
@@ -2100,6 +2111,9 @@ footer .cookies-menu ul li a{
     color: #fff;
     margin: 10px 0 17px;
 }
+.livestock-faqs.faqs-wrap .faqs-wrapper .bottom-bar .content p{ 
+    margin: 10px 0;
+}
 .livestock-faqs .faqs-wrapper .bottom-bar .content ul li{ 
     font-size: 14px;
     line-height: 21px;
@@ -2129,11 +2143,7 @@ footer .cookies-menu ul li a{
     color: #fff;
 }
 .livestock-faqs .faqs-wrapper .bottom-bar .x-icon{
-    cursor: pointer;
-    color: #fff;
-    position: absolute;
-    right: 24px;
-    top: 20px;
+    display: none;
 }
 /* Livestock faqs ends */
 .departments.others {
@@ -2309,7 +2319,7 @@ footer .cookies-menu ul li a{
 }
 .livestocks-departments .slide-wrap .inner-content {
     background-color: #8d1f56bd;
-    padding: 20px 24px 30px;
+    padding: 13px 24px 30px;
     position: absolute;
     bottom: -122px;
     left: 0;
@@ -2876,17 +2886,7 @@ footer .cookies-menu ul li a{
 .property-listing .container{
     max-width: 1150px;
 }
-.property-listing .property-wrap .item-wrapper{
-    display: flex;
-    flex-direction: row;
-}
-.property-listing .property-wrap .item-wrapper .col-left{
-    max-width: 568px;
-    width: 100%;
-}
-.property-listing .property-wrap .item-wrapper .col-right{
-    width: -webkit-fill-available;
-}
+
 /* Property Listing ends */
 
 /*Fine & Country Banner */
@@ -2911,6 +2911,8 @@ footer .cookies-menu ul li a{
     border-radius: 8px;
 }
 .properties-right .col-left {
+    max-width: 500px;
+    width: 100%;
     color: #707070;
 }
 .properties-right h2.title{
@@ -3565,7 +3567,7 @@ footer .cookies-menu ul li a{
         display: none;
     }
     .livestocks-departments .slide-wrap .inner-content{
-        padding: 20px 10px 17px;
+        padding: 12px 10px 17px;
         bottom: -18px;
     }
     .livestocks-departments .slide-wrap:hover .inner-content p{
@@ -3919,6 +3921,9 @@ footer .cookies-menu ul li a{
     }
     .properties-center{
         padding: 65px 0 60px;
+    }
+    .properties-right .col-left{
+        max-width: 100%;
     }
 }
 @media (max-width: 575px){

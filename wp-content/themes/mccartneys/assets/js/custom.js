@@ -29,12 +29,20 @@ $(document).ready(function () {
   });
 });
 // tabs
-$(document).on('click', '.top-bar', function()  {
-  $(this).siblings('.bottom-bar').slideToggle(350);
+// $(document).on('click', '.top-bar', function()  {
+//   $(this).siblings('.bottom-bar').slideToggle(350);
+// });
+// $(document).on('click', '.bottom-bar .x-icon', function()  {
+//   $(this).parent().slideToggle(350);
+// });
+$('.faqs-wrapper .faqs-item').on('click', function()  {
+  $(this).children('.bottom-bar').slideToggle(300);
+  $(this).siblings().children('.bottom-bar').slideUp(300);
+  $(this).siblings().removeClass('active');          
+  $(this).toggleClass('active');
 });
-$(document).on('click', '.bottom-bar .x-icon', function()  {
-  $(this).parent().slideToggle(350);
-});
+
+
 
 // daper
 $('.depar').slick({
