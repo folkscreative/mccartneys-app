@@ -512,12 +512,12 @@ P{
 .banner:after{
     content: '';
     position: absolute;
-    background-image: url(../images/Desktop/Layer-one-bg.png);
-    width: 420px;
-    height: 365px;
-    bottom: 0;
+    background-image: url(../images/vector-cropped.svg);
+    width: 412px;
+    height: 300px;
+    bottom: -2px;
     right: 0;
-    background-size: 100% 100%;
+    background-size: cover;
 }
 .banner .col-left{
     padding: 170px 0 208px;
@@ -2225,7 +2225,7 @@ footer .cookies-menu ul li a{
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 11px 40px;
+    padding: 0 40px;
     justify-content: space-between;
     border-radius: 40px;
 }
@@ -2252,6 +2252,7 @@ footer .cookies-menu ul li a{
 }
 .main-banner-sticky .banner-menu ul .menu-item{
     position: relative;
+    padding: 11px 0;
 }
 .main-banner-sticky .banner-menu .menu .menu-item-has-children:hover .sub-menu{
     display: flex;
@@ -2263,14 +2264,17 @@ footer .cookies-menu ul li a{
     position: absolute;
     display: none;
     flex-direction: column;
-    background: #fff;
+    background: #FFFFFFF0;
     width: 206px;
     left: 0px;
     margin: 0;
-    padding: 24px 20px 23px 20px;
-    top: 22px;
+    padding: 8px 20px 23px 20px;
+    top: 50px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
+}
+.main-banner-sticky .banner-menu ul .sub-menu li{
+     padding: 0;
 }
 .main-banner-sticky .banner-menu ul .sub-menu li a{
     font-size: 15px;
@@ -2331,6 +2335,9 @@ footer .cookies-menu ul li a{
     position: relative;
     width: fit-content;
     padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+    height: 64px;
 }
 .livestocks-departments.property-page .slide-wrap .inner-content h4{
     margin: 0 auto;
@@ -2384,7 +2391,7 @@ footer .cookies-menu ul li a{
     transform: translateY(0);
 }
 .livestocks-departments .slide-wrap:hover .inner-content{
-    bottom: -18px;
+    bottom: 0;
 }
 .livestocks-departments .slider-wrapper .slick-arrow {
     font-size: 0;
@@ -2631,7 +2638,7 @@ footer .cookies-menu ul li a{
 
 /* Show Date Page */
 .show-dates {
-    padding: 49px 0 30px;
+    padding: 49px 0 0;
 }
 .show-dates .container {
     max-width: 790px;
@@ -2647,7 +2654,7 @@ footer .cookies-menu ul li a{
 }
 .show-dates .show-dates-content a{
     min-width: 199px;
-    margin-top: 17px;
+    margin-top: 26px;
 }
 .show-dates .show-dates-content ul li {
     font-weight: 300;
@@ -2934,6 +2941,24 @@ footer .cookies-menu ul li a{
     column-gap: 15px;
     margin-top: 30px;
 }
+.btn-sale{
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: #707070 !important;
+    display: inline-block;
+    transition: all .3s ease;
+}
+.btn-sale:hover{
+    color: #8D1F56 !important;
+}
+.btn-sale span{
+    font-size: 12px;
+    line-height: 15px;
+    padding-left: 10px;
+    
+}
 /* Property center ends */
 
 
@@ -2987,8 +3012,8 @@ footer .cookies-menu ul li a{
 }
 @media (max-width: 1024px){
     .banner:after{
-        width: 300px;
-        height: 210px;
+        width: 298px;
+        height: 220px;
     }
     .banner .col-left{
         padding: 132px 0 90px;
@@ -3177,8 +3202,8 @@ footer .cookies-menu ul li a{
         max-width: 170px;
     }
     .banner:after {
-        width: 189px;
-        height: 100px;
+        width: 107px;
+        height: 79px;
     }
     .home-filter-cs{
         padding: 30px 0;
@@ -3570,6 +3595,9 @@ footer .cookies-menu ul li a{
         padding: 12px 10px 17px;
         bottom: -18px;
     }
+    .livestocks-departments .slide-wrap:hover .inner-content{
+        bottom: -18px;
+    }
     .livestocks-departments .slide-wrap:hover .inner-content p{
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -3839,7 +3867,7 @@ footer .cookies-menu ul li a{
         padding: 81px 0 82px;
     }
     .show-dates {
-        padding: 33px 0 30px;
+        padding: 33px 0 0;
     }
     .show-dates .show-dates-content{
         padding: 28px 0 28px;
@@ -3883,6 +3911,7 @@ footer .cookies-menu ul li a{
     .livestocks-departments .slide-wrap .inner-content h4{
         margin: 0 auto;
         text-align: center;
+        height: 45px;
     }
     .our-marketer.local-area-guide{
         padding: 0;
@@ -3924,6 +3953,9 @@ footer .cookies-menu ul li a{
     }
     .properties-right .col-left{
         max-width: 100%;
+    }
+    .btn-sale{
+        font-size: 13px;
     }
 }
 @media (max-width: 575px){
