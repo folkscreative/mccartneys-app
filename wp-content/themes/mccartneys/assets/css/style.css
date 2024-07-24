@@ -715,6 +715,9 @@ P{
     width: 100%;
     transition: all .5s ease;
 }
+.departments.equine .depart-slider .slide-wrap .inner-content{
+    background-color: #00000075 !important;
+}
 .departments .depart-slider .slide-wrap:hover .inner-content{
     bottom: 0;
 }
@@ -2514,6 +2517,7 @@ footer .cookies-menu ul li a{
     background-repeat: no-repeat;
     background-position: top center;
     padding: 15px 20px 34px;
+    border-radius: 8px;
 }
 
 .events .events-slider {
@@ -2961,6 +2965,256 @@ footer .cookies-menu ul li a{
 }
 /* Property center ends */
 
+/* Equine Page */
+.our-marketer.equine .col-left p{
+    margin-bottom: 20px;
+}
+.our-marketer.equine .col-left p a{
+    color: #707070;
+    font-weight: 400;
+    text-decoration: underline;
+}
+.our-marketer.equine .marketer-buttons a{
+    min-width: 270px;
+}
+.our-marketer.app .marketer-button{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}
+.our-marketer.app .marketer-button a{
+    min-width: 200px;
+    height: 59px;
+    background-size: 100% 100%;
+    font-size: 0; 
+}
+.our-marketer.app .marketer-button .app-store{
+    background-image: url(../images/appstore-img.svg);
+}
+.our-marketer.app .marketer-button .google-store{
+    background-image: url(../images/googleplay-img.svg);
+}
+.need-more-info.equine{
+    background-color: #fff !important;
+}
+.livestock-faqs .col-left a{
+    margin-top: 30px;
+}
+.cta-banner.equine{
+    padding-top: 60px;
+}
+.events.equine{
+    padding-top: 200px !important;
+}
+.our-marketer.equine .col-left ul li{
+    list-style-type: disc;
+    font-weight: 300;
+    margin: 12px 0 12px 20px;
+} 
+.inner-banner-wrapper.equine{
+    margin-bottom: 145px;
+}
+.inner-banner-wrapper.society .content h1{
+    margin-top: 160px !important;
+}
+.society-sale-wrapper{
+    margin-top: -100px;
+}
+.society-sale-wrapper .container{
+    max-width: 970px;
+}
+.society-sale-wrapper .wrapper{
+    border-bottom: 1px solid #D0D3D4;
+    padding: 50px 0;
+}
+.society-sale-wrapper .wrapper:last-child{
+    border: none;
+}
+.society-sale-wrapper .wrapper img{
+    max-width: 280px;
+}
+.society-sale-wrapper .wrapper h2{
+    color: #707070;
+}
+.society-sale-wrapper .wrapper p{
+    color: #707070;
+    margin: 20px 0;
+}
+.society-sale-wrapper .wrapper a{
+    min-width: 199px;
+}
+.stud-catalog {
+    padding: 94px 0 100px;
+    margin-top: -125px;
+}
+.stud-catalog .container{
+    max-width: 1170px;
+}
+.stud-catalog .content{
+    max-width: 810px;
+    width: 100%;
+    margin: 0 auto 67px;
+    color: #707070;
+    text-align: center;
+}
+.stud-catalog .content h2{  
+    margin-bottom: 22px;
+}
+.stud-catalog .stud{
+    margin: 0 -20px;
+}
+.stud-catalog .stud .slide-wrap{
+    margin: 0 20px;
+}
+.stud-catalog .stud .slide-wrap img{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+.stud-catalog .stud .slick-arrow {
+    font-size: 0;
+    width: 33px;
+    height: 33px;
+    background-image: url(../images/de-arrows.png);
+    background-color: #fff;
+    background-size: 100% 100%;
+    border: none;
+    box-shadow: 0px 0px 4px #0003;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+.stud-catalog .stud  .slick-prev {
+    left: 0;
+}
+.stud-catalog .stud  .slick-next {
+    background-image: url(../images/de-arrow-right.png);
+    right: 0 !important;
+}
+.box-banner .content{
+    max-width: 442px;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px 20px 59px;
+    border-top-right-radius: 35px;
+    border-top-left-radius: 35px;
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+}
+.box-banner .content h2{
+    color: #707070;
+    margin-top: 30px; 
+}
+.box-banner{
+    background-size: cover;
+    padding-top: 110px;
+}
+.box-banner .content .breadcrumb{
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 24px;
+    color: #707070;
+    margin: 0 auto;
+}
+.box-banner .content .breadcrumb a {
+    position: relative;
+    color: #707070;
+    padding-right: 20px;
+}
+.box-banner .content .breadcrumb a::after {
+    content: "";
+    font-family: dashicons;
+    position: absolute;
+    color: #707070;
+    right: 5px;
+    transform: rotate(-90deg);
+}
+.livestock-faqs.equine{
+    background: linear-gradient(180deg, transparent 40%, #F7EBEE 40%);
+}
+.livestock-faqs.equine::after{
+    content: "";
+    position: absolute;
+    display: none;
+}
+.livestock-faqs.equine::before{
+    content: "";
+    position: absolute;
+    background-image: url(../images/buying-auction-vector.png);
+    width: 100%;
+    height: 72%;
+    left: 0;
+    background-repeat: no-repeat;
+    top: -52px;
+    background-size: 100% 100%;
+    z-index: -1;
+}
+.need-more-info.auction{
+    background: linear-gradient(180deg, #F7EBEE 56%, transparent 56%);
+}
+.need-more-info.auction .content .btn{
+    justify-content: center;
+}
+.box-banner.auction{
+    margin-bottom: 106px;
+}
+/* Equine Page ends */
+
+/* Fine art page */
+.btn-art{
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    border-radius: 30px;
+    padding: 10px 10px;
+    max-width: 140px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: #393939 !important;
+    background-color:#EAC538;
+}
+.btn-art:hover::after{
+    opacity: 1;
+}
+.btn-art::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    top: 0;
+    transition: all .3s ease;
+    z-index: -1;
+    right: 0;
+    opacity: 0;
+}
+.btn-art:hover{
+    color: #707070;
+}
+.btn-art span {
+    font-size: 12px;
+    line-height: 15px;
+    padding-left: 10px;
+}
+.btn-art:hover span {
+    color: #8D1F56;
+}
+/* Fine art page ends */
+
+
+
+
+
+
+
 
 /* Responsieness */
 @media (max-width: 1200px){
@@ -3019,7 +3273,7 @@ footer .cookies-menu ul li a{
         padding: 132px 0 90px;
     }
     .departments .depart-slider .slide-wrap .inner-content{
-        bottom: -58%;
+        bottom: -42%;
     }
     .departments .slide-wrap img{
         height: 400px;
@@ -3037,6 +3291,17 @@ footer .cookies-menu ul li a{
     .inner-banner-wrapper::after{
         left: -57px;
         width: 100%;
+    }
+    .main-banner-sticky.equine .banner-menu .menu{
+        padding: 0 20px;
+    }
+    .livestock-faqs.equine{
+        background: linear-gradient(180deg, transparent 29%, #F7EBEE 29%);
+    }
+    .livestock-faqs.equine::before{
+        width: 100%;
+        height: 154px;
+        top: -52px;
     }
 }
 @media (max-width: 991px){
@@ -3082,7 +3347,7 @@ footer .cookies-menu ul li a{
         width: 67%;
     }
     .departments .depart-slider .slide-wrap .inner-content{
-        bottom: -54%;
+        bottom: -42%;
     }
     .property-wrapper .nav-tabs{
         margin-bottom: 40px;
@@ -3150,6 +3415,21 @@ footer .cookies-menu ul li a{
     .sell-properties-blocks .blocks{
         padding: 28px 25px 20px;
     }
+    .our-marketer.app .marketer-button a{
+        min-width: 130px;
+    }
+    .main-banner-sticky.equine .banner-menu ul li a{
+        font-size: 9px;
+    }
+    .cta-banner.equine{
+        padding: 0;
+    }
+    .inner-banner-wrapper.society .content h1{
+        margin-top: 130px !important;
+    }
+    .inner-banner-wrapper.equine {
+        margin-bottom: 90px;
+    }
 }
 @media (max-width: 767px){
     h1{
@@ -3174,6 +3454,10 @@ footer .cookies-menu ul li a{
     }
     .main-banner{
         position: relative;
+    }
+    .main-banner .container{
+        position: relative;
+        z-index: 1;
     }
     .main-banner::after{
         content: '';
@@ -3389,7 +3673,7 @@ footer .cookies-menu ul li a{
     .recent-property-wrapper .outer-wrapper .nav-tabs li a{
         font-size: 10px;
         line-height: 19px;
-        padding: 3px 9px;
+        padding: 3px 6px;
     }
     .recent-property-wrapper .inner-tabs{
         padding-top: 0;
@@ -3646,6 +3930,7 @@ footer .cookies-menu ul li a{
     }
     .our-marketer .col-left img{
         margin: 27px 0;
+        border-radius: 5px;
     }
     .our-marketer .marketer-buttons{
         margin: 0;
@@ -3744,6 +4029,7 @@ footer .cookies-menu ul li a{
     }
     .events .wrapper {
         padding: 15px 30px 34px;
+        border-radius: 5px;
     }
     .livestock-faqs.faqs-wrap .col-left{
         text-align: left;
@@ -3909,8 +4195,8 @@ footer .cookies-menu ul li a{
         word-wrap: break-word;
     }
     .livestocks-departments .slide-wrap .inner-content h4{
-        margin: 0 auto;
-        text-align: center;
+        /* margin: 0 auto;
+        text-align: center; */
         height: 45px;
     }
     .our-marketer.local-area-guide{
@@ -3955,6 +4241,45 @@ footer .cookies-menu ul li a{
         max-width: 100%;
     }
     .btn-sale{
+        font-size: 13px;
+    }
+    .livestock-faqs .col-left a{
+        margin-bottom: 30px;
+    }
+    .cta-banner.equine{
+        padding: 0;
+    }
+    .events.equine {
+        padding-top: 165px !important;
+    }
+    .inner-banner-wrapper.society .content h1 {
+        margin-top: 74px !important;
+    }
+    .society-sale-wrapper .wrapper img{
+        max-width: 230px;
+        margin-bottom: 40px;
+    }
+    .stud-catalog {
+        padding: 64px 0 80px;
+        margin-top: -90px;
+    }
+    .stud-catalog .content {
+        margin: 0 auto 30px;
+    }
+    .livestock-faqs.equine {
+        background: linear-gradient(180deg, transparent 5%, #F7EBEE 5%);
+        padding-top: 30px;
+    }
+    .livestock-faqs.equine::before {
+        width: 100%;
+        height: 83px;
+    }
+    .box-banner .content{
+        padding: 20px 10px 38px;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+    }
+    .btn-art{
         font-size: 13px;
     }
 }
@@ -4034,6 +4359,10 @@ footer .cookies-menu ul li a{
     .btn-wrap-csf{
         flex-direction: column;
         row-gap: 20px;
+    }
+    .society-sale-wrapper .wrapper img{
+        max-width: 150px;
+        margin-bottom: 40px;
     }
 }
 /* popups */

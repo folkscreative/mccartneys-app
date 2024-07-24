@@ -188,6 +188,7 @@ function mccartneys()
 
     // Adding scripts file in the footer
 	wp_enqueue_script('Jquery','https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js', array('jquery'), '', true);
+    wp_enqueue_script('load-lightbox-script','https://mreq.github.io/slick-lightbox/dist/slick-lightbox.js');
     wp_enqueue_script('load-fa-script','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js');
 	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '', 'all');
 	wp_enqueue_script('slick-js', get_template_directory_uri() . '/assets/js/slick.min.js', array(), '', 'all');

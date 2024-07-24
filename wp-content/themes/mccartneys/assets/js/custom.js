@@ -226,7 +226,26 @@ $('.events-slider').slick({
   centerMode: false,
   slidesToShow: 1,
   slideToScroll: 1,
-
+});
+$('.stud-slider').slick({
+  dots: false,
+  arrows: true,
+  infinite: true,
+  autoplay: false,
+  autoplaySpeed: 2000,
+  centerMode: false,
+  slidesToShow: 2,
+  slideToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 575,
+      settings: {
+      slidesToShow: 1,
+      centerMode: false, /* set centerMode to false to show complete slide instead of 3 */
+      slidesToScroll: 1
+      }
+    }
+   ]
 });
 // on window scroll
 $(window).scroll(function(){
