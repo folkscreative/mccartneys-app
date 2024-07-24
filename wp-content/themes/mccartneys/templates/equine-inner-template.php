@@ -41,7 +41,7 @@ get_header(); ?>
                     <?php endif; ?>
                     </div>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 align-content-center">
                     <div class="col-left">
                         <?php if (get_sub_field('equine_sale_title')): ?>
                             <h2><?php the_sub_field('equine_sale_title'); ?></h2>
@@ -86,13 +86,15 @@ get_header(); ?>
    
     <!-- Our Marketer section ends here -->
 
+    
+
 
     <!-- Our Marketer section start here -->
    <?php if( get_row_layout() == 'equine_app_content' ): ?>
     <section class="our-marketer equine app">
         <div class="container">
             <div class="row g-5">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 align-content-center">
                     <div class="col-left">
                         <?php if (get_sub_field('equine_app_title')): ?>
                             <h2><?php the_sub_field('equine_app_title'); ?></h2>
@@ -102,7 +104,7 @@ get_header(); ?>
                              if( !empty($equine_sale_image) ):?>
                             <img src="<?php echo $equine_sale_image['url']; ?>" alt="<?php echo $equine_sale_image['alt']; ?>" class="w-100 d-block d-md-none">
                             <?php endif; ?>
-                        <div class="marketer-button">
+                        <div class="marketer-buttons">
                         <?php 
                         $eq_primary_button = get_sub_field('equine_app_primary_button');
                         if( $eq_primary_button ): 
@@ -110,7 +112,7 @@ get_header(); ?>
                             $eq_primary_button_title = $eq_primary_button['title'];
                             $eq_primary_button_target = $eq_primary_button['target'] ? $eq_primary_button['target'] : '_self';
                             ?>
-                            <a class="app-store" href="<?php echo esc_url( $eq_primary_button_url ); ?>" target="<?php echo esc_attr( $eq_primary_button_target ); ?>"><?php echo esc_html( $eq_primary_button_title ); ?></a>
+                            <a class="btn-cs-dark" href="<?php echo esc_url( $eq_primary_button_url ); ?>" target="<?php echo esc_attr( $eq_primary_button_target ); ?>"><?php echo esc_html( $eq_primary_button_title ); ?></a>
                         <?php endif; ?>
                      <?php 
                         $eq_secondary_button = get_sub_field('equine_app_secondary_button');

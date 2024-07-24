@@ -6,7 +6,7 @@
 
 get_header(); ?>
 
-<main class="pedigree-sales page-wrap"> 
+<main class="fine-art page-wrap"> 
     <!-- Inner Banner -->
     <?php if( have_rows('blocks') ): ?>
         <?php while( have_rows('blocks') ): the_row(); ?>
@@ -14,7 +14,7 @@ get_header(); ?>
            <?php
             $image_private = get_sub_field( 'livestock_background_image' );
 if ( !empty( $image_private ) ) { ?>
-    <section class="inner-banner-wrapper" style="background-image:url('<?php echo $image_private['url']; ?>');">
+    <section class="inner-banner-wrapper art" style="background-image:url('<?php echo $image_private['url']; ?>');">
 <?php }?>
         <div class="container">
             <div class="content">
@@ -74,42 +74,46 @@ if ( !empty( $image_private ) ) { ?>
 <?php if( get_row_layout() == 'auction_room_section' ): ?>
  <section class="auction-room">
     <div class="container">
-        <div class="row">
-            <div class="col-6">
+        <div class="row g-0">
+            <div class="col-12 col-md-6">
                 <div class="col-left">
                     <h4><?php the_sub_field('auction_room_title'); ?></h4>
                     <ul>
             <?php if( have_rows('auction_room_social') ):
                      while ( have_rows('auction_room_social') ) : the_row();
-                     $act_img = get_sub_field('icon');
+                     $act_img = get_sub_field('auction_room_icon');
                      ?>
-                        <li><a href=""><img src="<?php the_sub_field('link'); ?>">
+                        <li><a href=""><img src="<?php the_sub_field('auction_room_link'); ?>">
                         <?php if( !empty($act_img) ):?>
                         <img src="<?php echo $act_img['url']; ?>" alt="<?php echo $act_img['alt']; ?>">
                     <?php endif; ?>
                      </a></li>
                         <?php endwhile; ?><?php endif; ?>
                     </ul>       
-                    <p><?php the_sub_field('auction_room_address'); ?></p>
+                    <?php the_sub_field('auction_room_address'); ?>
                     <div class="download-auction">
                         <a href="<?php the_sub_field('download_button_link'); ?>"><?php the_sub_field('download_button_label'); ?></a>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <div class="col-right">
-                    <h4><?php the_sub_field('opening_hours_title'); ?></h4>   
-                    <span> <?php the_sub_field('opening_hours_time'); ?> </span>
-                    <p><?php the_sub_field('opening_hours_description'); ?></p>
-                    <h4><?php the_sub_field('collection_and_drive_title'); ?></h4> 
-                    <p><?php the_sub_field('collection_and_drive_description'); ?></p>
+                    <?php the_sub_field('auction_right_area_description');?>
                     <div class="contact-info">
                         <ul>
-                            <li><span><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/Group-1000005872.png"></span><a href="tel:<?php the_sub_field('download_button_label'); ?>"><?php the_sub_field('download_button_label'); ?></a></li>
-                            <li><span><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/Vector.png"></span><a href="mailto:<?php the_sub_field('download_button_label'); ?>"><?php the_sub_field('download_button_label'); ?></a></li>
+                            <li><img src="<?php echo get_template_directory_uri()?>/assets/images/Icon - phone.svg" alt=""><a href="tel:<?php the_sub_field('auction_room_phone_number'); ?>"><?php the_sub_field('auction_room_phone_number'); ?></a></li>
+                            <li><img src="<?php echo get_template_directory_uri()?>/assets/images/vector-email.svg" alt=""><a href="mailto:<?php the_sub_field('auction_room_email'); ?>"><?php the_sub_field('auction_room_email'); ?></a></li>
                         </ul>
                     </div>
-                    <a href="<?php the_sub_field('auction_office_contact_cta_link'); ?>"><?php the_sub_field('auction_office_contact_cta'); ?></a>
+                    <?php 
+                        $events_cd_button = get_sub_field('auction_office_contact_cta');
+                        if( $events_cd_button ): 
+                            $events_cd_button_url = $events_cd_button['url'];
+                            $events_cd_button_title = $events_cd_button['title'];
+                            $events_cd_button_target = $events_cd_button['target'] ? $events_cd_button['target'] : '_self';
+                            ?>
+                            <a class="btn-cs-dark" href="<?php echo esc_url( $events_cd_button_url ); ?>" target="<?php echo esc_attr( $events_cd_button_target ); ?>"><?php echo esc_html( $events_cd_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                        <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -128,7 +132,7 @@ if ( !empty( $image_private ) ) { ?>
                 <div class="col-left">
                 <h2><?php the_sub_field('call_to_action_title'); ?></h2>
                 <p><?php the_sub_field('call_to_action_content'); ?></p>
-                <a class="btn-rural" href="<?php the_sub_field('call_to_action_link'); ?>"><?php the_sub_field('call_to_action_label'); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                <a class="btn-art" href="<?php the_sub_field('call_to_action_link'); ?>"><?php the_sub_field('call_to_action_label'); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
                 </div>
             </div>
             <div class="col-12 col-md-7">
@@ -237,7 +241,7 @@ if ( !empty( $image_private ) ) { ?>
 
 <!-- <section gallery start here -->
 <?php if( get_row_layout() == 'auction_room_gallery' ): ?>
- <section class="auction-gallery">
+ <section class="auction-gallery art">
     <div class="container">
         <h2><?php the_sub_field('auction_gallery_title'); ?></h2>
         <p><?php the_sub_field('auction_gallery_description'); ?></p>

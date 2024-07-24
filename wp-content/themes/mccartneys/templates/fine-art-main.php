@@ -15,7 +15,7 @@ get_header(); ?>
             $livestock_bg_main = get_sub_field('livestock_background_image');
             ?>
             <?php if (!empty($livestock_bg_main)): ?>
-                <section class="main-banner pro" style="background-image: url(<?php echo esc_url($livestock_bg_main['url']); ?>);">
+                <section class="main-banner" style="background-image: url(<?php echo esc_url($livestock_bg_main['url']); ?>);">
             <?php else: ?>
                 <section class="main-banner">
             <?php endif; ?>
@@ -35,7 +35,7 @@ get_header(); ?>
                     <?php
                     wp_nav_menu(
                         array(
-                            'menu' => 'Equine-Service-Menu',
+                            'menu' => 'Fine-Art-Service-Menu',
                         )
                     );
                     ?>
@@ -48,7 +48,7 @@ get_header(); ?>
 
     <!-- Department Services -->
     <?php if( get_row_layout() == 'livestock_services' ): ?>
-        <section class="departments equine">
+        <section class="departments equine art">
         <div class="container">
             <div class="content">
                     <h2><?php the_sub_field('livestock_service_title'); ?></h2>
@@ -319,7 +319,7 @@ get_header(); ?>
         <div class="container">
             <h2><?php the_sub_field('auction_gallery_title'); ?></h2>
             <p><?php the_sub_field('auction_gallery_description'); ?></p>
-            <div class="row">
+            <div class="row g-0">
                 <div class="col-12">
                     <div class="gallery-detail">
                     <?php 
