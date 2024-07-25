@@ -3112,6 +3112,9 @@ footer .cookies-menu ul li a{
     background-size: cover;
     padding-top: 110px;
 }
+.box-banner .container{
+    max-width: 1170px;
+}
 .box-banner .content .breadcrumb{
     font-size: 13px;
     font-weight: 300;
@@ -3164,6 +3167,9 @@ footer .cookies-menu ul li a{
 /* Equine Page ends */
 
 /* Fine art page starts */
+.departments.art .content{
+    max-width: 730px;
+}
 .auction-gallery{
     padding: 168px 0 50px;
 }
@@ -3327,7 +3333,7 @@ margin: 20px 0;
     align-items: center;
     column-gap: 10px;
 }
-btn-cs-dark .contact-info ul li img{
+.auction-room .col-right .contact-info ul li img{
     width: 20px;
     height: 16px;
 }
@@ -3343,9 +3349,235 @@ btn-cs-dark .contact-info ul li img{
 }
 /* Fine art page ends */
 
+/* Rural Page */
+.main-banner.rural .breadcrumb a::after {
+    color: #8CB85B !important;
+}
+.main-banner.rural .content{
+    max-width: 550px;
+}
+.livestocks-departments.rural .slide-wrap .inner-content h4{
+    height: 84px;
+}
+.properties-right.rural .col-right img{
+    max-width: 100%;
+}
+.departments.rural{
+    padding-bottom: 0;
+}
+.our-marketer.rural{
+    padding-top: 90px;
+}
+.our-marketer.rural .mark-buttons a{
+    min-width: 199px;
+    margin-top: 30px;
+}
+.inner-banner-wrapper.rural .content{
+    max-width: 100%;
+}
+.inner-banner-wrapper.rural .content h1{
+    max-width: 540px;
+}
+.inner-banner-wrapper.rural .content p{
+    max-width: 505px;
+}
+.our-marketer.equine.app.rurals .mark-buttons a{
+    min-width: 199px;
+    margin-top: 30px;
+}
+.renewable-energy-wrapper{
+    position: relative;
+    padding: 0 0 114px;
+    overflow: hidden;
+}
+.renewable-energy-wrapper .tabs-wrapper::before{
+    content: "";
+    position: absolute;
+    background-image: url(../images/tabs-top-vector.png);
+    width: 100vw;
+    height: 200px;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: -1;
+    margin-top: -70px;
+}
+.renewable-energy-wrapper .tabs-content::after{
+    content: "";
+    background-color: #f7ebee;
+    position: absolute;
+    width: 200vw;
+    height: 90%;
+    left: -100vw;
+    top: 0;
+    z-index: -1;
 
+}
+.renewable-energy-wrapper::after{
+    content: "";
+    position: absolute;
+    background-image: url(../images/tabs-bottom-vector.png);
+    width: 100%;
+    height: 200px;
+    bottom: 30px;
+    background-size: 100% 100%;
+    left: 0;
+    z-index: -1;
+}
+.renewable-energy-wrapper .container{
+    max-width: 1170px;
+}
+.renewable-energy-wrapper .content{
+    max-width: 930px;
+    width: 100%;
+    margin: 103px auto 107px;
+    text-align: center;
+    color: #707070
+}
+.renewable-energy-wrapper .content p{
+    margin: 30px 0 40px;
+}
+.renewable-energy-wrapper .content a{
+    min-width: 199px;
+    margin: 0 auto;
+}
+.renewable-energy-wrapper .tabs-wrapper .tabs{
+    display: flex;
+    flex-wrap: wrap;
+}
+.renewable-energy-wrapper .tabs-wrapper .tabs li.active{
+    background-color: #8D1F56 !important;
+    color: #fff;
+}
+.renewable-energy-wrapper .tabs-wrapper .tabs li{
+    width: 25%;
+    cursor: pointer;
+    border: 1px solid #E1E4ED;
+    padding: 20px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 700;
+    color: #707070;
+    min-height: 123px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom: none;
+    background-color: #fff;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+} 
+.renewable-energy-wrapper .tabs-content .tab-content{
+    display: none;
+}
+.renewable-energy-wrapper .tabs-content .tab-content.active{
+    display: block;
+}
+.renewable-energy-wrapper .tabs-content{
+    background-color: #fff;
+    padding: 72px 60px 52px;
+    border: 1px solid #E1E4ED;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.renewable-energy-wrapper .tabs-content .tab-content{
+    padding: 0 20px;
+}
+.renewable-energy-wrapper .tabs-content{
+    position: relative;
+    color: #707070;
+}
+.renewable-energy-wrapper .tabs-content img{
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 45px;
+    margin: 0 -20px 45px;
+}
+.renewable-energy-wrapper .tabs-content ul li{
+    color: #6D758F;
+    font-weight: 500;
+    list-style-type: disc;
+    margin-left: 20px;
+}
+.renewable-energy-wrapper .tabs-content p{
+    margin: 20px 0;
+}
+.renewable-energy-wrapper .tabs-content p strong{
+    font-weight: 500;
+}
+.sale-info-box{
+    position: relative;
+    padding: 50px 0 118px;
+}
+.sale-info-box::before{
+    content: "";
+    position: absolute;
+    background-color: #F7EBEE;
+    top: 100px;
+    width: 100%;
+    height: 118%;
+    z-index: -1;
+}
+.sale-info-box::after{
+    content: "";
+    position: absolute;
+    background-image: url(../images/tabs-top-vector.png);
+    width: 100%;
+    height: 200px;
+    top: -78px;
+    z-index: -1;
+    background-size: 100% 100%;
+    transform: rotate(359deg);
+}
+.sale-info-box .container{
+    max-width: 770px;
+}
+.sale-info-box .content{
+    max-width: 460px;
+    width: 100%;
+    margin: 0 auto 46px;
+    text-align: center;
+    color: #707070;
+}
+.sale-info-box .content h2{
+    margin-bottom: 22px;
+}
+.sale-info-box .box {
+    background-color: #8D1F56;
+    border-radius: 8px;
+    padding: 27px 31px 33px;
+    text-align: center;
+    color: #fff;
+    height: 100%;
+}
+.sale-info-box .box h4{
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+}
+.sale-info-box .box a{
+    margin: 19px auto 0;
+}
 
+/* Rural Page ends */
 
+/* Area guide page */
+.area-map{
+    padding: 0 0 110px;
+}
+.area-map .container{
+    max-width: 1170px;
+}
+.area-map img{
+    border-radius: 8px;
+}
+.recent-property-wrapper.area-guide{
+    padding: 0 0 110px;
+}
+/* Area guide page */
 
 
 
@@ -3572,6 +3804,12 @@ btn-cs-dark .contact-info ul li img{
     }
     .auction-gallery {
         padding: 100px 0 50px;
+    }
+    .renewable-energy-wrapper .tabs-content{
+        padding: 72px 40px 52px;
+    }
+    .area-map {
+        padding: 0 0 50px;
     }
 }
 @media (max-width: 767px){
@@ -4448,6 +4686,49 @@ btn-cs-dark .contact-info ul li img{
     .auction-gallery {
         padding: 80px 0 0;
     }
+    .livestocks-departments.rural .slide-wrap .inner-content h4{
+        height: 60px;
+    }
+    .our-marketer.rural{
+        padding-top: 60px;
+    }
+    .renewable-energy-wrapper .tabs-wrapper .tabs li{
+        padding: 12px 5px;
+        font-size: 10px;
+        line-height: 13px;
+        min-height: 50px;
+    }
+    .renewable-energy-wrapper .tabs-content img{
+        margin: 0 0 20px;
+        border-radius: 5px;
+    }
+    .renewable-energy-wrapper .tabs-content {
+        padding: 40px 10px 30px;
+    }
+    .renewable-energy-wrapper .tabs-wrapper::before{
+        height: 130px;
+    }
+    .renewable-energy-wrapper .tabs-content::after{
+        height: 95%;
+    }
+    .renewable-energy-wrapper .content{
+        margin: 66px 0 107px;
+    }
+    .sale-info-box::after {
+        height: 148px;
+        top: -29px;
+        transform: none;
+    }
+    .sale-info-box .box h4{
+        font-size: 15px;
+        line-height: 17px;
+    }
+    .sale-info-box {
+        padding: 80px 0 60px;
+    }
+    .recent-property-wrapper.area-guide{
+        padding: 0 0 80px;
+    }
 }
 @media (max-width: 575px){
     footer .logos-wrap{
@@ -4529,6 +4810,10 @@ btn-cs-dark .contact-info ul li img{
     .society-sale-wrapper .wrapper img{
         max-width: 150px;
         margin-bottom: 40px;
+    }
+    .sale-info-box::after {
+        height: 103px;
+        top: 0;
     }
 }
 /* popups */
