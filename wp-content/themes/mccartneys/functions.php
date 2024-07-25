@@ -283,77 +283,12 @@ function custom_list_shortcode() {
 add_shortcode('custom_list', 'custom_list_shortcode');
 
 
-// Register Custom Post Type
-function create_property_cpt() {
-    $labels = array(
-        'name' => _x( 'Offices', 'Post Type General Name', 'mccartneys' ),
-        'singular_name' => _x( 'Office', 'Post Type Singular Name', 'mccartneys' ),
-        'menu_name' => _x( 'Offices', 'Admin Menu text', 'mccartneys' ),
-        'name_admin_bar' => _x( 'Office', 'Add New on Toolbar', 'mccartneys' ),
-    );
-    $args = array(
-        'label' => __( 'Office', 'mccartneys' ),
-        'description' => __( 'Office Description', 'mccartneys' ),
-        'labels' => $labels,
-        'supports' => array( 'title', 'editor', 'thumbnail' ),
-        'taxonomies' => array( 'office' ),
-        'public' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'menu_position' => 5,
-        'show_in_admin_bar' => true,
-        'show_in_nav_menus' => true,
-        'can export' => true,
-        'has_archive' => true,
-        'exclude_from_search' => false,
-        'publicly_queryable' => true,
-        'capability_type' => 'post',
-    );
-    register_post_type( 'office', $args );
-}
-add_action( 'init', 'create_property_cpt', 0 );
-
-// Register Custom Taxonomy
-function create_office_taxonomy() {
-    $labels = array(
-        'name' => _x( 'Offices Location', 'Taxonomy General Name', 'mccartneys' ),
-        'singular_name' => _x( 'Office Location', 'Taxonomy Singular Name', 'mccartneys' ),
-        'menu_name' => __( 'Offices Location', 'mccartneys' ),
-    );
-    $args = array(
-        'labels' => $labels,
-        'hierarchical' => true,
-        'public' => true,
-        'show_ui' => true,
-        'show_admin_column' => true,
-        'show_in_nav_menus' => true,
-        'show_tagcloud' => true,
-
-    );
-    register_taxonomy( 'office location', array( 'office' ), $args );
-}
-add_action( 'init', 'create_office_taxonomy', 0 );
 
 
-// Register Custom Taxonomy
-function create_property_type_taxonomy() {
-    $labels = array(
-        'name' => _x( 'Office Types', 'Taxonomy General Name', 'mccartneys' ),
-        'singular_name' => _x( 'Office Type', 'Taxonomy Singular Name', 'mccartneys' ),
-        'menu_name' => __( 'Office Types', 'mccartneys' ),
-    );
-    $args = array(
-        'labels' => $labels,
-        'hierarchical' => true,
-        'public' => true,
-        'show_ui' => true,
-        'show_admin_column' => true,
-        'show_in_nav_menus' => true,
-        'show_tagcloud' => true,
-    );
-    register_taxonomy( 'office type', array( 'office' ), $args );
-}
-add_action( 'init', 'create_property_type_taxonomy', 0 );
+
+
+
+
 
 // office tabs
 function property_tabs_shortcode() {
@@ -668,82 +603,6 @@ function hide_editor_on_specific_pages() {
 add_action('admin_head', 'hide_editor_on_specific_pages');
 
 
-// Create Post Type Property
-function create_properties_post_type() {
-    $labels = array(
-        'name'                  => _x( 'Properties', 'Post type general name', 'mccartneys' ),
-        'singular_name'         => _x( 'Property', 'Post type singular name', 'mccartneys' ),
-        'menu_name'             => _x( 'Properties', 'Admin Menu text', 'mccartneys' ),
-        'name_admin_bar'        => _x( 'Property', 'Add New on Toolbar', 'mccartneys' ),
-        'add_new'               => __( 'Add New', 'mccartneys' ),
-        'add_new_item'          => __( 'Add New Property', 'mccartneys' ),
-        'new_item'              => __( 'New Property', 'mccartneys' ),
-        'edit_item'             => __( 'Edit Property', 'mccartneys' ),
-        'view_item'             => __( 'View Property', 'mccartneys' ),
-        'all_items'             => __( 'All Properties', 'mccartneys' ),
-        'search_items'          => __( 'Search Properties', 'mccartneys' ),
-        'parent_item_colon'     => __( 'Parent Properties:', 'mccartneys' ),
-        'not_found'             => __( 'No properties found.', 'mccartneys' ),
-        'not_found_in_trash'    => __( 'No properties found in Trash.', 'mccartneys' ),
-        'featured_image'        => _x( 'Property Cover Image', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'mccartneys' ),
-        'set_featured_image'    => _x( 'Set cover image', 'Overrides the “Set featured image” phrase for this post type. Added in 4.3', 'mccartneys' ),
-        'remove_featured_image' => _x( 'Remove cover image', 'Overrides the “Remove featured image” phrase for this post type. Added in 4.3', 'mccartneys' ),
-        'use_featured_image'    => _x( 'Use as cover image', 'Overrides the “Use as featured image” phrase for this post type. Added in 4.3', 'mccartneys' ),
-        'archives'              => _x( 'Property archives', 'The post type archive label used in nav menus. Default “Post Archives”. Added in 4.4', 'mccartneys' ),
-        'insert_into_item'      => _x( 'Insert into property', 'Overrides the “Insert into post”/”Insert into page” phrase (used when inserting media into a post). Added in 4.4', 'mccartneys' ),
-        'uploaded_to_this_item' => _x( 'Uploaded to this property', 'Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used when viewing media attached to a post). Added in 4.4', 'mccartneys' ),
-        'filter_items_list'     => _x( 'Filter properties list', 'Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4', 'mccartneys' ),
-        'items_list_navigation' => _x( 'Properties list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4', 'mccartneys' ),
-        'items_list'            => _x( 'Properties list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'mccartneys' ),
-    );
 
-    $args = array(
-        'labels'             => $labels,
-        'public'             => true,
-        'publicly_queryable' => true,
-        'show_ui'            => true,
-        'show_in_menu'       => true,
-        'query_var'          => true,
-        'rewrite'            => array( 'slug' => 'property' ),
-        'capability_type'    => 'post',
-        'has_archive'        => true,
-        'hierarchical'       => false,
-        'menu_position'      => null,
-        'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
-        'show_in_rest'       => true, // Enables Gutenberg editor support
-    );
-
-    register_post_type( 'property', $args );
-}
-add_action( 'init', 'create_properties_post_type' );
-
-function create_properties_type_taxonomy() {
-    $labels = array(
-        'name'              => _x( 'Property Types', 'taxonomy general name', 'mccartneys' ),
-        'singular_name'     => _x( 'Property Type', 'taxonomy singular name', 'mccartneys' ),
-        'search_items'      => __( 'Search Property Types', 'mccartneys' ),
-        'all_items'         => __( 'All Property Types', 'mccartneys' ),
-        'parent_item'       => __( 'Parent Property Type', 'mccartneys' ),
-        'parent_item_colon' => __( 'Parent Property Type:', 'mccartneys' ),
-        'edit_item'         => __( 'Edit Property Type', 'mccartneys' ),
-        'update_item'       => __( 'Update Property Type', 'mccartneys' ),
-        'add_new_item'      => __( 'Add New Property Type', 'mccartneys' ),
-        'new_item_name'     => __( 'New Property Type Name', 'mccartneys' ),
-        'menu_name'         => __( 'Property Type', 'mccartneys' ),
-    );
-
-    $args = array(
-        'hierarchical'      => true,
-        'labels'            => $labels,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'rewrite'           => array( 'slug' => 'property-type' ),
-        'show_in_rest'      => true, // Enables Gutenberg editor support
-    );
-
-    register_taxonomy( 'property_type', array( 'property' ), $args );
-}
-add_action( 'init', 'create_properties_type_taxonomy' );
 
 
