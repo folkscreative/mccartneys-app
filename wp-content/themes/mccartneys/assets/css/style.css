@@ -3579,6 +3579,276 @@ margin: 20px 0;
 }
 /* Area guide page */
 
+/* Planning and survey page */
+.case-study-plan{
+    padding: 110px 0 0;
+    position: relative;
+}
+.case-study-plan::after{
+    content: "";
+    position: absolute;
+    background-color: #F7EBEE;
+    width: 100%;
+    height: 40%;
+    bottom: -20%;
+    z-index: -1;
+}
+.case-study-plan .case-posts{
+    padding: 67px 0 85px;
+}
+.case-study-plan .container{ 
+    max-width: 1170px;
+}
+.case-study-plan .content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #707070;
+    border-bottom: 2px solid #D0D3D4;
+    padding-bottom: 40px;
+}
+
+.case-study-plan .content a{
+    min-width: 199px;
+}
+.case-study-plan .outer {
+    border: 1px solid #E1E4ED;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    background-color: #fff;
+}
+.case-study-plan .outer .col-left img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.case-study-plan .outer .col-right-text{
+    color: #707070;
+    padding: 20px 60px;
+}
+.case-study-plan .outer .col-right-text h4{
+    font-weight: 300;
+}
+.case-study-plan .outer .col-right-text h4 strong{
+    font-weight: 500;
+    padding-right: 10px;
+}
+.case-study-plan .outer .col-right-text p{
+    margin: 32px 0 34px;
+}
+.properties-right.planning{
+    padding: 0;
+}
+.btn-blue{
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    border-radius: 30px;
+    padding: 10px 10px;
+    max-width: 140px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: #fff !important;
+    background-color: #5996C8;
+}
+.btn-blue:hover::after{
+    opacity: 1;
+}
+.btn-blue::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    top: 0;
+    transition: all .3s ease;
+    z-index: -1;
+    right: 0;
+    opacity: 0;
+}
+.btn-blue:hover{
+    color: #707070 !important;
+}
+.btn-blue span {
+    font-size: 12px;
+    line-height: 15px;
+    padding-left: 10px;
+}
+.btn-blue:hover span {
+    color: #8D1F56;
+}
+.livestocks-departments.planning .slide-wrap .inner-content h4{
+    height: 107px;
+}
+.main-banner.planning .content{
+    max-width: 457px !important;
+}
+.main-banner.planning .breadcrumb a::after{
+    color: #fff !important;
+}
+.rics{
+    position: relative;
+    background: linear-gradient(180deg, #F7EBEE 90%, transparent 90%);
+    margin: 80px 0 146px;
+}
+.rics::before{
+    content: "";
+    position: absolute;
+    background-image: url(../images/rics-top-vector.png);
+    width: 100%;
+    height: 146px;
+    top: -118px;
+    z-index: -1;
+    background-size: 100% 100%;
+}
+.rics::after{
+    content: "";
+    position: absolute;
+    background-image: url(../images/rics-bottom-vector.png);
+    width: 100%;
+    height: 133px;
+    bottom: 2%;
+    background-size: 100% 100%;
+    z-index: -1;
+}
+.rics .container{
+    max-width: 1170px;
+}
+.rics .content{
+    text-align: center;
+    color: #707070;
+    max-width: 592px;
+    width: 100%;
+    margin: 0 auto 63px;
+}
+.rics .content img{
+    max-width: 156px;
+    margin: 20px 0 22px;
+}
+.rics .outer{
+    border: 1px solid #E1E4ED;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    background-color: #fff;
+}
+.rics .outer .col-left{
+    height: 100%;
+}
+.rics .outer .col-left img{
+    height: 100%;
+    object-fit: cover;
+}
+.rics .outer .col-right{
+    padding: 40px 60px 20px;
+    color: #707070;
+}
+.rics .outer .col-right h4{
+    font-weight: 300;
+    margin-bottom: 22px;
+}
+.rics .outer .col-right h4 strong{ 
+    font-weight: 500;
+}
+.inner-banner-wrapper.planning .content{
+    max-width: 100%;
+}
+.inner-banner-wrapper.planning .content h1{
+    max-width: 639px;
+}
+.inner-banner-wrapper.planning .content p{
+    max-width: 505px;
+}
+.inner-banner-wrapper.planning .content .breadcrumb a::after {
+    color: #5996C8;
+}
+.sell-properties-blocks.planning{
+    padding-top: 0;
+}
+.projects{
+    padding: 73px 0 142px;
+}
+.projects .container{
+    max-width: 1170px;
+}
+.projects .description{
+    max-width: 490px;
+    width: 100%;
+    margin: 0 auto 63px;
+    color: #707070;
+    text-align: center;
+}
+.projects .description p{
+    font-weight: 500;
+}
+.projects .project-content{
+    border: 1px solid #8D1F56;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.projects .project-content table{
+    margin: 0;
+}
+.projects .project-content thead tr th{
+    background-color: #8D1F56;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    border-right: 1px solid #707070;
+    padding: 28px 10px;
+}
+.projects .project-content thead tr th:last-child{
+    border: none;
+}
+.projects .project-content tbody tr td:first-child {
+    width: 15%;
+}
+.projects .project-content tbody tr td:nth-child(2) {
+    width: 40%;
+    text-align: start;
+    padding: 10px 20px;
+}
+.projects .project-content tbody tr td:nth-child(3) {
+    width: 25%;
+    text-align: start;
+    padding-left: 30px;
+}
+.projects .project-content tbody tr td:last-child {
+    width: 20%;
+    border: none;
+    text-align: start;
+    padding-left: 30px;
+}
+.projects .project-content tbody tr td{
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    border-right: 1px solid #707070;
+}
+.projects .project-content tbody tr td p{
+    font-size: 15px;
+    line-height: 22px;
+    color: #000;
+}
+.projects .project-content tbody tr td p a{ 
+    font-size: 15px;
+    line-height: 22px;
+    color: #000;
+}
+.projects .project-content tbody tr:nth-child(even) td{
+    background-color: #FEF8F8;
+}
+/* Planning and survey pages ends */
+
+
+
+
 
 
 
@@ -3810,6 +4080,12 @@ margin: 20px 0;
     }
     .area-map {
         padding: 0 0 50px;
+    }
+    .case-study-plan .outer .col-right-text{
+        padding: 20px 40px;
+    }
+    .rics .outer .col-right {
+        padding: 40px 40px 20px;
     }
 }
 @media (max-width: 767px){
@@ -4728,6 +5004,52 @@ margin: 20px 0;
     }
     .recent-property-wrapper.area-guide{
         padding: 0 0 80px;
+    }
+    .livestocks-departments.planning .slide-wrap .inner-content h4{
+        height: 76px;
+    }
+    .case-study-plan .outer .col-right-text {
+        padding: 30px 25px;
+    }
+    .case-study-plan .content{
+        flex-direction: column;
+        row-gap: 30px;
+    }
+    .case-study-plan {
+        padding: 80px 0 0;
+        position: relative;
+    }
+    .case-study-plan .case-posts {
+        padding: 67px 0 45px;
+    }
+    .projects .project-content {
+        overflow-x: scroll;
+    }
+    .projects .project-content table{
+        width: 768px;
+    }
+    .projects {
+        padding: 50px 0 90px;
+    }
+    .projects .description {
+        margin: 0 auto 35px;
+    }
+    .rics .outer .col-right {
+        padding: 30px 25px 20px;
+    }
+    .rics::before {
+        height: 80px;
+        top: -78px;
+    }
+    .rics::after {
+        height: 154px;
+        bottom: 4%;
+    }
+    .rics {
+        margin: 80px 0 60px;
+    }
+    .btn-blue{
+        font-size: 13px;
     }
 }
 @media (max-width: 575px){

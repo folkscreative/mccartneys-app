@@ -283,6 +283,41 @@ function custom_list_shortcode() {
 add_shortcode('custom_list', 'custom_list_shortcode');
 
 
+// case study shortcode
+function custom_case_shortcode() {
+    ?>
+    <div class="case-posts">
+<?php
+$args = array(
+    'post_type' => 'case-studies',
+    'posts_per_page' => -1,
+);
+
+$case_query = new WP_Query( $args );
+
+if ( $case_query->have_posts() ) :
+    while ( $case_query->have_posts() ) : $case_query->the_post(); ?>
+        <div class="outer row g-0">
+            <div class="col-12 col-md-5 col-left"> 
+            <img src="<?php the_post_thumbnail_url(); ?>" alt="">
+            </div>
+            <div class="col-12 col-md-7 col-right-text align-content-center">
+                <h4><strong><?php the_title(); ?>,</strong><?php the_field('case_study_sub_title');?></h4>
+                <?php the_content();?>
+                <a href="<?php the_permalink(); ?>" class="btn-cs-dark">Read more<span><i class="fa-solid fa-angle-right"></i></span></a>
+            </div>
+        </div>
+    <?php endwhile;
+    wp_reset_postdata();
+else :
+    echo '<p>No case study found.</p>';
+endif;
+?>
+</div>
+<?php
+}
+add_shortcode('custom_study_list', 'custom_case_shortcode');
+
 // Register Custom Post Type
 function create_property_cpt() {
     $labels = array(
@@ -745,5 +780,47 @@ function create_properties_type_taxonomy() {
     register_taxonomy( 'property_type', array( 'property' ), $args );
 }
 add_action( 'init', 'create_properties_type_taxonomy' );
+
+// create case studeis post
+function create_casestudy_posttype() {
+  
+    register_post_type( 'case-studies',
+        // CPT Options
+        array(
+            'labels' => array(
+                'name' => __( 'Case Studies' ),
+                'singular_name' => __( 'Case Study' ),
+                'add_new' => __( 'Add New' ),
+                'add_new_item' => __( 'Add New Case Study' ),
+                'edit_item' => __( 'Edit Case Study' ),
+                'new_item' => __( 'New Case Study' ),
+                'view_item' => __( 'View Case Study' ),
+                'search_items' => __( 'Search Case Studies' ),
+                'not_found' => __( 'No Case Studies found' ),
+                'not_found_in_trash' => __( 'No Case Studies found in Trash' ),
+                'all_items' => __( 'All Case Studies' ),
+                'archives' => __( 'Case Study Archives' ),
+                'insert_into_item' => __( 'Insert into Case Study' ),
+                'uploaded_to_this_item' => __( 'Uploaded to this Case Study' ),
+                'featured_image' => __( 'Featured Image' ),
+                'set_featured_image' => __( 'Set featured image' ),
+                'remove_featured_image' => __( 'Remove featured image' ),
+                'use_featured_image' => __( 'Use as featured image' ),
+                'menu_name' => __( 'Case Studies' ),
+                'filter_items_list' => __( 'Filter Case Studies list' ),
+                'items_list_navigation' => __( 'Case Studies list navigation' ),
+                'items_list' => __( 'Case Studies list' ),
+            ),
+            'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array( 'slug' => 'case-studies' ),
+            'show_in_rest' => true,
+        )
+    );
+}
+
+// Hooking up our function to theme setup
+add_action( 'init', 'create_casestudy_posttype' );
 
 
