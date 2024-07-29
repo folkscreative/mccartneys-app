@@ -155,7 +155,7 @@ if ( !empty( $sale_banner ) ) { ?>
     
     <!-- Livestock Auctioneers start here -->
  <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers d-none d-md-block">
+    <section class="livestock-auctioneers d-none d-md-block" id="livestck-actioner">
         <div class="container">
             <div class="row g-4">
                  <div class="col-4 col-lg-3">
@@ -202,7 +202,7 @@ if ( !empty( $sale_banner ) ) { ?>
      
 <!-- Livestock Auctioneers mobile start here -->
 <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers d-block d-md-none">
+    <section class="livestock-auctioneers d-block d-md-none" id="livestck-actioner">
         <div class="container">
             <div class="row g-4">
                 <div class="items">

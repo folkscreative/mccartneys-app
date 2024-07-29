@@ -30,7 +30,7 @@ get_header(); ?>
                     </div>
                 </section>
             <!-- Main Banner ends -->
-            <section class="main-banner-sticky equine">
+            <section class="main-banner-sticky planning">
                 <div class="banner-menu">
                 <?php
                         wp_nav_menu(
@@ -164,7 +164,7 @@ get_header(); ?>
 
     <!-- Case Study Section -->
     <?php if( get_row_layout() == 'case_study_section' ): ?>
-     <section class="case-study-plan">
+     <section class="case-study-plan" id="case-stdy">
         <div class="container">
             <div class="content">
                 <h2><?php the_sub_field('case_study_section_title');?></h2>
@@ -233,7 +233,7 @@ get_header(); ?>
     <!-- Livestock Auctioneers start here -->
     
     <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers d-none d-md-block" id="livestck-actioner">
+    <section class="livestock-auctioneers d-none d-md-block" id="planning-actioner">
         <div class="container">
             <div class="row g-4">
                  <div class="col-4 col-lg-3">
@@ -282,7 +282,7 @@ get_header(); ?>
     <!-- Livestock Auctioneers for mobile start here -->
     
     <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers d-block d-md-none">
+    <section class="livestock-auctioneers d-block d-md-none" id="planning-actioner">
         <div class="container">
             <div class="row g-4">
                 <div class="items">

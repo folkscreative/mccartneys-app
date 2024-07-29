@@ -49,7 +49,7 @@ get_header(); ?>
     <!-- Department Services -->
     
     <?php if( get_row_layout() == 'livestock_services' ): ?>
-        <section class="departments">
+        <section class="departments eq">
         <div class="container">
             <div class="content">
                     <h2><?php the_sub_field('livestock_service_title'); ?></h2>
@@ -64,9 +64,12 @@ get_header(); ?>
                 if( !empty($sv_image) ):?>
                 <img src="<?php echo $sv_image['url']; ?>" alt="<?php echo $sv_image['alt']; ?>">
                 <?php endif; ?>
-                <div class="inner-content">
+                <div class="title-depar">
+                <h3><?php the_sub_field('service_image_copy'); ?></h3>
+                </div>
+                <div class="inner">
                     <h3><?php the_sub_field('service_image_copy'); ?></h3>
-                    <p><?php the_sub_field('service_content'); ?></p>
+                    
                     <?php if( get_sub_field('service_cta_label') ): ?>
                     <a href="<?php the_sub_field('service_cta_link');?>" class="btn-cs-light"><?php the_sub_field('service_cta_label');?><span><i class="fa-solid fa-angle-right"></i></span></a>
                     <?php endif; ?>

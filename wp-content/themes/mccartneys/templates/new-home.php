@@ -127,7 +127,7 @@ if ( !empty( $image_private ) ) { ?>
 
      <!-- Cta banner -->
     <?php if( get_row_layout() == 'call_to_action' ): ?>
-    <section class="cta-banner light">
+    <section class="cta-banner light land">
           <div class="container">
             <div class="row g-0 align-items-center">
             

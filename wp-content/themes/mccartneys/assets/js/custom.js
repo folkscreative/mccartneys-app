@@ -1,13 +1,17 @@
 $('.main-popup .sub-menu').prepend('<div class="outer-item"><p class="prepend"></p><span class="cross-icon"></span></div>');
 $('.main-popup .menu-item-has-children').append('<span class="list-arrow"><i class="fa-solid fa-angle-right"></i>');
-
-  $('.list-arrow').click(function(){
-    var $anchortext = $(this).siblings('a').text();
+$('.page-id-1190 .our-marketer .marketer-buttons a').append('<span><i class="fa-solid fa-angle-right"></i>');
+  $('.menu .outer').click(function(){
+    var $anchortext = $(this).children('a:first-child').text();
     $('.main-popup .sub-menu .prepend').html($anchortext);
   });
-
-  $('.main-popup .outer .list-arrow').click(function() {
-    $(this).siblings('.sub-menu').addClass('show');
+  $(document).ready(function() {
+    $(".menu .outer a:first-child").click(function(event) {
+        event.preventDefault();
+    });
+});
+  $('.main-popup .outer').click(function() {
+    $(this).children('.sub-menu').addClass('show');
   });
 // popup
 $('.hamburger-icn').click(function() {

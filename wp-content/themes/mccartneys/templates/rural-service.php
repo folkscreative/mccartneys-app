@@ -30,7 +30,7 @@ get_header(); ?>
                     </div>
                 </section>
             <!-- Main Banner ends -->
-            <section class="main-banner-sticky equine">
+            <section class="main-banner-sticky rural">
                 <div class="banner-menu">
                 <?php
                         wp_nav_menu(
@@ -162,8 +162,8 @@ get_header(); ?>
     <section class="departments equine rural">
         <div class="container">
             <div class="content">
-                    <h2><?php the_sub_field('department_sale_title'); ?></h2>
-                    <p><?php the_sub_field('department_sale_description'); ?></p>
+                <h2><?php the_sub_field('department_sale_title'); ?></h2>
+                <p><?php the_sub_field('department_sale_description'); ?></p>
             </div>
             <?php if( have_rows('department_sale_slider') ): ?>
             <div class="depart-slider depar">
@@ -174,9 +174,11 @@ get_header(); ?>
                 if( !empty($department_slider_sale_image) ):?>
                 <img src="<?php echo $department_slider_sale_image['url']; ?>" alt="<?php echo $department_slider_sale_image['alt']; ?>">
                 <?php endif; ?>
-                <div class="inner-content">
+                <div class="title-depar">
+                <h3><?php the_sub_field('slider_sale_title'); ?></h3>
+                </div>
+                <div class="inner">
                     <h3><?php the_sub_field('slider_sale_title'); ?></h3>
-                    <p><?php the_sub_field('slider_sale_description'); ?></p>
                     <?php 
                         $department_sale_slider_link = get_sub_field('department_sale_slider_button');
                         if( $department_sale_slider_link ): 
@@ -203,7 +205,7 @@ get_header(); ?>
     <!-- Livestock Auctioneers start here -->
     
     <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers d-none d-md-block" id="livestck-actioner">
+    <section class="livestock-auctioneers d-none d-md-block" id="rural-actioner">
         <div class="container">
             <div class="row g-4">
                  <div class="col-4 col-lg-3">
@@ -252,7 +254,7 @@ get_header(); ?>
     <!-- Livestock Auctioneers for mobile start here -->
     
     <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers d-block d-md-none">
+    <section class="livestock-auctioneers d-block d-md-none" id="rural-actioner">
         <div class="container">
             <div class="row g-4">
                 <div class="items">

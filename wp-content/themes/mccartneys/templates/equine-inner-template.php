@@ -157,8 +157,9 @@ get_header(); ?>
                             <img src="<?php echo $soc_image['url']; ?>" alt="<?php echo $soc_image['alt']; ?>" class="w-100">
                         <?php endif; ?> 
                         </div>
-                        <div class="col-12 col-md-6">
-                            <h2><?php the_sub_field('sale_box_title'); ?></h2>
+                        <div class="col-12 col-md-7">
+                           <div class="col-right">
+                           <h2><?php the_sub_field('sale_box_title'); ?></h2>
                             <p><?php the_sub_field('sale_box_description'); ?></p>
                             <?php 
                         $society_sale_button = get_sub_field('sale_box_button');
@@ -169,6 +170,7 @@ get_header(); ?>
                             ?>
                             <a class="btn-cs-dark" href="<?php echo esc_url( $society_sale_button_url ); ?>" target="<?php echo esc_attr( $society_sale_button_target ); ?>"><?php echo esc_html( $society_sale_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
                         <?php endif; ?>
+                           </div>
                         </div>
                     </div>
                 </div>      

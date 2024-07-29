@@ -31,7 +31,7 @@ get_header(); ?>
    <?php if( get_row_layout() == 'equine_sale_department' ): ?>
     <section class="our-marketer equine">
         <div class="container">
-            <div class="row g-5 align-items-md-center">
+            <div class="row g-5">
                 <div class="col-12 col-md-6 d-none d-md-block">
                     <div class="col-right">
                     <?php $equine_sale_image = get_sub_field('equine_sale_image');

@@ -63,9 +63,11 @@ get_header(); ?>
                 if( !empty($sv_image) ):?>
                 <img src="<?php echo $sv_image['url']; ?>" alt="<?php echo $sv_image['alt']; ?>">
                 <?php endif; ?>
-                <div class="inner-content">
+                <div class="title-depar">
+                <h3><?php the_sub_field('service_image_copy'); ?></h3>
+                </div>
+                <div class="inner">
                     <h3><?php the_sub_field('service_image_copy'); ?></h3>
-                    <p><?php the_sub_field('service_content'); ?></p>
                     <?php if( get_sub_field('service_cta_label') ): ?>
                     <a href="<?php the_sub_field('service_cta_link');?>" class="btn-cs-light"><?php the_sub_field('service_cta_label');?><span><i class="fa-solid fa-angle-right"></i></span></a>
                     <?php endif; ?>
@@ -110,7 +112,7 @@ get_header(); ?>
      <!-- Livestock Auctioneers start here -->
     
      <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers d-none d-md-block" id="livestck-actioner">
+    <section class="livestock-auctioneers d-none d-md-block" id="antique-actioner">
         <div class="container">
             <div class="row g-4">
                  <div class="col-4 col-lg-3">
@@ -159,7 +161,7 @@ get_header(); ?>
     <!-- Livestock Auctioneers for mobile start here -->
     
     <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers d-block d-md-none">
+    <section class="livestock-auctioneers d-block d-md-none" id="antique-actioner">
         <div class="container">
             <div class="row g-4">
                 <div class="items">
@@ -207,7 +209,7 @@ get_header(); ?>
 
      <!-- Events section start here -->
      <?php if( get_row_layout() == 'livestock_events' ): ?>
-    <section class="events equine">
+    <section class="events equine" id="auction-date">
         <div class="container">
 
         <?php $event_img = get_sub_field('livestock_event_background_image');
@@ -242,7 +244,7 @@ get_header(); ?>
 
     <!-- Livestock faqs -->
     <?php if( get_row_layout() == 'frequently_asked_questions' ): ?>
-    <section class="livestock-faqs faqs-wrap">
+    <section class="livestock-faqs faqs-wrap" id="FaQs">
         <div class="container">
             <div class="row g-0">
                 <div class="col-12">
@@ -315,7 +317,7 @@ get_header(); ?>
     <!-- <section gallery start here -->
 
     <?php if( get_row_layout() == 'auction_room_gallery' ): ?>
-    <section class="auction-gallery">
+    <section class="auction-gallery" id="gallery">
         <div class="container">
             <h2><?php the_sub_field('auction_gallery_title'); ?></h2>
             <p><?php the_sub_field('auction_gallery_description'); ?></p>
