@@ -98,7 +98,11 @@ get_header(); ?>
                 </div>
                 <div class="col-12 col-md-7">
                     <div class="col-right">
-                    <img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/fine-art-clip-path.png" alt="" class="w-100">
+                    <?php
+                     $cta_clip_img = get_sub_field('call_to_action_right_image');
+                if( !empty($cta_clip_img) ):?>
+                <img src="<?php echo $cta_clip_img['url']; ?>" alt="<?php echo $cta_clip_img['alt']; ?>"  class="w-100">
+                <?php endif; ?>
                     </div>
                 </div>
             </div>
