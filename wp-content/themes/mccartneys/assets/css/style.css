@@ -6782,6 +6782,20 @@ body.show {
 
 /* PropertyHive
 --------------------------------------------- */
+/* Default Search */
+form.property-search-form {
+    display: flex;
+}
+
+form.property-search-form.property-search-form-default input,
+form.property-search-form.property-search-form-default select {
+    width: 100%;
+}
+
+form.property-search-form.property-search-form-default .control-address_keyword {
+    flex-grow: 1;
+}
+
 /* Department Specific Search */
 form.property-search-form-department_sepecific .control-department {
     display: none;
@@ -6811,12 +6825,12 @@ form.property-search-form input[type="submit"]:hover {
     transition: background-color .3s ease;
 }
 
-.inner-banner-wrapper .middle-col .control {
+form.property-search-form .control {
     width: 38%;
     padding: 0 9px;
     border-right: 1px solid #706F70;
 }
 
-.inner-banner-wrapper .middle-col .control.last-visible {
+form.property-search-form .control.last-visible {
     border: none;
 }

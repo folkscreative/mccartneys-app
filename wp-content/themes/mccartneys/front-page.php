@@ -41,7 +41,7 @@
     <section class="home-filter-cs">
         <div class="container">
             <div class="inner">
-                <?php echo do_shortcode('[property_search_form id="default"]'); ?>
+                <?php echo do_shortcode('[property_search_form id="hero_form"]'); ?>
             </div>
             
             <form class="inner">
