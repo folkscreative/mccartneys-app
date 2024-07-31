@@ -10,7 +10,20 @@ document.addEventListener("DOMContentLoaded", function () {
         departmentValue = 'agricultural';
     } else if (bodyClassList.contains('page-template-commercial-letting')) {
         departmentValue = 'commercial';
+    } else if (bodyClassList.contains('page-template-commercial-sale')) {
+        departmentValue = 'commercial';
+    } else if (bodyClassList.contains('page-template-new-home')) {
+        departmentValue = 'new-homes';
+    } else if (bodyClassList.contains('page-template-fine-country')) {
+        departmentValue = 'fine-and-country';
+    } else if (bodyClassList.contains('page-template-property-land-for-auction')) {
+        departmentValue = 'property-land-auctions';
+    } else if (bodyClassList.contains('page-template-development-lands')) {
+        departmentValue = 'development-land';
+    } else if (bodyClassList.contains('page-template-agriculture-letting')) {
+        departmentValue = 'agricultural';
     }
+
 
     // Add more conditions here as we go
 
