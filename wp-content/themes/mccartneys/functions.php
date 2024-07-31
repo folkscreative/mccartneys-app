@@ -586,7 +586,7 @@ function recent_property_tabs_shortcode() {
             echo '<div class="tab-pane fade' . ( $first_tab ? ' show active' : '' ) . '" id="' . esc_attr( $term->slug ) . '" role="tabpanel" aria-labelledby="tab-' . esc_attr( $term->slug ) . '">';
 
             $query = new WP_Query( array(
-                'post_type' => 'office',
+                'post_type' => 'branch',
                 'tax_query' => array(
                     array(
                         'taxonomy' => 'office type',
@@ -977,3 +977,33 @@ function rewrites_init()
         'index.php?post_type=property&name=$matches[2]',
         'top' );
 }
+
+// Assign parent department value depending on department
+// If you're in residential lettings, set parent to Lettings
+// Otherwise, set it to Sales
+
+// function update_parent_department($post_id) {
+//     // Check if this is a Property Hive property
+//     if (get_post_type($post_id) != 'property') {
+//         return;
+//     }
+
+//     // Get the department of the property
+//     $department = get_post_meta($post_id, '_department', true);
+
+//     // Determine the value of parent_department based on the department
+//     if ($department === 'residential-lettings') {
+//         $parent_department = 'lettings';
+//     } else {
+//         $parent_department = 'sales';
+//     }
+
+//     // Update the parent_department additional field
+//     update_post_meta($post_id, '_parent_department', $parent_department);
+// }
+
+// // Hook the function into the save_post action
+// add_action('save_post', 'update_parent_department');
+
+
+

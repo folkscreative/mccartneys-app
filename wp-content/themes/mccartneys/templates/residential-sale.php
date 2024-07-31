@@ -24,23 +24,7 @@ if ( !empty( $image_private ) ) { ?>
             </div>
             <form class="inner">
                 <div class="middle-col"> 
-                    <div class="item">
-                    <input type="search" placeholder="Location">
-                    </div>
-                    <div class="item">
-                    <select>
-                        <option>Search radius</option>
-                        <option>Radius one</option>
-                        <option>Radius two</option>
-                    </select>
-                    </div>
-                    <div class="item">
-                    <select>
-                        <option>Price</option>
-                        <option>$12865</option>
-                        <option>$0000</option>
-                    </select>
-                    </div>
+                    <?php echo do_shortcode('[property_search_form id="department_sepecific"]'); ?>
                 </div>
                 <div class="search-btn">
                     <a href="#" class="btn-cs-dark">Search</a>
@@ -88,8 +72,11 @@ if ( !empty( $image_private ) ) { ?>
     <!-- recent property section start here -->
    <section class="recent-property-wrapper">
         <div class="container">
-        <?php echo do_shortcode('[recent_property_tabs]'); ?>
-        <a href="#" class="btn-cs-dark">View all properties</a>
+            <div class="outer-wrapper">
+		        <h2 class="title">Recently Added Properties</h2>
+            </div>
+            <?php echo do_shortcode('[recent_properties]'); ?>
+            <a href="#" class="btn-cs-dark">View all properties</a>
         </div>
      </section>
      <!-- recent property section ends here -->

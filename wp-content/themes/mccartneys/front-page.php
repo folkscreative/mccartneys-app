@@ -40,6 +40,10 @@
     <!-- filter ends -->
     <section class="home-filter-cs">
         <div class="container">
+            <div class="inner">
+                <?php echo do_shortcode('[property_search_form id="default"]'); ?>
+            </div>
+            
             <form class="inner">
                 <div class="btn filter-btn">
                     <a class="active">Buy</a>
@@ -122,6 +126,7 @@
     <!-- recent property section start here -->
      <section class="recent-property-wrapper">
         <div class="container">
+        <?php echo do_shortcode('[recent_properties]'); ?>
         <?php echo do_shortcode('[recent_property_tabs]'); ?>
         <a href="#" class="btn-cs-dark">View all properties</a>
         </div>
