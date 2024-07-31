@@ -142,6 +142,7 @@ function mccartneys_scripts() {
 	wp_style_add_data( 'mccartneys-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'mccartneys-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+    wp_enqueue_script( 'mccartneys-features', get_template_directory_uri() . '/js/features.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

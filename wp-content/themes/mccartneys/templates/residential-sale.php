@@ -22,14 +22,11 @@ if ( !empty( $image_private ) ) { ?>
             <?php the_sub_field('livestock_banner_content'); ?>
             
             </div>
-            <form class="inner">
+            <div class="inner">
                 <div class="middle-col"> 
                     <?php echo do_shortcode('[property_search_form id="department_sepecific"]'); ?>
                 </div>
-                <div class="search-btn">
-                    <a href="#" class="btn-cs-dark">Search</a>
-                </div>
-            </form>
+            </div>
         </div>
      </section>
     <!-- Inner Bnner ends -->
