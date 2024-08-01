@@ -96,7 +96,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="search-form-control search-form-control--dropdown search-form--price sales-only">
+
+                <!-- Sales Pricing - Slider -->
+                <div class="search-form-control search-form-control--dropdown search-form--price-slider sales-only">
+                    <div class="search-form-dropdown">
+                        <div class="search-form-dropdown--trigger">Price</div>
+                        <div class="search-form-dropdown--options">
+                            <div class="range-slider">
+                                <input type="range" id="minPrice" name="minimum_price" min="0" max="1000000"
+                                    value="300000" step="1000">
+                                <input type="range" id="maxPrice" name="maximum_price" min="400000" max="10000000"
+                                    value="10000000" step="50000">
+                                <!-- <div class="slider-track"></div> -->
+                                <div class="range-values">
+                                    <span id="minValue">£100,000</span>
+                                    <span id="maxValue">£10,000,000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sales Pricing -->
+                <!-- <div class="search-form-control search-form-control--dropdown search-form--price sales-only">
                     <div class="search-form-dropdown">
                         <div class="search-form-dropdown--trigger">Price</div>
                         <div class="search-form-dropdown--options">
@@ -138,7 +160,31 @@
                             </label>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                <!-- Rental Pricing -->
+                <!-- <div class="search-form-control search-form-control--dropdown search-form--rent lettings-only">
+                    <div class="search-form-dropdown">
+                        <div class="search-form-dropdown--trigger">Price</div>
+                        <div class="search-form-dropdown--options">
+                            <label class="search-form-dropdown--option selected">
+                                <input type="radio" name="maximum_rent" value="" checked>
+                                <span>No Preference</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_rent" value="50000">
+                                <span>£1,000 pcm</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_rent" value="60000">
+                                <span>£1,500 pcm</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_rent" value="70000">
+                                <span>£2,000 pcm</span>
+                            </label>
+                        </div>
+                    </div>
+                </div> -->
 
 
                 <div class="search-form-control search-form-control--checkboxes search-form--type">

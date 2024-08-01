@@ -48,6 +48,46 @@ document.addEventListener("DOMContentLoaded", function() {
             lastVisibleControl.classList.add('last-visible');
         }
     }, 300); // 300ms delay
+
+
+    const minSlider = document.getElementById('minPrice');
+    const maxSlider = document.getElementById('maxPrice');
+    const minValue = document.getElementById('minValue');
+    const maxValue = document.getElementById('maxValue');
+    const sliderTrack = document.querySelector('.slider-track');
+    const maxPriceValue = parseInt(maxSlider.max);
+
+    function updateSlider() {
+        const min = parseInt(minSlider.value);
+        const max = parseInt(maxSlider.value);
+
+        // Ensure min does not exceed max
+        if (min > max - 5000) {
+            minSlider.value = max - 5000;
+            minValue.textContent = `£${(max - 5000).toLocaleString()}`;
+        } else {
+            minValue.textContent = `£${min.toLocaleString()}`;
+        }
+
+        // Ensure max does not fall below min
+        if (max < min + 5000) {
+            maxSlider.value = min + 5000;
+            maxValue.textContent = `£${(min + 5000).toLocaleString()}`;
+        } else {
+            maxValue.textContent = `£${max.toLocaleString()}`;
+        }
+
+        // Calculate slider track fill
+        const minPercentage = (min / maxPriceValue) * 100;
+        const maxPercentage = (max / maxPriceValue) * 100;
+
+    }
+
+    minSlider.addEventListener('input', updateSlider);
+    maxSlider.addEventListener('input', updateSlider);
+
+    // Initialize the slider
+    updateSlider();
 });
 
 
@@ -59,11 +99,21 @@ function closeDropdownsOnClickOutside() {
         if (!radiusSelect.contains(e.target)) {
             radiusSelect.querySelector('.search-form-dropdown').classList.remove('open');
         }
+        // Price Slider dropdown
+        const priceSliderSelect = document.querySelector('.search-form-control--dropdown.search-form--price-slider');
+        if (!priceSliderSelect.contains(e.target)) {
+            priceSliderSelect.querySelector('.search-form-dropdown').classList.remove('open');
+        }
 
         // Price dropdown
         const priceSelect = document.querySelector('.search-form-control--dropdown.search-form--price');
         if (!priceSelect.contains(e.target)) {
             priceSelect.querySelector('.search-form-dropdown').classList.remove('open');
+        }
+        // Rent dropdown
+        const rentSelect = document.querySelector('.search-form-control--dropdown.search-form--rent');
+        if (!rentSelect.contains(e.target)) {
+            rentSelect.querySelector('.search-form-dropdown').classList.remove('open');
         }
 
         // Type dropdown
@@ -80,11 +130,18 @@ function setupDropdowns() {
     document.querySelector('.search-form-control--dropdown.search-form--radius').addEventListener('click', function() {
         this.querySelector('.search-form-dropdown').classList.toggle('open');
     });
-
-    // Price dropdown
-    document.querySelector('.search-form-control--dropdown.search-form--price').addEventListener('click', function() {
+    // Price slider dropdown
+    document.querySelector('.search-form-control--dropdown.search-form--price-slider').addEventListener('click', function() {
         this.querySelector('.search-form-dropdown').classList.toggle('open');
     });
+    // Price dropdown
+    // document.querySelector('.search-form-control--dropdown.search-form--price').addEventListener('click', function() {
+    //     this.querySelector('.search-form-dropdown').classList.toggle('open');
+    // });
+    // Rent dropdown
+    // document.querySelector('.search-form-control--dropdown.search-form--rent').addEventListener('click', function() {
+    //     this.querySelector('.search-form-dropdown').classList.toggle('open');
+    // });
 
     // Type dropdown
     document.querySelector('.search-form-control--checkboxes.search-form--type').addEventListener('click', function() {
