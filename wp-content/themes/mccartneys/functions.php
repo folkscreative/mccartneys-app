@@ -252,8 +252,8 @@ add_action( 'init', 'create_posttype' );
 // shortcode
 function custom_list_shortcode() {
     ?>
-	<div class="news-wrapper-mega">
-	<?php
+<div class="news-wrapper-mega">
+    <?php
 		$args = array(
 			'post_type' => 'Insights',
 			'posts_per_page' => 1,
@@ -263,23 +263,23 @@ function custom_list_shortcode() {
 
 		if ( $insight_query->have_posts() ) :
 			while ( $insight_query->have_posts() ) : $insight_query->the_post(); ?>
-				<div class="outer row gx-2 align-items-center">
-					<div class="col-4 col-left">
-					<img src="<?php the_post_thumbnail_url(); ?>" alt="">
-					</div>
-					<div class="col-6 col-right-text">
-						<h4><?php the_title(); ?></h4>
-						<a href="<?php the_permalink(); ?>"><span><i class="fa-solid fa-arrow-right"></i></span> Read more</a>
-					</div>
-				</div>
-			<?php endwhile;
+    <div class="outer row gx-2 align-items-center">
+        <div class="col-4 col-left">
+            <img src="<?php the_post_thumbnail_url(); ?>" alt="">
+        </div>
+        <div class="col-6 col-right-text">
+            <h4><?php the_title(); ?></h4>
+            <a href="<?php the_permalink(); ?>"><span><i class="fa-solid fa-arrow-right"></i></span> Read more</a>
+        </div>
+    </div>
+    <?php endwhile;
 			wp_reset_postdata();
 		else :
 			echo '<p>No insights found.</p>';
 		endif;
 		?>
-	</div>
-	<?php
+</div>
+<?php
 }
 add_shortcode('custom_list', 'custom_list_shortcode');
 
@@ -287,8 +287,8 @@ add_shortcode('custom_list', 'custom_list_shortcode');
 // case study shortcode
 function custom_case_shortcode() {
     ?>
-    <div class="case-posts">
-<?php
+<div class="case-posts">
+    <?php
 $args = array(
     'post_type' => 'case-studies',
     'posts_per_page' => -1,
@@ -298,16 +298,17 @@ $case_query = new WP_Query( $args );
 
 if ( $case_query->have_posts() ) :
     while ( $case_query->have_posts() ) : $case_query->the_post(); ?>
-        <div class="outer row g-0">
-            <div class="col-12 col-md-5 col-left">
+    <div class="outer row g-0">
+        <div class="col-12 col-md-5 col-left">
             <img src="<?php the_post_thumbnail_url(); ?>" alt="">
-            </div>
-            <div class="col-12 col-md-7 col-right-text align-content-center">
-                <h4><strong><?php the_title(); ?>,</strong><?php the_field('case_study_sub_title');?></h4>
-                <?php the_content();?>
-                <a href="<?php the_permalink(); ?>" class="btn-cs-dark">Read more<span><i class="fa-solid fa-angle-right"></i></span></a>
-            </div>
         </div>
+        <div class="col-12 col-md-7 col-right-text align-content-center">
+            <h4><strong><?php the_title(); ?>,</strong><?php the_field('case_study_sub_title');?></h4>
+            <?php the_content();?>
+            <a href="<?php the_permalink(); ?>" class="btn-cs-dark">Read more<span><i
+                        class="fa-solid fa-angle-right"></i></span></a>
+        </div>
+    </div>
     <?php endwhile;
     wp_reset_postdata();
 else :
@@ -431,28 +432,30 @@ function property_tabs_shortcode() {
             ) );
 
     if ( $query->have_posts() ) {?>
-        <div class="outer-wrap">
-			<?php
+<div class="outer-wrap">
+    <?php
                 while ( $query->have_posts() ) {
                     $query->the_post();?>
 
-                    <div class="row g-0 flex-column-reverse flex-md-row">
-						<div class="col-12 col-md-7">
-						<div class="col-left">
-							<h4 class="d-none d-md-block"><?php the_title();?></h4>
-							<?php the_excerpt(); ?>
+    <div class="row g-0 flex-column-reverse flex-md-row">
+        <div class="col-12 col-md-7">
+            <div class="col-left">
+                <h4 class="d-none d-md-block"><?php the_title();?></h4>
+                <?php the_excerpt(); ?>
 
-							<div class="sale-nmbr">
-							<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
-							<span><strong>Sales </strong><?php the_field('sales_number');?></span>
-							</div>
+                <div class="sale-nmbr">
+                    <img
+                        src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
+                    <span><strong>Sales </strong><?php the_field('sales_number');?></span>
+                </div>
 
-							<div class="sale-nmbr d-none d-md-flex">
-							<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
-							<span><strong>Lettings </strong><?php the_field('lettings_number');?></span>
-							</div>
+                <div class="sale-nmbr d-none d-md-flex">
+                    <img
+                        src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
+                    <span><strong>Lettings </strong><?php the_field('lettings_number');?></span>
+                </div>
 
-							<?php $properties_data=get_field('properties',get_the_ID());
+                <?php $properties_data=get_field('properties',get_the_ID());
 								  $livestock_data=get_field('livestock',get_the_ID());
 								 $planning_survey_data=get_field('planning_survey',get_the_ID());
 								 $antiques_data=get_field('antiques',get_the_ID());
@@ -460,98 +463,105 @@ function property_tabs_shortcode() {
 								 $rural_data=get_field('rural',get_the_ID());
 							?>
 
-							<ul class="office-cat-wrap">
-								<?php if($properties_data=='True') { ?>
-								<li class="items-wrap">
-								<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/properties-vector-1.svg">
-								<span>Properties</span>
-								</li>
-								<?Php }
+                <ul class="office-cat-wrap">
+                    <?php if($properties_data=='True') { ?>
+                    <li class="items-wrap">
+                        <img
+                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/properties-vector-1.svg">
+                        <span>Properties</span>
+                    </li>
+                    <?Php }
 							?>
-								<?php if($livestock_data=='True') { ?>
-								<li class="items-wrap">
-								<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/livestock-logo-1.svg">
-								<span>Livestock</span>
-								</li>
-								<?Php }?>
+                    <?php if($livestock_data=='True') { ?>
+                    <li class="items-wrap">
+                        <img
+                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/livestock-logo-1.svg">
+                        <span>Livestock</span>
+                    </li>
+                    <?Php }?>
 
-								<?php if($planning_survey_data=='True') { ?>
-								<li class="items-wrap">
-								<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/planning-logo-1.svg">
-								<span>Planning & Survay</span>
-								</li>
-								<?Php }?>
+                    <?php if($planning_survey_data=='True') { ?>
+                    <li class="items-wrap">
+                        <img
+                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/planning-logo-1.svg">
+                        <span>Planning & Survay</span>
+                    </li>
+                    <?Php }?>
 
-								<?php if($antiques_data=='True') { ?>
-								<li class="items-wrap">
-								<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/antiques-logo-1.svg">
-								<span>Antiques</span>
-								</li>
-								<?Php }?>
-
-
-								<?php if($equine_data=='True') { ?>
-								<li class="items-wrap">
-								<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/equine-icon.svg">
-								<span>Equine</span>
-								</li>
-								<?Php }?>
-
-								<?php if($rural_data=='True') { ?>
-								<li class="items-wrap">
-								<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/rural-icon.svg">
-								<span>Rural</span>
-								</li>
-								<?Php }?>
-							</ul>
-								<div class="bottom-btn-wrap">
-								<a href="<?php the_permalink(); ?>" class="btn-cs-dark">View more <span><i class="fa-solid fa-angle-right"></i></span></a>
+                    <?php if($antiques_data=='True') { ?>
+                    <li class="items-wrap">
+                        <img
+                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/antiques-logo-1.svg">
+                        <span>Antiques</span>
+                    </li>
+                    <?Php }?>
 
 
-								<?php if( have_rows('office_share_buttons', 'option') ): ?>
-							<ul class="share-buttons-wrap d-none d-md-flex">
-							<?php while( have_rows('office_share_buttons','option') ): the_row(); ?>
+                    <?php if($equine_data=='True') { ?>
+                    <li class="items-wrap">
+                        <img
+                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/equine-icon.svg">
+                        <span>Equine</span>
+                    </li>
+                    <?Php }?>
 
-										<li class="item">
+                    <?php if($rural_data=='True') { ?>
+                    <li class="items-wrap">
+                        <img
+                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/rural-icon.svg">
+                        <span>Rural</span>
+                    </li>
+                    <?Php }?>
+                </ul>
+                <div class="bottom-btn-wrap">
+                    <a href="<?php the_permalink(); ?>" class="btn-cs-dark">View more <span><i
+                                class="fa-solid fa-angle-right"></i></span></a>
 
-										<a href="<?php the_sub_field('location_share_button_link'); ?>">
-										<?php
+
+                    <?php if( have_rows('office_share_buttons', 'option') ): ?>
+                    <ul class="share-buttons-wrap d-none d-md-flex">
+                        <?php while( have_rows('office_share_buttons','option') ): the_row(); ?>
+
+                        <li class="item">
+
+                            <a href="<?php the_sub_field('location_share_button_link'); ?>">
+                                <?php
 										$share_logo = get_sub_field('location_share_image');
 										if( !empty($share_logo) ):?>
-										<img src="<?php echo $share_logo['url']; ?>" alt="<?php echo $share_logo['alt']; ?>">
-										<?php endif; ?>
-										</a>
-										</li>
+                                <img src="<?php echo $share_logo['url']; ?>" alt="<?php echo $share_logo['alt']; ?>">
+                                <?php endif; ?>
+                            </a>
+                        </li>
 
-								<?php endwhile; ?>
-										</ul>
-								<?php endif; ?>
-								</div>
-						</div>
-						</div>
+                        <?php endwhile; ?>
+                    </ul>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
 
-						<?php if ( has_post_thumbnail() ) {?>
-                        <div class="col-12 col-md-5">
-						<div class="col-right">
-						<h4 class="d-block d-md-none"><?php the_title();?></h4>
-                       <?php  the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );?>
-					</div>
-						</div>
-                    <?php }?>
-                </div>
-                <?php }?>
-                </div>
-            <?php } else {?>
-                <p>No properties found in this category.</p>
-            <?php }
+        <?php if ( has_post_thumbnail() ) {?>
+        <div class="col-12 col-md-5">
+            <div class="col-right">
+                <h4 class="d-block d-md-none"><?php the_title();?></h4>
+                <?php  the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );?>
+            </div>
+        </div>
+        <?php }?>
+    </div>
+    <?php }?>
+</div>
+<?php } else {?>
+<p>No properties found in this category.</p>
+<?php }
 
             wp_reset_postdata();?>
-        </div>
-            <?php $first_tab = false;
+</div>
+<?php $first_tab = false;
         }?>
-        </div>
+</div>
 
-       <?php return ob_get_clean();
+<?php return ob_get_clean();
     }
 }
 add_shortcode( 'property_tabs', 'property_tabs_shortcode' );
@@ -568,9 +578,9 @@ function recent_property_tabs_shortcode() {
     if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
         ob_start(); // Start output buffering
 		?>
-		<div class="outer-wrapper">
-		<h2 class="title">Recently Added Properties</h2>
-		<?php
+<div class="outer-wrapper">
+    <h2 class="title">Recently Added Properties</h2>
+    <?php
         echo '<ul class="nav nav-tabs" id="propertyTab" role="tablist">';
         $first_tab = true;
         foreach ( $terms as $term ) {
@@ -580,7 +590,8 @@ function recent_property_tabs_shortcode() {
             $first_tab = false;
         }
         echo '</ul>';
-		?></div><?php
+		?>
+</div><?php
         echo '<div class="tab-content" id="propertyTabContent">';
         $first_tab = true;
         foreach ( $terms as $term ) {
@@ -598,50 +609,50 @@ function recent_property_tabs_shortcode() {
             ) );
 
             if ( $query->have_posts() ) {?>
-        <div class="inner-tabs pr">
-			<?php
+<div class="inner-tabs pr">
+    <?php
                 while ( $query->have_posts() ) {
                     $query->the_post();?>
 
-                    <div class="office-slider">
-						<?php if ( has_post_thumbnail() ) {?>
-						<div class="col-left">
-                       <?php  the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );?>
-					</div>
-					<div class="col-right">
-							<h4><?php the_title();?></h4>
-							<?php the_excerpt(); ?>
-							<ul class="features">
-								<li>
-								<img src="<?php echo get_template_directory_uri()?>/assets/images/bed-vector.svg" alt="">
-								<span>0</span>
-								</li>
-								<li>
-								<img src="<?php echo get_template_directory_uri()?>/assets/images/bath-logo.svg" alt="">
-								<span>0</span>
-								</li>
-								<li>
-								<img src="<?php echo get_template_directory_uri()?>/assets/images/sq-ft-logo.svg" alt="">
-								<span>0 sq.ft</span>
-								</li>
-						</ul>
-						<p class="price">£000.000,00</p>
-						</div>
-                    <?php }?>
-                </div>
-                <?php }?>
-                </div>
-            <?php } else {?>
-                <p style="margin: 25px 0;">No properties found in this category.</p>
-            <?php }
+    <div class="office-slider">
+        <?php if ( has_post_thumbnail() ) {?>
+        <div class="col-left">
+            <?php  the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );?>
+        </div>
+        <div class="col-right">
+            <h4><?php the_title();?></h4>
+            <?php the_excerpt(); ?>
+            <ul class="features">
+                <li>
+                    <img src="<?php echo get_template_directory_uri()?>/assets/images/bed-vector.svg" alt="">
+                    <span>0</span>
+                </li>
+                <li>
+                    <img src="<?php echo get_template_directory_uri()?>/assets/images/bath-logo.svg" alt="">
+                    <span>0</span>
+                </li>
+                <li>
+                    <img src="<?php echo get_template_directory_uri()?>/assets/images/sq-ft-logo.svg" alt="">
+                    <span>0 sq.ft</span>
+                </li>
+            </ul>
+            <p class="price">£000.000,00</p>
+        </div>
+        <?php }?>
+    </div>
+    <?php }?>
+</div>
+<?php } else {?>
+<p style="margin: 25px 0;">No properties found in this category.</p>
+<?php }
 
             wp_reset_postdata();?>
-        </div>
-            <?php $first_tab = false;
+</div>
+<?php $first_tab = false;
         }?>
-        </div>
+</div>
 
-       <?php return ob_get_clean();
+<?php return ob_get_clean();
     }
 }
 add_shortcode( 'recent_property_tabs', 'recent_property_tabs_shortcode' );
@@ -982,29 +993,25 @@ function rewrites_init()
 // Assign parent department value depending on department
 // If you're in residential lettings, set parent to Lettings
 // Otherwise, set it to Sales
+function update_property_parent_department($post_id) {
+    // Ensure this only runs for 'property' post type in WordPress
+    if (get_post_type($post_id) !== 'property') {
+        return;
+    }
 
-// function update_parent_department($post_id) {
-//     // Check if this is a Property Hive property
-//     if (get_post_type($post_id) != 'property') {
-//         return;
-//     }
+    // Retrieve the department meta value
+    $department = get_post_meta($post_id, 'department', true);
 
-//     // Get the department of the property
-//     $department = get_post_meta($post_id, '_department', true);
+    // Conditional logic to set the _parent_department meta key
+    if ($department === 'residential-lettings') {
+        update_post_meta($post_id, '_parent_department', 'Lettings');
+    } else {
+        update_post_meta($post_id, '_parent_department', 'Sales');
+    }
+}
 
-//     // Determine the value of parent_department based on the department
-//     if ($department === 'residential-lettings') {
-//         $parent_department = 'lettings';
-//     } else {
-//         $parent_department = 'sales';
-//     }
+// Hook into save_post to handle regular post saves
+add_action('save_post', 'update_property_parent_department');
 
-//     // Update the parent_department additional field
-//     update_post_meta($post_id, '_parent_department', $parent_department);
-// }
-
-// // Hook the function into the save_post action
-// add_action('save_post', 'update_parent_department');
-
-
-
+// Hook into Property Hive import process
+add_action('propertyhive_after_insert_property', 'update_property_parent_department');
