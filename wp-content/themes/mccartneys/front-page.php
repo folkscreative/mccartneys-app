@@ -98,19 +98,46 @@
                 </div>
 
                 <!-- Sales Pricing - Slider -->
-                <div class="search-form-control search-form-control--dropdown search-form--price-slider sales-only">
+                <div class="search-form-control search-form-control--dropdown search-form--price-slider">
                     <div class="search-form-dropdown">
                         <div class="search-form-dropdown--trigger">Price</div>
                         <div class="search-form-dropdown--options">
-                            <div class="range-slider">
-                                <input type="range" id="minPrice" name="minimum_price" min="0" max="1000000"
-                                    value="300000" step="1000">
-                                <input type="range" id="maxPrice" name="maximum_price" min="400000" max="10000000"
+                            <!-- Sales Pricing Slider -->
+                            <div class="range-slider sales-only">
+                                <input type="range" id="minPriceSales" name="minimum_price" min="0" max="1000000"
+                                    value="0" step="1000">
+                                <input type="range" id="maxPriceSales" name="maximum_price" min="400000" max="10000000"
                                     value="10000000" step="50000">
-                                <!-- <div class="slider-track"></div> -->
+                                <div class="slider-track"></div>
                                 <div class="range-values">
-                                    <span id="minValue">£100,000</span>
-                                    <span id="maxValue">£10,000,000</span>
+                                    <div class="price-wrap minWrap">
+                                        <span class="price-title minTitle">Min. Price</span>
+                                        <span id="minValueSales">£0</span>
+                                    </div>
+
+                                    <div class="price-wrap maxWrap">
+                                        <span class="price-title maxTitle">Max. Price</span>
+                                        <span id="maxValueSales">£10,000,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Rental Pricing Slider -->
+                            <div class="range-slider lettings-only" style="display: none;">
+                                <input type="range" id="minPriceLettings" name="minimum_rent" min="0" max="1000"
+                                    value="0" step="250">
+                                <input type="range" id="maxPriceLettings" name="maximum_rent" min="1000" max="10000"
+                                    value="10000" step="250">
+                                <div class="slider-track"></div>
+                                <div class="range-values">
+                                    <div class="price-wrap minWrap">
+                                        <span class="price-title minTitle">Min. Rent</span>
+                                        <span id="minValueLettings">£0 pcm</span>
+                                    </div>
+
+                                    <div class="price-wrap maxWrap">
+                                        <span class="price-title maxTitle">Max. Rent</span>
+                                        <span id="maxValueLettings">£10,000 pcm</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
