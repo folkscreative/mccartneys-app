@@ -498,43 +498,6 @@ get_header(); ?>
         </div>
      </section>
      <!-- Departments ends -->
-
-     <!-- Departments Insight -->
-     <section class="departments insights-wrapper">
-        <div class="container">
-            <div class="content">
-            <h2><?php the_field('insights_title', 'option'); ?></h2>
-                <p><?php the_field('insights_description', 'option'); ?></p>
-            </div>
-            <div class="depart-slider insigh">
-            <?php
-                $args = array(
-                    'post_type' => 'Insights',
-                    'posts_per_page' => 10,
-                );
-
-                $insight_query = new WP_Query( $args );
-
-                if ( $insight_query->have_posts() ) :
-                    while ( $insight_query->have_posts() ) : $insight_query->the_post(); ?>
-                        <div class="slide-wrap">
-                            <img src="<?php the_post_thumbnail_url(); ?>" alt="">
-                            <div class="inner-content">
-                                <h4><?php the_title(); ?></h4>
-                                <?php the_excerpt(); ?>
-                                <a href="<?php the_permalink(); ?>" class="btn-cs-light">Read more <span><i class="fa-solid fa-angle-right"></i></span></a>
-                            </div>
-                        </div>
-                    <?php endwhile;
-                    wp_reset_postdata();
-                else :
-                    echo '<p>No insights found.</p>';
-                endif;
-                ?>
-            </div>
-        </div>
-     </section>
-     <!-- Departments Insights ends -->
 </main>
 
 <?php get_footer();?>

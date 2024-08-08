@@ -257,6 +257,26 @@ $('.stud-slider').slick({
     }
    ]
 });
+$('.award-wrapper.slider').slick({
+  dots: false,
+  arrows: true,
+  infinite: true,
+  autoplay: false,
+  autoplaySpeed: 2000,
+  centerMode: false,
+  slidesToShow: 2,
+  slideToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 575,
+      settings: {
+      slidesToShow: 1,
+      centerMode: false, /* set centerMode to false to show complete slide instead of 3 */
+      slidesToScroll: 1
+      }
+    }
+   ]
+});
 // on window scroll
 $(window).scroll(function(){
   if ($(this).scrollTop() > 850) {
@@ -289,3 +309,93 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+//id to timeline
+
+$(document).ready(function() {
+  var items = $('.iteml');
+
+  // Assign IDs to the items based on their order
+  items.each(function(index) {
+      $(this).attr('id', (index + 1).toString());
+  });
+});
+
+$(document).ready(function() {
+  var items = $('.wrapper-time .iteml');
+  var links = $('.navigation a');
+
+  // Assign IDs to corresponding anchors
+  items.each(function(index) {
+      var itemId = $(this).attr('id');
+      var link = links.eq(index); // Get the corresponding link
+
+      // Set the href attribute to link to the item ID
+      link.attr('href', '#' + itemId);
+  });
+});
+
+// timelineeeeeeeeeeeee
+jQuery(document).ready(function($) {
+  // Smooth scrolling
+  $('.navigation__link').bind('click', function(e) {
+      e.preventDefault(); // prevent hard jump, the default behavior
+
+      var target = $(this).attr("href"); // Set the target as variable
+
+      // perform animated scrolling by getting top-position of target-element and set it as scroll target
+      $('.wrapper-time').stop().animate({
+          scrollTop: $(target).offset().top + $('.wrapper-time').scrollTop() - $('.wrapper-time').offset().top
+      }, 800, function() {
+          // location.hash = target; //attach the hash (#jumptarget) to the pageurl
+      });
+
+      return false;
+  });
+
+  // Scroll event handler
+  $('.wrapper-time').scroll(function() {
+      var scrollDistance = $('.wrapper-time').scrollTop();
+
+      // Assign active class to nav links while scrolling
+      $('.iteml').each(function(i) {
+          // Calculate the middle point of the .outer div
+          var outerHeight = $('.wrapper-time').height();
+          var sectionTop = $(this).offset().top - $('.wrapper-time').offset().top + scrollDistance;
+          var sectionMid = sectionTop + $(this).height() / 2;
+
+          if (sectionMid <= scrollDistance + outerHeight / 1) {
+              $('.navigation a.active').removeClass('active');
+              $('.navigation a').eq(i).addClass('active');
+          }
+      });
+  }).scroll(); // Trigger scroll handler on page load
+});
+
+$(document).ready(function() {
+  // Add 'active' class to the first child
+  $('.navigation .navigation__link:first-child').addClass('active');
+});
+
+
+// insight category tab
+document.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const activeTab = urlParams.get('tab');
+  if (activeTab) {
+      const tab = document.querySelector(`#categoryTabs button[data-bs-target="#${activeTab}"]`);
+      if (tab) {
+          const tabInstance = new bootstrap.Tab(tab);
+          tabInstance.show();
+      }
+  }
+
+  document.querySelectorAll('#categoryTabs button').forEach(tab => {
+      tab.addEventListener('click', function() {
+          const target = this.getAttribute('data-bs-target').substring(1);
+          const params = new URLSearchParams(window.location.search);
+          params.set('tab', target);
+          const newUrl = window.location.pathname + '?' + params.toString();
+          window.history.replaceState({}, '', newUrl);
+      });
+  });
+});

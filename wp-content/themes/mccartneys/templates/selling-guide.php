@@ -1,142 +1,97 @@
 <?php
 
 /**
- * Template Name: Agriculture Sale Template
+ * Template Name: Sell Guide Page Template
  */
 
 get_header(); ?>
-<main class="agriculture-sales page-wrap"> 
+
+<main class="sell-guide-pages page-wrap"> 
     <!-- Inner Banner -->
-    <?php if( have_rows('blocks') ): ?>
-        <?php while( have_rows('blocks') ): the_row(); ?>
-        <?php if( get_row_layout() == 'livestock_banner' ): ?>
-           <?php
-            $image_private = get_sub_field( 'livestock_background_image' );
-if ( !empty( $image_private ) ) { ?>
-    <section class="inner-banner-wrapper sale" style="background-image:url('<?php echo $image_private['url']; ?>');">
-<?php }?>
-     <div class="container">
-            <div class="content">
-            <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
-            <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
-            <?php the_sub_field('livestock_banner_content'); ?>
-            
-            </div>
-            <div class="inner">
-                <div class="middle-col"> 
-                    <?php echo do_shortcode('[property_search_form id="department_sepecific"]'); ?>
-                </div>
-            </div>
+<?php if( have_rows('blocks') ): ?>
+    <?php while( have_rows('blocks') ): the_row(); ?>
+    <?php if( get_row_layout() == 'livestock_banner' ): ?>
+        <?php
+        $image_private = get_sub_field( 'livestock_background_image' );
+        if ( !empty( $image_private ) ) { ?>
+        <section class="box-banner" style="background-image:url('<?php echo $image_private['url']; ?>');">
+        <?php }?>
+    <div class="container">
+        <div class="content">
+        <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
+        <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
         </div>
-     </section>
-    <!-- Inner Bnner ends -->
-    <?php endif; ?>
-        <!-- Pedigree Center -->
-    <?php if( get_row_layout() == 'livestock_sales' ): ?>
-    <section class="properties-center">
-        <div class="container">
-            <div class="align-items-lg-center align-items-start d-flex g-4 row">
-                <div class="col-12 col-md-6">
-                     <div class="col-left">
-                     <h2 class="title d-block d-md-none"><?php the_sub_field('livestock_sales_title'); ?></h2>
-                     <?php
-                     $livestock_sale = get_sub_field('livestock_left_image');
-                if( !empty($livestock_sale) ):?>
-                <img src="<?php echo $livestock_sale['url']; ?>" alt="<?php echo $livestock_sale['alt']; ?>"  class="w-100">
-                <?php endif; ?>
-                     </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="col-right">
-                    <h2 class="title d-none d-md-block"><?php the_sub_field('livestock_sales_title'); ?></h2>
-                    <?php the_sub_field('forthcoming_sales_right_content_area'); ?>
-                    <?php 
-                        $pc_top_button = get_sub_field('forthcoming_sales_&_catalogues_cta_link');
-                        if( $pc_top_button ): 
-                            $pc_top_button_url = $pc_top_button['url'];
-                            $pc_top_button_title = $pc_top_button['title'];
-                            $pc_top_button_target = $pc_top_button['target'] ? $pc_top_button['target'] : '_self';
-                            ?>
-                            <a class="btn-cs-dark" href="<?php echo esc_url( $pc_top_button_url ); ?>" target="<?php echo esc_attr( $pc_top_button_target ); ?>"><?php echo esc_html( $pc_top_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
     </section>
-    <!-- Pedigree Center ends -->
+<!-- Inner Bnner ends -->
+<?php endif; ?>
 
-    <!-- recent property section start here -->
-   <section class="recent-property-wrapper">
-        <div class="container">
-        <?php echo do_shortcode('[recent_property_tabs]'); ?>
-        <a href="#" class="btn-cs-dark">View all properties</a>
-        </div>
-     </section>
-     <!-- recent property section ends here -->
-    <?php endif; ?>
 
-    <!-- Sell Properties Blocks -->
-    <?php if( get_row_layout() == 'property_sell_blocks' ): ?>
-     <section class="sell-properties-blocks">
+<!-- boxes -->
+<?php if( get_row_layout() == 'guide_boxes' ): ?>
+        
+        <section class="guide-boxez">
+           <div class="container">
+               <div class="content">
+                   <h2><?php the_sub_field('guide_box_title'); ?></h2>
+                   <p><?php the_sub_field('guide_box_description'); ?></p>
+               </div>
+               <div class="wrapper">
+               <?php if( have_rows('guide_boxes_auction') ):
+                   while ( have_rows('guide_boxes_auction') ) : the_row();?>
+                   <div class="box">
+                       <h4><?php the_sub_field('guide_box_auction_title'); ?></h4>
+                       <?php the_sub_field('guide_box_auction_content');?>
+                   </div>
+                   <?php endwhile; ?><?php endif;?>
+               </div>
+               <?php 
+                $guide_box_button = get_sub_field('guide_box_button');
+                if( $guide_box_button ): 
+                    $guide_box_button_url = $guide_box_button['url'];
+                    $guide_box_button_title = $guide_box_button['title'];
+                    $guide_box_button_target = $guide_box_button['target'] ? $guide_box_button['target'] : '_self';
+                    ?>
+                    <a class="btn-cs-dark" href="<?php echo esc_url( $guide_box_button_url ); ?>" target="<?php echo esc_attr( $guide_box_button_target ); ?>"><?php echo esc_html( $guide_box_button_title ); ?></a>
+                <?php endif; ?>
+           </div>
+        </section>
+        <!-- boxes ends -->
+   <?php endif; ?>
+
+ <!-- call to action banner -->
+<?php if( get_row_layout() == 'call_to_action' ): ?>
+    <section class="cta-banner light guide">
         <div class="container">
-            <div class="row g-4">
-                  <div class="col-12 col-sm-4">
-                        <div class="contex">
-                            <h2><?php the_sub_field('property_sell_title'); ?></h2>
-                            <p><?php the_sub_field('property_sell_description'); ?></p>
-                        </div>
-                  </div>
-                  <?php if( have_rows('property_blocks_section_repeater') ): ?>
-            
-            <?php while( have_rows('property_blocks_section_repeater') ): the_row(); ?>
-            <div class="col-12 col-sm-4">
-                <div class="blocks">
-                    <h4><?php the_sub_field('block_repeater_title'); ?></h4>   
-                    <p><?php the_sub_field('block_repeater_description'); ?></p>
+        <div class="row g-0 align-items-center">
+        
+            <div class="col-12 col-md-5">
+                <div class="col-left">
+                <h2><?php the_sub_field('call_to_action_title'); ?></h2>
+                <p><?php the_sub_field('call_to_action_content'); ?></p>
+                <a class="btn-cs-white" href="<?php the_sub_field('call_to_action_link'); ?>"><?php the_sub_field('call_to_action_label'); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
                 </div>
-                </div>
-                <?php endwhile; ?>
-                
-            <?php endif; ?>        
             </div>
-        </div>
-     </section>
-     <?php endif; ?>
-     <!-- Sell Properties Blocks ends -->
-
-
-     <!-- Cta banner -->
-    <?php if( get_row_layout() == 'call_to_action' ): ?>
-    <section class="cta-banner light">
-          <div class="container">
-            <div class="row g-0 align-items-center">
-            
-                <div class="col-12 col-md-5">
-                    <div class="col-left">
-                    <h2><?php the_sub_field('call_to_action_title'); ?></h2>
-                    <p><?php the_sub_field('call_to_action_content'); ?></p>
-                    <a class="btn-bn-light" href="<?php the_sub_field('call_to_action_link'); ?>"><?php the_sub_field('call_to_action_label'); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
-                    </div>
-                </div>
-                <div class="col-12 col-md-7">
-                    <div class="col-right">
-                    <?php
+            <div class="col-12 col-md-7">
+                <div class="col-right">
+                <?php
                      $cta_clip_img = get_sub_field('call_to_action_right_image');
                 if( !empty($cta_clip_img) ):?>
                 <img src="<?php echo $cta_clip_img['url']; ?>" alt="<?php echo $cta_clip_img['alt']; ?>"  class="w-100">
                 <?php endif; ?>
-                    </div>
                 </div>
             </div>
-          </div>
-        </section>
+        </div>
+        </div>
+    </section>
+   <!-- call to action banner -->
     <?php endif; ?>
-    <!-- Cta banner ends -->
 
+    
     <!-- Livestock Auctioneers start here -->
- <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers sale d-none d-md-block">
+    
+    <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
+    <section class="livestock-auctioneers d-none d-md-block" id="livestck-actioner">
         <div class="container">
             <div class="row g-4">
                  <div class="col-4 col-lg-3">
@@ -178,12 +133,14 @@ if ( !empty( $image_private ) ) { ?>
             </div>
         </div>
     </section>
-    <?php endif; ?>
+    <?php endif;?>
+    
     <!-- Livestock Auctioneers ends here -->
-     
-<!-- Livestock Auctioneers mobile start here -->
-<?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers sale d-block d-md-none">
+
+    <!-- Livestock Auctioneers for mobile start here -->
+    
+    <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
+    <section class="livestock-auctioneers d-block d-md-none">
         <div class="container">
             <div class="row g-4">
                 <div class="items">
@@ -225,23 +182,18 @@ if ( !empty( $image_private ) ) { ?>
             </div>
         </div>
     </section>
-    <?php endif;?>
-    <!-- Livestock Auctioneers mobile ends here -->
-
-    <?php endwhile; ?>
     <?php endif; ?>
-    <!-- Livestock faqs ends -->
+    <?php endwhile; ?>
+    <?php endif; ?> 
+    <!-- Livestock Auctioneers for mobile ends here -->
 
-     <!-- Departments -->
-     <section class="departments other">
+
+    <!-- Departments -->
+    <section class="departments others">
         <div class="container">
             <div class="content">
-                <?php if( get_field('our_departments_title', 'option') ): ?>
-                        <h2><?php the_field('our_departments_title', 'option'); ?></h2>
-                    <?php endif; ?>
-                    <?php if( get_field('our_departments_description', 'option') ): ?>
-                        <p><?php the_field('our_departments_description', 'option'); ?></p>
-                    <?php endif; ?>
+                    <h2><?php the_field('our_departments_title', 'option'); ?></h2>
+                    <p><?php the_field('our_departments_description', 'option'); ?></p>
             </div>
             <?php if( have_rows('our_departments_slider', 'option') ): ?>
             <div class="depart-slider depar">

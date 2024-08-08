@@ -1,79 +1,95 @@
 <?php
 
 /**
- * Template Name: Show Date
+ * Template Name: Contact Us
  */
 
 get_header(); ?>
-
-<main class="pedigree-sales page-wrap"> 
+<main class="agriculture-sales page-wrap"> 
     <!-- Inner Banner -->
     <?php if( have_rows('blocks') ): ?>
         <?php while( have_rows('blocks') ): the_row(); ?>
         <?php if( get_row_layout() == 'livestock_banner' ): ?>
            <?php
             $image_private = get_sub_field( 'livestock_background_image' );
-if ( !empty( $image_private ) ) { ?>
-    <section class="inner-banner-wrapper" style="background-image:url('<?php echo $image_private['url']; ?>');">
-<?php }?>
-        <div class="container">
+        if ( !empty( $image_private ) ) { ?>
+            <section class="contactus-banner" style="background-image:url('<?php echo $image_private['url']; ?>');">
+        <?php }?>
+     <div class="container">
+            <div class="outer-wrap">
             <div class="content">
-            <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
             <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
-            <p><?php the_sub_field('livestock_banner_content'); ?></p>
+            <?php the_sub_field('livestock_banner_content'); ?>
+            
+            
+           <div class="contact-form">
+            <?php echo do_shortcode('[contact-form-7 id="35180b3" title="Contact form 1"] '); ?>
+           </div>
+            
+            <div class="connect-wrap">
+            <?php if( have_rows('social_media_buttons', 'option') ): ?>
+            <ul>
+            <?php while( have_rows('social_media_buttons', 'option') ): the_row(); ?>
+                <li><a href="<?php $social_link= get_sub_field('social_media_link'); 
+                echo $echo;
+                ?>"><?php  $social_label = get_sub_field('social_media_label');
+                echo $social_label;
+                ?></a></li>
+                <?php endwhile; ?>
+            </ul>
+            <?php endif; ?>
+			</div>
+            </div>
             </div>
         </div>
      </section>
     <!-- Inner Bnner ends -->
     <?php endif; ?>
-   
-    <!-- Show Dates -->
-    <?php if( get_row_layout() == 'show_dates_content_section' ): ?>
-    <section class="show-dates">
+    
+
+    <!-- Start Property section here -->
+    <?php if( get_row_layout() == 'property_tabs_section' ): ?>
+       <section class="property-wrapper contact">
         <div class="container">
-            <div class="row g-0">
-                <div class="col-12">
-                <?php if( have_rows('show_dates_content') ): ?>
-                        <?php while( have_rows('show_dates_content') ): the_row(); ?>
-                            <div class="show-dates-content">
-                                <h3><?php the_sub_field('show_dates_title'); ?></h3>
-                                <?php if( have_rows('dates_content') ): ?>
-                                    <ul>
-                                        <?php while( have_rows('dates_content') ): the_row(); ?>
-                                            <li><?php the_sub_field('dates_label'); ?></li>
-                                        <?php endwhile; ?>
-                                    </ul>
-                                <?php endif; ?>
-                                <?php 
-                                $show_dt_button = get_sub_field('show_dates_download_button');
-                                if( $show_dt_button ): 
-                                    $show_dt_button_url = $show_dt_button['url'];
-                                    $show_dt_button_title = $show_dt_button['title'];
-                                    $show_dt_button_target = $show_dt_button['target'] ? $show_dt_button['target'] : '_self';
-                                    ?>
-                                    <a class="btn-cs-dark" href="<?php echo esc_url( $show_dt_button_url ); ?>" target="<?php echo esc_attr( $show_dt_button_target ); ?>"><?php echo esc_html( $show_dt_button_title ); ?></a>
-                                <?php endif; ?>
-                                <?php 
-                                $sale_report_button = get_sub_field('livestock_sales_report_button');
-                                if( $sale_report_button ): 
-                                    $sale_report_button_url = $sale_report_button['url'];
-                                    $sale_report_button_title = $sale_report_button['title'];
-                                    $sale_report_button_target = $sale_report_button['target'] ? $sale_report_button['target'] : '_self';
-                                    ?>
-                                    <a class="btn-sale" href="<?php echo esc_url( $sale_report_button_url ); ?>" target="<?php echo esc_attr( $sale_report_button_target ); ?>"><?php echo esc_html( $sale_report_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
-                                <?php endif; ?>
-                            </div>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
+            <h2 class="title"><?php the_sub_field('property_tab_title'); ?></h2>
+            <p class="description"><?php the_sub_field('property_tab_description'); ?></p>
+            <?php echo do_shortcode(get_sub_field('property_tab_shortcode_new'));?>
+        </div>
+     </section>
+     <?php endif; ?>
+    <!-- End Property section here -->
+
+     <!-- Cta banner -->
+    <?php if( get_row_layout() == 'call_to_action' ): ?>
+    <section class="cta-banner light">
+          <div class="container">
+            <div class="row g-0 align-items-center">
+            
+                <div class="col-12 col-md-5">
+                    <div class="col-left">
+                    <h2><?php the_sub_field('call_to_action_title'); ?></h2>
+                    <p><?php the_sub_field('call_to_action_content'); ?></p>
+                    <a class="btn-bn-light" href="<?php the_sub_field('call_to_action_link'); ?>"><?php the_sub_field('call_to_action_label'); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-7">
+                    <div class="col-right">
+                    <?php
+                     $cta_clip_img = get_sub_field('call_to_action_right_image');
+                if( !empty($cta_clip_img) ):?>
+                <img src="<?php echo $cta_clip_img['url']; ?>" alt="<?php echo $cta_clip_img['alt']; ?>"  class="w-100">
+                <?php endif; ?>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Show Dates ends -->
+          </div>
+        </section>
     <?php endif; ?>
+    <!-- Cta banner ends -->
     <?php endwhile; ?>
     <?php endif; ?>
-    
+    <!-- Livestock faqs ends -->
+
      <!-- Departments -->
      <section class="departments other">
         <div class="container">

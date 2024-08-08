@@ -227,26 +227,7 @@ function register_my_menus() {
   add_action( 'init', 'register_my_menus' );
 
 
-  function create_posttype() {
 
-    register_post_type( 'insights',
-    // CPT Options
-        array(
-            'labels' => array(
-                'name' => __( 'Insights' ),
-                'singular_name' => __( 'Insight' )
-            ),
-            'supports' => array('title','editor','author','thumbnail' ),
-            'public' => true,
-            'has_archive' => true,
-            'rewrite' => array('slug' => 'insights'),
-            'show_in_rest' => true,
-
-        )
-    );
-}
-// Hooking up our function to theme setup
-add_action( 'init', 'create_posttype' );
 
 
 // shortcode
@@ -255,7 +236,7 @@ function custom_list_shortcode() {
 <div class="news-wrapper-mega">
     <?php
 		$args = array(
-			'post_type' => 'Insights',
+			'post_type' => 'post',
 			'posts_per_page' => 1,
 		);
 
@@ -441,7 +422,7 @@ function property_tabs_shortcode() {
         <div class="col-12 col-md-7">
             <div class="col-left">
                 <h4 class="d-none d-md-block"><?php the_title();?></h4>
-                <?php the_excerpt(); ?>
+                <p><?php the_field('stree_no');?> <?php the_field('stree_name'); ?> <?php the_field('town'); ?> <?php the_field('postcode'); ?></p>
 
                 <div class="sale-nmbr">
                     <img
@@ -662,10 +643,10 @@ function get_breadcrumb() {
     echo '<a href="' . home_url() . '" rel="nofollow">Home</a>';
 
     if (is_category() || is_single()) {
-        echo " > ";
+        echo " ";
         the_category(' &bull; ');
         if (is_single()) {
-            echo ">";
+            echo "";
             the_title();
         }
     } elseif (is_page()) {
@@ -675,7 +656,7 @@ function get_breadcrumb() {
             $breadcrumbs = [];
             while ($parent_id) {
                 $page = get_page($parent_id);
-                $breadcrumbs[] = '<a href="' . get_permalink($page->ID) . '">' . get_the_title($page->ID) . '</a>';
+                $breadcrumbs[] = '<a href="' . get_permalink($page->ID) . '"' . get_the_title($page->ID) . '</a>';
                 $parent_id  = $page->post_parent;
             }
             $breadcrumbs = array_reverse($breadcrumbs);
@@ -1015,3 +996,4 @@ add_action('save_post', 'update_property_parent_department');
 
 // Hook into Property Hive import process
 add_action('propertyhive_after_insert_property', 'update_property_parent_department');
+

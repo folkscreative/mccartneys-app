@@ -1,93 +1,86 @@
 <?php
 
 /**
- * Template Name: Equine Template
+ * Template Name: About us
  */
 
 get_header(); ?>
 
-<main class="equine page-wrap"> 
+<main class="about page-wrap"> 
      <!-- Main Banner -->
-    <?php if (have_rows('blocks')): ?>
-    <?php while (have_rows('blocks')): the_row(); ?>
-        <?php if (get_row_layout() == 'livestock_banner'): ?>
+     <?php if( have_rows('blocks') ): ?>
+        <?php while( have_rows('blocks') ): the_row(); ?>
+        <?php if( get_row_layout() == 'livestock_banner' ): ?>
             <?php
-            $livestock_bg_main = get_sub_field('livestock_background_image');
-            ?>
-            <?php if (!empty($livestock_bg_main)): ?>
-                <section class="main-banner pro" style="background-image: url(<?php echo esc_url($livestock_bg_main['url']); ?>);">
-            <?php else: ?>
-                <section class="main-banner">
-            <?php endif; ?>
-                    <div class="container">
-                        <div class="breadcrumb">
-                            <?php echo get_breadcrumb(); ?>
-                        </div>
-                        <div class="content">
-                            <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
-                            <?php the_sub_field('livestock_banner_content'); ?>
-                        </div>
-                    </div>
-                </section>
-            <!-- Main Banner ends -->
-            <section class="main-banner-sticky equine">
-                <div class="banner-menu">
-                    <?php
-                    wp_nav_menu(
-                        array(
-                            'menu' => 'Equine-Service-Menu',
-                        )
-                    );
-                    ?>
+            $sale_banner = get_sub_field( 'livestock_background_image' );
+if ( !empty( $sale_banner ) ) { ?>
+    <section class="main-banner" style="background-image:url('<?php echo $sale_banner['url']; ?>');">
+<?php }?>
+            <div class="container">
+            <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
+                <div class="content">
+                    <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
+                    <p><?php the_sub_field('livestock_banner_content'); ?></p>
                 </div>
-            </section>
-            <!-- Main Banner Sticky ends -->
-        <?php endif; ?>
-    
-
-
+            </div>
+        </section>
+       
+       
+    <!-- Main Banner ends -->
+    <section class="main-banner-sticky about">
+                <div class="banner-menu"> 
+                    <?php
+                        wp_nav_menu(
+                            array(
+                                'menu' => 'About-menu',
+                            )
+                        );
+                        ?>
+                </div>
+        </section>
+    <!-- Main Banner ends -->
+    <?php endif; ?>
     <!-- Department Services -->
-    
     <?php if( get_row_layout() == 'livestock_services' ): ?>
-        <section class="departments eq">
+    <section class="livestocks-departments">
         <div class="container">
             <div class="content">
-                    <h2><?php the_sub_field('livestock_service_title'); ?></h2>
-                    <p><?php the_sub_field('livestock_service_title_copy'); ?></p>
+                <h2><?php the_sub_field('livestock_service_title'); ?></h2>
+                <p><?php the_sub_field('livestock_service_title_copy'); ?></p>
             </div>
-            <?php if( have_rows('services_details') ): ?>
-            <div class="depart-slider depar">
-            <?php while( have_rows('services_details') ): the_row(); ?>
+            
+            <div class="slider-wrapper livestocks">
+        
+            <?php if( have_rows('services_details') ):
+                             while ( have_rows('services_details') ) : the_row();
+
+                             $sv_image = get_sub_field('service_image');
+                            ?>
+
             <div class="slide-wrap">
             <?php
-                $sv_image = get_sub_field('service_image');
+                          
                 if( !empty($sv_image) ):?>
                 <img src="<?php echo $sv_image['url']; ?>" alt="<?php echo $sv_image['alt']; ?>">
                 <?php endif; ?>
-                <div class="title-depar">
-                <h3><?php the_sub_field('service_image_copy'); ?></h3>
-                </div>
-                <div class="inner">
-                    <h3><?php the_sub_field('service_image_copy'); ?></h3>
-                    
-                    <?php if( get_sub_field('service_cta_label') ): ?>
-                    <a href="<?php the_sub_field('service_cta_link');?>" class="btn-cs-light"><?php the_sub_field('service_cta_label');?><span><i class="fa-solid fa-angle-right"></i></span></a>
-                    <?php endif; ?>
+                <div class="inner-content">
+                    <h4><?php the_sub_field('service_image_copy'); ?></h4>
+                    <span class="divider"></span>
+                    <div class="contex">
+                    <p><?php the_sub_field('service_content'); ?></p>
+                    <a class="btn-rural" href="<?php the_sub_field('service_cta_link'); ?>"><?php the_sub_field('service_cta_label'); ?></a>
+                    </div>
                 </div>
                 </div>
-                <?php endwhile; ?>
-                </div>
-            <?php endif; ?>                     
+                <?php endwhile; ?><?php endif;?>
+            </div>             
         </div>
      </section>
      <?php endif; ?>
-    
     <!-- Department Services -->
-
-   <!-- Our Marketer section start here -->
-   
-   <?php if( get_row_layout() == 'equine_sale_department' ): ?>
-    <section class="our-marketer equine" id="equine-about">
+    
+    <?php if( get_row_layout() == 'equine_sale_department' ): ?>
+    <section class="our-marketer" id="equine-about">
         <div class="container">
             <div class="row g-4">
                 <div class="col-12 col-md-6">
@@ -106,7 +99,7 @@ get_header(); ?>
                             $eq_primary_button_title = $eq_primary_button['title'];
                             $eq_primary_button_target = $eq_primary_button['target'] ? $eq_primary_button['target'] : '_self';
                             ?>
-                            <a class="btn-cs-dark" href="<?php echo esc_url( $eq_primary_button_url ); ?>" target="<?php echo esc_attr( $eq_primary_button_target ); ?>"><?php echo esc_html( $eq_primary_button_title ); ?></a>
+                            <a class="btn-cs-dark" href="<?php echo esc_url( $eq_primary_button_url ); ?>" target="<?php echo esc_attr( $eq_primary_button_target ); ?>"><?php echo esc_html( $eq_primary_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
                         <?php endif; ?>
                      <?php 
                         $eq_secondary_button = get_sub_field('equine_secondary_button');
@@ -133,14 +126,10 @@ get_header(); ?>
     </section>
     <?php endif; ?>
    
-    <!-- Our Marketer section ends here -->
-
-
-    <!-- Our Marketer section start here -->
-   <?php if( get_row_layout() == 'equine_app_content' ): ?>
-    <section class="our-marketer equine app" id="enuine-app">
+    <?php if( get_row_layout() == 'equine_app_content' ): ?>
+    <section class="our-marketer equine app about" id="why-us">
         <div class="container">
-            <div class="row g-5 align-items-center">
+            <div class="row g-5">
                 <div class="col-12 col-md-6 d-md-block d-none">
                     <div class="col-right">
                         <?php $equine_sale_image = get_sub_field('equine_app_image');
@@ -184,42 +173,10 @@ get_header(); ?>
         </div>
     </section>
     <?php endif; ?>
-    
-    <!-- Our Marketer section ends here -->
-
-    <!-- Cta banner -->
-    
-    <?php if( get_row_layout() == 'call_to_action' ): ?>
-    <section class="cta-banner light equine">
-          <div class="container">
-            <div class="row g-0 align-items-center">
-            
-                <div class="col-12 col-md-5">
-                    <div class="col-left">
-                    <h2><?php the_sub_field('call_to_action_title'); ?></h2>
-                    <p><?php the_sub_field('call_to_action_content'); ?></p>
-                    <a class="btn-rural" href="<?php the_sub_field('call_to_action_link'); ?>"><?php the_sub_field('call_to_action_label'); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
-                    </div>
-                </div>
-                <div class="col-12 col-md-7">
-                    <div class="col-right">
-                    <?php
-                     $cta_clip_img = get_sub_field('call_to_action_right_image');
-                if( !empty($cta_clip_img) ):?>
-                <img src="<?php echo $cta_clip_img['url']; ?>" alt="<?php echo $cta_clip_img['alt']; ?>"  class="w-100">
-                <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-          </div>
-        </section>
-    <?php endif; ?>
-    
-    <!-- Cta banner ends -->
 
     <!-- Departments -->
     <?php if( get_row_layout() == 'departments_sale_section' ): ?>
-    <section class="departments equine" id="equine-sales">
+    <section class="departments others" id="area-expert">
         <div class="container">
             <div class="content">
                     <h2><?php the_sub_field('department_sale_title'); ?></h2>
@@ -256,9 +213,103 @@ get_header(); ?>
      <!-- Departments ends -->
      <?php endif; ?>
 
-     <!-- Events section start here -->
-     <?php if( get_row_layout() == 'livestock_events' ): ?>
-    <section class="events equine" id="equine-date">
+
+    <!-- our awards -->
+    <?php if( get_row_layout() == 'mccartneys_awards' ): ?>
+        <section class="our-awards" id="awards">
+            <div class="container">
+                <div class="content">
+                     <h2><?php the_sub_field('mc_awards_title');?></h2>
+                     <p><?php the_sub_field('mc_awards_description');?></p>
+                </div>
+                <div class="award-wrapper slider">
+                <?php if( have_rows('mc_awards_boxes') ):
+                     while ( have_rows('mc_awards_boxes') ) : the_row();?>
+                    
+                        <div class="box">
+                        <?php $our_award_right = get_sub_field('award_box_main_image');
+                             if( !empty($our_award_right) ):?>
+                            <img src="<?php echo $our_award_right['url']; ?>" alt="<?php echo $our_award_right['alt']; ?>" class="w-100">
+                            <?php endif; ?>
+                            <h4><?php the_sub_field('award_box_title'); ?></h4>
+                            <?php the_sub_field('award_box_description');?>
+                            
+                        </div>
+                <?php endwhile; ?><?php endif;?>
+                </div>
+                <?php 
+                        $awards_button = get_sub_field('mc_awards_button');
+                        if( $awards_button ): 
+                            $awards_button_url = $awards_button['url'];
+                            $awards_button_title = $awards_button['title'];
+                            $awards_button_target = $awards_button['target'] ? $awards_button['target'] : '_self';
+                            ?>
+                            <a class="btn-cs-dark" href="<?php echo esc_url( $awards_button_url ); ?>" target="<?php echo esc_attr( $awards_button_target ); ?>"><?php echo esc_html( $awards_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                        <?php endif; ?>
+            </div>
+        </section>
+        <?php endif; ?>
+     <!-- our awards ends -->
+
+    <!-- Support cancer -->
+    <?php if( get_row_layout() == 'support_cancer' ): ?>
+     <section class="support-cancer" id="support-charities">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="col-left">
+                        <h2><?php the_sub_field('support_cancer_title');?></h2>
+                        <?php $prostate_image = get_sub_field('support_cancer_image');
+                             if( !empty($prostate_image) ):?>
+                            <img src="<?php echo $prostate_image['url']; ?>" alt="<?php echo $prostate_image['alt']; ?>" class="w-100">
+                            <?php endif; ?>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="col-right">
+                        <?php the_sub_field('support_cancer_content'); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </section>
+     <?php endif; ?>
+    <!-- Support cancer ends -->
+
+    <!-- Support charities -->
+    <?php if( get_row_layout() == 'support_charities' ): ?>
+     <section class="charities-logos">
+        <div class="container">
+            <div class="justify-content-center justify-content-md-between row">
+            <?php if( have_rows('mc_charities_logos') ):
+                while ( have_rows('mc_charities_logos') ) : the_row();?>
+                <div class="col-6 col-sm-4 col-md-2 align-content-center">
+                    <div class="item">
+                    <?php $charity_logo = get_sub_field('charities_logo');
+                    if( !empty($charity_logo) ):?>
+                    <img src="<?php echo $charity_logo['url']; ?>" alt="<?php echo $charity_logo['alt']; ?>">
+                    <?php endif; ?>
+                    </div>
+                </div>
+            <?php endwhile; ?><?php endif;?>
+            </div>
+            <?php 
+            $charity_button = get_sub_field('support_charities_button');
+            if( $charity_button ): 
+                $charity_button_url = $charity_button['url'];
+                $charity_button_title = $charity_button['title'];
+                $charity_button_target = $charity_button['target'] ? $charity_button['target'] : '_self';
+                ?>
+                <a class="btn-cs-dark" href="<?php echo esc_url( $charity_button_url ); ?>" target="<?php echo esc_attr( $charity_button_target ); ?>"><?php echo esc_html( $charity_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+            <?php endif; ?>
+        </div>
+     </section>
+     <?php endif; ?>
+    <!-- Support charities ends -->
+
+    <!-- Events section start here -->
+    <?php if( get_row_layout() == 'livestock_events' ): ?>
+    <section class="events about" id="careers">
         <div class="container">
 
         <?php $event_img = get_sub_field('livestock_event_background_image');
@@ -279,7 +330,7 @@ get_header(); ?>
                             $events_cf_button_title = $events_cf_button['title'];
                             $events_cf_button_target = $events_cf_button['target'] ? $events_cf_button['target'] : '_self';
                             ?>
-                            <a class="btn-rural" href="<?php echo esc_url( $events_cf_button_url ); ?>" target="<?php echo esc_attr( $events_cf_button_target ); ?>"><?php echo esc_html( $events_cf_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                            <a class="btn-cs-white" href="<?php echo esc_url( $events_cf_button_url ); ?>" target="<?php echo esc_attr( $events_cf_button_target ); ?>"><?php echo esc_html( $events_cf_button_title ); ?></a>
                         <?php endif; ?>
                         </div>
                         <?php endwhile; ?>
@@ -291,83 +342,50 @@ get_header(); ?>
     <!-- Events section ends here -->
     <?php endif; ?>
 
-    <!-- Livestock faqs -->
-    <?php if( get_row_layout() == 'frequently_asked_questions' ): ?>
-    <section class="livestock-faqs faqs-wrap" id="equine-faq">
+    <!-- Start Property section here -->
+    <?php if( get_row_layout() == 'property_tabs_section' ): ?>
+       <section class="property-wrapper" id="locations-about">
         <div class="container">
-            <div class="row g-0">
-                <div class="col-12">
-                    <div class="col-left">
-                         <h2><?php the_sub_field('frequently_asked_question_title'); ?></h2>
-                         <p><?php the_sub_field('frequently_asked_question_description'); ?></p>
-                    </div>
-                </div>
-                <div class="col-12">
-                     <div class="faqs-wrapper">
-                     <?php if( have_rows('frequently_asked_question_detail') ):
-                             while ( have_rows('frequently_asked_question_detail') ) : the_row();?>
-                        <div class="faqs-item">
-                             <div class="top-bar">
-                                <h4><?php the_sub_field('frequently_asked_questions_question'); ?></h4>
-                                <span class="plus-icon"><i class="fa-solid fa-plus"></i></span>
-                             </div>
-                             <div class="bottom-bar">
-                             <div class="content">
-                             <?php the_sub_field('frequently_asked_questions_answers'); ?>
-                                 
-                             </div>
-                             <span class="x-icon"><i class="fa-solid fa-xmark"></i></span>
-                             </div>
-                        </div>
-                        <?php endwhile; ?>
-                        <?php endif; ?> 
-                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <?php endif; ?>
-
-    <!-- Livestock faqs ends -->
-
-    <!-- Need more information -->
-    <?php if( get_row_layout() == 'need_info_box' ): ?>
-    <section class="need-more-info equine">
-        <div class="container">
-            <div class="content">
-                <h2><?php the_sub_field('info_box_title'); ?></h2>
-                <p><?php the_sub_field('info_box_description'); ?></p>
-                <div class="btn">
-                <?php 
-                        $buy_box_button = get_sub_field('info_box_primary_button');
-                        if( $buy_box_button ): 
-                            $buy_box_button_url = $buy_box_button['url'];
-                            $buy_box_button_title = $buy_box_button['title'];
-                            $buy_box_button_target = $buy_box_button['target'] ? $buy_box_button['target'] : '_self';
-                            ?>
-                            <a class="btn-cs-dark" href="<?php echo esc_url( $buy_box_button_url ); ?>" target="<?php echo esc_attr( $buy_box_button_target ); ?>"><?php echo esc_html( $buy_box_button_title ); ?></a>
-                        <?php endif; ?>
-                     <?php 
-                        $sell_box_button = get_sub_field('info_box_secondary_button');
-                        if( $sell_box_button ): 
-                            $sell_box_button_url = $sell_box_button['url'];
-                            $sell_box_button_title = $sell_box_button['title'];
-                            $sell_box_button_target = $sell_box_button['target'] ? $sell_box_button['target'] : '_self';
-                            ?>
-                            <a class="btn-cs-white" href="<?php echo esc_url( $sell_box_button_url ); ?>" target="<?php echo esc_attr( $sell_box_button_target ); ?>"><?php echo esc_html( $sell_box_button_title ); ?></a>
-                        <?php endif; ?>
-                </div>
-            </div>
+            <h2 class="title"><?php the_sub_field('property_tab_title'); ?></h2>
+            <p class="description"><?php the_sub_field('property_tab_description'); ?></p>
+            <?php echo do_shortcode(get_sub_field('property_tab_shortcode_new'));?>
         </div>
      </section>
      <?php endif; ?>
-    <!-- Need more information -->
-    
+    <!-- End Property section here -->
 
-    <!-- Livestock Auctioneers start here -->
+
+    <!-- Cta banner -->
+    <?php if( get_row_layout() == 'call_to_action' ): ?>
+    <section class="cta-banner light">
+          <div class="container">
+            <div class="row g-0 align-items-center">
+            
+                <div class="col-12 col-md-5">
+                    <div class="col-left">
+                    <h2><?php the_sub_field('call_to_action_title'); ?></h2>
+                    <p><?php the_sub_field('call_to_action_content'); ?></p>
+                    <a class="btn-cs-white" href="<?php the_sub_field('call_to_action_link'); ?>"><?php the_sub_field('call_to_action_label'); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-7">
+                    <div class="col-right">
+                    <?php
+                     $cta_clip_img = get_sub_field('call_to_action_right_image');
+                if( !empty($cta_clip_img) ):?>
+                <img src="<?php echo $cta_clip_img['url']; ?>" alt="<?php echo $cta_clip_img['alt']; ?>"  class="w-100">
+                <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </section>
+    <?php endif; ?>
+    <!-- Cta banner ends -->
     
-    <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers d-none d-md-block" id="livestck-actioner">
+    <!-- Livestock Auctioneers start here -->
+ <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
+    <section class="livestock-auctioneers d-none d-md-block about" id="meet-director">
         <div class="container">
             <div class="row g-4">
                  <div class="col-4 col-lg-3">
@@ -409,14 +427,12 @@ get_header(); ?>
             </div>
         </div>
     </section>
-    <?php endif;?>
-    
+    <?php endif; ?>
     <!-- Livestock Auctioneers ends here -->
-
-    <!-- Livestock Auctioneers for mobile start here -->
-    
-    <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers d-block d-md-none" id="livestck-actioner">
+     
+<!-- Livestock Auctioneers mobile start here -->
+<?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
+    <section class="livestock-auctioneers d-block d-md-none about" id="meet-director">
         <div class="container">
             <div class="row g-4">
                 <div class="items">
@@ -458,57 +474,47 @@ get_header(); ?>
             </div>
         </div>
     </section>
-    <?php endif; ?>
-    
-    <!-- Livestock Auctioneers for mobile ends here -->
+    <?php endif;?>
+    <!-- Livestock Auctioneers mobile ends here -->
 
-
-    <!-- Livestock faqs -->
-    <?php if( get_row_layout() == 'kington_livestock_market' ): ?>
-    <section class="livestock-faqs">
+    <!-- Showcase numbers -->
+    <?php if( get_row_layout() == 'showcase_number' ): ?>
+    <section class="showcase-numbers">
         <div class="container">
-            <div class="row g-3">
-                <div class="col-12 col-md-6">
-                    <div class="col-left">
-                         <h2><?php the_sub_field('kington_livestock_market_title'); ?></h2>
-                         <p><?php the_sub_field('kington_livestock_market_description'); ?></p>
-                         <?php 
-                        $market_contact_button = get_sub_field('kington_livestock_market_button');
-                        if( $market_contact_button ): 
-                            $market_contact_button_url = $market_contact_button['url'];
-                            $market_contact_button_title = $market_contact_button['title'];
-                            $market_contact_button_target = $market_contact_button['target'] ? $market_contact_button['target'] : '_self';
-                            ?>
-                            <a class="btn-cs-dark" href="<?php echo esc_url( $market_contact_button_url ); ?>" target="<?php echo esc_attr( $market_contact_button_target ); ?>"><?php echo esc_html( $market_contact_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
-                        <?php endif; ?>
+            <div class="row g-0">
+                <div class="col-12">
+                    <div class="box-title">
+                        <h2><?php the_sub_field('number_showcase_title'); ?></h2>
                     </div>
+                    <p class="description d-none d-md-block"><?php the_field('number_showcase_description');?></p>
                 </div>
-                <div class="col-12 col-md-6">
-                     <div class="faqs-wrapper">
-                     <?php if( have_rows('kington_livestock_market_detail') ):
-                     while ( have_rows('kington_livestock_market_detail') ) : the_row();?>
-                        <div class="faqs-item">
-                             <div class="top-bar">
-                                <h4><?php the_sub_field('kington_livestock_market_question'); ?></h4>
-                                <span class="plus-icon"><i class="fa-solid fa-plus"></i></span>
-                             </div>
-                             <div class="bottom-bar">
-                             <div class="content">
-                             <?php the_sub_field('kington_livestock_market_answer'); ?>
-                             </div>
-                             <span class="x-icon"><i class="fa-solid fa-xmark"></i></span>
-                             </div>
+            </div>
+            <div class="numbers-wrap">
+                <?php if( have_rows('number_showcase_repeat') ): ?>
+                <div class="row g-4">
+                    <?php while( have_rows('number_showcase_repeat') ): the_row(); ?>
+                    <div class="col-12 col-md-6">
+                        <div class="items-wrap">
+                            <?php
+                        $showcase_logo = get_sub_field('showcase_repeater_image');
+                        if( !empty($showcase_logo) ):?>
+                            <img src="<?php echo $showcase_logo['url']; ?>" alt="<?php echo $showcase_logo['alt']; ?>"
+                                class="w-100">
+                            <?php endif; ?>
+                            <div class="col-right">
+                                <h2><?php the_sub_field('showcase_repeater_title'); ?></h2>
+                                <span><?php the_sub_field('showcase_repeater_tagline'); ?></span>
+                            </div>
                         </div>
-                        <?php endwhile; ?>
-                        <?php endif; ?>
-                     </div>
+                    </div>
+                    <?php endwhile; ?>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>
-    <!-- Livestock faqs ends -->
-    <?php endif; ?>
-
+    <?php endif;?>
+    <!-- Showcase numbers ends -->
 
     <!-- Testimonials -->
     <?php if( get_row_layout() == 'testimonials' ): ?>
@@ -549,44 +555,7 @@ get_header(); ?>
         <!-- Testimonials ends -->
         <?php endif; ?>
         <?php endwhile; ?>
-<?php endif; ?>
-
-    <!-- Departments -->
-    <section class="departments others">
-        <div class="container">
-            <div class="content">
-                    <h2><?php the_field('our_departments_title', 'option'); ?></h2>
-                    <p><?php the_field('our_departments_description', 'option'); ?></p>
-            </div>
-            <?php if( have_rows('our_departments_slider', 'option') ): ?>
-            <div class="depart-slider depar">
-            <?php while( have_rows('our_departments_slider', 'option') ): the_row(); ?>
-            <div class="slide-wrap">
-            <?php
-                $department_slider_bg_image = get_sub_field('our_departments_thumbnail', 'option');
-                if( !empty($department_slider_bg_image) ):?>
-                <img src="<?php echo $department_slider_bg_image['url']; ?>" alt="<?php echo $department_slider_bg_image['alt']; ?>">
-                <?php endif; ?>
-                <div class="inner-content">
-                    <h3><?php the_sub_field('department_cart_title', 'option'); ?></h3>
-                    <p><?php the_sub_field('department_cart_description', 'option'); ?></p>
-                    <?php 
-                        $department_cartneys_slider_link = get_sub_field('department_slider_button', 'option');
-                        if( $department_cartneys_slider_link ): 
-                            $department_cartneys_slider_link_url = $department_cartneys_slider_link['url'];
-                            $department_cartneys_slider_link_title = $department_cartneys_slider_link['title'];
-                            $department_cartneys_slider_link_target = $department_cartneys_slider_link['target'] ? $department_cartneys_slider_link['target'] : '_self';
-                            ?>
-                            <a class="btn-cs-light" href="<?php echo esc_url( $department_cartneys_slider_link_url ); ?>" target="<?php echo esc_attr( $department_cartneys_slider_link_target ); ?>"><?php echo esc_html( $department_cartneys_slider_link_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
-                        <?php endif; ?>
-                </div>
-                </div>
-                <?php endwhile; ?>
-                </div>
-            <?php endif; ?>                     
-        </div>
-     </section>
-     <!-- Departments ends -->
+        <?php endif; ?>
 </main>
 
 <?php get_footer();?>

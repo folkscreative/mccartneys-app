@@ -6,7 +6,8 @@
 # Note: if you want to stage/commit WP core files
 # you can delete this whole section/until Configuration.
 /wp-admin/
-/wp-content/plugins
+/wp-content/plugins/
+/wp-content/uploads/
 /wp-content/index.php
 /wp-content/languages
 /wp-content/plugins/index.php
@@ -15,12 +16,14 @@
 /index.php
 /license.txt
 /readme.html
+/README.md
 /wp-activate.php
 /wp-blog-header.php
 /wp-comments-post.php
 /wp-config.php
 /wp-config-sample.php
 /wp-cron.php
+/wp-links-opml.php
 /wp-load.php
 /wp-login.php
 /wp-mail.php
@@ -28,6 +31,8 @@
 /wp-signup.php
 /wp-trackback.php
 /xmlrpc.php
+
+
 
 # Example themes
 /wp-content/themes/twentytwentyfour*/
@@ -59,6 +64,7 @@
 # Note: If you wish to whitelist themes,
 # uncomment the next line
 #/wp-content/themes
+
 wp-content/.DS_Store
 wp-content/themes/.DS_Store
 wp-content/themes/mccartneys/.DS_Store
