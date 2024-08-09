@@ -21,7 +21,7 @@ get_header(); ?>
             <?php endif; ?>
                     <div class="container">
                         <div class="breadcrumb">
-                            <?php echo get_breadcrumb(); ?>
+                        <?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?>
                         </div>
                         <div class="content">
                             <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
@@ -330,7 +330,7 @@ get_header(); ?>
 
      <!--  faqs -->
      <?php if( get_row_layout() == 'frequently_asked_questions' ): ?>
-    <section class="livestock-faqs faqs-wrap property-pg" id="FAQs">
+    <section class="livestock-faqs faqs-wrap" id="FAQs">
         <div class="container">
             <div class="row g-0">
                 <div class="col-12">
@@ -370,7 +370,7 @@ get_header(); ?>
 
     <!-- Testimonials -->
     <?php if( get_row_layout() == 'testimonials' ): ?>
-    <section class="testimonials property-pg">
+    <section class="testimonials">
          <div class="container"> 
             <div class="testimonial-box">
             <img src="<?php echo get_template_directory_uri()?>/assets/images/icon-apostrophe.png" alt="">

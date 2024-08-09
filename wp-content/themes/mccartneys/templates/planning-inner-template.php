@@ -18,7 +18,7 @@ get_header(); ?>
             <?php }?>
         <div class="container">
             <div class="content">
-            <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
+            <div class="breadcrumb"><?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
             <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
             <p><?php the_sub_field('livestock_banner_content'); ?></p>
             </div>
@@ -31,7 +31,7 @@ get_header(); ?>
 
 <!-- <projects section start here -->
 <?php if( get_row_layout() == 'past_projects' ): ?>
-<section class="projects">
+<section class="projects d-none d-md-block">
     <div class="container">
         <div class="description">
         <p><?php the_sub_field('project_description'); ?></p>
@@ -52,17 +52,47 @@ get_header(); ?>
                     <?php if( have_rows('project_details') ): ?>
                         <?php while( have_rows('project_details') ): the_row(); ?>
                         <tr>
-                        <td><p><?php the_sub_field('project_date'); ?></p></td>
-                        <td><p><?php the_sub_field('application'); ?></p></td>
-                        <td><p><?php the_sub_field('agent_name'); ?></p></td>
-                        <td><p><a href="<?php the_sub_field('reference_link'); ?>"><?php the_sub_field('reference'); ?></a></p></td>
+                        <td><p><?php the_sub_field('project_date'); ?></p><a href="<?php the_sub_field('reference_link'); ?>" class="link">1</a></td>
+                        <td><p><?php the_sub_field('application'); ?></p><a href="<?php the_sub_field('reference_link'); ?>" class="link">1</a></td>
+                        <td><p><?php the_sub_field('agent_name'); ?></p><a href="<?php the_sub_field('reference_link'); ?>" class="link">1</a></td>
+                        <td><p><a href="<?php the_sub_field('reference_link'); ?>"><?php the_sub_field('reference'); ?></a></p><a href="<?php the_sub_field('reference_link'); ?>" class="link">1</a></td>
+                
                         </tr>
                         <?php endwhile; ?><?php endif; ?>     
-    
+
                     </tbody>
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+<!-- Projects section ends here -->
+
+
+<!-- <projects section start here -->
+<?php if( get_row_layout() == 'past_projects' ): ?>
+<section class="projects d-block d-md-none">
+    <div class="container">
+        <div class="description">
+        <p><?php the_sub_field('project_description'); ?></p>
+        </div>
+        <div class="table-wrapper">
+        <?php if( have_rows('project_details') ): ?>
+            <?php while( have_rows('project_details') ): the_row(); ?>
+            <div class="block">
+                <div class="col-left">
+                <p><a href="<?php the_sub_field('reference_link'); ?>"><?php the_sub_field('reference'); ?></a></p>
+                <p><?php the_sub_field('project_date'); ?></p>
+                <p><?php the_sub_field('agent_name'); ?></p>
+                </div>
+                <div class="col-right">
+                <p><?php the_sub_field('application'); ?></p>
+                </div>
+            </div>
+            <?php endwhile; ?><?php endif; ?>
+
         </div>
     </div>
 </section>

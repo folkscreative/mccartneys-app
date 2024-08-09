@@ -17,7 +17,7 @@ if ( !empty( $sale_banner ) ) { ?>
     <section class="main-banner" style="background-image:url('<?php echo $sale_banner['url']; ?>');">
 <?php }?>
             <div class="container">
-            <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
+            <div class="breadcrumb"><?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
                 <div class="content">
                     <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
                     <p><?php the_sub_field('livestock_banner_content'); ?></p>
@@ -278,7 +278,7 @@ if ( !empty( $sale_banner ) ) { ?>
 
     <!-- Support charities -->
     <?php if( get_row_layout() == 'support_charities' ): ?>
-     <section class="charities-logos">
+     <section class="charities-logos about">
         <div class="container">
             <div class="justify-content-center justify-content-md-between row">
             <?php if( have_rows('mc_charities_logos') ):
@@ -344,7 +344,7 @@ if ( !empty( $sale_banner ) ) { ?>
 
     <!-- Start Property section here -->
     <?php if( get_row_layout() == 'property_tabs_section' ): ?>
-       <section class="property-wrapper" id="locations-about">
+       <section class="property-wrapper about-us" id="locations-about">
         <div class="container">
             <h2 class="title"><?php the_sub_field('property_tab_title'); ?></h2>
             <p class="description"><?php the_sub_field('property_tab_description'); ?></p>

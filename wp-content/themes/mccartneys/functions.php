@@ -638,39 +638,6 @@ function recent_property_tabs_shortcode() {
 }
 add_shortcode( 'recent_property_tabs', 'recent_property_tabs_shortcode' );
 
-// breadcrumb
-function get_breadcrumb() {
-    echo '<a href="' . home_url() . '" rel="nofollow">Home</a>';
-
-    if (is_category() || is_single()) {
-        echo " ";
-        the_category(' &bull; ');
-        if (is_single()) {
-            echo "";
-            the_title();
-        }
-    } elseif (is_page()) {
-        global $post;
-        if ($post->post_parent) {
-            $parent_id  = $post->post_parent;
-            $breadcrumbs = [];
-            while ($parent_id) {
-                $page = get_page($parent_id);
-                $breadcrumbs[] = '<a href="' . get_permalink($page->ID) . '"' . get_the_title($page->ID) . '</a>';
-                $parent_id  = $page->post_parent;
-            }
-            $breadcrumbs = array_reverse($breadcrumbs);
-            foreach ($breadcrumbs as $crumb) echo $crumb . '';
-        }
-        echo the_title();
-    } elseif (is_search()) {
-        echo " > Search Results for... ";
-        echo '"<em>';
-        echo the_search_query();
-        echo '</em>"';
-    }
-}
-
 
 // Hide Editor on Specific pages
 

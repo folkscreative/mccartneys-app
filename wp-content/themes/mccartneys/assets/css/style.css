@@ -1967,9 +1967,17 @@ footer .cookies-menu ul li a {
 }
 
 .inner-banner-wrapper .content .breadcrumb a {
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 300;
     position: relative;
     color: #fff;
     padding-right: 20px;
+}
+.inner-banner-wrapper .content .breadcrumb span{
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 300;
 }
 
 .inner-banner-wrapper .content .breadcrumb a::after {
@@ -2609,9 +2617,17 @@ footer .cookies-menu ul li a {
 }
 
 .main-banner .breadcrumb a {
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 300;
     position: relative;
     color: #fff;
     padding-right: 20px;
+}
+.main-banner .breadcrumb a span{
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 300;
 }
 
 .main-banner.pro .breadcrumb a::after {
@@ -2628,7 +2644,7 @@ footer .cookies-menu ul li a {
 }
 
 .main-banner .content {
-    max-width: 340px;
+    max-width: 350px;
     width: 100%;
     color: #fff;
     margin-top: 167px;
@@ -3454,6 +3470,7 @@ footer .cookies-menu ul li a {
     height: 100%;
     padding: 33px 40px 25px;
     border-radius: 6px;
+    min-height: 240px;
 }
 
 .sell-properties-blocks .blocks h4 {
@@ -4620,10 +4637,19 @@ footer .cookies-menu ul li a {
 }
 
 .projects .project-content tbody tr td {
+    position: relative;
     text-align: center;
     vertical-align: middle;
     border: none;
     border-right: 1px solid #707070;
+}
+.projects .project-content tbody tr td .link{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    font-size: 0;
 }
 
 .projects .project-content tbody tr td p {
@@ -5941,6 +5967,12 @@ guide-boxez .container{
 .inner-banner-wrapper.vacancies .content .breadcrumb a::after{
     color: #fff !important;
 }
+.charities-logos.about{
+    padding-bottom: 50px;
+}
+.property-wrapper.about-us .description{
+    max-width: 720px;
+}
 /* sell guide page ends */
 
 
@@ -6169,7 +6201,7 @@ guide-boxez .container{
         padding: 0 4px;
     }
     .sell-properties-blocks .blocks {
-        padding: 28px 25px 20px;
+        padding: 28px 25px 35px;
     }
     .our-marketer.app .marketer-button a {
         min-width: 130px;
@@ -6561,6 +6593,7 @@ guide-boxez .container{
     }
     .cta-banner .col-left a {
         min-width: 174px;
+        max-width: 174px;
     }
     .cta-banner .col-right {
         position: relative;
@@ -6878,7 +6911,7 @@ guide-boxez .container{
     }
     .inner-banner-wrapper::after {
         background-image: url(../images/inner-bg-mb.png);
-        width: 110%;
+        width: 112%;
         left: -38px;
         opacity: 0.8;
     }
@@ -7123,6 +7156,7 @@ guide-boxez .container{
     }
     .our-marketer.rural {
         padding-top: 60px;
+        padding-bottom: 80px;
     }
     .renewable-energy-wrapper .tabs-wrapper .tabs li {
         padding: 12px 5px;
@@ -7189,6 +7223,7 @@ guide-boxez .container{
     }
     .projects .description {
         margin: 0 auto 35px;
+        padding: 0 30px;
     }
     .rics .outer .col-right {
         padding: 30px 25px 20px;
@@ -7365,6 +7400,60 @@ guide-boxez .container{
     .guide-boxez {
         padding: 80px 0 90px;
     }
+    .departments.global .depart-slider .slide-wrap .inner-content{
+        min-height: 55px;
+        display: flex;
+        align-items: center;
+    }
+    .departments.others .depart-slider .slide-wrap .inner-content{
+        min-height: 55px;
+        display: flex;
+        align-items: center;
+    }
+    .departments.other .depart-slider .slide-wrap .inner-content{
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+    }
+    /* projects mobile */
+    .projects .container{
+        padding: 0;
+    }
+    .projects .table-wrapper .block:first-child{
+        border-top: 1px solid #000;
+    }
+    .projects .table-wrapper .block{
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid #000;
+    }
+    .projects .table-wrapper .block:nth-child(odd){
+        background-color: #FEF8F8;
+    }
+    .projects .table-wrapper .block .col-left{
+        min-width: 160px;
+        border-right: 1px solid #000;
+        padding: 20px 17px 20px 30px;
+    }
+    .projects .table-wrapper .block .col-left p{
+        font-size: 14px;
+        color: #000;
+    }
+    .projects .table-wrapper .block .col-left a{
+        font-size: 14px;
+        color: #000 !important;
+        font-weight: 500;
+    }
+    .projects .table-wrapper .block .col-right{
+        padding: 20px 30px 20px 17px;
+    }
+    .projects .table-wrapper .block .col-right p{
+        font-size: 14px;
+        line-height: 20px;
+        color: #000;
+    }
+    /* projects mobile ends */
+
 }
 
 @media (max-width: 575px) {
@@ -7556,6 +7645,8 @@ body.show {
     right: 0;
     top: 0;
     color: #8D1F56;
+    width: 100%;
+    text-align: right;
 }
 
 .main-popup .main-menu-header #menu-header-menu-mobile .outer a:first-child {

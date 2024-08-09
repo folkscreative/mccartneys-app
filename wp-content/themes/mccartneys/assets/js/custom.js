@@ -5,11 +5,11 @@ $('.page-id-1190 .our-marketer .marketer-buttons a').append('<span><i class="fa-
     var $anchortext = $(this).children('a:first-child').text();
     $('.main-popup .sub-menu .prepend').html($anchortext);
   });
-  $(document).ready(function() {
-    $(".menu .outer a:first-child").click(function(event) {
-        event.preventDefault();
-    });
-});
+//   $(document).ready(function() {
+//     $(".menu .outer a:first-child").click(function(event) {
+//         event.preventDefault();
+//     });
+// });
   $('.main-popup .outer').click(function() {
     $(this).children('.sub-menu').addClass('show');
   });
@@ -232,7 +232,7 @@ $('.events-slider').slick({
   arrows: true,
   infinite: true,
   autoplay: true,
-  autoplaySpeed: 2000,
+  autoplaySpeed: 5000,
   centerMode: false,
   slidesToShow: 1,
   slideToScroll: 1,

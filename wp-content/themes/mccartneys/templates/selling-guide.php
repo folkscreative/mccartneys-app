@@ -18,7 +18,7 @@ get_header(); ?>
         <?php }?>
     <div class="container">
         <div class="content">
-        <div class="breadcrumb"><?php get_breadcrumb(); ?></div>
+        <div class="breadcrumb"><?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
         <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
         </div>
     </div>

@@ -21,7 +21,7 @@ get_header(); ?>
             <?php endif; ?>
                     <div class="container">
                         <div class="breadcrumb">
-                            <?php echo get_breadcrumb(); ?>
+                        <?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?>
                         </div>
                         <div class="content">
                             <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
