@@ -42,7 +42,7 @@
     <!-- filter ends -->
     <section class="home-filter-cs">
         <div class="container">
-            <? echo do_shortcode('[property_search]') ?>
+            <? echo do_shortcode('[property_search]'); ?>
         </div>
     </section>
     <!-- filter ends -->
