@@ -2,12 +2,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const bodyClassList = document.body.classList;
     let departmentValue = '';
 
-    // Determine department value based on body class
+    // Check the body classes and set the department value accordingly
     if (bodyClassList.contains('page-template-residential-sale')) {
         departmentValue = 'residential-sales';
     } else if (bodyClassList.contains('page-template-residential-letting')) {
         departmentValue = 'residential-lettings';
-    } else if (bodyClassList.contains('page-template-agricultural-sale')) {
+    } else if (bodyClassList.contains('page-template-agriculture-sale')) {
         departmentValue = 'agricultural';
     } else if (bodyClassList.contains('page-template-commercial-letting')) {
         departmentValue = 'commercial';
@@ -25,118 +25,117 @@ document.addEventListener("DOMContentLoaded", function() {
         departmentValue = 'agricultural';
     }
 
-    // Set the value of the form field
-    const departmentField = document.querySelector('select[name="department"]');
-    if (departmentField) {
-        departmentField.value = departmentValue;
+    // Set the corresponding department checkbox as checked if departmentValue is defined
+    if (departmentValue) {
+        const departmentCheckbox = document.querySelector(`input[name="department"][value="${departmentValue}"]`);
+        const showAllCheckbox = document.querySelector('input[name="department"][value=""]');
+        if (departmentCheckbox) {
+            departmentCheckbox.checked = true;
+            // Uncheck the "Show All" checkbox
+            if (showAllCheckbox) {
+                showAllCheckbox.checked = false;
+            }
+            console.log(`Department checkbox for ${departmentValue} is checked, "Show All" is unchecked.`);
+        } else {
+            console.log(`No department checkbox found for ${departmentValue}.`);
+        }
     }
 
-    // Set a delay before identifying the last visible .control div
-    setTimeout(function() {
-        const controls = document.querySelectorAll('.control');
-        let lastVisibleControl = null;
+    // Automatically select the "Rent" toggle if the body class matches
+    const isLettingPage = [...bodyClassList].some(className => className.startsWith('page-template-') && className.includes('-letting'));
 
-        controls.forEach(function(control) {
-            const style = window.getComputedStyle(control);
-            if (style.display !== 'none' && style.visibility !== 'hidden' && control.offsetParent !== null) {
-                lastVisibleControl = control;
-            }
-        });
+    if (isLettingPage) {
+        const lettingsRadio = document.getElementById('_parent_department_lettings');
+        const salesRadio = document.getElementById('_parent_department_sales');
 
-        if (lastVisibleControl) {
-            lastVisibleControl.classList.add('last-visible');
-        }
-    }, 300); // 300ms delay
+        if (lettingsRadio) lettingsRadio.checked = true;
+        if (salesRadio) salesRadio.checked = false;
+    } else {
+        const salesRadio = document.getElementById('_parent_department_sales');
+        const lettingsRadio = document.getElementById('_parent_department_lettings');
 
-    // Initialize range sliders and controls
-    const salesRadio = document.getElementById('_parent_department_sales');
-    const lettingsRadio = document.getElementById('_parent_department_lettings');
-    const salesSlider = document.querySelector('.range-slider.sales-only');
-    const lettingsSlider = document.querySelector('.range-slider.lettings-only');
+        if (salesRadio) salesRadio.checked = true;
+        if (lettingsRadio) lettingsRadio.checked = false;
+    }
 
     // Function to toggle slider visibility
     function toggleSliders() {
+        const salesSlider = document.querySelector('.range-slider.sales-only');
+        const lettingsSlider = document.querySelector('.range-slider.lettings-only');
+        const priceTrigger = document.querySelector('.trigger--price');
+
+        const salesRadio = document.getElementById('_parent_department_sales');
+        const lettingsRadio = document.getElementById('_parent_department_lettings');
+
         if (salesRadio && salesRadio.checked) {
             salesSlider.style.display = 'flex';
             lettingsSlider.style.display = 'none';
+            priceTrigger.textContent = 'Price';
         } else if (lettingsRadio && lettingsRadio.checked) {
             salesSlider.style.display = 'none';
             lettingsSlider.style.display = 'flex';
+            priceTrigger.textContent = 'Rent';
         }
     }
 
     // Initialize the slider display based on the default selection
     toggleSliders();
 
-    // Add event listeners for radio buttons to toggle sliders
+    const salesRadio = document.getElementById('_parent_department_sales');
+    const lettingsRadio = document.getElementById('_parent_department_lettings');
+
     if (salesRadio) salesRadio.addEventListener('change', toggleSliders);
     if (lettingsRadio) lettingsRadio.addEventListener('change', toggleSliders);
 
     // Range Slider Magic
     const minSliderSales = document.getElementById('minPriceSales');
     const maxSliderSales = document.getElementById('maxPriceSales');
-    const minValueSales = document.getElementById('minValueSales');
-    const maxValueSales = document.getElementById('maxValueSales');
     const minSliderLettings = document.getElementById('minPriceLettings');
     const maxSliderLettings = document.getElementById('maxPriceLettings');
-    const minValueLettings = document.getElementById('minValueLettings');
-    const maxValueLettings = document.getElementById('maxValueLettings');
 
     function updateSlider(sliderType) {
-        let minSlider, maxSlider, minValue, maxValue;
+        let minSlider, maxSlider, sliderTrack;
 
         if (sliderType === 'sales') {
             minSlider = minSliderSales;
             maxSlider = maxSliderSales;
-            minValue = minValueSales;
-            maxValue = maxValueSales;
+            sliderTrack = document.querySelector('.range-slider.sales-only .slider-track');
         } else {
             minSlider = minSliderLettings;
             maxSlider = maxSliderLettings;
-            minValue = minValueLettings;
-            maxValue = maxValueLettings;
+            sliderTrack = document.querySelector('.range-slider.lettings-only .slider-track');
         }
 
-        if (!minSlider || !maxSlider || !minValue || !maxValue) return;
+        if (!minSlider || !maxSlider || !sliderTrack) return;
 
         let min = parseInt(minSlider.value);
         let max = parseInt(maxSlider.value);
 
-        // Ensure min does not exceed max
-        if (min > max - 5000) {
-            min = max - 5000;
+        // Ensure min does not exceed max and cannot go below 0
+        if (min > max - parseInt(minSlider.step)) {
+            min = max - parseInt(minSlider.step);
             minSlider.value = min;
         }
 
-        // Ensure max does not fall below min
-        if (max < min + 5000) {
-            max = min + 5000;
+        if (max < min + parseInt(maxSlider.step)) {
+            max = min + parseInt(maxSlider.step);
             maxSlider.value = max;
         }
 
-        // Update displayed values
-        minValue.textContent = `£${min.toLocaleString()}`;
-        maxValue.textContent = `£${max.toLocaleString()}`;
+        const sliderRange = parseInt(maxSlider.max) - parseInt(minSlider.min);
+        const minPercentage = ((min - parseInt(minSlider.min)) / sliderRange) * 100;
+        const maxPercentage = ((max - parseInt(minSlider.min)) / sliderRange) * 100;
 
-        // Calculate slider track fill
-        const minPercentage = ((min - minSlider.min) / (maxSlider.max - minSlider.min)) * 100;
-        const maxPercentage = ((max - minSlider.min) / (maxSlider.max - minSlider.min)) * 100;
-
-        // Set the gradient to correctly fill between the handles
-        const sliderTrack = sliderType === 'sales' ? salesSlider.querySelector('.slider-track') : lettingsSlider.querySelector('.slider-track');
-        if (sliderTrack) {
-            sliderTrack.style.background = `linear-gradient(to right, #ddd 0%, #ddd ${minPercentage}%, #602644 ${minPercentage}%, #602644 ${maxPercentage}%, #ddd ${maxPercentage}%, #ddd 100%)`;
-        }
+        sliderTrack.style.background = `linear-gradient(to right, #ddd 0%, #ddd ${minPercentage}%, #602644 ${minPercentage}%, #602644 ${maxPercentage}%, #ddd ${maxPercentage}%, #ddd 100%)`;
     }
 
-    // Add event listeners to update sliders
     if (minSliderSales) minSliderSales.addEventListener('input', () => updateSlider('sales'));
     if (maxSliderSales) maxSliderSales.addEventListener('input', () => updateSlider('sales'));
     if (minSliderLettings) minSliderLettings.addEventListener('input', () => updateSlider('lettings'));
     if (maxSliderLettings) maxSliderLettings.addEventListener('input', () => updateSlider('lettings'));
 
-    // Initialize the slider values
-    updateSlider('sales'); // Initialize sales slider on load
+    updateSlider('sales');
+    updateSlider('lettings');
 
     // Form submission logic to ensure correct slider values are submitted
     document.querySelector('form').addEventListener('submit', function(e) {
@@ -153,7 +152,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Helper function to close dropdowns if clicked outside
     function closeDropdownsOnClickOutside() {
         window.addEventListener('click', function(e) {
             const dropdowns = document.querySelectorAll('.search-form-dropdown');
@@ -168,14 +166,11 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Dropdown toggle functionality
     function setupDropdowns() {
-        // Add click listeners to toggle dropdowns
         document.querySelectorAll('.search-form-control--dropdown, .search-form-control--checkboxes').forEach(dropdownControl => {
             dropdownControl.addEventListener('click', function(event) {
                 const dropdown = this.querySelector('.search-form-dropdown');
 
-                // Prevent closing the dropdown when clicking on the sliders
                 if (event.target.tagName === 'INPUT' && event.target.type === 'range') {
                     return;
                 }
@@ -184,14 +179,12 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
 
-        // Set selected text and ensure only one radio is selected at a time
         for (const option of document.querySelectorAll('.search-form-dropdown--option input[type="radio"]')) {
             option.addEventListener('change', function() {
                 const selectedOption = this.closest('.search-form-dropdown--option');
                 const dropdown = this.closest('.search-form-dropdown');
                 dropdown.querySelector('.search-form-dropdown--trigger').textContent = selectedOption.textContent.trim();
 
-                // Unselect others and select this
                 selectedOption.parentNode.querySelectorAll('.search-form-dropdown--option.selected').forEach(opt => {
                     opt.classList.remove('selected');
                 });
@@ -200,24 +193,23 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Checkbox behaviour
     function setupCheckboxes() {
-        const checkboxes = document.querySelectorAll('.search-form-checkboxes--option input');
-        const showAllCheckbox = checkboxes[0]; // assuming 'Show All' is the first checkbox
+        document.querySelectorAll('.search-form-control--checkboxes').forEach(checkboxGroup => {
+            const checkboxes = checkboxGroup.querySelectorAll('.search-form-checkboxes--option input');
+            const showAllCheckbox = checkboxes[0];
 
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', () => {
-                if (checkbox === showAllCheckbox && showAllCheckbox.checked) {
-                    // Deselect other checkboxes if "Show All" is checked
-                    checkboxes.forEach(cb => {
-                        if (cb !== showAllCheckbox) {
-                            cb.checked = false;
-                        }
-                    });
-                } else if (checkbox !== showAllCheckbox) {
-                    // Deselect "Show All" if any other checkbox is selected
-                    showAllCheckbox.checked = false;
-                }
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    if (checkbox === showAllCheckbox && showAllCheckbox.checked) {
+                        checkboxes.forEach(cb => {
+                            if (cb !== showAllCheckbox) {
+                                cb.checked = false;
+                            }
+                        });
+                    } else if (checkbox !== showAllCheckbox) {
+                        showAllCheckbox.checked = false;
+                    }
+                });
             });
         });
     }
@@ -226,4 +218,40 @@ document.addEventListener("DOMContentLoaded", function() {
     setupDropdowns();
     setupCheckboxes();
     closeDropdownsOnClickOutside();
+
+    // Function to identify the last visible .search-form-control (excluding submit) and apply the 'last-visible' class
+    function markLastVisibleControl() {
+        setTimeout(function() {
+            const controls = document.querySelectorAll('.search-form-control');
+            let lastVisibleControl = null;
+
+            controls.forEach(function(control) {
+                const style = window.getComputedStyle(control);
+                if (
+                    style.display !== 'none' &&
+                    style.visibility !== 'hidden' &&
+                    control.offsetParent !== null &&
+                    !control.classList.contains('search-form-control--submit') // Exclude submit button
+                ) {
+                    lastVisibleControl = control;
+                }
+            });
+
+            // Remove the 'last-visible' class from all controls first
+            controls.forEach(control => {
+                control.classList.remove('last-visible');
+            });
+
+            // Apply the 'last-visible' class to the last visible control
+            if (lastVisibleControl) {
+                lastVisibleControl.classList.add('last-visible');
+            }
+        }, 300); // 300ms delay to allow for any CSS changes
+    }
+
+    // Call the function to mark the last visible control
+    markLastVisibleControl();
+
+
+
 });

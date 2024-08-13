@@ -13,19 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 get_header( 'propertyhive' ); global $wpdb; ?>
 
-<main class="property-search page-wrap">
-    <section class="search-outer">
-        <div class="container">
-            <? echo do_shortcode('[property_search]') ?>
-        </div>
-
-    </section>
-    <section class="properties-center">
-        <div class="container">
-
-        </div>
-    </section>
-</main>
+<?php
+        /**
+         * propertyhive_before_main_content hook
+         *
+         * @hooked propertyhive_output_content_wrapper - 10 (outputs opening divs for the content)
+         */
+        do_action( 'propertyhive_before_main_content' );
+    ?>
 
 
 

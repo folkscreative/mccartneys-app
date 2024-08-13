@@ -9,7 +9,7 @@
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.0' );
+	define( '_S_VERSION', '1.2.0' );
 }
 
 /**
@@ -142,7 +142,7 @@ function mccartneys_scripts() {
 	wp_style_add_data( 'mccartneys-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'mccartneys-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-    wp_enqueue_script( 'mccartneys-features', get_template_directory_uri() . '/js/features.js', array(), _S_VERSION, true );
+    wp_enqueue_script( 'mccartneys-ph-search-features', get_template_directory_uri() . '/js/ph-search-features.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -422,7 +422,8 @@ function property_tabs_shortcode() {
         <div class="col-12 col-md-7">
             <div class="col-left">
                 <h4 class="d-none d-md-block"><?php the_title();?></h4>
-                <p><?php the_field('stree_no');?> <?php the_field('stree_name'); ?> <?php the_field('town'); ?> <?php the_field('postcode'); ?></p>
+                <p><?php the_field('stree_no');?> <?php the_field('stree_name'); ?> <?php the_field('town'); ?>
+                    <?php the_field('postcode'); ?></p>
 
                 <div class="sale-nmbr">
                     <img
@@ -768,49 +769,49 @@ function set_last_search()
 
 // 2. Include Sold STC
 // See snippet here: https://docs.wp-property-hive.com/article/613-add-include-sold-stc-checkbox-to-search-forms
-add_action( 'pre_get_posts', 'remove_sold_stc_by_default' );
-function remove_sold_stc_by_default( $q )
-{
-    if (is_admin())
-        return;
+// add_action( 'pre_get_posts', 'remove_sold_stc_by_default' );
+// function remove_sold_stc_by_default( $q ) 
+// {
+//     if (is_admin())
+//         return;
 
-    if ( defined('DOING_CRON') && DOING_CRON )
-        return;
+//     if ( defined('DOING_CRON') && DOING_CRON )
+//         return;
 
-    if (!$q->is_post_type_archive('property') && !$q->is_tax(get_object_taxonomies('property')))
-        return;
+//     if (!$q->is_post_type_archive('property') && !$q->is_tax(get_object_taxonomies('property')))
+//         return;
 
-    if (isset($_GET['shortlisted']))
-        return;
+//     if (isset($_GET['shortlisted']))
+//         return;
 
-    $tax_query = $q->get('tax_query');
+//     $tax_query = $q->get('tax_query');
 
-    if ( !isset($_REQUEST['include_sold_stc']) )
-    {
-        if (!is_array($tax_query)) { $tax_query = array(); }
+//     if ( !isset($_REQUEST['include_sold_stc']) ) 
+//     {
+//         if (!is_array($tax_query)) { $tax_query = array(); }
 
-        // NOTE: change (10, 14) to the IDS of 'For Sale' and 'To Let'
-        // These can be found under 'Property Hive > Setting > Custom Fields'
-        $tax_query[] = array(
-            'taxonomy' => 'availability',
-            'field' => 'term_id',
-            'terms' => array(10, 14),
-            'operator' => 'IN'
-        );
-    }
+//         // NOTE: change (10, 14) to the IDS of 'For Sale' and 'To Let'
+//         // These can be found under 'Property Hive > Setting > Custom Fields'
+//         $tax_query[] = array(
+//             'taxonomy' => 'availability',
+//             'field' => 'term_id',
+//             'terms' => array(10, 14), 
+//             'operator' => 'IN'
+//         );
+//     }
 
-    $q->set('tax_query', $tax_query);
-}
+//     $q->set('tax_query', $tax_query);
+// }
 
-add_filter( 'propertyhive_search_form_fields_after', 'remove_sold_stc_hidden', 10, 1 );
-function remove_sold_stc_hidden( $form_controls )
-{
-    if ( isset($form_controls['include_sold_stc']) )
-    {
-        unset($form_controls['include_sold_stc']);
-    }
-    return $form_controls;
-}
+// add_filter( 'propertyhive_search_form_fields_after', 'remove_sold_stc_hidden', 10, 1 );
+// function remove_sold_stc_hidden( $form_controls )
+// {
+//     if ( isset($form_controls['include_sold_stc']) ) 
+//     {
+//         unset($form_controls['include_sold_stc']);
+//     }
+//     return $form_controls;
+// }
 
 // 3. SEO Friendly Search Result URLs
 // See snippet here: https://docs.wp-property-hive.com/article/618-creating-seo-friendly-search-results-urls
@@ -964,3 +965,295 @@ add_action('save_post', 'update_property_parent_department');
 // Hook into Property Hive import process
 add_action('propertyhive_after_insert_property', 'update_property_parent_department');
 
+// PH MCC Search Form shortcode
+function mcc_ph_search() {
+    ?>
+<form class="property-search"
+    action="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>"
+    method="get" role="form">
+    <div class="search-form-control search-form--radio-toggle">
+        <input type="radio" id="_parent_department_sales" name="_parent_department" value="Sales" checked>
+        <label for="_parent_department_sales">BUY</label>
+        <input type="radio" id="_parent_department_lettings" name="_parent_department" value="Lettings">
+        <label for="_parent_department_lettings">RENT</label>
+    </div>
+    <div class="search-form-control search-form--location">
+        <input type="text" placeholder="Location" name="address_keyword" id="address_keyword">
+    </div>
+    <div class="search-form-control search-form-control--dropdown search-form--radius">
+        <div class="search-form-dropdown">
+            <div class="search-form-dropdown--trigger">Search Radius</div>
+            <div class="search-form-dropdown--options">
+                <label class="search-form-dropdown--option selected">
+                    <input type="radio" name="radius" value="" checked>
+                    <span>+ 0 miles</span>
+                </label>
+                <label class="search-form-dropdown--option">
+                    <input type="radio" name="radius" value="0.25">
+                    <span>+ 1/4 miles</span>
+                </label>
+                <label class="search-form-dropdown--option">
+                    <input type="radio" name="radius" value="1">
+                    <span>+ 1 miles</span>
+                </label>
+                <label class="search-form-dropdown--option">
+                    <input type="radio" name="radius" value="3">
+                    <span>+ 3 miles</span>
+                </label>
+                <label class="search-form-dropdown--option">
+                    <input type="radio" name="radius" value="5">
+                    <span>+ 5 miles</span>
+                </label>
+                <label class="search-form-dropdown--option">
+                    <input type="radio" name="radius" value="10">
+                    <span>+ 10 miles</span>
+                </label>
+                <label class="search-form-dropdown--option">
+                    <input type="radio" name="radius" value="20">
+                    <span>+ 20 miles</span>
+                </label>
+                <label class="search-form-dropdown--option">
+                    <input type="radio" name="radius" value="30">
+                    <span>+ 30 miles</span>
+                </label>
+                <label class="search-form-dropdown--option">
+                    <input type="radio" name="radius" value="40">
+                    <span>+ 40 miles</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sales Pricing - Slider -->
+    <div class="search-form-control search-form-control--dropdown search-form--price-slider">
+        <div class="search-form-dropdown">
+            <div class="search-form-dropdown--trigger trigger--price">Price</div>
+            <div class="search-form-dropdown--options">
+                <!-- Sales Pricing Slider -->
+                <div class="range-slider sales-only">
+                    <input type="range" id="minPriceSales" name="minimum_price" min="0" max="1000000" value="0"
+                        step="1000">
+                    <input type="range" id="maxPriceSales" name="maximum_price" min="400000" max="10000000"
+                        value="10000000" step="50000">
+                    <div class="slider-track"></div>
+                    <div class="range-values">
+                        <div class="price-wrap minWrap">
+                            <span class="price-title minTitle">Min. Price</span>
+                            <span id="minValueSales">£0</span>
+                        </div>
+
+                        <div class="price-wrap maxWrap">
+                            <span class="price-title maxTitle">Max. Price</span>
+                            <span id="maxValueSales">£10,000,000</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Rental Pricing Slider -->
+                <div class="range-slider lettings-only" style="display: none;">
+                    <input type="range" id="minPriceLettings" name="minimum_rent" min="0" max="1000" value="0"
+                        step="250">
+                    <input type="range" id="maxPriceLettings" name="maximum_rent" min="1000" max="10000" value="10000"
+                        step="250">
+                    <div class="slider-track"></div>
+                    <div class="range-values">
+                        <div class="price-wrap minWrap">
+                            <span class="price-title minTitle">Min. Rent</span>
+                            <span id="minValueLettings">£0 pcm</span>
+                        </div>
+
+                        <div class="price-wrap maxWrap">
+                            <span class="price-title maxTitle">Max. Rent</span>
+                            <span id="maxValueLettings">£10,000 pcm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sales Pricing -->
+    <!-- <div class="search-form-control search-form-control--dropdown search-form--price sales-only">
+                    <div class="search-form-dropdown">
+                        <div class="search-form-dropdown--trigger">Price</div>
+                        <div class="search-form-dropdown--options">
+                            <label class="search-form-dropdown--option selected">
+                                <input type="radio" name="maximum_price" value="" checked>
+                                <span>No Preference</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_price" value="50000">
+                                <span>£50,000</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_price" value="60000">
+                                <span>£60,000</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_price" value="70000">
+                                <span>£70,000</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_price" value="80000">
+                                <span>£80,000</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_price" value="90000">
+                                <span>£90,000</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_price" value="100000">
+                                <span>£100,000</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_price" value="110000">
+                                <span>£110,000</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_price" value="120000">
+                                <span>£120,000</span>
+                            </label>
+                        </div>
+                    </div>
+                </div> -->
+    <!-- Rental Pricing -->
+    <!-- <div class="search-form-control search-form-control--dropdown search-form--rent lettings-only">
+                    <div class="search-form-dropdown">
+                        <div class="search-form-dropdown--trigger">Price</div>
+                        <div class="search-form-dropdown--options">
+                            <label class="search-form-dropdown--option selected">
+                                <input type="radio" name="maximum_rent" value="" checked>
+                                <span>No Preference</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_rent" value="50000">
+                                <span>£1,000 pcm</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_rent" value="60000">
+                                <span>£1,500 pcm</span>
+                            </label>
+                            <label class="search-form-dropdown--option">
+                                <input type="radio" name="maximum_rent" value="70000">
+                                <span>£2,000 pcm</span>
+                            </label>
+                        </div>
+                    </div>
+                </div> -->
+
+
+    <div class="search-form-control search-form-control--checkboxes search-form--type">
+        <div class="search-form-dropdown">
+            <div class="search-form-dropdown--trigger">Property Type</div>
+            <div class="search-form-dropdown--options">
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="property_type" checked value="">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Show All
+                </label>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="property_type" value="69">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Bungalow
+                </label>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="property_type" value="61">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Detached
+                </label>
+                <hr>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="property_type" value="62">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Semi-detached
+                </label>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="property_type" value="63">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Terraced
+                </label>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="property_type" value="74">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Flat/Apartment
+                </label>
+                <hr>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="property_type" value="93">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Farms
+                </label>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="property_type" value="83">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Commercial
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="search-form-control search-form-control--checkboxes search-form--department">
+        <div class="search-form-dropdown">
+            <div class="search-form-dropdown--trigger">Department</div>
+            <div class="search-form-dropdown--options">
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="department" checked value="">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Show All
+                </label>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="department" value="residential-sales">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Residential Sales
+                </label>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="department" value="residential-lettings">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Residential Lettings
+                </label>
+                <hr>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="department" value="commercial">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Commercial
+                </label>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="department" value="agricultural">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Agricultural
+                </label>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="department" value="new-homes">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    New Homes
+                </label>
+                <hr>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="department" value="fine-and-country">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Fine & Country
+                </label>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="department" value="property-land-auctions">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Property & Land Auctions
+                </label>
+                <label class="search-form-checkboxes--option">
+                    <input type="checkbox" name="department" value="development-land">
+                    <span class="search-form-checkboxes--checkbox-label"></span>
+                    Development Land
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" value="search" class="search-form-control search-form-control--submit">
+</form>
+
+<?php
+};
+
+add_shortcode('property_search', 'mcc_ph_search');
+
+
+// Replace the default search on the properties archive
+// Remove the original propertyhive_search_form function
+remove_action( 'propertyhive_before_search_results_loop', 'propertyhive_search_form', 10 );
