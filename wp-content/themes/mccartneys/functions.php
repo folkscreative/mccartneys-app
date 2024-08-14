@@ -942,28 +942,94 @@ function rewrites_init()
 // Assign parent department value depending on department
 // If you're in residential lettings, set parent to Lettings
 // Otherwise, set it to Sales
-function update_property_parent_department($post_id) {
-    // Ensure this only runs for 'property' post type in WordPress
-    if (get_post_type($post_id) !== 'property') {
-        return;
+// function update_property_parent_department($post_id) {
+//     // Ensure this only runs for 'property' post type in WordPress
+//     if (get_post_type($post_id) !== 'property') {
+//         return;
+//     }
+
+//     // Retrieve the department meta value
+//     $department = get_post_meta($post_id, 'department', true);
+
+//     // Conditional logic to set the _parent_department meta key
+//     if ($department === 'residential-lettings') {
+//         update_post_meta($post_id, '_parent_department', 'Lettings');
+//     } else {
+//         update_post_meta($post_id, '_parent_department', 'Sales');
+//     }
+// }
+
+// // Hook into save_post to handle regular post saves
+// add_action('save_post', 'update_property_parent_department');
+
+// // Hook into Property Hive import process
+// add_action('propertyhive_after_insert_property', 'update_property_parent_department');
+
+add_action( "propertyhive_property_imported_reapit_foundations_json", 'mcc_ph_import_maps', 10, 2 );
+function mcc_ph_import_maps($post_id, $property)
+{
+    // Properties arriving from branch codes BRE, HAY, LUD should be assigned to the department Fine and Country.
+    if ( isset( $property['officeIds'] ) && is_array( $property['officeIds'] ) && count( $property['officeIds'] ) > 0 )
+    {
+        foreach ( $property['officeIds'] as $office_id )
+        {
+            if ( $office_id == 'BRE' || $office_id == 'HAY' || $office_id == 'LUD' )
+            {
+                update_post_meta( $post_id, '_department', 'fine-and-country' );
+            }
+        }
+    }
+    
+    // Properties arriving with a disposal containing Auction should be assigned to the Property & Land department.
+    if ( isset($property['selling']['disposal']) && strtolower($property['selling']['disposal']) == 'auction' )
+    {
+        update_post_meta( $post_id, '_department', 'property-and-land' );
+    }
+    
+    // Anything arriving with a type of Farm or Agricultural should be assigned to the Agricultural department
+    if ( isset($property['type']) && ( in_array('farm', $property['type']) || in_array('agricultural', $property['type']) ) )
+    {
+        update_post_meta( $post_id, '_department', 'agricultural' );
+    }
+    
+    // Anything received with a type of developmentOpportunity should be assigned to the Development Land department
+    if ( isset($property['type']) && ( in_array('developmentOpportunity', $property['type']) ) )
+    {
+        update_post_meta( $post_id, '_department', 'development-land' );
+    }
+    
+    // Anything received with no type
+    // AND
+    // a bedroom count of 0
+    // AND
+    // a situation containing Land, Paddock or Land/Paddock should also be assigned to The Agricultural department
+    if ( 
+        ( !isset($property['type']) || empty($property['type']) ) 
+        && 
+        empty($property['bedrooms'])
+        &&
+        ( isset($property['situation']) && ( 
+            in_array('land', $property['situation']) || 
+            in_array('paddock', $property['situation']) ) || 
+            in_array('land/paddock', $property['situation']) ) 
+        )
+    {
+        update_post_meta( $post_id, '_department', 'agricultural' );
     }
 
-    // Retrieve the department meta value
-    $department = get_post_meta($post_id, 'department', true);
-
-    // Conditional logic to set the _parent_department meta key
-    if ($department === 'residential-lettings') {
+    // Assign parent department value depending on department
+    // If you're in residential lettings, set parent to Lettings
+    // Otherwise, set it to Sales
+    if ($department === 'residential-lettings' || $rent > '0' ) {
         update_post_meta($post_id, '_parent_department', 'Lettings');
     } else {
         update_post_meta($post_id, '_parent_department', 'Sales');
     }
+    
+    // Anything NOT IN Residential lettings OR that is a commercial that is for sale will be assigned to a parent department of Sales.
+    // PROPERTY HIVE COMMENT: Ensure the 'commercial' department is deactivated and this should happen by default. No snippet needed
 }
 
-// Hook into save_post to handle regular post saves
-add_action('save_post', 'update_property_parent_department');
-
-// Hook into Property Hive import process
-add_action('propertyhive_after_insert_property', 'update_property_parent_department');
 
 // PH MCC Search Form shortcode
 function mcc_ph_search() {
