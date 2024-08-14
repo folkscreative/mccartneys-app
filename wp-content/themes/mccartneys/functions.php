@@ -1020,7 +1020,7 @@ function mcc_ph_import_maps($post_id, $property)
     // Assign parent department value depending on department
     // If you're in residential lettings, set parent to Lettings
     // Otherwise, set it to Sales
-    if ($department === 'residential-lettings' || $rent > '0' ) {
+    if ($department == 'residential-lettings' || isset($property['rent']) ) {
         update_post_meta($post_id, '_parent_department', 'Lettings');
     } else {
         update_post_meta($post_id, '_parent_department', 'Sales');
