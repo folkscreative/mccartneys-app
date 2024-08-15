@@ -561,7 +561,7 @@ function recent_property_tabs_shortcode() {
         ob_start(); // Start output buffering
 		?>
 <div class="outer-wrapper">
-    <h2 class="title">Recently Added Properties</h2>
+<h2 class="title"><?php the_sub_field('recent_property_title'); ?></h2>
     <?php
         echo '<ul class="nav nav-tabs" id="propertyTab" role="tablist">';
         $first_tab = true;

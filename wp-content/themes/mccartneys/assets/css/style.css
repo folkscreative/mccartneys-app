@@ -1864,7 +1864,9 @@ footer .cookies-menu ul li a {
 
 
 /* Pedigree Sales Page */
-
+.property-sub-page .inner-banner-wrapper{
+    overflow: visible;
+}
 .inner-banner-wrapper {
     position: relative;
     padding: 38px 0 139px;
@@ -2008,7 +2010,6 @@ footer .cookies-menu ul li a {
     position: relative;
     z-index: 2;
     max-width: 506px;
-    background: #fff;
     width: 100%;
     display: flex;
     align-items: center;
@@ -2016,9 +2017,18 @@ footer .cookies-menu ul li a {
     justify-content: space-between;
     column-gap: 10px;
     border-radius: 30px;
-    padding: 6px 10px;
+    padding: 0;
 }
-
+.inner-banner-wrapper .inner .middle-col{
+    width: 100%;
+}
+.inner-banner-wrapper .inner .middle-col .search-form-control.search-form--location input:focus-visible {
+    outline: none;
+    
+}
+.inner-banner-wrapper .inner .middle-col form.property-search input[type="submit"]{
+    max-width: 102px !important;
+}
 
 /* .inner-banner-wrapper .inner .middle-col {
     display: flex;
@@ -8073,6 +8083,12 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         color: #000;
     }
     /* projects mobile ends */
+    .property-sub-page .inner-banner-wrapper{
+        overflow-x: hidden;
+    }
+    .home-filter-cs form.property-search{
+        display: none;
+    }
 }
 
 @media (max-width: 575px) {

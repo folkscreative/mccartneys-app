@@ -99,15 +99,26 @@ get_header(); ?>
 
    <!-- recent property section start here -->
    <?php if( get_row_layout() == 'recent_property_section' ): ?>
-   <section class="recent-property-wrapper property-pg phip-page">
+    <section class="recent-property-wrapper property-pg phip-page">
         <div class="container">
-        <?php echo do_shortcode(get_sub_field('recent_property'));?>
-        <a href="#" class="btn-cs-dark orange">View all properties</a>
+            <?php echo do_shortcode(get_sub_field('recent_property'));?>
+            <?php 
+            $recent_pr_button = get_sub_field('recent_property_button');
+            if( $recent_pr_button ): 
+                $recent_pr_button_url = $recent_pr_button['url'];
+                $recent_pr_button_title = $recent_pr_button['title'];
+                $recent_pr_button_target = $recent_pr_button['target'] ? $recent_pr_button['target'] : '_self';
+                ?>
+            <a class="btn-cs-dark orange" href="<?php echo esc_url( $recent_pr_button_url ); ?>"
+                target="<?php echo esc_attr( $recent_pr_button_target ); ?>"><?php echo esc_html( $recent_pr_button_title ); ?></a>
+            <?php endif; ?>
         </div>
-     </section>
-     <?php endif; ?>
+    </section>
+    <?php endif; ?>
 
      <!-- recent property section ends here -->
+
+    
 
      <!-- Pedigree Center -->
     <?php if( get_row_layout() == 'livestock_sales' ): ?>

@@ -5,7 +5,7 @@
  */
 
 get_header(); ?>
-<main class="new-home page-wrap">
+<main class="new-home property-sub-page page-wrap">
     <!-- Inner Banner -->
     <?php if( have_rows('blocks') ): ?>
     <?php while( have_rows('blocks') ): the_row(); ?>

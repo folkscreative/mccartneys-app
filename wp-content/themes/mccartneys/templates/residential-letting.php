@@ -5,7 +5,7 @@
  */
 
 get_header(); ?>
-<main class="residential-letting page-wrap">
+<main class="residential-letting property-sub-page page-wrap">
     <!-- Inner Banner -->
     <?php if( have_rows('blocks') ): ?>
     <?php while( have_rows('blocks') ): the_row(); ?>
@@ -68,17 +68,29 @@ if ( !empty( $image_private ) ) { ?>
             </div>
         </div>
     </section>
+    <?php endif; ?>
     <!-- Pedigree Center ends -->
 
     <!-- recent property section start here -->
+    <?php if( get_row_layout() == 'recent_property_section' ): ?>
     <section class="recent-property-wrapper">
         <div class="container">
-            <?php echo do_shortcode('[recent_property_tabs]'); ?>
-            <a href="#" class="btn-cs-dark">View all properties</a>
+            <?php echo do_shortcode(get_sub_field('recent_property'));?>
+            <?php 
+            $recent_pr_button = get_sub_field('recent_property_button');
+            if( $recent_pr_button ): 
+                $recent_pr_button_url = $recent_pr_button['url'];
+                $recent_pr_button_title = $recent_pr_button['title'];
+                $recent_pr_button_target = $recent_pr_button['target'] ? $recent_pr_button['target'] : '_self';
+                ?>
+            <a class="btn-cs-dark" href="<?php echo esc_url( $recent_pr_button_url ); ?>"
+                target="<?php echo esc_attr( $recent_pr_button_target ); ?>"><?php echo esc_html( $recent_pr_button_title ); ?></a>
+            <?php endif; ?>
         </div>
     </section>
-    <!-- recent property section ends here -->
     <?php endif; ?>
+    <!-- recent property section ends here -->
+    
 
     <!-- Sell Properties Blocks -->
     <?php if( get_row_layout() == 'property_sell_blocks' ): ?>
