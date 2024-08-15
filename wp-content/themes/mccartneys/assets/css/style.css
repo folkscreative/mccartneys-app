@@ -2727,7 +2727,9 @@ footer .cookies-menu ul li a {
     top: 50px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
+    z-index: 1;
 }
+
 
 .main-banner-sticky .banner-menu ul .sub-menu li {
     padding: 0;
@@ -3397,7 +3399,7 @@ footer .cookies-menu ul li a {
     margin: 0 auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0;
     column-gap: 25px;
 }
@@ -6186,8 +6188,417 @@ guide-boxez .container {
     max-width: 720px;
 }
 
-
 /* sell guide page ends */
+
+/* phipps richard page */
+.main-phipps-banner{
+    padding: 93px 0 33px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-top: 1px solid #D0D3D4;
+}
+.main-phipps-banner .content{
+    max-width: 555px;
+    width: 100%;
+    color: #444;
+}
+.main-phipps-banner .content p{
+    margin: 14px 0 30px;
+}
+.main-phipps-banner .content img{
+    max-width: 114px;
+    width: 100%;
+    margin-bottom: 78px;
+}
+.home-filter-pr .search-form-control.last-visible{
+    display: none;
+}
+.home-filter-pr .search-form-control.search-form--type{
+    border-right: none !important;
+}
+.home-filter-pr form.property-search input[type="submit"]{
+    background-color: #E41E26 !important;
+}
+.home-filter-pr form.property-search input[type="submit"]:hover{
+    background-color: #8D1F56 !important;
+}
+.home-filter-pr .search-form--radio-toggle{
+    background-color: #70707026 !important; 
+}
+.home-filter-pr .search-form--radio-toggle input[type="radio"]:checked+label{
+    background-color: #E41E26 !important;
+}
+
+
+
+
+.main-phipps-banner .container{
+    max-width: 1170px;
+}
+.our-branches .tabs-wrapper .tab-content{
+    display: none;
+}
+.our-branches .tabs-wrapper .tab-content.active{
+    display: block;
+}
+/* banner tagline */
+.phipps-banner-tagline{
+    background-color: #444;
+}
+.phipps-banner-tagline .container{
+    max-width: 750px;
+    
+}
+.phipps-banner-tagline .outer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #fff;
+    position: relative;
+    justify-content: end;
+    column-gap: 96px;
+    padding: 8px 0;
+}
+.phipps-banner-tagline .outer:after{
+    content: "";
+    background-image: url(../images/tagline-bg.png);
+    background-repeat: no-repeat;
+    width: 350px;
+    height: 100%;
+    position: absolute;
+    left: -290px;
+    background-size: 100% 100%;
+}
+.phipps-banner-tagline .outer img{
+    max-width: 100px;
+    width: 100%;
+}
+/* banner tagline ends */
+.livestocks-departments.phipps-page{
+    padding: 78px 0 170px;
+}
+.livestocks-departments.phipps-page .content{
+    color: #444 !important;
+}
+.livestocks-departments.phipps-page .slide-wrap .inner-content{
+    background-color: #EDEEF1F2 !important;
+    color: #444 !important;
+}
+.btn-cs-dark.orange{
+    background-color: #E41E26 !important;
+}
+.btn-cs-dark.orange:hover{
+    background-color: #8D1F56 !important;
+}
+.recent-property-wrapper.phip-page .outer-wrapper .nav-tabs li a.active{
+    color: #E41E26 !important;
+    background-color: transparent !important;
+    border: 1px solid #E41E26 !important;
+}
+.recent-property-wrapper.phip-page .outer-wrapper .title{
+    color: #444 !important;
+}
+.properties-center.phip-page{
+    position: relative;
+    padding: 80px 0;
+}
+.properties-center.phip-page::after{
+    content: "";
+    position: absolute;
+    background-color: #EDEEF173;
+    width: 70%;
+    height: 100%;
+    top: 0;
+    z-index: -1;
+    right: 0;
+}
+.our-branches .container{
+    max-width: 1170px;
+}
+.our-branches .content{
+    max-width: 718px;
+    width: 100%;
+    margin: 0 auto 34px;
+    text-align: center;
+}
+.our-branches .content h2{
+    color: #4F6D7A;
+    margin-bottom: 22px;
+}
+.our-branches .content p{
+    color: #706F70;
+}
+.our-branches .tabs-outer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 30px;
+    justify-content: space-between;
+    padding: 0 30px;
+    
+}
+.our-branches .tabs-outer .tabs{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 30px;
+    width: 100%;
+}
+.our-branches .tabs-outer .tabs li{
+    font-weight: 300;
+    letter-spacing: 2px;
+    border: 1px solid #F1F3F7;
+    border-radius: 30px;
+    color: #6D758F;
+    box-shadow: 0px 1px 4px 0px rgba(25, 33, 61, 0.08);
+    padding: 7px 16px;
+    cursor: pointer;
+}
+.our-branches .tabs-outer .tabs li.active{
+    color: #E41E26 !important;
+    background-color: transparent !important;
+    border: 1px solid #E41E26 !important;
+    box-shadow: none;
+    font-weight: 500;
+}
+.our-branches .tabs-outer .btn-cs-dark{
+    min-width: 244px;
+    background-color: #E41E26 !important;
+}
+.our-branches .tabs-outer .btn-cs-dark:hover{
+    background-color: #8D1F56 !important;
+}
+.our-branches .tabs-content{
+    border-radius: 8px;
+    border: 1px solid var(--Neutral-colors-400, #E1E4ED);
+    background: rgba(237, 238, 241, 0.15);
+    box-shadow: 0px 1px 4px 0px rgba(25, 33, 61, 0.08);
+    padding: 65px 60px 48px;
+    margin-top: 43px;
+}
+.our-branches .tabs-content .wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 25px;
+    margin-bottom: 73px;
+}
+.our-branches .tabs-content .wrapper .col-left .share{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 14px;
+    margin-bottom: 31px;
+}
+
+.our-branches .tabs-content .wrapper .col-left .share li a{
+    font-size: 18px;
+    color: #E41E26 !important;
+}
+
+.our-branches .tabs-content .wrapper .col-left .contex{
+    color: #707070;
+}
+.our-branches .tabs-content .wrapper .col-left .contex h4{
+    font-weight: 700;
+    margin-bottom: 13px;
+}
+.our-branches .tabs-content .wrapper .col-left .contex h5{
+    font-weight: 700;
+}
+.our-branches .tabs-content .wrapper .col-left .contex p{
+    margin-bottom: 26px;
+}
+.our-branches .tabs-content .wrapper .col-left .contact li {
+    color: #E41E26;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 18px;
+    margin: 7px 0;
+}
+.our-branches .tabs-content .wrapper .col-left .contact li a{
+    color: #707070 !important;    
+    font-weight: 700;
+}
+.our-branches .tabs-content .wrapper .col-right{
+    min-width: 436px;
+    padding-top: 60px;
+}
+.our-branches .tabs-content .wrapper .col-right img{
+    border-radius: 6px;
+}
+.our-branches .tabs-content .slider-title{
+    font-weight: 700;
+    color: #707070;
+}
+.our-branches .livestock-auctioneers{
+    padding: 39px 0 0 !important;
+}
+.our-branches .livestock-auctioneers .wrapp .slick-arrow{
+    font-size: 0;
+    width: 33px;
+    height: 33px;
+   
+    background-color: #fff;
+    background-size: 100% 100%;
+    border: none;
+    box-shadow: 0px 0px 4px #0003;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+.our-branches .livestock-auctioneers .wrapp .slick-prev{
+    left: 0;
+}
+.our-branches .livestock-auctioneers .wrapp .slick-next{
+    right: 0;
+}
+.our-branches .livestock-auctioneers .wrapp .slick-arrow::after{
+    content: "";
+    background-image: url(../images/Chevron-orange.svg);
+    width: 17px;
+    position: absolute;
+    height: 17px;
+    z-index: 99;
+    right: 7px;
+    top: 9px;
+    background-size: contain;
+}
+.our-branches .livestock-auctioneers .wrapp .slick-prev::after{
+    transform: rotate(180deg);
+    right: 9px;
+}
+.our-branches .livestock-auctioneers .wrapp .slick-dots{
+    display: none !important;
+}
+.our-branches .livestock-auctioneers .wrapp{
+    margin: 0 -10px;
+}
+.our-branches .livestock-auctioneers .wrapp .items{
+    margin: 0 10px;
+}
+.our-branches .livestock-auctioneers .container{
+    padding: 0;
+}
+.our-branches .livestock-auctioneers .livestock-auctioneers-content .info-wrapper .info-box{
+    background-color: #FFFFFFCC !important;
+}
+.our-branches .livestock-auctioneers .livestock-auctioneers-content .info-wrapper .info-box li svg{
+    color: #E41E26 !important;
+}
+.our-branches .livestock-auctioneers .livestock-auctioneers-content .team-content{
+    background-color: #fff !important;
+}
+.our-branches .livestock-auctioneers .livestock-auctioneers-content{
+    border: 1px solid #EDEEF1F2;
+}
+.our-branches{
+    padding: 110px 0;
+}
+.cta-phr .container {
+    max-width: 1170px;
+}
+.cta-phr .col-left{
+    padding: 88px 40px 80px 94px;
+    color: #fff;
+}
+.cta-phr .col-left h2{
+    max-width: 393px;
+    width: 100%;
+}
+.cta-phr .col-left p{
+    max-width: 393px;
+    width: 100%;
+    font-weight: 300;
+    margin: 15px 0 30px;
+}
+.cta-phr .col-left .btns{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 30px;
+}
+.cta-phr .col-left .btns a{
+    min-width: 181px;
+}
+.cta-phr .col-left .btns .btn-bn-light{
+    background-color: #E41E26 !important;
+    color: #fff !important;
+}
+.cta-phr .col-left .btns .btn-bn-light span{
+    color: #fff !important;
+}
+.cta-phr .col-left .btns .btn-bn-light::after{
+    background-color: #8D1F56 !important;
+}
+.cta-phr .col-left .btns .btn-cs-light{
+    background-color: #fff !important;
+    color: #444 !important;
+}
+.cta-phr .col-left .btns .btn-cs-light:hover{
+    color: #fff !important;
+}
+.cta-phr .col-left .btns .btn-cs-light::after{
+    background-color: #E41E26 !important;
+}
+.fine-country.phips-page{
+    position: relative;
+    margin-top: 112px;
+    padding: 80px 0;
+}
+.fine-country.phips-page:after{
+    content: "";
+    position: absolute;
+    background-color: #EDEEF173;
+    width: 70%;
+    height: 100%;
+    top: 0;
+    z-index: -1;
+    left: 0;
+}
+.testimonials.phips .testimonial-slider .slick-dots .slick-active button{
+    background-color: #E41E26;
+}
+/* phips richard page ends */
+
+
+/* phips header */
+header.phipps-head .top-nav{
+    background-color: #444;
+}
+header.phipps-head .main-header .header-inner-wrap .btn-cs-darker{
+    background-color: #E41E26 !important;
+}
+header.phipps-head .main-header .header-inner-wrap .btn-cs-darker::after{
+    background-color: #8D1F56 !important;
+}
+header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-menu-item-has-children .mega-menu-link span::after{
+    color: #E41E26 !important;
+}
+header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-menu-item-has-children:hover .mega-menu-link::after{
+    background: #E41E26 !important;
+}
+/* phips header ends */
+
+/* phips footer */
+.insights-wrapper.phipps:after{
+    background-image: url(../images/phips-ftr.png) !important;
+}
+.footer-wrap.phipps{
+    background-color: #444;
+}
+.footer-wrap.phipps .footer-logo img{
+    max-width: 171px;
+}
+.footer-wrap.phipps .mc-groups{
+    max-width: 360px;
+}
+/* phips footer ends */
+
 
 
 /* Responsieness */

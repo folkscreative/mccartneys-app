@@ -12,7 +12,8 @@
 ?>
 
 	 <!-- Departments Insight -->
-	 <section class="departments insights-wrapper">
+	 <?php if ( is_page( 'phipps-pritchard' ) ) { ?>
+	 <section class="departments phipps insights-wrapper">
         <div class="container">
             <div class="content">
                 <h2><?php the_field('insights_title', 'option'); ?></h2>
@@ -48,10 +49,150 @@
         </div>
     </section>
     <!-- Departments Insights ends -->
+	<?php } else { ?>
+
+
+	 <!-- Departments Insight default -->
+	 <section class="departments insights-wrapper">
+        <div class="container">
+            <div class="content">
+                <h2><?php the_field('insights_title', 'option'); ?></h2>
+                <p><?php the_field('insights_description', 'option'); ?></p>
+            </div>
+            <div class="depart-slider insigh">
+                <?php
+                $args = array(
+                    'post_type' => 'Post',
+                    'posts_per_page' => 10,
+                );
+
+                $insight_query = new WP_Query( $args );
+
+                if ( $insight_query->have_posts() ) :
+                    while ( $insight_query->have_posts() ) : $insight_query->the_post(); ?>
+                <div class="slide-wrap">
+                    <img src="<?php the_post_thumbnail_url(); ?>" alt="">
+                    <div class="inner-content">
+                        <h4><?php the_title(); ?></h4>
+                        <?php the_excerpt(); ?>
+                        <a href="<?php the_permalink(); ?>" class="btn-cs-light">Read more <span><i
+                        class="fa-solid fa-angle-right"></i></span></a>
+                    </div>
+                </div>
+                <?php endwhile;
+                    wp_reset_postdata();
+                else :
+                    echo '<p>No insights found.</p>';
+                endif;
+                ?>
+            </div>
+        </div>
+    </section>
+	<?php }?>
+    <!-- Departments Insights ends -->
 
 
 
+	<?php if ( is_page( 'phipps-pritchard' ) ) { ?>
+	<footer class="footer-wrap phipps">
+		<div class="container">
+			<div class="row g-0">
+				<div class="col-12 col-lg-6">
+					<div class="col-left">
+						<?php
+						$ftr_logo = get_field('phipps_footer_logo', 'option');
+						if( !empty($ftr_logo) ):?>
+						<a href="<?php echo site_url(); ?>" class="footer-logo"><img src="<?php echo $ftr_logo['url']; ?>" alt="<?php echo $ftr_logo['alt']; ?>"></a>
+					<?php endif; ?>
+						<div class="connect-wrap">
+							<?php if( get_field('connect_with_us', 'option') ): ?>
+                        	<span><?php the_field('connect_with_us', 'option'); ?></span>
+                    		<?php endif; ?>
+							<?php if( have_rows('social_media_buttons', 'option') ): ?>
+							<ul>
+							<?php while( have_rows('social_media_buttons', 'option') ): the_row(); ?>
+								<li><a href="<?php $social_link= get_sub_field('social_media_link'); 
+								echo $echo;
+								?>"><?php  $social_label = get_sub_field('social_media_label');
+								echo $social_label;
+								?></a></li>
+								<?php endwhile; ?>
+							</ul>
+							<?php endif; ?>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-lg-6">
+					<div class="col-right">
+						<div class="links-wrapper">
+							<div class="quick-links">
+								<h3>Quick Links</h3>
+								<?php
+									wp_nav_menu(
+										array(
+											'menu' => 'Footer-quick-links',
+										)
+									);
+									?>
+							</div>
+							<div class="depart-links">
+								<h3>Departments</h3>
+								<?php
+									wp_nav_menu(
+										array(
+											'menu' => 'Departments',
+										)
+									);
+									?>
+							</div>
+						</div>
+					</div>
+					<div class="mc-groups">
+					<?php if( get_field('phipps_group_title', 'option') ): ?>
+                        	<h3><?php the_field('phipps_group_title', 'option'); ?></h3>
+                    		<?php endif; ?>
+							
+							
+							<?php
+								$ph_logo = get_field('phipps_group_image', 'option');
+								if( !empty($ph_logo) ):?>
+								<img src="<?php echo $ph_logo['url']; ?>" alt="<?php echo $ph_logo['alt']; ?>">
+								<?php endif; ?>
+					</div>
+				</div>
+			</div>
+			<div class="row g-0 align-items-center divider flex-column-reverse flex-lg-row">
+				<div class="col-12 col-lg-9">
+				<?php if( have_rows('footer_company_logos', 'option') ): ?>
+							<div class="logos-wrap">
+							<?php while( have_rows('footer_company_logos', 'option') ): the_row(); ?>
+							<?php
+								$partner_logo = get_sub_field('partners_logo_image', 'option');
+								if( !empty($partner_logo) ):?>
+								<img src="<?php echo $partner_logo['url']; ?>" alt="<?php echo $partner_logo['alt']; ?>">
+								<?php endif; ?>
+								<?php endwhile; ?>
+								</div>
+							<?php endif; ?>
+				</div>
+				<div class="col-12 col-lg-3">
+					<div class="cookies-menu">
+					<?php
+						wp_nav_menu(
+							array(
+								'menu' => 'Privacy-Footer-Menu',
+							)
+						);
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<?php } else { ?>
 
+
+	<!-- default -->
 	<footer class="footer-wrap">
 		<div class="container">
 			<div class="row g-0">
@@ -151,7 +292,7 @@
 			</div>
 		</div>
 	</footer>
-</div>
+	<?php }?>
 
 <?php wp_footer(); ?>
 

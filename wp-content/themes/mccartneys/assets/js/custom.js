@@ -375,6 +375,7 @@ $(document).ready(function() {
   // Add 'active' class to the first child
   $('.navigation .navigation__link:first-child').addClass('active');
 });
+$('.our-branches .tabs-content .tab-content:first').addClass('active');
 
 
 // insight category tab

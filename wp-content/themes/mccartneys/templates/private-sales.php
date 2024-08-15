@@ -79,6 +79,15 @@ if ( !empty( $image_private ) ) { ?>
                     <div class="col-left">
                          <h2><?php the_sub_field('kington_livestock_market_title'); ?></h2>
                          <p><?php the_sub_field('kington_livestock_market_description'); ?></p>
+                         <?php 
+                        $market_contact_button = get_sub_field('kington_livestock_market_button');
+                        if( $market_contact_button ): 
+                            $market_contact_button_url = $market_contact_button['url'];
+                            $market_contact_button_title = $market_contact_button['title'];
+                            $market_contact_button_target = $market_contact_button['target'] ? $market_contact_button['target'] : '_self';
+                            ?>
+                            <a class="btn-cs-dark" href="<?php echo esc_url( $market_contact_button_url ); ?>" target="<?php echo esc_attr( $market_contact_button_target ); ?>"><?php echo esc_html( $market_contact_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
