@@ -13,6 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $property, $propertyhive_loop;
 
+
+
+
 // Store loop count we're currently on
 if ( empty( $propertyhive_loop['loop'] ) )
 	$propertyhive_loop['loop'] = 0;
@@ -37,40 +40,47 @@ if ( 0 == $propertyhive_loop['loop'] % $propertyhive_loop['columns'] )
 if ( $property->featured == 'yes' )
     $classes[] = 'featured';
 ?>
-<li <?php post_class( $classes ); ?>>
 
-	<?php do_action( 'propertyhive_before_search_results_loop_item' ); ?>
-
-    <div class="thumbnail">
-    	<a href="<?php the_permalink(); ?>">
-    		<?php
-    			/**
-    			 * propertyhive_before_search_results_loop_item_title hook
-    			 *
-    			 * @hooked propertyhive_template_loop_property_thumbnail - 10
-    			 */
-    			do_action( 'propertyhive_before_search_results_loop_item_title' );
-    		?>
+<div class="office-slider">
+    <div class="col-left">
+        <a href="<?php the_permalink(); ?>">
+            <?php propertyhive_template_loop_property_thumbnail(); ?>
         </a>
     </div>
-    
-    <div class="details">
-    
-    	<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-        
-    	<?php
-    		/**
-    		 * propertyhive_after_search_results_loop_item_title hook
-    		 *
-    		 * @hooked propertyhive_template_loop_price - 10
-             * @hooked propertyhive_template_loop_summary - 20
-             * @hooked propertyhive_template_loop_actions - 30
-    		 */
-    		do_action( 'propertyhive_after_search_results_loop_item_title' );
-    	?>
-	
-    </div>
-    
-	<?php do_action( 'propertyhive_after_search_results_loop_item' ); ?>
+    <div class="col-right">
+        <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+        <p><?php echo mb_strimwidth(get_the_excerpt(), 0, 100, "..."); ?></p>
+        <ul class="features">
+            <?php if ( $property->bedrooms > 0 ): ?>
+            <li>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/bed-vector.svg" alt="">
+                <span><?php echo $property->bedrooms; ?></span>
+            </li>
+            <?php endif; ?>
 
-</li>
+            <?php if ( $property->bathrooms > 0 ): ?>
+            <li>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/bath-logo.svg" alt="">
+                <span><?php echo $property->bathrooms; ?></span>
+            </li>
+            <?php endif; ?>
+
+            <?php if ( $property->floor_area_from > 0 ): ?>
+            <li>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sq-ft-logo.svg" alt="">
+                <span><?php echo $property->floor_area_from; ?> - <?php echo $property->floor_area_to; ?></span>
+            </li>
+            <?php endif; ?>
+
+            <?php if ( $property->site_area_from > 0 ): ?>
+            <li>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sq-ft-logo.svg" alt="">
+                <span><?php echo $property->site_area_from; ?> - <?php echo $property->site_area_to; ?></span>
+            </li>
+            <?php endif; ?>
+        </ul>
+        <p class="price"><?php echo $property->get_formatted_price(); ?></p>
+    </div>
+
+
+</div>

@@ -20,52 +20,62 @@ get_header( 'propertyhive' ); global $wpdb; ?>
         </div>
 
     </section>
-    <section class="properties-center">
-        <div class="container">
+    <section class="results-overview">
+        <div class="container results-overview--info">
+            <?php echo propertyhive_result_count(); ?>
+            <div class="results-sorting">
+                <form
+                    action="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>"
+                    class="stc-checkbox">
+                    <label><input type="checkbox" value="1" name="include_sold_stc"
+                            <?php if (isset($_REQUEST['include_sold_stc'])) { echo ' checked'; } ?>> Include Sold
+                        STC?</label>
+                </form>
+                <?php echo propertyhive_catalog_ordering(); ?>
+            </div>
 
         </div>
     </section>
-</main>
+    <section class="results-options">
+        <div class="container results-options--info">
+            <div class="breadcrumb">
+                <?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
+            <div class="display-options">
+                <a href="#" class="view view--list-view">List View</a>
+                <a href="#" class="view view--grid-view">Grid View</a>
+            </div>
+        </div>
+    </section>
 
-
-
-<?php
-            /**
-             * propertyhive_before_search_results_loop hook
-             * @hooked propertyhive_search_form - 10
-             * @hooked propertyhive_result_count - 20
-             * @hooked propertyhive_catalog_ordering - 30
-             */
-            do_action( 'propertyhive_before_search_results_loop' );
-        ?>
-
-<?php 
+    <section class="results">
+        <div class="container search-results">
+            <?php 
             // Output results. Filter allows us to not display the results whilst maintaining the main query. True by default
             // Used primarily by the Map Search add on - https://wp-property-hive.com/addons/map-search/
             if ( apply_filters( 'propertyhive_show_results', true ) ) : 
         ?>
 
-<?php if ( have_posts() ) : ?>
+            <?php if ( have_posts() ) : ?>
 
-<?php propertyhive_property_loop_start(); ?>
+            <?php propertyhive_property_loop_start(); ?>
 
-<?php while ( have_posts() ) : the_post(); ?>
+            <?php while ( have_posts() ) : the_post(); ?>
 
-<?php ph_get_template_part( 'content', 'property' ); ?>
+            <?php ph_get_template_part( 'content', 'property' ); ?>
 
-<?php endwhile; // end of the loop. ?>
+            <?php endwhile; // end of the loop. ?>
 
-<?php propertyhive_property_loop_end(); ?>
+            <?php propertyhive_property_loop_end(); ?>
 
-<?php else: ?>
+            <?php else: ?>
 
-<?php ph_get_template( 'search/no-properties-found.php' ); ?>
+            <?php ph_get_template( 'search/no-properties-found.php' ); ?>
 
-<?php endif; ?>
+            <?php endif; ?>
 
-<?php endif; ?>
+            <?php endif; ?>
 
-<?php
+            <?php
             /**
              * propertyhive_after_search_results_loop hook
              *
@@ -74,7 +84,7 @@ get_header( 'propertyhive' ); global $wpdb; ?>
             do_action( 'propertyhive_after_search_results_loop' );
         ?>
 
-<?php
+            <?php
         /**
          * propertyhive_after_main_content hook
          *
@@ -83,4 +93,10 @@ get_header( 'propertyhive' ); global $wpdb; ?>
         do_action( 'propertyhive_after_main_content' );
     ?>
 
-<?php get_footer( 'propertyhive' ); ?>
+            <?php get_footer( 'propertyhive' ); ?>
+        </div>
+    </section>
+
+
+
+</main>

@@ -9,7 +9,7 @@
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.2.0' );
+	define( '_S_VERSION', '1.0.1' );
 }
 
 /**
@@ -142,7 +142,8 @@ function mccartneys_scripts() {
 	wp_style_add_data( 'mccartneys-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'mccartneys-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-    wp_enqueue_script( 'mccartneys-ph-search-features', get_template_directory_uri() . '/js/ph-search-features.js', array(), _S_VERSION, true );
+    wp_enqueue_script( 'mccartneys-ph-search-features', get_template_directory_uri() . '/js/ph-search-features.js', array( 'jquery' ), _S_VERSION, true );
+    wp_enqueue_script( 'jquery-ui', get_template_directory_uri() . '/assets/js/jquery-ui.min.js', array( 'jquery' ), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -561,19 +562,38 @@ function recent_property_tabs_shortcode() {
         ob_start(); // Start output buffering
 		?>
 <div class="outer-wrapper">
-<h2 class="title"><?php the_sub_field('recent_property_title'); ?></h2>
-    <?php
-        echo '<ul class="nav nav-tabs" id="propertyTab" role="tablist">';
-        $first_tab = true;
-        foreach ( $terms as $term ) {
-            echo '<li class="nav-item">';
-            echo '<a class="nav-link' . ( $first_tab ? ' active' : '' ) . '" id="tab-' . esc_attr( $term->slug ) . '" data-bs-toggle="tab" href="#' . esc_attr( $term->slug ) . '" role="tab" aria-controls="' . esc_attr( $term->slug ) . '" aria-selected="' . ( $first_tab ? 'true' : 'false' ) . '">' . esc_html( $term->name ) . '</a>';
-            echo '</li>';
-            $first_tab = false;
-        }
-        echo '</ul>';
-		?>
-</div><?php
+    <h2 class="title"><?php the_sub_field('recent_property_title'); ?></h2>
+    <ul class="nav nav-tabs" id="propertyTab" role="tablist">
+        <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-auction" data-bs-toggle="tab"
+                href="#auction" role="tab" aria-controls="auction" aria-selected="true">Auction</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link" id="tab-sale" data-bs-toggle="tab" href="#sale"
+                role="tab" aria-controls="sale" aria-selected="false" tabindex="-1">Sale</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link" id="tab-rent" data-bs-toggle="tab" href="#rent"
+                role="tab" aria-controls="rent" aria-selected="false" tabindex="-1">Rent</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link" id="tab-new-homes" data-bs-toggle="tab"
+                href="#new-homes" role="tab" aria-controls="new-homes" aria-selected="false" tabindex="-1">New Homes</a>
+        </li>
+    </ul>
+</div>
+<div class="tab-content" id="propertyTabContent">
+    <div class="tab-pane fade show active" id="auction" role="tabpanel" aria-labelledby="tab-auction">
+        <!-- TAB CONTENT -->
+    </div>
+    <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
+        <!-- TAB CONTENT -->
+    </div>
+    <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="tab-rent">
+        <!-- TAB CONTENT -->
+    </div>
+    <div class="tab-pane fade" id="new-homes" role="tabpanel" aria-labelledby="tab-new-homes">
+        <!-- TAB CONTENT -->
+    </div>
+
+</div>
+
+
+
+<?php
         echo '<div class="tab-content" id="propertyTabContent">';
         $first_tab = true;
         foreach ( $terms as $term ) {
@@ -939,31 +959,6 @@ function rewrites_init()
         'top' );
 }
 
-// Assign parent department value depending on department
-// If you're in residential lettings, set parent to Lettings
-// Otherwise, set it to Sales
-// function update_property_parent_department($post_id) {
-//     // Ensure this only runs for 'property' post type in WordPress
-//     if (get_post_type($post_id) !== 'property') {
-//         return;
-//     }
-
-//     // Retrieve the department meta value
-//     $department = get_post_meta($post_id, 'department', true);
-
-//     // Conditional logic to set the _parent_department meta key
-//     if ($department === 'residential-lettings') {
-//         update_post_meta($post_id, '_parent_department', 'Lettings');
-//     } else {
-//         update_post_meta($post_id, '_parent_department', 'Sales');
-//     }
-// }
-
-// // Hook into save_post to handle regular post saves
-// add_action('save_post', 'update_property_parent_department');
-
-// // Hook into Property Hive import process
-// add_action('propertyhive_after_insert_property', 'update_property_parent_department');
 
 add_action( "propertyhive_property_imported_reapit_foundations_json", 'mcc_ph_import_maps', 10, 2 );
 function mcc_ph_import_maps($post_id, $property)
@@ -983,7 +978,7 @@ function mcc_ph_import_maps($post_id, $property)
     // Properties arriving with a disposal containing Auction should be assigned to the Property & Land department.
     if ( isset($property['selling']['disposal']) && strtolower($property['selling']['disposal']) == 'auction' )
     {
-        update_post_meta( $post_id, '_department', 'property-and-land' );
+        update_post_meta( $post_id, '_department', 'property-land-auctions' );
     }
     
     // Anything arriving with a type of Farm or Agricultural should be assigned to the Agricultural department
@@ -1323,3 +1318,10 @@ add_shortcode('property_search', 'mcc_ph_search');
 // Replace the default search on the properties archive
 // Remove the original propertyhive_search_form function
 remove_action( 'propertyhive_before_search_results_loop', 'propertyhive_search_form', 10 );
+
+
+// Deregister PH Default Styles
+function dereg_ph_styles() {
+    wp_deregister_style( 'propertyhive-general' );
+}
+add_action( 'wp_enqueue_scripts', 'dereg_ph_styles', 100 );

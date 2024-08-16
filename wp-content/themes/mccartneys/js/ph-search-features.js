@@ -252,6 +252,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Call the function to mark the last visible control
     markLastVisibleControl();
 
+    // Event listener for tab change
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+        var target = $(e.target).attr('href'); // Get the href attribute which is the target tab
+        var $slider = $(target).find('.inner-tabs.pr ul.properties');
 
+        if ($slider.length > 0) {
+            $slider.slick('refresh'); // Refresh SlickSlider to adjust its layout
+        }
+    });
 
 });
