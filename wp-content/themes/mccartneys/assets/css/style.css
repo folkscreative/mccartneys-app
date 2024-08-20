@@ -9335,13 +9335,28 @@ section.recent-properties::before {
     display: block;
 }
 
+
+
 section.single-property--head {
     padding-top: 60px;
 }
 
 .container.breadcrumb-wrap {
     margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
 }
+
+.single-property .breadcrumb-wrap a {
+    font-family: 'Gotham';
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 23px;
+    color: #707070
+}
+
+
 
 .single-property--info>.container {
     margin-top: 50px;
