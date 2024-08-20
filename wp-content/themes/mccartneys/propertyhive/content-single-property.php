@@ -52,7 +52,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
             </a>
 
 
-            <div class="breadcrumbs">
+            <div class="breadcrumb">
                 <?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?>
             </div>
 
@@ -65,11 +65,11 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
         <div class="container property-gallery">
             <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>"
                 class="main-image property-featured-image" alt="><?php the_title(); ?>">
-            <!-- <div class="gallery-count mcc-badge">
+            <div class="gallery-count mcc-badge">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/gallery-icon.svg" alt=""
                     class="badge-icon">
                 <a id="galleryMedia">View <?php echo $galleryAttachmentCount ?> Images</a>
-            </div> -->
+            </div>
             <div class="side-images">
                 <img src="<?php echo wp_get_attachment_url($gallery_attachments[1], $size = 'property-square') ?>"
                     class="property-secondary-image" alt="><?php the_title(); ?>">
