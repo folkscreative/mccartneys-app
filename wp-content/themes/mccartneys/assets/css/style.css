@@ -8954,7 +8954,11 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
     margin-bottom: 16px;
 }
 .search-results .property .col-right h4.property-address a{
-    color: #707070 !important;
+    color: #6D758F !important;
+}
+.search-results .property .col-right h3.price-info{
+    color: #6D758F;
+    margin-bottom: 16px;
 }
 
 .search-results .property .col-left img {
@@ -8990,12 +8994,13 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
 
 .search-results .features li span {
     font-size: 12px;
+    font-weight: 500;
     line-height: 20px;
-    white-space: nowrap;
+    color: #707070;
 }
 
 .feature-icon {
-    max-width: 17px;
+    width: 17px;
 }
 
 .property-search section.results {
@@ -9057,6 +9062,7 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
 
 .search-results.grid-view .property .col-left img {
     max-height: 225px;
+    min-height: 225px;
 }
 
 
@@ -9067,6 +9073,7 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
     justify-content: center;
     gap: 5px;
     margin-top: 60px;
+    align-items: center;
 }
 
 .propertyhive-pagination .page-numbers {
@@ -9079,6 +9086,8 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
     justify-content: center;
     color: #707070;
     font-weight: 300;
+    font-size: 14px;
+    height: 29px;
 }
 
 .propertyhive-pagination .page-numbers.current {
@@ -9098,13 +9107,13 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
 .propertyhive-pagination .page-numbers.next::after {
     content: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNSIgaGVpZ2h0PSI4IiB2aWV3Qm94PSIwIDAgNSA4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMSAxTDQgNEwwLjk5OTk5OSA3IiBzdHJva2U9IiM4RDFGNTYiIHN0cm9rZS13aWR0aD0iMS4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==");
     height: 11px;
-    margin-left: 5px;
+    margin-left: 11px;
 }
 
 .propertyhive-pagination .page-numbers.prev::before {
     content: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSI4IiB2aWV3Qm94PSIwIDAgNiA4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNNC41IDFMMS41IDRMNC41IDciIHN0cm9rZT0iIzhEMUY1NiIgc3Ryb2tlLXdpZHRoPSIxLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K");
     height: 11px;
-    margin-right: 5px;
+    margin-right: 11px;
 }
 
 .propertyhive-pagination .page-numbers.next {
@@ -9114,8 +9123,10 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
     font-style: normal;
     font-weight: 700;
     line-height: 20px;
-    align-items: inherit;
-    min-width: 116px;
+    align-items: baseline;
+    min-width: 108px;
+    height: fit-content;
+    padding: 10px 12px;
 }
 
 .propertyhive-pagination .page-numbers.prev {
@@ -9125,8 +9136,10 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
     font-style: normal;
     font-weight: 700;
     line-height: 20px;
-    align-items: inherit;
-    min-width: 116px;
+    align-items: baseline;
+    min-width: 108px;
+    height: fit-content;
+    padding: 10px 12px;
 }
 
 .propertyhive-pagination span.page-numbers:not(.page-numbers.dots) {
