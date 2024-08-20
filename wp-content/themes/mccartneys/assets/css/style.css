@@ -9307,6 +9307,30 @@ section.recent-properties::before {
     align-items: center;
 }
 
+.single-property .branch-info h5 {
+    font-size: 19px;
+    line-height: 28px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.single-property .branch-info a.telephone-number {
+    font-size: 31px;
+    line-height: 48px;
+    color: #fff;
+    font-weight: 700;
+    font-family: 'Gotham';
+}
+
+.single-property .branch-info span.branch-name {
+    font-family: 'Gotham';
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    margin-bottom: 15px;
+}
+
+
 .single-property .branch-info span {
     display: block;
 }
