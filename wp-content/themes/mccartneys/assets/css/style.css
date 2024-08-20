@@ -9239,7 +9239,7 @@ section.single-property--head::after {
     position: absolute;
     top: 0;
     width: 100%;
-    height: 185vh;
+    height: 115vh;
     z-index: -1;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -9322,7 +9322,7 @@ section.single-property--head {
 }
 
 .container.breadcrumb-wrap a {
-    color: #707070;
+   color: #707070;
     font-size: 13px;
     line-height: 22px;
     font-weight: 700;
