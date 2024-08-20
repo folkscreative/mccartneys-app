@@ -9347,7 +9347,7 @@ section.single-property--head {
     gap: 20px;
 }
 
-.single-property .breadcrumb-wrap a {
+.single-property .breadcrumb-wrap a.back-to-search {
     font-family: 'Gotham';
     font-size: 13px;
     font-style: normal;
