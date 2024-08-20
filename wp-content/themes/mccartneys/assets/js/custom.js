@@ -183,6 +183,40 @@ $('.inner-tabs.pr ul.properties').slick({
         }
     ]
 });
+
+// Property slider
+$('.propertyhive-recent-properties-shortcode ul.properties').slick({
+    dots: false,
+    arrows: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 4,
+    // adaptiveHeight: true,
+    slideToScroll: 1,
+    responsive: [{
+            breakpoint: 991,
+            settings: {
+                slidesToShow: 3,
+                centerMode: false,
+                /* set centerMode to false to show complete slide instead of 3 */
+                slidesToScroll: 1
+            }
+        },
+        {
+            breakpoint: 767,
+            settings: {
+                arrows: false,
+                dots: true,
+                slidesToShow: 1,
+                centerMode: false,
+                /* set centerMode to false to show complete slide instead of 3 */
+                slidesToScroll: 1
+            }
+        }
+    ]
+});
+
+
 // btn
 $('.filter-btn a').click(function() {
     $('.filter-btn a').removeClass('active'); // Remove the class from all elements

@@ -49,7 +49,6 @@ if ( $property->featured == 'yes' )
     </div>
     <div class="col-right">
         <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-        <p><?php echo mb_strimwidth(get_the_excerpt(), 0, 100, "..."); ?></p>
         <ul class="features">
             <?php if ( $property->bedrooms > 0 ): ?>
             <li>
@@ -65,19 +64,18 @@ if ( $property->featured == 'yes' )
             </li>
             <?php endif; ?>
 
-            <?php if ( $property->floor_area_from > 0 ): ?>
-            <li>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sq-ft-logo.svg" alt="">
-                <span><?php echo $property->floor_area_from; ?> - <?php echo $property->floor_area_to; ?></span>
-            </li>
-            <?php endif; ?>
+            <?php if (
+    (!is_null($property->floor_area_to_sqft) && $property->floor_area_to_sqft !== '' && $property->floor_area_to_sqft != 0) ||
+    (!is_null($property->floor_area_from_sqft) && $property->floor_area_from_sqft !== '' && $property->floor_area_from_sqft != 0)
+)  { ?>
 
-            <?php if ( $property->site_area_from > 0 ): ?>
+
             <li>
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sq-ft-logo.svg" alt="">
-                <span><?php echo $property->site_area_from; ?> - <?php echo $property->site_area_to; ?></span>
+                <span><?php echo $property->get_formatted_floor_area(); ?></span>
             </li>
-            <?php endif; ?>
+            <?php }?>
+
         </ul>
         <p class="price"><?php echo $property->get_formatted_price(); ?></p>
     </div>

@@ -24,9 +24,7 @@ get_header( 'propertyhive' ); global $wpdb; ?>
         <div class="container results-overview--info">
             <?php echo propertyhive_result_count(); ?>
             <div class="results-sorting">
-                <form
-                    action="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>"
-                    class="stc-checkbox">
+                <form method="get" class="stc-checkbox">
                     <label><input type="checkbox" value="1" name="include_sold_stc"
                             <?php if (isset($_REQUEST['include_sold_stc'])) { echo ' checked'; } ?>> Include Sold
                         STC?</label>
@@ -39,16 +37,17 @@ get_header( 'propertyhive' ); global $wpdb; ?>
     <section class="results-options">
         <div class="container results-options--info">
             <div class="breadcrumb">
-                <?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
+                <?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?>
+            </div>
             <div class="display-options">
-                <a href="#" class="view view--list-view">List View</a>
+                <a href="#" class="view view--list-view active">List View</a>
                 <a href="#" class="view view--grid-view">Grid View</a>
             </div>
         </div>
     </section>
 
     <section class="results">
-        <div class="container search-results">
+        <div class="container search-results list-view">
             <?php 
             // Output results. Filter allows us to not display the results whilst maintaining the main query. True by default
             // Used primarily by the Map Search add on - https://wp-property-hive.com/addons/map-search/

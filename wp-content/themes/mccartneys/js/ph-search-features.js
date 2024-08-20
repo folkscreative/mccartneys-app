@@ -262,4 +262,44 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // Orderby
+    jQuery('.stc-checkbox').on('change', function() {
+        jQuery(this).closest('form').submit();
+    });
+
+    // Grid/List View Toggle Logic
+    // Check if we're on the archive page
+    // Check if we're on the archive page
+    if (document.body.classList.contains("post-type-archive-property")) {
+
+        // Get the triggers
+        const listViewTrigger = document.querySelector(".view--list-view");
+        const gridViewTrigger = document.querySelector(".view--grid-view");
+
+        // Get the container
+        const searchResultsContainer = document.querySelector(".search-results");
+
+        // Function to toggle to list-view
+        listViewTrigger.addEventListener("click", function(event) {
+            event.preventDefault();
+            searchResultsContainer.classList.add("list-view");
+            searchResultsContainer.classList.remove("grid-view");
+
+            // Add active class to list-view trigger and remove from grid-view trigger
+            listViewTrigger.classList.add("active");
+            gridViewTrigger.classList.remove("active");
+        });
+
+        // Function to toggle to grid-view
+        gridViewTrigger.addEventListener("click", function(event) {
+            event.preventDefault();
+            searchResultsContainer.classList.add("grid-view");
+            searchResultsContainer.classList.remove("list-view");
+
+            // Add active class to grid-view trigger and remove from list-view trigger
+            gridViewTrigger.classList.add("active");
+            listViewTrigger.classList.remove("active");
+        });
+    }
+
 });
