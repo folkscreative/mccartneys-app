@@ -121,7 +121,9 @@ get_header(); ?>
             </div>
         </div>
         <div class="branch-map">
-            <img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/08/Image-Replace.png">
+            <?php if( get_field('branch_map') ): ?>
+            <?php the_field('branch_map'); ?>
+            <?php endif; ?>
         </div>
     </div>
 </section>

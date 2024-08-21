@@ -8084,6 +8084,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     }
     .property-gallery-mb {
         padding: 0;
+        position: relative;
     }
     .container.breadcrumb-wrap .breadcrumb{
         display: none;
