@@ -83,24 +83,21 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
         </div>
 
         <div class="asfasdf">
-        <?php
-// Example array of attachment IDs
-$gallery_attachments = get_post_meta(get_the_ID(), 'gallery_attachments', true);
-
-if ($gallery_attachments && is_array($gallery_attachments)) {
-    foreach ($gallery_attachments as $attachment_id) {
-        // Get the URL of the attachment image
-        $image_url = wp_get_attachment_url($attachment_id, 'property-square');
-
-        // Output the image
-        if ($image_url) {
-            echo '<img src="' . esc_url($image_url) . '" class="property-secondary-image" alt="' . esc_attr(get_the_title()) . '">';
+       <?php 
+       if ($gallery_attachments && is_array($gallery_attachments)) {
+        foreach ($gallery_attachments as $attachment_id) {
+            // Get the URL of the attachment image
+            $image_url = wp_get_attachment_url($attachment_id);
+    
+            // Output the image
+            if ($image_url) {
+                echo '<img src="' . esc_url($image_url) . '" class="property-secondary-image" alt="' . esc_attr(get_the_title()) . '">';
+            }
         }
+    } else {
+        echo '<p>No images found in the gallery.</p>';
     }
-} else {
-    echo '<p>No images found in the gallery.</p>';
-}
-?>
+    ?>
         </div>
         <!-- <div class="container gallery-info">
             <div class="col col-lg-8">
