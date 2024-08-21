@@ -83,7 +83,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
         </div>
 
         <div class="asfasdf">
-        <img src="<?php echo wp_get_attachment_url($gallery_attachments, $size = 'property-square') ?>"
+        <img src="<?php echo wp_get_attachment_url($galleryAttachmentCount, $size = 'property-square') ?>"
                     class="property-primary-image" alt=">">
         </div>
         <!-- <div class="container gallery-info">
