@@ -6902,6 +6902,15 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     .guide-boxez .wrapper {
         grid-template-columns: repeat(2, 1fr);
     }
+    .single-property--info .mcc-badge-group{
+        flex-wrap: wrap;
+    }
+    .single-property .property-media{
+        flex-wrap: wrap;
+    }
+    .single-property .branch-info{
+        padding: 50px 20px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -8143,6 +8152,9 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     .recent-properties .slick-dots .slick-active button {
         background-color: #8D1F56;
     }
+    .single-property .departments.insights-wrapper{
+        background: linear-gradient(180deg, #f7ebee 90%, transparent 10%);
+    }
 }
 
 @media (max-width: 575px) {
@@ -9334,13 +9346,21 @@ section.recent-properties::before {
     position: absolute;
     top: 0;
     width: 100%;
-    height: calc(100% + 700px);
+    height: 100%;
     z-index: -1;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: top;
 }
-
+.single-property .departments.insights-wrapper{
+    background: linear-gradient(180deg, #f7ebee 90%, transparent 10%);
+}
+.single-property .departments.insights-wrapper .depart{
+    z-index: 1;
+}
+.single-property .insights-wrapper:after{
+    z-index: 0 !important;
+}
 .single-property .property-description {
     height: auto;
 }
