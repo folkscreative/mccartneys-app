@@ -62,7 +62,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
 
 
-        <div class="container property-gallery d-none d-md-block">
+        <div class="container property-gallery d-none d-md-flex">
 
             <div class="wrapper-main-img">
             <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>"
@@ -109,6 +109,19 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
         <span class="current-slide">1</span> / <span class="total-slides">4</span>
         </div>
         </div>
+
+        <div class="agent-btns-mb d-block d-md-none">
+        <?php if ( $property->office_telephone_number != '' )
+                        {	
+                            echo '<a class="btn-cs-dark" href="tel:' . esc_attr($property->office_telephone_number) . '">';
+                            echo 'Call agent <span><i class="fa-solid fa-angle-right"></i></span>';
+                            echo '</a>';
+                            }
+                            ?>
+            <a class="btn-bn-light" href="#" target="_self">Request A Viewing</a>
+
+        </div>
+
         <!-- <div class="container gallery-info">
             <div class="col col-lg-8">
                 <div class="gallery-count mcc-badge">
@@ -241,6 +254,32 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         </div>
                         <button class="read-more btn-cs-dark">See More Description <span><i class="fa-solid fa-angle-down"></i></span></button>
                         </span>
+                    </div>
+                    <div class="branch-info mobile d-block d-md-none">
+                    <img src="//placehold.it/300/300" alt="" class="negotiatior-profile">
+                        <h5>Get In Touch</h5>
+                        <?php if ( $property->office_telephone_number != '' )
+                        {	
+                            echo '<a class="telephone-number" href="tel:' . esc_attr($property->office_telephone_number) . '">';
+                            echo $property->office_telephone_number;
+                            echo '</a>';
+                            }
+                            ?>
+                        <span
+                            class="branch-name"><?php echo $property->get_office_address( $separator = ', ' ); ?></span>
+                        <?php if ( $property->negotiator_name != '' )
+		                    { ?>
+                        <span class="negotiator-name"><?php echo $property->negotiator_name; ?></span>
+                        <?php } ?>
+                        <a class="btn-bn-light" href="#" target="_self">Request A Viewing<span><svg
+                                    class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
+                                    data-prefix="fas" data-icon="angle-right" role="img"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                        d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
+                                    </path>
+                                </svg></span></a>
+
                     </div>
                     <div class="property-map-wrap">
                         <h4><?php echo $property->get_formatted_full_address( $separator = ', ' ); ?></h4>
