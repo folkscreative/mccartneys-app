@@ -8131,7 +8131,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         padding-bottom: 25px;
     }
     .recent-properties{
-        margin: 20px 0 0;
+        margin: 20px 0 0 !important;
     }
     .recent-properties .slick-dots {
         display: flex !important;
@@ -8153,7 +8153,10 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         background-color: #8D1F56;
     }
     .single-property .departments.insights-wrapper{
-        background: linear-gradient(180deg, #f7ebee 90%, transparent 10%);
+        background: linear-gradient(180deg, #f7ebee 80%, transparent 10%) !important;
+    }
+    section.recent-properties::before{
+        background-size: cover;
     }
 }
 
