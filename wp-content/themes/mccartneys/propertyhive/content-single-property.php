@@ -82,7 +82,9 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
             </div>
         </div>
 
-        <div class="asfasdf">
+        <div class="container property-gallery-mb">
+
+            <div class="gallery-thumbnail">
        <?php 
        if ($gallery_attachments && is_array($gallery_attachments)) {
         foreach ($gallery_attachments as $attachment_id) {
@@ -91,13 +93,19 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
     
             // Output the image
             if ($image_url) {
-                echo '<img src="' . esc_url($image_url) . '" class="property-secondary-image" alt="' . esc_attr(get_the_title()) . '">';
-            }
+                echo '<div class="gallery-slide-item">';
+                echo '<img src="' . esc_url($image_url) . '" class="property-primary-image" alt="' . esc_attr(get_the_title()) . '">';
+                echo '</div>';
+            }            
         }
     } else {
         echo '<p>No images found in the gallery.</p>';
     }
     ?>
+        </div>
+        <div class="number-indicator">
+        <span class="current-slide">1</span> / <span class="total-slides">4</span>
+        </div>
         </div>
         <!-- <div class="container gallery-info">
             <div class="col col-lg-8">

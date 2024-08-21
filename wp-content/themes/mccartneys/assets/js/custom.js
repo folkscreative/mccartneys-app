@@ -53,7 +53,27 @@ $('.faqs-wrapper .faqs-item').on('click', function() {
 });
 
 
+// gallery slide
+$(document).ready(function(){
+    var $slider = $('.gallery-thumbnail');
+    var $currentSlide = $('.current-slide');
+    var $totalSlides = $('.total-slides');
 
+    // Initialize Slick Slider
+    $slider.slick({
+      arrows: true,
+      dots: false,
+      infinite: true,
+    });
+
+    // Update number indicator on initialization
+    $totalSlides.text($slider.slick("getSlick").slideCount);
+
+    // Update number indicator on after slide change
+    $slider.on('afterChange', function(event, slick, currentSlide){
+      $currentSlide.text(currentSlide + 1);
+    });
+  });
 // daper
 $('.depar').slick({
     dots: true,
