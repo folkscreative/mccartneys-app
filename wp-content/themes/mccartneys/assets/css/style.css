@@ -8117,14 +8117,17 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         margin-bottom: 36px;
     }
     .single-property .branch-info h5{
-        font-size: 14px;
-    line-height: 20px;
+        font-size: 14px !important;
+        line-height: 20px !important;
     }
     .single-property .branch-info a.telephone-number{
-        font-size: 23px;
-        line-height: 27px;
+        font-size: 23px !important;
+        line-height: 27px !important;
         margin: 21px 0 15px;
         display: block;
+    }
+    .single-property p{
+        font-size: 15px !important;
     }
     property-description-wrap{
         border-bottom: none;
@@ -8156,7 +8159,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         background: linear-gradient(180deg, #f7ebee 80%, transparent 10%) !important;
     }
     section.recent-properties::before{
-        background-size: cover;
+        background-size: cover !important;
     }
 }
 
@@ -9358,8 +9361,8 @@ section.recent-properties::before {
 .single-property .departments.insights-wrapper{
     background: linear-gradient(180deg, #f7ebee 90%, transparent 10%);
 }
-.single-property .departments.insights-wrapper .depart{
-    z-index: 1;
+.single-property .departments.insights-wrapper .depart-slider{
+    z-index: 1 !important;
 }
 .single-property .insights-wrapper:after{
     z-index: 0 !important;
@@ -9803,7 +9806,7 @@ h1.property-address {
         padding-top: 27px;
     }
     .single-property .property-media{
-        gap: 13px;
+        gap: 12px;
     }
     .single-property .property-media li .media-icon{
         min-width: 50px;
