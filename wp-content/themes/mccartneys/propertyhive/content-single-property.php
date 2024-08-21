@@ -110,7 +110,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
         </div>
         </div>
 
-        <div class="agent-btns-mb d-block d-md-none">
+        <div class="agent-btns-mb d-flex d-md-none">
         <?php if ( $property->office_telephone_number != '' )
                         {	
                             echo '<a class="btn-cs-dark" href="tel:' . esc_attr($property->office_telephone_number) . '">';
@@ -256,7 +256,9 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         </span>
                     </div>
                     <div class="branch-info mobile d-block d-md-none">
+                    <div class="img-wrap">
                     <img src="//placehold.it/300/300" alt="" class="negotiatior-profile">
+                    </div>
                         <h5>Get In Touch</h5>
                         <?php if ( $property->office_telephone_number != '' )
                         {	
@@ -303,7 +305,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                     </div>
                 </div>
 
-                <div class="col-12 col-md-4 branch-info-wrap">
+                <div class="col-12 col-md-4 branch-info-wrap d-none d-md-block">
                     
                     <div class="branch-info">
                     <img src="//placehold.it/300/300" alt="" class="negotiatior-profile">

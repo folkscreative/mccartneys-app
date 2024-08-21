@@ -8088,6 +8088,14 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     .container.breadcrumb-wrap .breadcrumb{
         display: none;
     }
+    .single-property .branch-info.mobile{
+        position: inherit;
+    }
+    .property-map-wrap{
+        border-top: solid 2px #D0D3D4;
+        padding-top: 50px;
+        margin-top: 50px;
+    }
 }
 
 @media (max-width: 575px) {
@@ -8205,6 +8213,12 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     }
     .guide-boxez .wrapper {
         grid-template-columns: repeat(1, 1fr);
+    }
+    .single-property--info .mcc-badge-group .mcc-badge{
+        width: calc(25% - 10px);
+        flex-direction: column;
+        align-items: start;
+        padding: 10px 15px 5px
     }
 }
 
@@ -9688,12 +9702,31 @@ h1.property-address {
 @media screen and (max-width: 767px) {
     .single-property--info .mcc-badge-group {
         flex-wrap: wrap;
+        gap: 12px;
+    }
+    .single-property .property-media a{
+        width: 48%;
+    }
+    .single-property .property-media li{
+        width: 100%;
+        background-image: none !important;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 0.585px 2.341px 0px rgba(25, 33, 61, 0.08);
+    border: 1px solid #E1E4ED;
+    justify-content: start;
+    column-gap: 10px;
+    height: 74px;
     }
     .single-property--info .mcc-badge-group .mcc-badge {
         width: calc(50% - 10px);
     }
     .single-property .property-media {
         flex-wrap: wrap;
+
+    }
+    section.single-property--head{
+        padding-top: 27px;
     }
 }
 
@@ -9862,4 +9895,13 @@ body.post-type-archive-property .search-form--department {
 .propertyhive-recent-properties-shortcode .slick-next {
     background-image: url(../images/de-arrow-right.png);
     right: 0;
+}
+
+.single-property--head .agent-btns-mb {
+    padding: 24px 25px;
+    background-color: #FEF8F8D9;
+    justify-content: space-between;
+}
+.single-property--head .agent-btns-mb a{
+    min-width: 47%;
 }
