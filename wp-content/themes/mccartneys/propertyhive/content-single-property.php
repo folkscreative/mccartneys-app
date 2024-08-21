@@ -234,9 +234,10 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                     </div>
                 </div>
 
-                <div class="col branch-info-wrap">
-                    <img src="//placehold.it/300/300" alt="" class="negotiatior-profile">
+                <div class="col-12 col-md-4 branch-info-wrap">
+                    
                     <div class="branch-info">
+                    <img src="//placehold.it/300/300" alt="" class="negotiatior-profile">
                         <h5>Get In Touch</h5>
                         <?php if ( $property->office_telephone_number != '' )
                         {	

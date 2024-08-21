@@ -8904,7 +8904,7 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
     right: 5px;
     transform: rotate(-90deg);
 }
-.results-options .content .breadcrumb span {
+.results-options .breadcrumb span {
     font-size: 13px;
     line-height: 24px;
     font-weight: 300;
@@ -9206,7 +9206,9 @@ body[class*="paged-"] .propertyhive-pagination span.page-numbers {
 
 .single-property .property-gallery {
     display: flex;
+    position: relative;
     gap: 20px;
+    max-width: 1165px;
 }
 
 .single-property .property-gallery .main-image {
@@ -9239,7 +9241,7 @@ section.single-property--head::after {
     position: absolute;
     top: 0;
     width: 100%;
-    height: 115vh;
+    height: 1120px;
     z-index: -1;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -9256,7 +9258,7 @@ section.recent-properties::before {
     z-index: -1;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-position: bottom;
+    background-position: top;
 }
 
 .single-property .property-description {
@@ -9285,8 +9287,7 @@ section.recent-properties::before {
     text-align: center;
     width: 100px;
     height: 100px;
-    margin: auto;
-    margin-bottom: -50px;
+    margin: -33px 0 30px;
     box-shadow: 0px 0.684px 2.736px 0px rgba(25, 33, 61, 0.08);
     border: solid 2px #fff;
 }
@@ -9296,12 +9297,14 @@ section.recent-properties::before {
 }
 
 .single-property .branch-info {
+    position: sticky;
+    top: 37px;
     background-color: #8D1F56;
     border-radius: 10px;
     color: #fff;
     text-align: center;
     padding: 50px;
-    padding-top: 70px;
+    padding-top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9344,9 +9347,49 @@ section.single-property--head {
 .container.breadcrumb-wrap {
     margin-bottom: 20px;
     display: flex;
+    align-items: center;
     gap: 20px;
+    max-width: 1165px;
 }
-
+.container.breadcrumb-wrap .breadcrumb{
+    margin: 0;
+    position: relative;
+    padding-left: 20px;
+}
+.container.breadcrumb-wrap .breadcrumb::after{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    background-color: #8D1F56;
+    left: 0;
+    top: 0;
+}
+.container.breadcrumb-wrap .breadcrumb p{
+    margin: 0;
+}
+.container.breadcrumb-wrap .breadcrumb a {
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 300;
+    position: relative;
+    color: #707070;
+    padding-right: 20px;
+}
+.container.breadcrumb-wrap .breadcrumb a::after {
+    content: "";
+    font-family: dashicons;
+    position: absolute;
+    color: #8D1F56;
+    right: 5px;
+    transform: rotate(-90deg);
+}
+.container.breadcrumb-wrap .breadcrumb span{
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 300;
+    color: #707070;
+}
 .single-property .breadcrumb-wrap a.back-to-search {
     font-family: 'Gotham';
     font-size: 13px;
@@ -9359,6 +9402,7 @@ section.single-property--head {
 
 
 .single-property--info>.container {
+    max-width: 1165px;
     margin-top: 50px;
 }
 
@@ -9413,15 +9457,26 @@ section.single-property--head {
 
 .single-property .gallery-count {
     position: absolute;
-    bottom: -2%;
-    right: 38%;
+    bottom: 15px;
+    right: 32%;
     background: #fff;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 6px 9px;
+    border-radius: 6px;
     box-shadow: 10px 10px 10px -4px rgba(0, 0, 0, 0.1);
     z-index: 999;
+    gap: 5px;
 }
-
+.single-property .gallery-count img{
+    max-width: 20px;
+}
+.single-property .gallery-count a{
+    font-family: Inter;
+    font-size: 12.996px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 19.836px;
+    color: #707070;
+}
 
 
 .single-property .property-media li.property-media--floorplan {
@@ -9463,6 +9518,14 @@ section.single-property--head {
     text-transform: uppercase;
 }
 
+.single-property--info h2.price-info {
+    margin: 15px 0;
+}
+
+.mcc-badge-group.property-info .mcc-badge{
+    padding: 4px 15px;
+}
+
 h2.price {
     color: #707070;
     font-family: Gotham;
@@ -9486,6 +9549,7 @@ h1.property-address {
 }
 
 .recent-properties {
+    position: relative;
     margin-bottom: 100px;
 }
 
