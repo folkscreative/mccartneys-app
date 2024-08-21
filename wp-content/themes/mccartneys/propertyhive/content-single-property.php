@@ -63,13 +63,17 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
 
         <div class="container property-gallery">
+
+            <div class="wrapper-main-img">
             <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>"
                 class="main-image property-featured-image" alt="><?php the_title(); ?>">
             <div class="gallery-count mcc-badge">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/gallery-icon.svg" alt=""
                     class="badge-icon">
-                <a id="galleryMedia">View <?php echo $galleryAttachmentCount ?> Images</a>
+                <a id="galleryMedia">1/<?php echo $galleryAttachmentCount ?></a>
             </div>
+            </div>
+
             <div class="side-images">
                 <img src="<?php echo wp_get_attachment_url($gallery_attachments[1], $size = 'property-square') ?>"
                     class="property-secondary-image" alt="><?php the_title(); ?>">
@@ -136,7 +140,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
 
                         <li class="mcc-badge">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-reception.svg"
+                            <img class="badge-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-reception.svg"
                                 alt="">
                             <div class="feature-info">
                                 <h6>Reception Rooms</h6>
@@ -204,14 +208,14 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
                     <div class="property-description-wrap">
                         <div class="property-description collapsed">
-                            <h2>Property Description</h2>
+                            <h3>Property Description</h3>
                             <?php echo $property->get_formatted_description() ?>
                         </div>
-                        <button class="read-more btn-cs-dark">See More Description</button>
+                        <button class="read-more btn-cs-dark">See More Description <span><i class="fa-solid fa-angle-down"></i></span></button>
                         </span>
                     </div>
                     <div class="property-map-wrap">
-                        <h3><?php echo $property->get_formatted_full_address( $separator = ', ' ); ?></h3>
+                        <h4><?php echo $property->get_formatted_full_address( $separator = ', ' ); ?></h4>
                         <?php echo get_property_map() ?>
                     </div>
                     <div class="key-info-wrap">

@@ -9211,12 +9211,16 @@ body[class*="paged-"] .propertyhive-pagination span.page-numbers {
     max-width: 1165px;
 }
 
+.single-property .property-gallery .wrapper-main-img{
+    position: relative;
+}
+
 .single-property .property-gallery .main-image {
     flex: 2;
     aspect-ratio: 1/1;
     object-fit: cover;
     width: 100%;
-    max-height: 737px;
+    height: 740px;
 }
 
 .single-property .property-gallery .side-images {
@@ -9228,7 +9232,7 @@ body[class*="paged-"] .propertyhive-pagination span.page-numbers {
 .single-property .property-gallery .side-images img {
     aspect-ratio: 1/1;
     object-fit: cover;
-    max-height: 359px;
+    max-height: 360px;
 }
 
 .single-property .property-gallery img {
@@ -9254,7 +9258,7 @@ section.recent-properties::before {
     position: absolute;
     top: 0;
     width: 100%;
-    height: 115vh;
+    height: 115vw;
     z-index: -1;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -9411,6 +9415,8 @@ section.single-property--head {
     margin-bottom: 40px;
 }
 
+ 
+
 .single-property--info .summary {
     max-width: 75%;
 }
@@ -9429,6 +9435,7 @@ section.single-property--head {
 }
 
 .property-description-wrap .read-more {
+    min-width: 205px;
     margin-top: 20px;
 }
 
@@ -9523,7 +9530,23 @@ section.single-property--head {
 }
 
 .mcc-badge-group.property-info .mcc-badge{
-    padding: 4px 15px;
+    padding: 10px 15px 6px;
+}
+.mcc-badge-group.property-info .mcc-badge .feature-info h6{
+    color: #707070;
+    font-family: Inter;
+    font-size: 12.996px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 12px;
+}
+.mcc-badge-group.property-info .mcc-badge .feature-info span{
+    color: #707070;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15.048px;
 }
 
 h2.price {
@@ -9550,9 +9573,15 @@ h1.property-address {
 
 .recent-properties {
     position: relative;
-    margin-bottom: 100px;
+    padding-top: 80px;
+    margin: 71px 0 107px;
 }
-
+.recent-properties .propertyhive-recent-properties-shortcode{
+    margin: 0 -12px;
+}
+.recent-properties .container{
+    max-width: 1165px;
+}
 
 /* Single Property Responsive */
 
@@ -9655,6 +9684,7 @@ body.post-type-archive-property .search-form--department {
 
 .propertyhive-recent-properties-shortcode .slick-track .office-slider {
     height: inherit !important;
+    background-color: #fff;
 }
 
 .propertyhive-recent-properties-shortcode .office-slider {
