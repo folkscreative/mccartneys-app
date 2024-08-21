@@ -1343,3 +1343,20 @@ add_action( 'wp_enqueue_scripts', 'dereg_ph_styles', 100 );
 
 // Add some image sizes
 add_image_size( 'property-square', 1024, 1024, true );
+
+
+
+// Allow iframes for admin users
+function allow_iframes_for_admins($allowedposttags) {
+    if (current_user_can('administrator')) {
+        $allowedposttags['iframe'] = array(
+            'src'             => true,
+            'width'           => true,
+            'height'          => true,
+            'frameborder'     => true,
+            'allowfullscreen' => true,
+        );
+    }
+    return $allowedposttags;
+}
+add_filter('wp_kses_allowed_html', 'allow_iframes_for_admins', 1);

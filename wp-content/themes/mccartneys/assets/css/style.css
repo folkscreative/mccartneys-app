@@ -8090,12 +8090,58 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         display: none;
     }
     .single-property .branch-info.mobile{
-        position: inherit;
+        flex-direction: row-reverse;
+        padding: 40px 30px 40px 30px;
+        text-align: left;
+        position: relative;
+        top: 0;
+    }
+    .single-property .branch-info.mobile .img-wrap{
+        position: absolute;
+        right: -18px;
+        top: 0;
     }
     .property-map-wrap{
         border-top: solid 2px #D0D3D4;
         padding-top: 50px;
         margin-top: 50px;
+        margin-bottom: 36px;
+    }
+    .single-property .branch-info h5{
+        font-size: 14px;
+    line-height: 20px;
+    }
+    .single-property .branch-info a.telephone-number{
+        font-size: 23px;
+        line-height: 27px;
+        margin: 21px 0 15px;
+        display: block;
+    }
+    property-description-wrap{
+        border-bottom: none;
+        padding-bottom: 25px;
+    }
+    .recent-properties{
+        margin: 20px 0 0;
+    }
+    .recent-properties .slick-dots {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+        column-gap: 5px;
+        margin-top: 30px;
+    }
+    .recent-properties .slick-dots li button {
+        font-size: 0;
+        padding: 0;
+        width: 8px;
+        height: 8px;
+        background-color: #D0D3D4;
+        border: none;
+        border-radius: 50%;
+    }
+    .recent-properties .slick-dots .slick-active button {
+        background-color: #8D1F56;
     }
 }
 
@@ -9723,7 +9769,8 @@ h1.property-address {
         align-items: center;
     }
     .single-property--info .mcc-badge-group .mcc-badge {
-        width: calc(50% - 10px);
+        /* width: calc(50% - 10px); */
+        width: 48%;
     }
     .single-property .property-media {
         flex-wrap: wrap;
@@ -9736,7 +9783,7 @@ h1.property-address {
         gap: 13px;
     }
     .single-property .property-media li .media-icon{
-        max-width: 50px;
+        min-width: 50px;
     }
     .single-property .property-media li span{
         color: #707070;

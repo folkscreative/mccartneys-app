@@ -121,7 +121,9 @@ get_header(); ?>
             </div>
         </div>
         <div class="branch-map">
-        <iframe style="border: 0;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2437.054811372493!2d-2.72017032297783!3d52.351291148706146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48706a5d6e294193%3A0xf3e51a3184a4208a!2sMcCartneys%20LLP!5e0!3m2!1sen!2suk!4v1724262292291!5m2!1sen!2suk" width="600" height="450" allowfullscreen="allowfullscreen"></iframe>
+        <?php if( get_field('branch_map') ): ?>
+         <?php echo do_shortcode(get_field('branch_map')); ?>
+        <?php endif; ?>
         </div>
     </div>
 </section>
