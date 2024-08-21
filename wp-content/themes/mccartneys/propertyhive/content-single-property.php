@@ -62,7 +62,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
 
 
-        <div class="container property-gallery">
+        <div class="container property-gallery d-none d-md-block">
 
             <div class="wrapper-main-img">
             <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>"
@@ -82,7 +82,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
             </div>
         </div>
 
-        <div class="container property-gallery-mb">
+        <div class="container property-gallery-mb d-block d-md-none">
 
             <div class="gallery-thumbnail">
        <?php 
@@ -104,6 +104,8 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
     ?>
         </div>
         <div class="number-indicator">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/gallery-icon.svg" alt=""
+        class="badge-icon">
         <span class="current-slide">1</span> / <span class="total-slides">4</span>
         </div>
         </div>
