@@ -81,6 +81,10 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                     class="property-secondary-image" alt="><?php the_title(); ?>">
             </div>
         </div>
+
+        <div class="asfasdf">
+        <?php echo $galleryAttachmentCount ?>
+        </div>
         <!-- <div class="container gallery-info">
             <div class="col col-lg-8">
                 <div class="gallery-count mcc-badge">
@@ -140,7 +144,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
 
                         <li class="mcc-badge">
-                            <img class="badge-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-reception.svg"
+                            <img class="badge-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/recep-room.png"
                                 alt="">
                             <div class="feature-info">
                                 <h6>Reception Rooms</h6>
@@ -220,17 +224,15 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                     </div>
                     <div class="key-info-wrap">
                         <h4>Key Information</h4>
-                        <div class="mcc-badge-group">
+                        <div class="mcc-badge-group-key">
                             <?php if ( $property->council_tax_band ) {?>
-                            <div class="mcc-badge">
-                                <h6>Council Tax Band</h6>
-                                <span><?php echo $property->council_tax_band; ?></span>
+                            <div class="mcc-bdge">
+                                <span>Council Tax - Council Tax Band <?php echo $property->council_tax_band; ?></span>
                             </div>
                             <?php } ?>
                             <?php if ( $property->council_tax_band ) {?>
-                            <div class="mcc-badge">
-                                <h6>Tenure</h6>
-                                <span><?php echo $property->tenure; ?></span>
+                            <div class="mcc-bdge">
+                                <span>Tenure - <?php echo $property->tenure; ?></span>
                             </div>
                             <?php } ?>
 

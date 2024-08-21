@@ -8845,6 +8845,7 @@ form.property-search input[type="submit"]:hover {
 section.search-outer {
     background-color: #F7EBEE;
     padding: 30px 0px;
+    border-top: 1px solid #D0D3D4;
 }
 section.search-outer .container{
     max-width: 1170px;
@@ -8961,11 +8962,18 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
     margin-bottom: 16px;
 }
 
+.key-info-wrap .mcc-badge-group-key .mcc-bdge{
+    line-height: 27px;
+    font-weight: 300;
+    color: #707070;
+}
+
+
 .search-results .property .col-left img {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    max-height: 430px;
+    min-height: 430px;
     border-radius: 8px;
     transition: all .3s;
 }
@@ -9032,6 +9040,7 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
     font-size: 14px;
     line-height: 20px;
     font-weight: 300;
+    color: #707070;
 }
 .display-options .view.active{
     font-weight: 500;
@@ -9232,7 +9241,7 @@ body[class*="paged-"] .propertyhive-pagination span.page-numbers {
 .single-property .property-gallery .side-images img {
     aspect-ratio: 1/1;
     object-fit: cover;
-    max-height: 360px;
+    height: 360px;
 }
 
 .single-property .property-gallery img {
@@ -9258,7 +9267,7 @@ section.recent-properties::before {
     position: absolute;
     top: 0;
     width: 100%;
-    height: 115vw;
+    height: calc(100% + 700px);
     z-index: -1;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -9293,7 +9302,7 @@ section.recent-properties::before {
     height: 100px;
     margin: -33px 0 30px;
     box-shadow: 0px 0.684px 2.736px 0px rgba(25, 33, 61, 0.08);
-    border: solid 2px #fff;
+    object-fit: cover;
 }
 
 .single-property .branch-info-wrap {
@@ -9342,10 +9351,14 @@ section.recent-properties::before {
     display: block;
 }
 
-
+.single-property  .lightbox {
+    display: flex;
+    flex-direction: column-reverse;
+}
 
 section.single-property--head {
     padding-top: 60px;
+    border-top: 1px solid #D0D3D4;
 }
 
 .container.breadcrumb-wrap {
@@ -9363,11 +9376,11 @@ section.single-property--head {
 .container.breadcrumb-wrap .breadcrumb::after{
     content: "";
     position: absolute;
-    height: 100%;
+    height: 60%;
     width: 1px;
     background-color: #8D1F56;
     left: 0;
-    top: 0;
+    top: 5px;
 }
 .container.breadcrumb-wrap .breadcrumb p{
     margin: 0;
@@ -9465,13 +9478,14 @@ section.single-property--head {
 .single-property .gallery-count {
     position: absolute;
     bottom: 15px;
-    right: 32%;
+    right: 15px;
     background: #fff;
     padding: 6px 9px;
     border-radius: 6px;
     box-shadow: 10px 10px 10px -4px rgba(0, 0, 0, 0.1);
     z-index: 999;
     gap: 5px;
+    cursor: pointer;
 }
 .single-property .gallery-count img{
     max-width: 20px;
@@ -9573,8 +9587,8 @@ h1.property-address {
 
 .recent-properties {
     position: relative;
-    padding-top: 80px;
-    margin: 71px 0 107px;
+    margin: 71px 0 0;
+    padding: 80px 0 107px;
 }
 .recent-properties .propertyhive-recent-properties-shortcode{
     margin: 0 -12px;

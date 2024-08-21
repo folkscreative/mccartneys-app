@@ -39,12 +39,12 @@ $(document).ready(function() {
 // $(document).on('click', '.bottom-bar .x-icon', function()  {
 //   $(this).parent().slideToggle(350);
 // });
-$(document).ready(function() {
-    $('.faqs-wrapper .faqs-item:nth-child(2)').addClass('active');
-});
-$(document).ready(function() {
-    $('.faqs-wrapper .faqs-item:nth-child(2) .bottom-bar').slideDown();
-});
+// $(document).ready(function() {
+//     $('.faqs-wrapper .faqs-item:nth-child(2)').addClass('active');
+// });
+// $(document).ready(function() {
+//     $('.faqs-wrapper .faqs-item:nth-child(2) .bottom-bar').slideDown();
+// });
 $('.faqs-wrapper .faqs-item').on('click', function() {
     $(this).children('.bottom-bar').slideToggle(300);
     $(this).siblings().children('.bottom-bar').slideUp(300);
