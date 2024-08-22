@@ -9,8 +9,8 @@ get_header(); ?>
         <div class="container">
             <div class="content">
             <div class="breadcrumb mc"><?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
-                <h1><?php the_field('page_title_insight_archive'); ?></h1>
-                <p><?php the_field('page_description_insight_archive'); ?></p>
+                <h1>McCartneys Insights</h1>
+                <p>We share our team's expertise across McCartneys' fields, including properties, livestock, fine art and antiques, and more.</p>
             </div>
         
     
@@ -26,6 +26,7 @@ if ($query->have_posts()) :
         <div class="post">
             <?php if (has_post_thumbnail()) : ?>
                 <div class="post-thumbnail">
+                    <a class="btn-transparent" href="<?php the_permalink(); ?>">Link</a>
                     <?php the_post_thumbnail('large'); ?>
                 </div>
             <?php endif; ?>
@@ -79,7 +80,7 @@ wp_reset_postdata();?>
             <div class="row g-3">
                 <?php
                 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-                $all_posts = new WP_Query(array('posts_per_page' => 3, 'paged' => $paged));
+                $all_posts = new WP_Query(array('posts_per_page' => 6, 'paged' => $paged));
                 if ($all_posts->have_posts()) {
                     while ($all_posts->have_posts()) {
                         $all_posts->the_post();
@@ -110,7 +111,7 @@ wp_reset_postdata();?>
             echo '<div class="row">';
             $cat_posts = new WP_Query(array(
                 'cat' => $cat_id,
-                'posts_per_page' => 3,
+                'posts_per_page' => 6,
                 'paged' => $cat_paged
             ));
             if ($cat_posts->have_posts()) {

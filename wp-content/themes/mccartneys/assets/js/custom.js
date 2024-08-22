@@ -451,3 +451,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+
+//   window.onload = function() {
+//     // After page load, add event listeners to handle the toggle
+//     document.querySelectorAll('#propertyTab li a').forEach(function(view) {
+//       view.addEventListener('click', function(e) {
+//         e.preventDefault(); // Prevent default link behavior
+
+//         // Toggle active class only after the page has loaded
+//         document.querySelector('#propertyTab li a.active').classList.remove('active');
+//         this.classList.add('active');
+//       });
+//     });
+//   };
+
+  function onload() {
+    alert("Page is loaded");
+           document.getElementById("meet").className = "active";
+        }
+        window.onload = onload

@@ -63,6 +63,7 @@ get_header(); ?>
             ?>
 
             <div class="slide-wrap">
+            <a class="btn-transparent" href="<?php the_sub_field('service_cta_link'); ?>"><?php the_sub_field('service_cta_label'); ?></a>
             <?php       
                 if( !empty($sv_image) ):?>
                 <img src="<?php echo $sv_image['url']; ?>" alt="<?php echo $sv_image['alt']; ?>">
@@ -139,14 +140,14 @@ get_header(); ?>
         <div class="container">
         <div class="row g-0 align-items-center">
         
-            <div class="col-12 col-md-5">
+            <div class="col-12 col-md-6">
                 <div class="col-left">
                 <h2><?php the_sub_field('call_to_action_title'); ?></h2>
                 <p><?php the_sub_field('call_to_action_content'); ?></p>
                 <a class="btn-blue" href="<?php the_sub_field('call_to_action_link'); ?>"><?php the_sub_field('call_to_action_label'); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
                 </div>
             </div>
-            <div class="col-12 col-md-7">
+            <div class="col-12 col-md-6">
                 <div class="col-right">
                 <?php
                      $cta_clip_img = get_sub_field('call_to_action_right_image');

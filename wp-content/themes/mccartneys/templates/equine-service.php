@@ -59,6 +59,9 @@ get_header(); ?>
             <div class="depart-slider depar">
             <?php while( have_rows('services_details') ): the_row(); ?>
             <div class="slide-wrap">
+            <?php if( get_sub_field('service_cta_label') ): ?>
+                    <a href="<?php the_sub_field('service_cta_link');?>" class="btn-transparent"><?php the_sub_field('service_cta_label');?></a>
+                    <?php endif; ?>
             <?php
                 $sv_image = get_sub_field('service_image');
                 if( !empty($sv_image) ):?>
@@ -229,6 +232,16 @@ get_header(); ?>
             <div class="depart-slider depar">
             <?php while( have_rows('department_sale_slider') ): the_row(); ?>
             <div class="slide-wrap">
+            <?php 
+                $department_cartneys_slider_link = get_sub_field('department_sale_slider_button');
+                if( $department_cartneys_slider_link ): 
+                    $department_cartneys_slider_link_url = $department_cartneys_slider_link['url'];
+                    $department_cartneys_slider_link_title = $department_cartneys_slider_link['title'];
+                    $department_cartneys_slider_link_target = $department_cartneys_slider_link['target'] ? $department_cartneys_slider_link['target'] : '_self';
+                    ?>
+                <a class="btn-transparent" href="<?php echo esc_url( $department_cartneys_slider_link_url ); ?>"
+                    target="<?php echo esc_attr( $department_cartneys_slider_link_target ); ?>">sdfsd</a>
+                <?php endif; ?>
             <?php
                 $department_slider_sale_image = get_sub_field('department_sale_image');
                 if( !empty($department_slider_sale_image) ):?>

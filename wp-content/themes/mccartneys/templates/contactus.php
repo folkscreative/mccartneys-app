@@ -18,7 +18,7 @@ get_header(); ?>
      <div class="container">
             <div class="outer-wrap">
             <div class="content">
-            <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
+            <h2><?php the_sub_field('livestock_banner_title'); ?></h2>
             <?php the_sub_field('livestock_banner_content'); ?>
             
             
@@ -49,7 +49,7 @@ get_header(); ?>
 
     <!-- Start Property section here -->
     <?php if( get_row_layout() == 'property_tabs_section' ): ?>
-       <section class="property-wrapper contact">
+       <section class="property-wrapper contact about-us">
         <div class="container">
             <h2 class="title"><?php the_sub_field('property_tab_title'); ?></h2>
             <p class="description"><?php the_sub_field('property_tab_description'); ?></p>

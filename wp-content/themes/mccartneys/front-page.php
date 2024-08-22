@@ -58,6 +58,16 @@
             <div class="depart-slider depar">
                 <?php while( have_rows('our_departments_slider', 'option') ): the_row(); ?>
                 <div class="slide-wrap">
+                <?php 
+                        $department_cartneys_slider_link = get_sub_field('department_slider_button', 'option');
+                        if( $department_cartneys_slider_link ): 
+                            $department_cartneys_slider_link_url = $department_cartneys_slider_link['url'];
+                            $department_cartneys_slider_link_title = $department_cartneys_slider_link['title'];
+                            $department_cartneys_slider_link_target = $department_cartneys_slider_link['target'] ? $department_cartneys_slider_link['target'] : '_self';
+                            ?>
+                        <a class="btn-transparent" href="<?php echo esc_url( $department_cartneys_slider_link_url ); ?>"
+                            target="<?php echo esc_attr( $department_cartneys_slider_link_target ); ?>">sdfsd</a>
+                        <?php endif; ?>
                     <?php
                 $department_slider_bg_image = get_sub_field('our_departments_thumbnail', 'option');
                 if( !empty($department_slider_bg_image) ):?>
@@ -299,42 +309,6 @@
     </section>
     <!-- Fine country ends -->
 
-    <!-- Showcase numbers -->
-    <section class="showcase-numbers">
-        <div class="container">
-            <div class="row g-0">
-                <div class="col-12">
-                    <div class="box-title">
-                        <h2><?php the_field('showcase_title'); ?></h2>
-                    </div>
-                    <p class="description d-none d-md-block"><?php the_field('showcase_description');?></p>
-                </div>
-            </div>
-            <div class="numbers-wrap">
-                <?php if( have_rows('numbers_repeater_showcase') ): ?>
-                <div class="row g-4">
-                    <?php while( have_rows('numbers_repeater_showcase') ): the_row(); ?>
-                    <div class="col-12 col-md-6">
-                        <div class="items-wrap">
-                            <?php
-                        $showcase_logo = get_sub_field('showcase_number_image');
-                        if( !empty($showcase_logo) ):?>
-                            <img src="<?php echo $showcase_logo['url']; ?>" alt="<?php echo $showcase_logo['alt']; ?>"
-                                class="w-100">
-                            <?php endif; ?>
-                            <div class="col-right">
-                                <h2><?php the_sub_field('showcase_number_title'); ?></h2>
-                                <span><?php the_sub_field('showcase_number_tagline'); ?></span>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endwhile; ?>
-                </div>
-                <?php endif; ?>
-            </div>
-        </div>
-    </section>
-    <!-- Showcase numbers ends -->
 
 </main>
 <?php get_footer();?>

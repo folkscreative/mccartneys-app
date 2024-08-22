@@ -91,11 +91,64 @@ get_header(); ?>
    <!-- recent property section start here -->
    <?php if( have_rows('blocks') ): ?>
     <?php while( have_rows('blocks') ): the_row(); ?>
-   <?php if( get_row_layout() == 'recent_property_section' ): ?>
-    <section class="recent-property-wrapper">
+    <?php if( get_row_layout() == 'recent_property_section' ): ?>
+    <section class="recent-property-wrapper property-pg">
         <div class="container">
-            <?php echo do_shortcode(get_sub_field('recent_property'));?>
-            <?php 
+
+            <div class="outer-wrapper">
+                <h2 class="title"><?php the_sub_field('recent_property_title'); ?></h2>
+                <ul class="nav nav-tabs" id="propertyTab" role="tablist">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-auction"
+                            data-bs-toggle="tab" href="#auction" role="tab" aria-controls="auction"
+                            aria-selected="true">Auction</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" id="tab-sale" data-bs-toggle="tab"
+                            href="#sale" role="tab" aria-controls="sale" aria-selected="false" tabindex="-1">Sale</a>
+                    </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" id="tab-rent" data-bs-toggle="tab"
+                            href="#rent" role="tab" aria-controls="rent" aria-selected="false" tabindex="-1">Rent</a>
+                    </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" id="tab-new-homes" data-bs-toggle="tab"
+                            href="#new-homes" role="tab" aria-controls="new-homes" aria-selected="false"
+                            tabindex="-1">New Homes</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content" id="propertyTabContent">
+                <div class="tab-pane fade show active" id="auction" role="tabpanel" aria-labelledby="tab-auction">
+                    <div class="inner-tabs pr">
+                        <?php echo do_shortcode('[recent_properties department="property-land-auctions"]');?>
+                    </div>
+                    <a class="btn-cs-dark"
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=property-land-auctions">View
+                        all properties</a>
+                </div>
+                <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
+                    <div class="inner-tabs pr">
+                        <?php echo do_shortcode('[recent_properties department="residential-sales"]');?>
+                    </div>
+                    <a class="btn-cs-dark"
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=residential-sales">View
+                        all properties</a>
+                </div>
+                <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="tab-rent">
+                    <div class="inner-tabs pr">
+                        <?php echo do_shortcode('[recent_properties _parent_department="Lettings"]');?>
+                    </div>
+                    <a class="btn-cs-dark"
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=Lettings">View
+                        all properties</a>
+                </div>
+                <div class="tab-pane fade" id="new-homes" role="tabpanel" aria-labelledby="tab-new-homes">
+                    <div class="inner-tabs pr">
+                        <?php echo do_shortcode('[recent_properties department="new-homes"]');?>
+                    </div>
+                    <a class="btn-cs-dark"
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=new-homes">View
+                        all properties</a>
+                </div>
+
+            </div>
+            <!-- <?php 
             $recent_pr_button = get_sub_field('recent_property_button');
             if( $recent_pr_button ): 
                 $recent_pr_button_url = $recent_pr_button['url'];
@@ -104,12 +157,12 @@ get_header(); ?>
                 ?>
             <a class="btn-cs-dark" href="<?php echo esc_url( $recent_pr_button_url ); ?>"
                 target="<?php echo esc_attr( $recent_pr_button_target ); ?>"><?php echo esc_html( $recent_pr_button_title ); ?></a>
-            <?php endif; ?>
+            <?php endif; ?> -->
         </div>
     </section>
     <?php endif; ?>
     <?php endwhile; ?>
-<?php endif; ?>
+    <?php endif; ?>
     <!-- recent property section ends here -->
 
     <!-- Cta banner -->
@@ -124,7 +177,7 @@ get_header(); ?>
                     <div class="col-left">
                     <h2><?php the_sub_field('call_to_action_title'); ?></h2>
                     <p><?php the_sub_field('call_to_action_content'); ?></p>
-                    <a class="btn-rural" href="<?php the_sub_field('call_to_action_link'); ?>"><?php the_sub_field('call_to_action_label'); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                    <a class="btn-cs-white" href="<?php the_sub_field('call_to_action_link'); ?>"><?php the_sub_field('call_to_action_label'); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
                     </div>
                 </div>
                 <div class="col-12 col-md-7">
@@ -380,36 +433,6 @@ get_header(); ?>
     <!-- Livestock faqs ends -->
 
 
-    <!-- Need more information -->
-     <section class="need-more-info">
-        <div class="container">
-            <div class="content">
-                <h2><?php the_field('need_info_title'); ?></h2>
-                <p><?php the_field('need_info_description'); ?></p>
-                <div class="btn">
-                <?php 
-                        $buy_auction_button = get_field('buy_action_button');
-                        if( $buy_auction_button ): 
-                            $buy_auction_button_url = $buy_auction_button['url'];
-                            $buy_auction_button_title = $buy_auction_button['title'];
-                            $buy_auction_button_target = $buy_auction_button['target'] ? $buy_auction_button['target'] : '_self';
-                            ?>
-                            <a class="btn-cs-dark" href="<?php echo esc_url( $buy_auction_button_url ); ?>" target="<?php echo esc_attr( $buy_auction_button_target ); ?>"><?php echo esc_html( $buy_auction_button_title ); ?></a>
-                        <?php endif; ?>
-                     <?php 
-                        $sell_auction_button = get_field('sell_auction_button');
-                        if( $sell_auction_button ): 
-                            $sell_auction_button_url = $sell_auction_button['url'];
-                            $sell_auction_button_title = $sell_auction_button['title'];
-                            $sell_auction_button_target = $sell_auction_button['target'] ? $sell_auction_button['target'] : '_self';
-                            ?>
-                            <a class="btn-cs-white" href="<?php echo esc_url( $sell_auction_button_url ); ?>" target="<?php echo esc_attr( $sell_auction_button_target ); ?>"><?php echo esc_html( $sell_auction_button_title ); ?></a>
-                        <?php endif; ?>
-                </div>
-            </div>
-        </div>
-     </section>
-    <!-- Need more information -->
 
     <!-- Testimonials -->
     <?php if( have_rows('blocks') ): ?>

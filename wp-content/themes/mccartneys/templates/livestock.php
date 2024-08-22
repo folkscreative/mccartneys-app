@@ -58,6 +58,7 @@ if ( !empty( $sale_banner ) ) { ?>
                             ?>
 
             <div class="slide-wrap">
+            <a class="btn-transparent" href="<?php the_sub_field('service_cta_link'); ?>"><?php the_sub_field('service_cta_label'); ?></a>
             <?php
                           
                 if( !empty($sv_image) ):?>

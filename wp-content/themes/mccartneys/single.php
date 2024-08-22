@@ -40,13 +40,13 @@ get_header();
 		<div class="row">
 			<div class="col-12 col-sm-6">
 				<div class="col-left">
-					<h4>Summary</h4>
+					<!-- <h4>Summary</h4>
 					<ul>
 						<li>Lorem ipsum dolor</li>
 						<li>Lorem ipsum dolor</li>
 						<li>Lorem ipsum dolor</li>
-					</ul>
-					<p><strong><?php echo get_the_date('M d, Y'); ?></strong></p>
+					</ul> -->
+					<p><strong><?php echo get_the_date('M/d/Y'); ?></strong></p>
                     <p><strong>Created by <?php the_author(); ?></strong></p>
                     <p><?php $category = get_the_category(); echo $category[0]->cat_name; ?></p>
                     <h4>Share</h4>

@@ -25,6 +25,7 @@ if ($query->have_posts()) :
         <div class="post">
             <?php if (has_post_thumbnail()) : ?>
                 <div class="post-thumbnail">
+                <a class="btn-transparent" href="<?php the_permalink(); ?>">Link</a>
                     <?php the_post_thumbnail('large'); ?>
                 </div>
             <?php endif; ?>
@@ -78,7 +79,7 @@ wp_reset_postdata();?>
             <div class="row g-3">
                 <?php
                 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-                $all_posts = new WP_Query(array('posts_per_page' => 3, 'paged' => $paged));
+                $all_posts = new WP_Query(array('posts_per_page' => 6, 'paged' => $paged));
                 if ($all_posts->have_posts()) {
                     while ($all_posts->have_posts()) {
                         $all_posts->the_post();
@@ -109,7 +110,7 @@ wp_reset_postdata();?>
             echo '<div class="row">';
             $cat_posts = new WP_Query(array(
                 'cat' => $cat_id,
-                'posts_per_page' => 3,
+                'posts_per_page' => 6,
                 'paged' => $cat_paged
             ));
             if ($cat_posts->have_posts()) {

@@ -519,6 +519,7 @@ P {
     position: relative;
     z-index: 99;
     padding-left: 65px !important;
+    justify-content: start;
 }
 
 .header-inner-wrap #mega-menu-main-menu .post-cs-mega .mega-sub-menu .widget_text::after {
@@ -699,9 +700,20 @@ P {
     background-color: #8D1F56;
     padding: 22px 0;
 }
-
+.home-filter-cs .property-search .search-form-control .search-form-dropdown--trigger{
+    position: relative;
+}
+.home-filter-cs .property-search .search-form-control .search-form-dropdown--trigger::after{
+    content: "";
+    font-family: dashicons;
+    position: absolute;
+    top: 0;
+    padding-left: 6px;
+    font-weight: 600;
+    font-size: 12px;
+}
 .home-filter-cs form.property-search {
-    max-width: 900px;
+    max-width: 1120px;
 }
 
 .home-filter-cs .inner .btn {
@@ -796,7 +808,9 @@ P {
 .departments .container {
     max-width: 1190px;
 }
-
+.departments.eq .content{
+    max-width: 740px;
+}
 .departments .content {
     max-width: 489px;
     width: 100%;
@@ -850,7 +864,13 @@ P {
 .departments .depart-slider .slide-wrap:hover .inner-content p {
     display: block;
 }
-
+.departments .slide-wrap .btn-transparent{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    font-size: 0;
+}
 .departments .slide-wrap .inner-content p {
     font-size: 15px;
     line-height: 20px;
@@ -1176,7 +1196,10 @@ P {
     justify-content: space-between;
     padding-bottom: 44px;
 }
-
+.recent-property-wrapper .btn-cs-dark{
+    margin-left: auto;
+    min-width: 199px;
+}
 .recent-property-wrapper .outer-wrapper .title {
     color: #707070;
 }
@@ -1223,6 +1246,7 @@ P {
 
 .testimonials.property-pg {
     position: relative;
+    background: linear-gradient(180deg, #f7ebee 40%, transparent 10%);
 }
 
 .testimonials.property-pg::after {
@@ -1231,7 +1255,7 @@ P {
     position: absolute;
     width: 100%;
     height: 267px;
-    top: 0;
+    bottom: 200px;
     z-index: -1;
     background-position: bottom center;
     background-repeat: no-repeat;
@@ -1779,7 +1803,7 @@ footer .cookies-menu ul li a {
 .inner-banner-wrapper::after {
     content: "";
     position: absolute;
-    background-image: url(../images/inner-banner-bg.png);
+    background-image: url(../images/inner-bnr-career.png);
     height: 100%;
     width: 80%;
     top: 0;
@@ -2696,6 +2720,13 @@ footer .cookies-menu ul li a {
     overflow: hidden;
     cursor: pointer;
 }
+.livestocks-departments .slide-wrap .btn-transparent{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    color: transparent;
+}
 
 .livestocks-departments .slide-wrap img {
     width: 100%;
@@ -2885,9 +2916,9 @@ footer .cookies-menu ul li a {
     opacity: 0;
 }
 
-.btn-cs-white:hover {
+/* .btn-cs-white:hover {
     border: 1px solid transparent;
-}
+} */
 
 .btn-cs-white span {
     font-size: 12px;
@@ -3323,7 +3354,7 @@ footer .cookies-menu ul li a {
 /* Property center */
 
 .properties-center {
-    padding: 110px 0 100px;
+    padding: 110px 0 115px;
 }
 
 .properties-center .container {
@@ -3699,6 +3730,9 @@ footer .cookies-menu ul li a {
 }
 
 .box-banner .content .breadcrumb a {
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 300;
     position: relative;
     color: #707070;
     padding-right: 20px;
@@ -3712,9 +3746,15 @@ footer .cookies-menu ul li a {
     right: 5px;
     transform: rotate(-90deg);
 }
+.box-banner .content .breadcrumb span {
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 300;
+}
 
 .livestock-faqs.equine {
     background: linear-gradient(180deg, transparent 40%, #F7EBEE 40%);
+    padding-bottom: 60px;
 }
 
 .livestock-faqs.equine::after {
@@ -3995,6 +4035,7 @@ footer .cookies-menu ul li a {
 
 .our-marketer.rural {
     padding-top: 90px;
+    padding-bottom: 130px;
 }
 
 .our-marketer.rural .mark-buttons a {
@@ -4317,6 +4358,11 @@ footer .cookies-menu ul li a {
 
 .case-study-plan .outer .col-right-text p {
     margin: 32px 0 34px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    width: 100%;
 }
 
 .properties-right.planning {
@@ -5187,7 +5233,7 @@ footer .cookies-menu ul li a {
 /* current vacancies */
 
 .current-vacancies {
-    padding: 103px 0 131px;
+    padding: 103px 0 0;
 }
 
 .current-vacancies .container {
@@ -5261,6 +5307,9 @@ footer .cookies-menu ul li a {
 }
 
 .breadcrumb.mc a {
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 300;
     position: relative;
     color: #707070;
     padding-right: 20px;
@@ -5274,9 +5323,14 @@ footer .cookies-menu ul li a {
     right: 5px;
     transform: rotate(-90deg);
 }
-
+.breadcrumb.mc span{
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 300;
+}
 .branch-single {
     border-top: 1px solid #D0D3D4;
+    margin-bottom: 84px;
 }
 
 .branch-single .container {
@@ -5435,7 +5489,7 @@ footer .cookies-menu ul li a {
 .insight-content .post {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     border-radius: 8px;
     border: 1px solid #E1E4ED;
     box-shadow: 0px 1px 4px 0px rgba(25, 33, 61, 0.08);
@@ -5480,8 +5534,17 @@ footer .cookies-menu ul li a {
 }
 
 .insight-content .post .post-thumbnail {
+    position: relative;
     min-width: 515px;
+    min-height: 100%;
+}
+.insight-content .post .post-thumbnail .btn-transparent{
+    position: absolute;
+    width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
+    color: transparent;
 }
 
 .insight-content .post .post-thumbnail img {
@@ -5675,6 +5738,7 @@ footer .cookies-menu ul li a {
 }
 
 .box-banner.single .content {
+    max-width: 520px;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
     border-bottom-right-radius: 35px;
@@ -5712,6 +5776,9 @@ footer .cookies-menu ul li a {
 
 .posts-single-data .col-left {
     color: #707070;
+}
+.posts-single-data .col-left p strong{
+    font-weight: 500;
 }
 
 .posts-single-data .col-right p strong {
@@ -5764,6 +5831,7 @@ footer .cookies-menu ul li a {
     padding-bottom: 64px;
     background-size: cover;
     background-position: center;
+    overflow: hidden;
 }
 
 .contactus-banner .container {
@@ -5808,7 +5876,7 @@ footer .cookies-menu ul li a {
     color: #707070;
 }
 
-.contactus-banner .outer-wrap .content h1 {
+.contactus-banner .outer-wrap .content h2 {
     margin-bottom: 16px;
 }
 
@@ -5903,6 +5971,15 @@ footer .cookies-menu ul li a {
 
 .contact-form .wpcf7-form p {
     width: 48%;
+}
+.contact-form .wpcf7-form .wpcf7-response-output{
+    border: none !important;
+    font-size: 15px;
+    margin-right: auto;
+    width: 67%;
+    margin-top: 0;
+    padding-left: 0;
+    margin-left: 0;
 }
 
 .contact-form .wpcf7-form p:nth-child(6) {
@@ -6910,6 +6987,9 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     }
     .single-property .branch-info{
         padding: 50px 20px;
+    }
+    .testimonials.property-pg::after{
+        bottom: 260px;
     }
 }
 
@@ -7964,7 +8044,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         object-fit: cover;
     }
     .current-vacancies {
-        padding: 60px 0 70px;
+        padding: 60px 0 0;
     }
     .current-vacancies .wrap {
         padding: 33px 25px 20px;
@@ -8571,6 +8651,7 @@ form.property-search input[type="submit"] {
     padding: 8px 21px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    border: none !important;
 }
 
 form.property-search input[type="submit"]:hover {
@@ -8660,7 +8741,7 @@ form.property-search input[type="submit"]:hover {
     transform: translateY(-10px);
     transition: all 0.3s ease-in-out;
     z-index: 10;
-    max-height: 410px;
+    /* max-height: 410px; */
     min-width: 165px;
     overflow-y: auto;
     --sb-track-color: #ffffff;
@@ -9688,8 +9769,7 @@ section.single-property--head {
 
 .price-qualifier {
     color: #707070;
-    font-family: Gotham;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 300;
     line-height: 24px;
@@ -9915,13 +9995,13 @@ body.post-type-archive-property .search-form--department {
 }
 
 .propertyhive-recent-properties-shortcode .office-slider .col-right h4 a {
-    font-family: "Inter", sans-serif;
     font-size: 14px;
     line-height: 20px;
-    font-weight: 800;
+    font-weight: 500;
     color: #706F70;
     margin: 0 0 4px;
     text-transform: capitalize;
+    display: block;
 }
 
 .propertyhive-recent-properties-shortcode .office-slider .col-right p {
@@ -9947,17 +10027,17 @@ body.post-type-archive-property .search-form--department {
 }
 
 .propertyhive-recent-properties-shortcode .office-slider .col-right .features li span {
-    font-family: "Inter", sans-serif;
-    font-size: 11px;
-    line-height: 15px;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 17px;
     color: #706F70;
     padding-left: 10px;
 }
 
 .propertyhive-recent-properties-shortcode .office-slider .col-right .price {
-    font-family: "Inter", sans-serif;
     font-size: 12px;
     line-height: 17px;
+    font-weight: 300;
     color: #706F70;
     font-weight: 800
 }
