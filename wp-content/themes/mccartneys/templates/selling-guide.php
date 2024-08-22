@@ -36,7 +36,7 @@ get_header(); ?>
                    <h2><?php the_sub_field('guide_box_title'); ?></h2>
                    <p><?php the_sub_field('guide_box_description'); ?></p>
                </div>
-               <div class="wrapper">
+               <div class="wrapper first">
                <?php if( have_rows('guide_boxes_auction') ):
                    while ( have_rows('guide_boxes_auction') ) : the_row();?>
                    <div class="box">
@@ -45,6 +45,18 @@ get_header(); ?>
                    </div>
                    <?php endwhile; ?><?php endif;?>
                </div>
+               <div class="wrapper last">
+               <?php if( have_rows('guide_boxes_auction') ):
+                   while ( have_rows('guide_boxes_auction') ) : the_row();?>
+                   <div class="box">
+                       <h4><?php the_sub_field('guide_box_auction_title'); ?></h4>
+                       <?php the_sub_field('guide_box_auction_content');?>
+                   </div>
+                   <?php endwhile; ?><?php endif;?>
+               </div>
+
+        
+
                <?php 
                 $guide_box_button = get_sub_field('guide_box_button');
                 if( $guide_box_button ): 
@@ -199,6 +211,15 @@ get_header(); ?>
             <div class="depart-slider depar">
             <?php while( have_rows('our_departments_slider', 'option') ): the_row(); ?>
             <div class="slide-wrap">
+            <?php 
+                        $department_cartneys_slider_link = get_sub_field('department_slider_button', 'option');
+                        if( $department_cartneys_slider_link ): 
+                            $department_cartneys_slider_link_url = $department_cartneys_slider_link['url'];
+                            $department_cartneys_slider_link_title = $department_cartneys_slider_link['title'];
+                            $department_cartneys_slider_link_target = $department_cartneys_slider_link['target'] ? $department_cartneys_slider_link['target'] : '_self';
+                            ?>
+                            <a class="btn-transparent" href="<?php echo esc_url( $department_cartneys_slider_link_url ); ?>" target="<?php echo esc_attr( $department_cartneys_slider_link_target ); ?>"><?php echo esc_html( $department_cartneys_slider_link_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                        <?php endif; ?>
             <?php
                 $department_slider_bg_image = get_sub_field('our_departments_thumbnail', 'option');
                 if( !empty($department_slider_bg_image) ):?>

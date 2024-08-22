@@ -186,6 +186,15 @@ if ( !empty( $sale_banner ) ) { ?>
             <div class="depart-slider depar">
             <?php while( have_rows('department_sale_slider') ): the_row(); ?>
             <div class="slide-wrap">
+            <?php 
+                        $department_sale_slider_link = get_sub_field('department_sale_slider_button');
+                        if( $department_sale_slider_link ): 
+                            $department_sale_slider_link_url = $department_sale_slider_link['url'];
+                            $department_sale_slider_link_title = $department_sale_slider_link['title'];
+                            $department_sale_slider_link_target = $department_sale_slider_link['target'] ? $department_sale_slider_link['target'] : '_self';
+                            ?>
+                            <a class="btn-transparent" href="<?php echo esc_url( $department_sale_slider_link_url ); ?>" target="<?php echo esc_attr( $department_sale_slider_link_target ); ?>"><?php echo esc_html( $department_sale_slider_link_title ); ?></a>
+                        <?php endif; ?>
             <?php
                 $department_slider_sale_image = get_sub_field('department_sale_image');
                 if( !empty($department_slider_sale_image) ):?>

@@ -444,13 +444,13 @@ function property_tabs_shortcode() {
                 <div class="sale-nmbr">
                     <img
                         src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
-                    <span><strong>Sales </strong><?php the_field('sales_number');?></span>
+                    <span><strong>Sales </strong><a href="tel:<?php the_field('sales_number');?>"><?php the_field('sales_number');?></a></span>
                 </div>
 
                 <div class="sale-nmbr d-none d-md-flex">
                     <img
                         src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
-                    <span><strong>Lettings </strong><?php the_field('lettings_number');?></span>
+                    <span><strong>Lettings </strong><a href="tel:<?php the_field('lettings_number');?>"><?php the_field('lettings_number');?></a></span>
                 </div>
 
                 <?php $properties_data=get_field('properties',get_the_ID());
@@ -522,7 +522,7 @@ function property_tabs_shortcode() {
 
                         <li class="item">
 
-                            <a href="<?php the_sub_field('location_share_button_link'); ?>">
+                            <a href="<?php the_sub_field('location_share_button_link'); ?>" target="_blank">
                                 <?php
 										$share_logo = get_sub_field('location_share_image');
 										if( !empty($share_logo) ):?>

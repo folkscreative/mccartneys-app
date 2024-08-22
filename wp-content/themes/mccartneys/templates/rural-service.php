@@ -63,6 +63,7 @@ get_header(); ?>
             ?>
 
             <div class="slide-wrap">
+            <a class="btn-transparent" href="<?php the_sub_field('service_cta_link'); ?>"><?php the_sub_field('service_cta_label'); ?></a>
             <?php       
                 if( !empty($sv_image) ):?>
                 <img src="<?php echo $sv_image['url']; ?>" alt="<?php echo $sv_image['alt']; ?>">
@@ -173,6 +174,15 @@ get_header(); ?>
             <div class="depart-slider depar">
             <?php while( have_rows('department_sale_slider') ): the_row(); ?>
             <div class="slide-wrap">
+            <?php 
+                        $department_sale_slider_link = get_sub_field('department_sale_slider_button');
+                        if( $department_sale_slider_link ): 
+                            $department_sale_slider_link_url = $department_sale_slider_link['url'];
+                            $department_sale_slider_link_title = $department_sale_slider_link['title'];
+                            $department_sale_slider_link_target = $department_sale_slider_link['target'] ? $department_sale_slider_link['target'] : '_self';
+                            ?>
+                            <a class="btn-transparent" href="<?php echo esc_url( $department_sale_slider_link_url ); ?>" target="<?php echo esc_attr( $department_sale_slider_link_target ); ?>"><?php echo esc_html( $department_sale_slider_link_title ); ?></a>
+                        <?php endif; ?>
             <?php
                 $department_slider_sale_image = get_sub_field('department_sale_image');
                 if( !empty($department_slider_sale_image) ):?>
@@ -396,6 +406,15 @@ get_header(); ?>
             <div class="depart-slider depar">
             <?php while( have_rows('our_departments_slider', 'option') ): the_row(); ?>
             <div class="slide-wrap">
+            <?php 
+                        $department_cartneys_slider_link = get_sub_field('department_slider_button', 'option');
+                        if( $department_cartneys_slider_link ): 
+                            $department_cartneys_slider_link_url = $department_cartneys_slider_link['url'];
+                            $department_cartneys_slider_link_title = $department_cartneys_slider_link['title'];
+                            $department_cartneys_slider_link_target = $department_cartneys_slider_link['target'] ? $department_cartneys_slider_link['target'] : '_self';
+                            ?>
+                            <a class="btn-transparent" href="<?php echo esc_url( $department_cartneys_slider_link_url ); ?>" target="<?php echo esc_attr( $department_cartneys_slider_link_target ); ?>"><?php echo esc_html( $department_cartneys_slider_link_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                        <?php endif; ?>
             <?php
                 $department_slider_bg_image = get_sub_field('our_departments_thumbnail', 'option');
                 if( !empty($department_slider_bg_image) ):?>

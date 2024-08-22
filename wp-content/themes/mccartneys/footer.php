@@ -31,6 +31,7 @@
                 if ( $insight_query->have_posts() ) :
                     while ( $insight_query->have_posts() ) : $insight_query->the_post(); ?>
                 <div class="slide-wrap">
+				<a href="<?php the_permalink(); ?>" class="btn-transparent">Read more</a>
                     <img src="<?php the_post_thumbnail_url(); ?>" alt="">
                     <div class="inner-content">
                         <h4><?php the_title(); ?></h4>
@@ -71,6 +72,7 @@
                 if ( $insight_query->have_posts() ) :
                     while ( $insight_query->have_posts() ) : $insight_query->the_post(); ?>
                 <div class="slide-wrap">
+				<a href="<?php the_permalink(); ?>" class="btn-transparent">Read more</a>
                     <img src="<?php the_post_thumbnail_url(); ?>" alt="">
                     <div class="inner-content">
                         <h4><?php the_title(); ?></h4>
@@ -111,9 +113,9 @@
 							<?php if( have_rows('social_media_buttons', 'option') ): ?>
 							<ul>
 							<?php while( have_rows('social_media_buttons', 'option') ): the_row(); ?>
-								<li><a href="<?php $social_link= get_sub_field('social_media_link'); 
+								<li><a href="<?php $social_link= the_sub_field('social_media_link'); 
 								echo $echo;
-								?>"><?php  $social_label = get_sub_field('social_media_label');
+								?>" target="_blank"><?php  $social_label = get_sub_field('social_media_label');
 								echo $social_label;
 								?></a></li>
 								<?php endwhile; ?>
@@ -210,9 +212,9 @@
 							<?php if( have_rows('social_media_buttons', 'option') ): ?>
 							<ul>
 							<?php while( have_rows('social_media_buttons', 'option') ): the_row(); ?>
-								<li><a href="<?php $social_link= get_sub_field('social_media_link'); 
+								<li><a href="<?php $social_link= the_sub_field('social_media_link'); 
 								echo $echo;
-								?>"><?php  $social_label = get_sub_field('social_media_label');
+								?>" target="_blank"><?php  $social_label = get_sub_field('social_media_label');
 								echo $social_label;
 								?></a></li>
 								<?php endwhile; ?>

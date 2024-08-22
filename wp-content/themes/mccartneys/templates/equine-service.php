@@ -60,6 +60,9 @@ get_header(); ?>
             <?php while( have_rows('services_details') ): the_row(); ?>
             <div class="slide-wrap">
             <?php if( get_sub_field('service_cta_label') ): ?>
+                    <a href="<?php the_sub_field('service_cta_link');?>" class="btn-transparent"><?php the_sub_field('service_cta_label');?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                    <?php endif; ?>
+            <?php if( get_sub_field('service_cta_label') ): ?>
                     <a href="<?php the_sub_field('service_cta_link');?>" class="btn-transparent"><?php the_sub_field('service_cta_label');?></a>
                     <?php endif; ?>
             <?php
