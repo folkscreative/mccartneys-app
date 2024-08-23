@@ -8366,6 +8366,18 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     .search-results .property .col-left img{
         min-height: 300px;
     }
+    .general-page-outer p{
+        font-size: 14px;
+        line-height: 25px;
+    }
+    .general-page-outer table tbody tr th{
+        font-size: 14px;
+        line-height: 25px;
+        padding: 10px;
+    }
+    .general-page-outer table td{
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 575px) {
@@ -10308,7 +10320,7 @@ body.post-type-archive-property .search-form--department {
     margin: 0;
 }
 .general-page-outer table td{
-    padding: 10px 0;
+    padding: 8px 20px;
 }
 .general-page-outer p{
     margin-bottom: 30px;

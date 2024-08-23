@@ -35,45 +35,43 @@ get_header();
 	<?Php endwhile;
 	endif;?>
 
+
 <section class="posts-single-data"> 
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-sm-6">
 				<div class="col-left">
-					<h4>Summary</h4>
+					<!-- <h4>Summary</h4>
 					<ul>
 						<li>Lorem ipsum dolor</li>
 						<li>Lorem ipsum dolor</li>
 						<li>Lorem ipsum dolor</li>
-					</ul>
-					<p><strong><?php echo get_the_date('M d, Y'); ?></strong></p>
+					</ul> -->
+					<p><strong><?php echo get_the_date('M/d/Y'); ?></strong></p>
                     <p><strong>Created by <?php the_author(); ?></strong></p>
                     <p><?php $category = get_the_category(); echo $category[0]->cat_name; ?></p>
                     <h4>Share</h4>
+                    
+
                     <?php
-                    // Facebook share URL
-                    $facebookShareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' . urlencode($url);
-
-                    // LinkedIn share URL
-                    $linkedinShareUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' . urlencode($url);
-
-                    // Instagram profile URL
-                    $instagramProfileUrl = 'https://www.instagram.com/your_username';
+                    $Url = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
+                    $Url .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
                     ?>
-
-                    <a href="<?php echo $facebookShareUrl; ?>" target="_blank">
+                    <!-- Facebook -->
+                    <a href="http://www.facebook.com/sharer.php?u=<?php echo $Url; ?>" target="_blank" style="text-decoration:none">
                         <img src="<?php echo get_template_directory_uri()?>/assets/images/facebook-grey.svg" alt="">
                     </a>
-                    
-                    <!-- LinkedIn Share Button -->
-                    <a href="<?php echo $linkedinShareUrl; ?>" target="_blank">
-                        <img src="<?php echo get_template_directory_uri()?>/assets/images/linkedin-grey.svg" alt="">
+
+                    <!-- LinkedIn -->
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?php echo $Url; ?>" target="_blank" style="text-decoration:none">
+                    <img src="<?php echo get_template_directory_uri()?>/assets/images/linkedin-grey.svg" alt="">
                     </a>
+
                     
-                    <!-- Instagram Profile Button -->
-                    <a href="<?php echo $instagramProfileUrl; ?>" target="_blank">
-                        <img src="<?php echo get_template_directory_uri()?>/assets/images/instagram-grey.svg" alt="">
-                    </a>
+                <!-- Instagram Profile Button -->
+                    <a class="fb-share" href="https://www.instagram.com/sharer.php?u=<?php echo $Url; ?>" target="_blank" style="text-decoration:none">
+                    <img src="<?php echo get_template_directory_uri()?>/assets/images/instagram-grey.svg" alt="">
+                </a>
                     
 				</div>
 			</div>
