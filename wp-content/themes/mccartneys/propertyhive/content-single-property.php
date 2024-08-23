@@ -298,7 +298,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam neque ultrices dipiscing eli mattis sit mattis sit phasellus phasellus mollis sit aliquam sit neque.</p>
                             <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>"
                 class="main-image property-featured-image" alt=" ><?php the_title(); ?>">
-                <a class="btn-cs-dark" href="#" target="_self">Request A Viewing<span><svg
+                <a class="btn-cs-dark" href="#" target="_self">Find out more<span><svg
                                     class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
                                     data-prefix="fas" data-icon="angle-right" role="img"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
