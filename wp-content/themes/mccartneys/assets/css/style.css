@@ -176,6 +176,9 @@ P {
     color: #fff;
     font-weight: 300;
 }
+.top-nav ul li:nth-last-child(2){
+    display: none;
+}
 
 .top-nav ul li:last-child a {
     font-weight: bold;
@@ -1915,12 +1918,16 @@ footer .cookies-menu ul li a {
 }
 .inner-banner-wrapper .content .breadcrumb p{
     margin: 0;
+    max-width: 100% !important;
 }
 
 .inner-banner-wrapper .content .breadcrumb span {
     font-size: 13px;
     line-height: 24px;
     font-weight: 300;
+}
+.inner-banner-wrapper .content .breadcrumb .separator{
+    display: none;
 }
 
 .inner-banner-wrapper .content .breadcrumb a::after {
@@ -2097,7 +2104,9 @@ footer .cookies-menu ul li a {
     color: #707070;
     font-weight: 500;
 }
-
+.pedigree-center .col-right .descr p a{
+    color: #707070 !important;
+}
 
 /* Pedigree Center ends */
 
@@ -2588,6 +2597,9 @@ footer .cookies-menu ul li a {
     font-size: 13px;
     line-height: 24px;
     font-weight: 300;
+}
+.main-banner .breadcrumb .separator{
+    display: none;
 }
 
 .main-banner.pro .breadcrumb a::after {
@@ -3784,6 +3796,9 @@ footer .cookies-menu ul li a {
     font-size: 13px;
     line-height: 24px;
     font-weight: 300;
+}
+.box-banner .content .breadcrumb .separator{
+    display: none;
 }
 
 .livestock-faqs.equine {
@@ -5036,7 +5051,25 @@ footer .cookies-menu ul li a {
 .charities-logos .container {
     max-width: 1170px;
 }
+.charities-logos .slick-dots{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 5px;
+    padding-top: 16px;
+}
+.charities-logos .slick-dots li button {
+    font-size: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #D0D3D4;
+    border: none;
+}
 
+.charities-logos .slick-dots .slick-active button {
+    background-color: #8D1F56;
+}
 .charities-logos .btn-cs-dark {
     min-width: 253px;
     margin: 50px auto 0;
@@ -5158,7 +5191,7 @@ footer .cookies-menu ul li a {
     content: "";
     position: absolute;
     width: 2px;
-    height: 90%;
+    height: 82%;
     background-color: #8D1F56;
     top: 50%;
     transform: translateY(-50%);
@@ -5247,9 +5280,16 @@ footer .cookies-menu ul li a {
 .timeline-wrapper .wrapper-time .iteml img {
     max-width: 256px;
     width: 100%;
-    margin-bottom: 26px;
+    /* margin-bottom: 26px; */
 }
-
+.timeline-wrapper .wrapper-time .iteml h3{
+    color: #707070;
+    margin-bottom: 20px;
+}
+.timeline-wrapper .wrapper-time .iteml p a{
+    color: #707070;
+    font-weight: 500;
+}
 .charities-logos.support {
     background: #FEF8F8;
     padding: 20px 0;
@@ -5361,6 +5401,9 @@ footer .cookies-menu ul li a {
     font-size: 13px;
     line-height: 24px;
     font-weight: 300;
+}
+.breadcrumb.mc .separator{
+    display: none;
 }
 .branch-single {
     border-top: 1px solid #D0D3D4;
@@ -5772,7 +5815,7 @@ footer .cookies-menu ul li a {
 }
 
 .box-banner.single .content {
-    max-width: 850px;
+    max-width: 700px;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
     border-bottom-right-radius: 35px;
@@ -6957,6 +7000,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     }
     .sell-properties-blocks .blocks {
         padding: 28px 25px 35px;
+        min-height: 200px;
     }
     .our-marketer.app .marketer-button a {
         min-width: 130px;
@@ -7083,7 +7127,8 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         height: 100%;
         top: 0;
         border-radius: 0px 0px 0 80px;
-        background: linear-gradient(272deg, rgba(0, 0, 0, 0) 50%, rgb(0 0 0 / 45%) 100%);
+        /* background: linear-gradient(272deg, rgba(0, 0, 0, 0) 50%, rgb(0 0 0 / 45%) 100%); */
+        background: linear-gradient(272deg, rgb(0 0 0 / 33%) 50%, rgb(0 0 0 / 45%) 100%);
     }
     .banner .container {
         padding: 0;
@@ -7356,11 +7401,11 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     }
     .cta-banner .col-left p {
         font-size: 15px;
-        padding-right: 30px;
+        padding-right: 0;
     }
     .cta-banner .col-left a {
-        min-width: 174px;
-        max-width: 174px;
+        min-width: 160px;
+        max-width: 160px;
     }
     .cta-banner .col-right {
         position: relative;
@@ -7539,7 +7584,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         padding: 78px 0 74px;
     }
     .our-marketer {
-        padding: 0 0 47px;
+        padding: 0 0 65px;
     }
     .our-marketer .col-left {
         max-width: 100%;
@@ -7668,7 +7713,9 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         min-height: 338px;
         overflow-x: hidden;
         background-position: center;
+        background-position: right;
     }
+    
     .inner-banner-wrapper .content h1 {
         margin: 36px 0 30px;
         max-width: 267px;
@@ -7936,7 +7983,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         border-radius: 5px;
     }
     .renewable-energy-wrapper .tabs-content {
-        padding: 40px 10px 30px;
+        padding: 40px 0 30px;
     }
     .renewable-energy-wrapper .tabs-wrapper::before {
         height: 130px;
@@ -7958,6 +8005,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     }
     .sale-info-box {
         padding: 80px 0 60px;
+        margin-top: -50px;
     }
     .recent-property-wrapper.area-guide {
         padding: 0 0 80px;
@@ -8070,6 +8118,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     }
     .support-cancer .col-left img {
         max-width: 270px;
+        margin-bottom: 25px;
     }
     .mc-awards .box .main {
         height: auto;
@@ -8128,7 +8177,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     }
     .contactus-banner .connect-wrap {
         justify-content: start;
-        margin-top: 0;
+        margin-top: 25px;
     }
     .insight-content .post {
         flex-direction: column;
@@ -8143,13 +8192,13 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         justify-content: start;
     }
     .post-boxes {
-        padding: 98px 0 180px;
+        padding: 20px 0 180px;
     }
     .post-boxes .pagination-container .prev {
-        bottom: -45px;
+        bottom: -80px;
     }
     .post-boxes .pagination-container .next {
-        bottom: -45px;
+        bottom: -80px;
     }
     .post .post-content {
         padding: 30px 24px 30px 24px;
@@ -8173,7 +8222,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         align-items: center;
     }
     .departments.others .depart-slider .slide-wrap .inner-content {
-        min-height: 55px;
+        min-height: 63px;
         display: flex;
         align-items: center;
     }
@@ -8193,6 +8242,15 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         display: flex;
         flex-direction: row;
         border-bottom: 1px solid #000;
+        position: relative;
+    }
+    .projects .table-wrapper .block .btn-transparent{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        color: transparent;
     }
     .projects .table-wrapper .block:nth-child(odd) {
         background-color: #FEF8F8;
@@ -8298,6 +8356,15 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     }
     .insights-wrapper .slide-wrap:hover .inner-content p{
         display: none !important;
+    }
+    .box-banner.auction{
+        margin-bottom: 70px;
+    }
+    .properties-center .col-right a{
+        margin-top: 40px;
+    }
+    .search-results .property .col-left img{
+        min-height: 300px;
     }
 }
 
@@ -8426,6 +8493,47 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     .guide-boxez .wrapper.last{
         flex-direction: column;
     }
+    .charities-logos .logo-chr img {
+        width: 86%;
+    }
+    .branch-single .single-content-details .inner-wrapper .col-right .office-cat-wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .branch-single .inner-wrapper .col-right .office-cat-wrap .items-wrap{
+        width: 50%;
+    }
+    .branch-single .inner-wrapper .col-right .office-cat-wrap .items-wrap .icn-img{
+        min-width: 37px;
+    }
+    .area-by-location .col-left .location-img{
+        max-width: 100%;
+    }
+    .area-by-location .col-left .location-img img{
+        height: 260px;
+        object-fit: cover;
+    }
+    .recent-property-wrapper .outer-wrapper .nav-tabs{
+        column-gap: 2px;
+        justify-content: space-between;
+    }
+    .recent-property-wrapper .outer-wrapper .nav-tabs li:first-child{
+        width: 27%;
+        text-align: center;
+    }
+    .recent-property-wrapper .outer-wrapper .nav-tabs li:nth-child(2){
+        width: 18%;
+        text-align: center;
+    }
+    .recent-property-wrapper .outer-wrapper .nav-tabs li:nth-child(3){
+        width: 18%;
+        text-align: center;
+    }
+    .recent-property-wrapper .outer-wrapper .nav-tabs li:last-child{
+        width: 33%;
+        text-align: center;
+    }
+    
 }
 
 
@@ -8444,7 +8552,7 @@ body.show {
     background: #fff;
     z-index: 3;
     overflow-y: scroll;
-    padding-bottom: 15px;
+    padding-bottom: 35px;
 }
 
 .main-popup::-webkit-scrollbar {
@@ -8468,16 +8576,17 @@ body.show {
 }
 
 .main-popup .menu-mb-top .site-logo {
-    flex-grow: 1;
     justify-content: center;
     display: flex;
-    padding-left: 10px
+    padding-left: 20px;
+    margin: 0 auto
 }
 
 .main-popup .menu-mb-top .hamburger-icn {
     position: absolute;
     right: 30px;
     cursor: pointer;
+    z-index: 1;
 }
 
 .main-popup .main-menu-header #menu-header-menu-mobile {
@@ -9658,6 +9767,9 @@ section.single-property--head {
     font-weight: 300;
     color: #707070;
 }
+.container.breadcrumb-wrap .breadcrumb .separator{
+    display: none;
+}
 .single-property .breadcrumb-wrap a.back-to-search {
     font-family: 'Gotham';
     font-size: 13px;
@@ -9931,7 +10043,7 @@ h1.property-address {
 @media screen and (max-width: 767px) {
     .single-property--info .mcc-badge-group {
         flex-wrap: wrap;
-        gap: 12px;
+        gap: 8px;
     }
     .single-property .property-media a{
         width: 48%;
@@ -9952,7 +10064,17 @@ h1.property-address {
     }
     .single-property--info .mcc-badge-group .mcc-badge {
         /* width: calc(50% - 10px); */
-        width: 48%;
+        width: 23%;
+        padding: 10px 6px 6px !important;
+    }
+    .mcc-badge-group.property-info .mcc-badge .feature-info h6{
+        font-size: 10px !important;
+        line-height: 12px !important;
+    }
+    .mcc-badge-group.property-info .mcc-badge .feature-info span{
+        font-size: 10px !important;
+        line-height: 12px !important;
+        display: inline-grid;
     }
     .single-property .property-media {
         flex-wrap: wrap;
@@ -10149,5 +10271,59 @@ body.post-type-archive-property .search-form--department {
     justify-content: space-between;
 }
 .single-property--head .agent-btns-mb a{
-    min-width: 47%;
+    max-width: 47%;
+    width: 100%;
 }
+.explore-info-wrap .mcc-badge-group-key img{
+    width: 100%;
+    height: 234px;
+    object-fit: cover;
+    margin-top: 22px;
+}
+.explore-info-wrap .mcc-badge-group-key a{
+    width: fit-content;
+    min-width: 199px;
+    margin-top: 69px;
+}
+
+/* general page */
+.general-page-outer {
+    color: #707070;
+    padding: 120px 0;
+}
+.general-page-outer .container{
+    max-width: 1170px;
+}
+.general-page-outer table{
+    border: none;
+}
+.general-page-outer table tbody tr:nth-child(even){
+    background-color: #8D1F56;
+    color: #fff;
+}
+.general-page-outer table tbody tr:nth-child(even) p{
+    color: #fff;
+}
+.general-page-outer table td p{
+    margin: 0;
+}
+.general-page-outer table td{
+    padding: 10px 0;
+}
+.general-page-outer p{
+    margin-bottom: 30px;
+}
+.general-page-outer p{
+    font-size: 16px;
+    line-height: 25px;
+    margin: 20px 0;
+    color: #707070;
+}
+.general-page-outer ul{
+    margin: 20px 0;
+}
+.general-page-outer p a{
+    color: #707070;
+    font-weight: 500;
+}
+/* general page css ends */

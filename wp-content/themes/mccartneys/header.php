@@ -123,7 +123,9 @@
 				<a href="<?php echo site_url(); ?>">
 				<img src="<?php echo get_template_directory_uri()?>/assets/images/mask-group-home.svg" alt="" class="site-logo">
 				</a>
-				<img src="<?php echo get_template_directory_uri()?>/assets/images/Icon - Search.svg" alt="" class="search-icn">
+					<a href="<?php echo site_url(); ?>/branch/"><img src="<?php echo get_template_directory_uri()?>/assets/images/call-home-btn.svg" alt="" class="search-icn"></a>
+				
+
 			</div>
 			<div class="wrapper">
 				<a href="#" class="hamburger-icn">
@@ -132,7 +134,8 @@
 				<a href="<?php echo site_url(); ?>">
 				<img src="<?php echo get_template_directory_uri()?>/assets/images/site-logo-dark-mb.svg" alt="" class="site-logo">
 				</a>
-				<img src="<?php echo get_template_directory_uri()?>/assets/images/search-dark-mb.svg" alt="" class="search-icn">
+				<a href="<?php echo site_url(); ?>/branch/"><img src="<?php echo get_template_directory_uri()?>/assets/images/call-dark-btn.svg" alt="" class="search-icn"></a>
+				
 			</div>
 		</div>
 	</header>

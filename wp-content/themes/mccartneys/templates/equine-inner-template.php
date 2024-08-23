@@ -89,7 +89,7 @@ get_header(); ?>
     
 
 
-    <!-- Our Marketer section start here -->
+   <!-- Our Marketer section start here -->
    <?php if( get_row_layout() == 'equine_app_content' ): ?>
     <section class="our-marketer equine app">
         <div class="container">
@@ -106,15 +106,6 @@ get_header(); ?>
                             <?php endif; ?>
                         <div class="marketer-buttons">
                         <?php 
-                        $eq_primary_button = get_sub_field('equine_app_primary_button');
-                        if( $eq_primary_button ): 
-                            $eq_primary_button_url = $eq_primary_button['url'];
-                            $eq_primary_button_title = $eq_primary_button['title'];
-                            $eq_primary_button_target = $eq_primary_button['target'] ? $eq_primary_button['target'] : '_self';
-                            ?>
-                            <a class="btn-cs-dark" href="<?php echo esc_url( $eq_primary_button_url ); ?>" target="<?php echo esc_attr( $eq_primary_button_target ); ?>"><?php echo esc_html( $eq_primary_button_title ); ?></a>
-                        <?php endif; ?>
-                     <?php 
                         $eq_secondary_button = get_sub_field('equine_app_secondary_button');
                         if( $eq_secondary_button ): 
                             $eq_secondary_button_url = $eq_secondary_button['url'];
@@ -123,6 +114,16 @@ get_header(); ?>
                             ?>
                             <a class="google-store" href="<?php echo esc_url( $eq_secondary_button_url ); ?>" target="<?php echo esc_attr( $eq_secondary_button_target ); ?>"><?php echo esc_html( $eq_secondary_button_title ); ?></a>
                         <?php endif; ?>
+                        <?php 
+                        $eq_primary_button = get_sub_field('equine_app_primary_button');
+                        if( $eq_primary_button ): 
+                            $eq_primary_button_url = $eq_primary_button['url'];
+                            $eq_primary_button_title = $eq_primary_button['title'];
+                            $eq_primary_button_target = $eq_primary_button['target'] ? $eq_primary_button['target'] : '_self';
+                            ?>
+                            <a class="btn-cs-dark" href="<?php echo esc_url( $eq_primary_button_url ); ?>" target="<?php echo esc_attr( $eq_primary_button_target ); ?>"><?php echo esc_html( $eq_primary_button_title ); ?></a>
+                        <?php endif; ?>
+                     
                         </div>
                         </div>
                 </div>

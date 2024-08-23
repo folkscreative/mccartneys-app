@@ -198,9 +198,8 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         <?php if ($floorplans) { ?>
                         <a id="floorplanMedia">
                             <li class="property-media--floorplan">
-                                <img class="media-icon"
-                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/floorplan-icon.svg"
-                                    alt="">
+                                <img class="media-icon d-none d-md-block" src="<?php echo get_template_directory_uri(); ?>/assets/images/floorplan-icon.svg" alt="">
+                                <img class="media-icon d-block d-md-none" src="<?php echo get_template_directory_uri(); ?>/assets/images/floor-plan-dark.svg" alt="">
                                 <span>Floorplan</span>
                             </li>
                         </a>
@@ -208,9 +207,8 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         if ($virtual_tours) { ?>
                         <a id="virtualTourMedia">
                             <li class="property-media--virtual-tour">
-                                <img class="media-icon"
-                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/virtual-tour-icon.svg"
-                                    alt="">
+                                <img class="media-icon d-none d-md-block" src="<?php echo get_template_directory_uri(); ?>/assets/images/virtual-tour-icon.svg" alt="">
+                                <img class="media-icon d-block d-md-none" src="<?php echo get_template_directory_uri(); ?>/assets/images/virtual-tour-dark.svg" alt="">
                                 <span>Virtual Tour</span>
                             </li>
                         </a>
@@ -218,9 +216,8 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         if ($virtual_tours) { ?>
                         <a id="videoTourMedia">
                             <li class="property-media--video-tour">
-                                <img class="media-icon"
-                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/video-tour-icon.svg"
-                                    alt="">
+                                <img class="media-icon d-none d-md-block" src="<?php echo get_template_directory_uri(); ?>/assets/images/video-tour-icon.svg" alt="">
+                                <img class="media-icon d-block d-md-none" src="<?php echo get_template_directory_uri(); ?>/assets/images/video-tour-dark.svg" alt="">
                                 <span>Video Tour</span>
                             </li>
                         </a>
@@ -229,9 +226,8 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         <a href="<?php echo wp_get_attachment_url($brochures[0]);  ?>" target="_blank"
                             id="brochureMedia">
                             <li class="property-media--brochure">
-                                <img class="media-icon"
-                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/brochure-icon.svg"
-                                    alt="">
+                                <img class="media-icon d-none d-md-block" src="<?php echo get_template_directory_uri(); ?>/assets/images/brochure-icon.svg" alt="">
+                                <img class="media-icon d-block d-md-none" src="<?php echo get_template_directory_uri(); ?>/assets/images/brochure-dark.svg" alt="">
                                 <span>Brochure</span>
                             </li>
                         </a>
@@ -239,8 +235,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         if ($epcs) { ?>
                         <a id="epcMedia">
                             <li class="property-media--epc">
-                                <img class="media-icon"
-                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/epc-icon.svg" alt="">
+                                <img class="media-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/epc-icon.svg" alt="">
                                 <span>EPC</span>
                             </li>
                         </a>
@@ -296,6 +291,24 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
                         </div>
                     </div>
+
+                    <div class="explore-info-wrap">
+                        <h4>Explore the area</h4>
+                        <div class="mcc-badge-group-key">
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam neque ultrices dipiscing eli mattis sit mattis sit phasellus phasellus mollis sit aliquam sit neque.</p>
+                            <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>"
+                class="main-image property-featured-image" alt=" ><?php the_title(); ?>">
+                <a class="btn-cs-dark" href="#" target="_self">Request A Viewing<span><svg
+                                    class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
+                                    data-prefix="fas" data-icon="angle-right" role="img"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                        d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
+                                    </path>
+                                </svg></span></a>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="col-12 col-md-4 branch-info-wrap d-none d-md-block">

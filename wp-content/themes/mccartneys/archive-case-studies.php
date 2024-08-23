@@ -22,7 +22,7 @@ $query = new WP_Query(array(
     'order' => 'DESC' )); 
 if ($query->have_posts()) :
     while ($query->have_posts()) : $query->the_post(); ?>
-        <div class="post">
+        <div class="post d-none d-md-flex">
             <?php if (has_post_thumbnail()) : ?>
                 <div class="post-thumbnail">
                 <a class="btn-transparent" href="<?php the_permalink(); ?>">Link</a>

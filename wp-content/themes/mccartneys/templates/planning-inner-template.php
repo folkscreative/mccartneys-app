@@ -82,6 +82,7 @@ get_header(); ?>
         <?php if( have_rows('project_details') ): ?>
             <?php while( have_rows('project_details') ): the_row(); ?>
             <div class="block">
+            <a href="<?php the_sub_field('reference_link'); ?>" class="btn-transparent"><?php the_sub_field('reference'); ?></a>
                 <div class="col-left">
                 <p><a href="<?php the_sub_field('reference_link'); ?>"><?php the_sub_field('reference'); ?></a></p>
                 <p><?php the_sub_field('project_date'); ?></p>

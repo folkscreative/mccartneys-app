@@ -92,7 +92,7 @@ get_header(); ?>
 
     <!-- Support charities -->
     <?php if( get_row_layout() == 'support_charities' ): ?>
-     <section class="charities-logos support">
+     <section class="charities-logos support d-none d-sm-block">
         <div class="container">
             <div class="justify-content-center justify-content-md-between row">
             <?php if( have_rows('mc_charities_logos') ):
@@ -105,6 +105,36 @@ get_header(); ?>
                     <?php endif; ?>
                     </div>
                 </div>
+            <?php endwhile; ?><?php endif;?>
+            </div>
+            <?php 
+            $charity_button = get_sub_field('support_charities_button');
+            if( $charity_button ): 
+                $charity_button_url = $charity_button['url'];
+                $charity_button_title = $charity_button['title'];
+                $charity_button_target = $charity_button['target'] ? $charity_button['target'] : '_self';
+                ?>
+                <a class="btn-cs-dark" href="<?php echo esc_url( $charity_button_url ); ?>" target="<?php echo esc_attr( $charity_button_target ); ?>"><?php echo esc_html( $charity_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+            <?php endif; ?>
+        </div>
+     </section>
+     <?php endif; ?>
+    <!-- Support charities ends -->
+     <!-- Support charities -->
+    <?php if( get_row_layout() == 'support_charities' ): ?>
+     <section class="charities-logos support d-block d-sm-none">
+        <div class="container">
+            <div class="charit-wrap">
+            <?php if( have_rows('mc_charities_logos') ):
+                while ( have_rows('mc_charities_logos') ) : the_row();?>
+                
+                    <div class="logo-chr">
+                    <?php $charity_logo = get_sub_field('charities_logo');
+                    if( !empty($charity_logo) ):?>
+                    <img src="<?php echo $charity_logo['url']; ?>" alt="<?php echo $charity_logo['alt']; ?>">
+                    <?php endif; ?>
+                    </div>
+                
             <?php endwhile; ?><?php endif;?>
             </div>
             <?php 

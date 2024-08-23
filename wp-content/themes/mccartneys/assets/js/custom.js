@@ -74,6 +74,26 @@ $(document).ready(function(){
       $currentSlide.text(currentSlide + 1);
     });
   });
+  // charity
+$('.charit-wrap').slick({
+    dots: true,
+    arrows: false,
+    infinite: true,
+    autoplay: false,
+    autoplaySpeed: 2000,
+    speed: 300,
+    slidesToShow: 3,
+    slideToScroll: 1,
+    responsive: [{
+        breakpoint: 576,
+        settings: {
+            slidesToShow: 2,
+            centerMode: false,
+            /* set centerMode to false to show complete slide instead of 3 */
+            slidesToScroll: 1
+        }
+    }]
+});
 // daper
 $('.depar').slick({
     dots: true,
