@@ -8580,7 +8580,10 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         font-size: 14px;
     }
     .property-wrapper.mb .accordion-button{
-        padding: 19px 16px 22px 0;
+        padding: 19px 16px 0 0;
+    }
+    .property-wrapper.mb .accordion-body{
+        margin-top: 30px;
     }
     .property-wrapper.mb .accordion-body{
         padding: 23px 30px;
