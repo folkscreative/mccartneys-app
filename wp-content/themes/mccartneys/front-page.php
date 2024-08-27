@@ -108,6 +108,17 @@
     <!-- End Property section here -->
 
 
+        <!-- Start Property section here -->
+        <section class="property-wrapper">
+        <div class="container">
+            <h2 class="title"><?php the_field('our_locatinos_title'); ?></h2>
+            <p class="description"><?php the_field('our_location_description'); ?></p>
+            <?php echo do_shortcode('[property_mobile_tabs]'); ?>
+        </div>
+    </section>
+    <!-- End Property section here -->
+
+
     <!-- recent property section start here -->
     <?php if( have_rows('blocks') ): ?>
     <?php while( have_rows('blocks') ): the_row(); ?>

@@ -1405,3 +1405,143 @@ function allow_iframes_for_admins($allowedposttags) {
     return $allowedposttags;
 }
 add_filter('wp_kses_allowed_html', 'allow_iframes_for_admins', 1);
+
+
+
+//Office Accordian for mobile
+
+function property_mobile_tabs_shortcode() {
+    // Get all office categories
+    $terms = get_terms( array(
+        'taxonomy' => 'office location',
+        'hide_empty' => false,
+    ) );
+
+    if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+        ob_start(); // Start output buffering
+
+        echo '<div class="accordion" id="propertyAccordion">'; // Accordion wrapper
+        $first_item = true;
+        foreach ( $terms as $term ) {
+            $term_slug = esc_attr( $term->slug );
+            $term_name = esc_html( $term->name );
+
+            // Accordion item
+            echo '<div class="accordion-item">';
+            echo '<h2 class="accordion-header" id="heading-' . $term_slug . '">';
+            echo '<button class="accordion-button' . ( $first_item ? '' : ' collapsed' ) . '" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-' . $term_slug . '" aria-expanded="' . ( $first_item ? 'true' : 'false' ) . '" aria-controls="collapse-' . $term_slug . '">';
+            echo $term_name;
+            echo '</button>';
+            echo '</h2>';
+
+            // Accordion body
+            echo '<div id="collapse-' . $term_slug . '" class="accordion-collapse collapse' . ( $first_item ? ' show' : '' ) . '" aria-labelledby="heading-' . $term_slug . '" data-bs-parent="#propertyAccordion">';
+            echo '<div class="accordion-body">';
+
+            $query = new WP_Query( array(
+                'post_type' => 'branch',
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'office location',
+                        'field'    => 'slug',
+                        'terms'    => $term->slug,
+                    ),
+                ),
+            ) );
+
+            if ( $query->have_posts() ) {
+                echo '<div class="outer-wrap">';
+                while ( $query->have_posts() ) {
+                    $query->the_post();
+
+                    // Accordion content for each post
+                    echo '<div class="row g-0 flex-column-reverse flex-md-row">';
+                    echo '<div class="col-12 col-md-7">';
+                    echo '<div class="col-left">';
+                    echo '<h4 class="d-none d-md-block">' . get_the_title() . '</h4>';
+                    echo '<p>' . get_field('stree_no') . ' ' . get_field('stree_name') . ' ' . get_field('town') . ' ' . get_field('postcode') . '</p>';
+
+                    // Sales number
+                    echo '<div class="sale-nmbr">';
+                    echo '<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">';
+                    echo '<span><strong>Sales </strong><a href="tel:' . get_field('sales_number') . '">' . get_field('sales_number') . '</a></span>';
+                    echo '</div>';
+
+                    // Lettings number (shown only on larger screens)
+                    echo '<div class="sale-nmbr d-none d-md-flex">';
+                    echo '<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">';
+                    echo '<span><strong>Lettings </strong><a href="tel:' . get_field('lettings_number') . '">' . get_field('lettings_number') . '</a></span>';
+                    echo '</div>';
+
+                    // Categories list
+                    echo '<ul class="office-cat-wrap">';
+                    if(get_field('properties') == 'True') {
+                        echo '<li class="items-wrap"><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/properties-vector-1.svg"><span>Properties</span></li>';
+                    }
+                    if(get_field('livestock') == 'True') {
+                        echo '<li class="items-wrap"><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/livestock-logo-1.svg"><span>Livestock</span></li>';
+                    }
+                    if(get_field('planning_survey') == 'True') {
+                        echo '<li class="items-wrap"><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/planning-logo-1.svg"><span>Planning & Survay</span></li>';
+                    }
+                    if(get_field('antiques') == 'True') {
+                        echo '<li class="items-wrap"><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/antiques-logo-1.svg"><span>Antiques</span></li>';
+                    }
+                    if(get_field('equine') == 'True') {
+                        echo '<li class="items-wrap"><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/equine-icon.svg"><span>Equine</span></li>';
+                    }
+                    if(get_field('rural') == 'True') {
+                        echo '<li class="items-wrap"><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/rural-icon.svg"><span>Rural</span></li>';
+                    }
+                    echo '</ul>';
+
+                    // View more and share buttons
+                    echo '<div class="bottom-btn-wrap">';
+                    echo '<a href="' . get_permalink() . '" class="btn-cs-dark">View more <span><i class="fa-solid fa-angle-right"></i></span></a>';
+                    if( have_rows('office_share_buttons', 'option') ) {
+                        echo '<ul class="share-buttons-wrap d-none d-md-flex">';
+                        while( have_rows('office_share_buttons', 'option') ): the_row();
+                            $share_logo = get_sub_field('location_share_image');
+                            echo '<li class="item"><a href="' . get_sub_field('location_share_button_link') . '" target="_blank">';
+                            if( !empty($share_logo) ) {
+                                echo '<img src="' . $share_logo['url'] . '" alt="' . $share_logo['alt'] . '">';
+                            }
+                            echo '</a></li>';
+                        endwhile;
+                        echo '</ul>';
+                    }
+                    echo '</div>'; // .bottom-btn-wrap
+                    echo '</div>'; // .col-left
+                    echo '</div>'; // .col-12.col-md-7
+
+                    // Post thumbnail
+                    if ( has_post_thumbnail() ) {
+                        echo '<div class="col-12 col-md-5">';
+                        echo '<div class="col-right">';
+                        echo '<h4 class="d-block d-md-none">' . get_the_title() . '</h4>';
+                        the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );
+                        echo '</div>'; // .col-right
+                        echo '</div>'; // .col-12.col-md-5
+                    }
+
+                    echo '</div>'; // .row.g-0
+                } // endwhile
+                echo '</div>'; // .outer-wrap
+            } else {
+                echo '<p>No properties found in this category.</p>';
+            }
+
+            wp_reset_postdata();
+            echo '</div>'; // .accordion-body
+            echo '</div>'; // .accordion-collapse
+            echo '</div>'; // .accordion-item
+
+            $first_item = false;
+        } // endforeach
+
+        echo '</div>'; // #propertyAccordion
+
+        return ob_get_clean();
+    }
+}
+add_shortcode( 'property_mobile_tabs', 'property_mobile_tabs_shortcode' );
