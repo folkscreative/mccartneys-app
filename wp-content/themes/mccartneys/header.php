@@ -123,7 +123,7 @@
 				<a href="<?php echo site_url(); ?>">
 				<img src="<?php echo get_template_directory_uri()?>/assets/images/mask-group-home.svg" alt="" class="site-logo">
 				</a>
-					<a href="<?php echo site_url(); ?>/branch/"><img src="<?php echo get_template_directory_uri()?>/assets/images/call-home-btn.svg" alt="" class="search-icn"></a>
+					<a href="<?php echo site_url(); ?>/contact-us/"><img src="<?php echo get_template_directory_uri()?>/assets/images/call-home-btn.svg" alt="" class="search-icn"></a>
 				
 
 			</div>
@@ -134,7 +134,7 @@
 				<a href="<?php echo site_url(); ?>">
 				<img src="<?php echo get_template_directory_uri()?>/assets/images/site-logo-dark-mb.svg" alt="" class="site-logo">
 				</a>
-				<a href="<?php echo site_url(); ?>/branch/"><img src="<?php echo get_template_directory_uri()?>/assets/images/call-dark-btn.svg" alt="" class="search-icn"></a>
+				<a href="<?php echo site_url(); ?>/contact-us/"><img src="<?php echo get_template_directory_uri()?>/assets/images/call-dark-btn.svg" alt="" class="search-icn"></a>
 				
 			</div>
 		</div>
@@ -176,7 +176,7 @@
 					?>
 					<a href="<?php echo esc_url( $header_main_btn_url ); ?>" target="<?php echo esc_attr( $header_main_btn_target ); ?>"><?php echo esc_html( $header_main_btn_title ); ?></a>
 				<?php endif; ?>
-				<img src="<?php echo get_template_directory_uri()?>/assets/images/instant-valuation-icn.svg" alt="">
+				<!-- <img src="<?php echo get_template_directory_uri()?>/assets/images/instant-valuation-icn.svg" alt=""> -->
 			</div>
 			</div>
 		</div>
