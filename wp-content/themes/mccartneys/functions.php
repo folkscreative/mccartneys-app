@@ -143,7 +143,9 @@ function mccartneys_scripts() {
 
 	wp_enqueue_script( 'mccartneys-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
     wp_enqueue_script( 'mccartneys-ph-search-features', get_template_directory_uri() . '/js/ph-search-features.js', array( 'jquery' ), _S_VERSION, true );
-    wp_enqueue_script( 'jquery-ui', get_template_directory_uri() . '/assets/js/jquery-ui.min.js', array( 'jquery' ), _S_VERSION, true );
+    wp_enqueue_script( 'jquery-ui-core', array( 'jquery' ), true );
+    wp_enqueue_script( 'jquery-ui-slider', array( 'jquery' ), true );
+    wp_enqueue_style( 'jquery-ui-css', get_template_directory_uri() . '/assets/css/jquery-ui.min.css', _S_VERSION );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -204,7 +206,8 @@ function mccartneys()
 	wp_enqueue_style('style-cs', get_template_directory_uri() . '/assets/css/style.css','', 'all');
 
     // Adding scripts file in the footer
-	wp_enqueue_script('Jquery','https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js', array('jquery'), '', true);
+	// wp_enqueue_script('Jquery','https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js', array('jquery'), '', true);
+    wp_enqueue_script('jquery', true);
     wp_enqueue_script('load-lightbox-script','https://mreq.github.io/slick-lightbox/dist/slick-lightbox.js');
     wp_enqueue_script('load-fa-script','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js');
 	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '', 'all');
@@ -444,13 +447,15 @@ function property_tabs_shortcode() {
                 <div class="sale-nmbr">
                     <img
                         src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
-                    <span><strong>Sales </strong><a href="tel:<?php the_field('sales_number');?>"><?php the_field('sales_number');?></a></span>
+                    <span><strong>Sales </strong><a
+                            href="tel:<?php the_field('sales_number');?>"><?php the_field('sales_number');?></a></span>
                 </div>
 
                 <div class="sale-nmbr d-none d-md-flex">
                     <img
                         src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
-                    <span><strong>Lettings </strong><a href="tel:<?php the_field('lettings_number');?>"><?php the_field('lettings_number');?></a></span>
+                    <span><strong>Lettings </strong><a
+                            href="tel:<?php the_field('lettings_number');?>"><?php the_field('lettings_number');?></a></span>
                 </div>
 
                 <?php $properties_data=get_field('properties',get_the_ID());
@@ -830,7 +835,7 @@ function set_last_search()
 //         $tax_query[] = array(
 //             'taxonomy' => 'availability',
 //             'field' => 'term_id',
-//             'terms' => array(10, 14), 
+//             'terms' => array(103, 109), 
 //             'operator' => 'IN'
 //         );
 //     }
@@ -850,81 +855,81 @@ function set_last_search()
 
 // 3. SEO Friendly Search Result URLs
 // See snippet here: https://docs.wp-property-hive.com/article/618-creating-seo-friendly-search-results-urls
-add_filter( 'query_vars', 'propertyhive_register_query_vars' );
-function propertyhive_register_query_vars( $vars )
-{
-    $vars[] = 'property_search_criteria';
-    return $vars;
-}
+// add_filter( 'query_vars', 'propertyhive_register_query_vars' );
+// function propertyhive_register_query_vars( $vars )
+// {
+//     $vars[] = 'property_search_criteria';
+//     return $vars;
+// }
 
-add_action( 'init', 'propertyhive_add_rewrite_rules' );
-function propertyhive_add_rewrite_rules()
-{
-    global $wp_rewrite;
+// add_action( 'init', 'propertyhive_add_rewrite_rules' );
+// function propertyhive_add_rewrite_rules()
+// {
+//     global $wp_rewrite;
 
-    $post = get_post( ph_get_page_id('search_results') );
+//     $post = get_post( ph_get_page_id('search_results') );
 
-    if ( $post instanceof WP_Post )
-    {
-        add_rewrite_rule( $post->post_name . "/(.*)/{$wp_rewrite->pagination_base}/([0-9]{1,})/?$", 'index.php?post_type=property&property_search_criteria=$matches[1]&paged=$matches[2]', 'top' );
-        add_rewrite_rule( $post->post_name . "/(.*)/?$", 'index.php?post_type=property&property_search_criteria=$matches[1]', 'top' );
-    }
-}
+//     if ( $post instanceof WP_Post )
+//     {
+//         add_rewrite_rule( $post->post_name . "/(.*)/{$wp_rewrite->pagination_base}/([0-9]{1,})/?$", 'index.php?post_type=property&property_search_criteria=$matches[1]&paged=$matches[2]', 'top' );
+//         add_rewrite_rule( $post->post_name . "/(.*)/?$", 'index.php?post_type=property&property_search_criteria=$matches[1]', 'top' );
+//     }
+// }
 
-add_action( 'parse_request', 'propertyhive_parse_request' );
-function propertyhive_parse_request($wp_query)
-{
-    // First we do redirect if on the search page and have received the standard query string parameters
-    if ( !is_admin() && !isset($wp_query->query_vars['property']) && isset($wp_query->query_vars['post_type']) && $wp_query->query_vars['post_type'] == 'property' && !isset($wp_query->query_vars['p']) && !isset($wp_query->query_vars['name']) )
-    {
-        $new_url_segments = array();
-        if ( !empty($_GET) )
-        {
-            foreach ( $_GET as $key => $value )
-            {
-                if ( is_array($value) )
-                {
-                    $value = 'multi-' . implode("|", $value);
-		}
-                if ( trim($value) != '' )
-                {
-                    $new_url_segments[] = $key . '/' . urlencode($value);
-                }
-            }
-            if ( !empty($new_url_segments) )
-            {
-                wp_redirect( get_permalink( ph_get_page_id('search_results') ) . implode("/", $new_url_segments) . '/', 301 );
-                exit();
-            }
-        }
-    }
+// add_action( 'parse_request', 'propertyhive_parse_request' );
+// function propertyhive_parse_request($wp_query)
+// {
+//     // First we do redirect if on the search page and have received the standard query string parameters
+//     if ( !is_admin() && !isset($wp_query->query_vars['property']) && isset($wp_query->query_vars['post_type']) && $wp_query->query_vars['post_type'] == 'property' && !isset($wp_query->query_vars['p']) && !isset($wp_query->query_vars['name']) )
+//     {
+//         $new_url_segments = array();
+//         if ( !empty($_GET) )
+//         {
+//             foreach ( $_GET as $key => $value )
+//             {
+//                 if ( is_array($value) )
+//                 {
+//                     $value = 'multi-' . implode("|", $value);
+// 		}
+//                 if ( trim($value) != '' )
+//                 {
+//                     $new_url_segments[] = $key . '/' . urlencode($value);
+//                 }
+//             }
+//             if ( !empty($new_url_segments) )
+//             {
+//                 wp_redirect( get_permalink( ph_get_page_id('search_results') ) . implode("/", $new_url_segments) . '/', 301 );
+//                 exit();
+//             }
+//         }
+//     }
 
-    // Now parse nice SEO URL back into $_GET
-    foreach ($wp_query->query_vars as $name => $value)
-    {
-        if ($name == 'property_search_criteria' && $value != '')
-        {
-            // Split property search criteria into blocks:
-            // department/X
-            // minimum_price/X
-            // etc
-            $segments = array_map(
-                function($value) {
-                    return implode('/', $value);
-                },
-                 array_chunk(explode('/', $value), 2)
-            );
+//     // Now parse nice SEO URL back into $_GET
+//     foreach ($wp_query->query_vars as $name => $value)
+//     {
+//         if ($name == 'property_search_criteria' && $value != '')
+//         {
+//             // Split property search criteria into blocks:
+//             // department/X
+//             // minimum_price/X
+//             // etc
+//             $segments = array_map(
+//                 function($value) {
+//                     return implode('/', $value);
+//                 },
+//                  array_chunk(explode('/', $value), 2)
+//             );
 
-            // Now turn these into $_GET and $_REQUEST
-            foreach ($segments as $segment)
-            {
-                $explode_segment = explode('/', $segment);
-                $_GET[$explode_segment[0]] = strpos(urldecode($explode_segment[1]), 'multi-') !== FALSE ? explode("|", str_replace("multi-", "", urldecode($explode_segment[1]))) : urldecode($explode_segment[1]);
-                $_REQUEST[$explode_segment[0]] = strpos(urldecode($explode_segment[1]), 'multi-') !== FALSE ? explode("|", str_replace("multi-", "", urldecode($explode_segment[1]))) : urldecode($explode_segment[1]);
-            }
-        }
-    }
-}
+//             // Now turn these into $_GET and $_REQUEST
+//             foreach ($segments as $segment)
+//             {
+//                 $explode_segment = explode('/', $segment);
+//                 $_GET[$explode_segment[0]] = strpos(urldecode($explode_segment[1]), 'multi-') !== FALSE ? explode("|", str_replace("multi-", "", urldecode($explode_segment[1]))) : urldecode($explode_segment[1]);
+//                 $_REQUEST[$explode_segment[0]] = strpos(urldecode($explode_segment[1]), 'multi-') !== FALSE ? explode("|", str_replace("multi-", "", urldecode($explode_segment[1]))) : urldecode($explode_segment[1]);
+//             }
+//         }
+//     }
+// }
 
 // 4. SEO Friendly Property URLs
 // See snippet here: https://docs.wp-property-hive.com/article/619-creating-seo-friendly-property-details-urls
@@ -1107,6 +1112,41 @@ function mcc_ph_search() {
             <div class="search-form-dropdown--options">
                 <!-- Sales Pricing Slider -->
                 <div class="range-slider sales-only">
+                    <div id="sales-slider-range"></div>
+                    <div class="range-values">
+                        <div class="price-wrap minWrap">
+                            <span class="price-title minTitle">Min. Price</span>
+                            <span id="minValueSales">£0</span>
+                        </div>
+                        <div class="price-wrap maxWrap">
+                            <span class="price-title maxTitle">Max. Price</span>
+                            <span id="maxValueSales">£10,000,000</span>
+                        </div>
+                    </div>
+                    <input type="hidden" name="minimum_price" id="minimum_price_input" value="0">
+                    <input type="hidden" name="maximum_price" id="maximum_price_input" value="10000000">
+                </div>
+
+                <!-- Rental Pricing Slider -->
+                <div class="range-slider lettings-only" style="display: none;">
+                    <div id="lettings-slider-range"></div>
+                    <div class="range-values">
+                        <div class="price-wrap minWrap">
+                            <span class="price-title minTitle">Min. Rent</span>
+                            <span id="minValueLettings">£0 pcm</span>
+                        </div>
+                        <div class="price-wrap maxWrap">
+                            <span class="price-title maxTitle">Max. Rent</span>
+                            <span id="maxValueLettings">£10,000 pcm</span>
+                        </div>
+                    </div>
+                    <input type="hidden" name="minimum_rent" id="minimum_rent_input" value="0">
+                    <input type="hidden" name="maximum_rent" id="maximum_rent_input" value="10000">
+                </div>
+
+
+                <!-- Sales Pricing Slider -->
+                <!-- <div class="range-slider sales-only">
                     <input type="range" id="minPriceSales" name="minimum_price" min="0" max="1000000" value="0"
                         step="1000">
                     <input type="range" id="maxPriceSales" name="maximum_price" min="400000" max="10000000"
@@ -1123,9 +1163,9 @@ function mcc_ph_search() {
                             <span id="maxValueSales">£10,000,000</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- Rental Pricing Slider -->
-                <div class="range-slider lettings-only" style="display: none;">
+                <!-- <div class="range-slider lettings-only" style="display: none;">
                     <input type="range" id="minPriceLettings" name="minimum_rent" min="0" max="1000" value="0"
                         step="250">
                     <input type="range" id="maxPriceLettings" name="maximum_rent" min="1000" max="10000" value="10000"
@@ -1142,7 +1182,7 @@ function mcc_ph_search() {
                             <span id="maxValueLettings">£10,000 pcm</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

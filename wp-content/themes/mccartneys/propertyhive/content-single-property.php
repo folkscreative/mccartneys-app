@@ -65,13 +65,13 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
         <div class="container property-gallery d-none d-md-flex">
 
             <div class="wrapper-main-img">
-            <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>"
-                class="main-image property-featured-image" alt="><?php the_title(); ?>">
-            <div class="gallery-count mcc-badge">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/gallery-icon.svg" alt=""
-                    class="badge-icon">
-                <a id="galleryMedia">1/<?php echo $galleryAttachmentCount ?></a>
-            </div>
+                <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>"
+                    class="main-image property-featured-image" alt="><?php the_title(); ?>">
+                <div class="gallery-count mcc-badge">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/gallery-icon.svg" alt=""
+                        class="badge-icon">
+                    <a id="galleryMedia">1/<?php echo $galleryAttachmentCount ?></a>
+                </div>
             </div>
 
             <div class="side-images">
@@ -85,7 +85,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
         <div class="container property-gallery-mb d-block d-md-none">
 
             <div class="gallery-thumbnail">
-       <?php 
+                <?php 
        if ($gallery_attachments && is_array($gallery_attachments)) {
         foreach ($gallery_attachments as $attachment_id) {
             // Get the URL of the attachment image
@@ -102,16 +102,16 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
         echo '<p>No images found in the gallery.</p>';
     }
     ?>
-        </div>
-        <div class="number-indicator">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/gallery-icon.svg" alt=""
-        class="badge-icon">
-        <span class="current-slide">1</span> / <span class="total-slides">4</span>
-        </div>
+            </div>
+            <div class="number-indicator">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/gallery-icon.svg" alt=""
+                    class="badge-icon">
+                <span class="current-slide">1</span> / <span class="total-slides">4</span>
+            </div>
         </div>
 
         <div class="agent-btns-mb d-flex d-md-none">
-        <?php if ( $property->office_telephone_number != '' )
+            <?php if ( $property->office_telephone_number != '' )
                         {	
                             echo '<a class="btn-cs-dark" href="tel:' . esc_attr($property->office_telephone_number) . '">';
                             echo 'Call agent <span><i class="fa-solid fa-angle-right"></i></span>';
@@ -181,8 +181,8 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
 
                         <li class="mcc-badge">
-                            <img class="badge-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/recep-room.png"
-                                alt="">
+                            <img class="badge-icon"
+                                src="<?php echo get_template_directory_uri(); ?>/assets/images/recep-room.png" alt="">
                             <div class="feature-info">
                                 <h6>Reception Rooms</h6>
                                 <span><?php echo $property->reception_rooms; ?></span>
@@ -198,8 +198,12 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         <?php if ($floorplans) { ?>
                         <a id="floorplanMedia">
                             <li class="property-media--floorplan">
-                                <img class="media-icon d-none d-md-block" src="<?php echo get_template_directory_uri(); ?>/assets/images/floorplan-icon.svg" alt="">
-                                <img class="media-icon d-block d-md-none" src="<?php echo get_template_directory_uri(); ?>/assets/images/floor-plan-dark.svg" alt="">
+                                <img class="media-icon d-none d-md-block"
+                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/floorplan-icon.svg"
+                                    alt="">
+                                <img class="media-icon d-block d-md-none"
+                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/floor-plan-dark.svg"
+                                    alt="">
                                 <span>Floorplan</span>
                             </li>
                         </a>
@@ -207,8 +211,12 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         if ($virtual_tours) { ?>
                         <a id="virtualTourMedia">
                             <li class="property-media--virtual-tour">
-                                <img class="media-icon d-none d-md-block" src="<?php echo get_template_directory_uri(); ?>/assets/images/virtual-tour-icon.svg" alt="">
-                                <img class="media-icon d-block d-md-none" src="<?php echo get_template_directory_uri(); ?>/assets/images/virtual-tour-dark.svg" alt="">
+                                <img class="media-icon d-none d-md-block"
+                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/virtual-tour-icon.svg"
+                                    alt="">
+                                <img class="media-icon d-block d-md-none"
+                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/virtual-tour-dark.svg"
+                                    alt="">
                                 <span>Virtual Tour</span>
                             </li>
                         </a>
@@ -216,8 +224,12 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         if ($virtual_tours) { ?>
                         <a id="videoTourMedia">
                             <li class="property-media--video-tour">
-                                <img class="media-icon d-none d-md-block" src="<?php echo get_template_directory_uri(); ?>/assets/images/video-tour-icon.svg" alt="">
-                                <img class="media-icon d-block d-md-none" src="<?php echo get_template_directory_uri(); ?>/assets/images/video-tour-dark.svg" alt="">
+                                <img class="media-icon d-none d-md-block"
+                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/video-tour-icon.svg"
+                                    alt="">
+                                <img class="media-icon d-block d-md-none"
+                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/video-tour-dark.svg"
+                                    alt="">
                                 <span>Video Tour</span>
                             </li>
                         </a>
@@ -226,8 +238,12 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         <a href="<?php echo wp_get_attachment_url($brochures[0]);  ?>" target="_blank"
                             id="brochureMedia">
                             <li class="property-media--brochure">
-                                <img class="media-icon d-none d-md-block" src="<?php echo get_template_directory_uri(); ?>/assets/images/brochure-icon.svg" alt="">
-                                <img class="media-icon d-block d-md-none" src="<?php echo get_template_directory_uri(); ?>/assets/images/brochure-dark.svg" alt="">
+                                <img class="media-icon d-none d-md-block"
+                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/brochure-icon.svg"
+                                    alt="">
+                                <img class="media-icon d-block d-md-none"
+                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/brochure-dark.svg"
+                                    alt="">
                                 <span>Brochure</span>
                             </li>
                         </a>
@@ -235,7 +251,8 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         if ($epcs) { ?>
                         <a id="epcMedia">
                             <li class="property-media--epc">
-                                <img class="media-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/epc-icon.svg" alt="">
+                                <img class="media-icon"
+                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/epc-icon.svg" alt="">
                                 <span>EPC</span>
                             </li>
                         </a>
@@ -247,34 +264,38 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                             <h3>Property Description</h3>
                             <?php echo $property->get_formatted_description() ?>
                         </div>
-                        <button class="read-more btn-cs-dark">See More Description <span><i class="fa-solid fa-angle-down"></i></span></button>
+                        <button class="read-more btn-cs-dark">See More Description <span><i
+                                    class="fa-solid fa-angle-down"></i></span></button>
                         </span>
                     </div>
                     <div class="branch-info mobile d-block d-md-none">
-                    <div class="img-wrap">
-                    <img src="//placehold.it/300/300" alt="" class="negotiatior-profile">
-                    </div>
+                        <div class="img-wrap">
+                            <img src="//placehold.it/300/300" alt="" class="negotiatior-profile">
+                        </div>
                         <div class="content">
-                        <h5>Get In Touch</h5>
-                        <?php if ( $property->office_telephone_number != '' )
+                            <h5>Get In Touch</h5>
+                            <?php if ( $property->office_telephone_number != '' )
                         {	
                             echo '<a class="telephone-number" href="tel:' . esc_attr($property->office_telephone_number) . '">';
                             echo $property->office_telephone_number;
                             echo '</a>';
                             }
                             ?>
-                        <span
-                            class="branch-name"><?php echo $property->get_office_address( $separator = ', ' ); ?></span>
-                        <?php if ( $property->negotiator_name != '' )
+                            <span
+                                class="branch-name"><?php echo $property->get_office_address( $separator = ', ' ); ?></span>
+                            <?php if ( $property->negotiator_name != '' )
 		                    { ?>
-                        <span class="negotiator-name"><?php echo $property->negotiator_name; ?></span>
-                        <?php } ?>
+                            <span class="negotiator-name"><?php echo $property->negotiator_name; ?></span>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="property-map-wrap">
                         <h4><?php echo $property->get_formatted_full_address( $separator = ', ' ); ?></h4>
                         <?php echo get_property_map() ?>
                     </div>
+                    <?php if ( $property->council_tax_band || $property->tenure ) {
+                        ?>
+
                     <div class="key-info-wrap">
                         <h4>Key Information</h4>
                         <div class="mcc-badge-group-key">
@@ -291,30 +312,33 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
                         </div>
                     </div>
+                    <?php } ?>
 
                     <div class="explore-info-wrap">
                         <h4>Explore the area</h4>
                         <div class="mcc-badge-group-key">
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam neque ultrices dipiscing eli mattis sit mattis sit phasellus phasellus mollis sit aliquam sit neque.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit
+                                aliquam sit nullam neque ultrices dipiscing eli mattis sit mattis sit phasellus
+                                phasellus mollis sit aliquam sit neque.</p>
                             <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>"
-                class="main-image property-featured-image" alt=" ><?php the_title(); ?>">
-                <a class="btn-cs-dark" href="#" target="_self">Find out more<span><svg
-                                    class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
-                                    data-prefix="fas" data-icon="angle-right" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
-                                    <path fill="currentColor"
-                                        d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
-                                    </path>
-                                </svg></span></a>
+                                class="main-image property-featured-image" alt=" ><?php the_title(); ?>">
+                            <a class="btn-cs-dark" href="#" target="_self">Find out more<span><svg
+                                        class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
+                                        data-prefix="fas" data-icon="angle-right" role="img"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+                                        <path fill="currentColor"
+                                            d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
+                                        </path>
+                                    </svg></span></a>
                         </div>
                     </div>
 
                 </div>
 
                 <div class="col-12 col-md-4 branch-info-wrap d-none d-md-block">
-                    
+
                     <div class="branch-info">
-                    <img src="//placehold.it/300/300" alt="" class="negotiatior-profile">
+                        <img src="//placehold.it/300/300" alt="" class="negotiatior-profile">
                         <h5>Get In Touch</h5>
                         <?php if ( $property->office_telephone_number != '' )
                         {	

@@ -1,4 +1,41 @@
 document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Function to set a form field value based on a URL parameter
+    function setFieldValueFromUrl(paramName, fieldSelector) {
+        const paramValue = urlParams.get(paramName);
+        if (paramValue) {
+            const field = document.querySelector(fieldSelector);
+            if (field) {
+                field.value = paramValue;
+            }
+        }
+    }
+
+    // Set address_keyword field value if present in URL
+    setFieldValueFromUrl('address_keyword', 'input[name="address_keyword"]');
+
+    // Set radius field value if present in URL
+    const radiusValue = urlParams.get('radius');
+    if (radiusValue) {
+        const radiusInput = document.querySelector(`input[name="radius"][value="${radiusValue}"]`);
+        if (radiusInput) {
+            radiusInput.checked = true;
+        }
+    }
+
+    // Set property_type checkboxes based on URL parameters
+    const propertyType = urlParams.getAll('property_type');
+    if (propertyType.length > 0) {
+        document.querySelectorAll('input[name="property_type"]').forEach(checkbox => {
+            if (propertyType.includes(checkbox.value)) {
+                checkbox.checked = true;
+            } else {
+                checkbox.checked = false;
+            }
+        });
+    }
+
     const bodyClassList = document.body.classList;
     let departmentValue = '';
 
@@ -31,13 +68,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const showAllCheckbox = document.querySelector('input[name="department"][value=""]');
         if (departmentCheckbox) {
             departmentCheckbox.checked = true;
-            // Uncheck the "Show All" checkbox
             if (showAllCheckbox) {
                 showAllCheckbox.checked = false;
             }
-            console.log(`Department checkbox for ${departmentValue} is checked, "Show All" is unchecked.`);
-        } else {
-            console.log(`No department checkbox found for ${departmentValue}.`);
         }
     }
 
@@ -58,97 +91,84 @@ document.addEventListener("DOMContentLoaded", function() {
         if (lettingsRadio) lettingsRadio.checked = false;
     }
 
+    // Initialize the jQuery UI sliders for sales and lettings
+    jQuery("#sales-slider-range").slider({
+        range: true,
+        min: 0,
+        max: 10000000,
+        values: [parseInt(urlParams.get('minimum_price')) || 0, parseInt(urlParams.get('maximum_price')) || 10000000],
+        step: 50000,
+        slide: function(event, ui) {
+            jQuery("#minValueSales").text("£" + ui.values[0].toLocaleString());
+            jQuery("#maxValueSales").text("£" + ui.values[1].toLocaleString());
+            jQuery("#minimum_price_input").val(ui.values[0]);
+            jQuery("#maximum_price_input").val(ui.values[1]);
+            updateSliderFill("#sales-slider-range", ui.values);
+        }
+    });
+
+    jQuery("#lettings-slider-range").slider({
+        range: true,
+        min: 0,
+        max: 10000,
+        values: [parseInt(urlParams.get('minimum_rent')) || 0, parseInt(urlParams.get('maximum_rent')) || 10000],
+        step: 250,
+        slide: function(event, ui) {
+            jQuery("#minValueLettings").text("£" + ui.values[0].toLocaleString() + " pcm");
+            jQuery("#maxValueLettings").text("£" + ui.values[1].toLocaleString() + " pcm");
+            jQuery("#minimum_rent_input").val(ui.values[0]);
+            jQuery("#maximum_rent_input").val(ui.values[1]);
+            updateSliderFill("#lettings-slider-range", ui.values);
+        }
+    });
+
+    // Update the slider fill on initial load
+    updateSliderFill("#sales-slider-range", jQuery("#sales-slider-range").slider("values"));
+    updateSliderFill("#lettings-slider-range", jQuery("#lettings-slider-range").slider("values"));
+
+    // Function to update the slider fill
+    function updateSliderFill(sliderId, values) {
+        const slider = jQuery(sliderId);
+        const sliderRange = slider.slider("option", "max") - slider.slider("option", "min");
+        const minPercentage = ((values[0] - slider.slider("option", "min")) / sliderRange) * 100;
+        const maxPercentage = ((values[1] - slider.slider("option", "min")) / sliderRange) * 100;
+
+        slider.find(".ui-slider-range").css({
+            "left": minPercentage + "%",
+            "width": (maxPercentage - minPercentage) + "%"
+        });
+    }
+
     // Function to toggle slider visibility
     function toggleSliders() {
-        const salesSlider = document.querySelector('.range-slider.sales-only');
-        const lettingsSlider = document.querySelector('.range-slider.lettings-only');
-        const priceTrigger = document.querySelector('.trigger--price');
+        const salesSlider = jQuery('.range-slider.sales-only');
+        const lettingsSlider = jQuery('.range-slider.lettings-only');
+        const priceTrigger = jQuery('.trigger--price');
 
-        const salesRadio = document.getElementById('_parent_department_sales');
-        const lettingsRadio = document.getElementById('_parent_department_lettings');
-
-        if (salesRadio && salesRadio.checked) {
-            salesSlider.style.display = 'flex';
-            lettingsSlider.style.display = 'none';
-            priceTrigger.textContent = 'Price';
-        } else if (lettingsRadio && lettingsRadio.checked) {
-            salesSlider.style.display = 'none';
-            lettingsSlider.style.display = 'flex';
-            priceTrigger.textContent = 'Rent';
+        if (jQuery('#_parent_department_sales').is(':checked')) {
+            salesSlider.show();
+            lettingsSlider.hide();
+            priceTrigger.text('Price');
+        } else if (jQuery('#_parent_department_lettings').is(':checked')) {
+            salesSlider.hide();
+            lettingsSlider.show();
+            priceTrigger.text('Rent');
         }
     }
 
     // Initialize the slider display based on the default selection
     toggleSliders();
 
-    const salesRadio = document.getElementById('_parent_department_sales');
-    const lettingsRadio = document.getElementById('_parent_department_lettings');
-
-    if (salesRadio) salesRadio.addEventListener('change', toggleSliders);
-    if (lettingsRadio) lettingsRadio.addEventListener('change', toggleSliders);
-
-    // Range Slider Magic
-    const minSliderSales = document.getElementById('minPriceSales');
-    const maxSliderSales = document.getElementById('maxPriceSales');
-    const minSliderLettings = document.getElementById('minPriceLettings');
-    const maxSliderLettings = document.getElementById('maxPriceLettings');
-
-    function updateSlider(sliderType) {
-        let minSlider, maxSlider, sliderTrack;
-
-        if (sliderType === 'sales') {
-            minSlider = minSliderSales;
-            maxSlider = maxSliderSales;
-            sliderTrack = document.querySelector('.range-slider.sales-only .slider-track');
-        } else {
-            minSlider = minSliderLettings;
-            maxSlider = maxSliderLettings;
-            sliderTrack = document.querySelector('.range-slider.lettings-only .slider-track');
-        }
-
-        if (!minSlider || !maxSlider || !sliderTrack) return;
-
-        let min = parseInt(minSlider.value);
-        let max = parseInt(maxSlider.value);
-
-        // Ensure min does not exceed max and cannot go below 0
-        if (min > max - parseInt(minSlider.step)) {
-            min = max - parseInt(minSlider.step);
-            minSlider.value = min;
-        }
-
-        if (max < min + parseInt(maxSlider.step)) {
-            max = min + parseInt(maxSlider.step);
-            maxSlider.value = max;
-        }
-
-        const sliderRange = parseInt(maxSlider.max) - parseInt(minSlider.min);
-        const minPercentage = ((min - parseInt(minSlider.min)) / sliderRange) * 100;
-        const maxPercentage = ((max - parseInt(minSlider.min)) / sliderRange) * 100;
-
-        sliderTrack.style.background = `linear-gradient(to right, #ddd 0%, #ddd ${minPercentage}%, #602644 ${minPercentage}%, #602644 ${maxPercentage}%, #ddd ${maxPercentage}%, #ddd 100%)`;
-    }
-
-    if (minSliderSales) minSliderSales.addEventListener('input', () => updateSlider('sales'));
-    if (maxSliderSales) maxSliderSales.addEventListener('input', () => updateSlider('sales'));
-    if (minSliderLettings) minSliderLettings.addEventListener('input', () => updateSlider('lettings'));
-    if (maxSliderLettings) maxSliderLettings.addEventListener('input', () => updateSlider('lettings'));
-
-    updateSlider('sales');
-    updateSlider('lettings');
+    jQuery('#_parent_department_sales, #_parent_department_lettings').change(toggleSliders);
 
     // Form submission logic to ensure correct slider values are submitted
-    document.querySelector('form').addEventListener('submit', function(e) {
-        if (lettingsRadio && lettingsRadio.checked) {
-            if (minSliderSales) minSliderSales.removeAttribute('name');
-            if (maxSliderSales) maxSliderSales.removeAttribute('name');
-            if (minSliderLettings) minSliderLettings.setAttribute('name', 'minimum_rent');
-            if (maxSliderLettings) maxSliderLettings.setAttribute('name', 'maximum_rent');
+    jQuery('form').on('submit', function() {
+        if (jQuery('#_parent_department_lettings').is(':checked')) {
+            jQuery("#minimum_price_input").removeAttr('name');
+            jQuery("#maximum_price_input").removeAttr('name');
         } else {
-            if (minSliderLettings) minSliderLettings.removeAttribute('name');
-            if (maxSliderLettings) maxSliderLettings.removeAttribute('name');
-            if (minSliderSales) minSliderSales.setAttribute('name', 'minimum_price');
-            if (maxSliderSales) maxSliderSales.setAttribute('name', 'maximum_price');
+            jQuery("#minimum_rent_input").removeAttr('name');
+            jQuery("#maximum_rent_input").removeAttr('name');
         }
     });
 
@@ -189,9 +209,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     opt.classList.remove('selected');
                 });
                 selectedOption.classList.add('selected');
+
+                // Close the dropdown after selection
+                dropdown.classList.remove('open');
             });
         }
     }
+
 
     function setupCheckboxes() {
         document.querySelectorAll('.search-form-control--checkboxes').forEach(checkboxGroup => {
@@ -252,54 +276,65 @@ document.addEventListener("DOMContentLoaded", function() {
     // Call the function to mark the last visible control
     markLastVisibleControl();
 
-    // Event listener for tab change
-    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
-        var target = $(e.target).attr('href'); // Get the href attribute which is the target tab
-        var $slider = $(target).find('.inner-tabs.pr ul.properties');
+    // Grid/List View Toggle Logic with Local Storage
+    if (document.body.classList.contains("post-type-archive-property")) {
 
-        if ($slider.length > 0) {
-            $slider.slick('refresh'); // Refresh SlickSlider to adjust its layout
+        const listViewTrigger = document.querySelector(".view--list-view");
+        const gridViewTrigger = document.querySelector(".view--grid-view");
+        const searchResultsContainer = document.querySelector(".search-results");
+
+        // Check localStorage for view preference
+        const savedView = localStorage.getItem('viewMode');
+
+        // Apply saved view mode
+        if (savedView === 'list') {
+            searchResultsContainer.classList.add("list-view");
+            searchResultsContainer.classList.remove("grid-view");
+            listViewTrigger.classList.add("active");
+            gridViewTrigger.classList.remove("active");
+        } else {
+            searchResultsContainer.classList.add("grid-view");
+            searchResultsContainer.classList.remove("list-view");
+            gridViewTrigger.classList.add("active");
+            listViewTrigger.classList.remove("active");
         }
-    });
+
+        // Function to toggle to list-view and save preference
+        listViewTrigger.addEventListener("click", function(event) {
+            event.preventDefault();
+            searchResultsContainer.classList.add("list-view");
+            searchResultsContainer.classList.remove("grid-view");
+            localStorage.setItem('viewMode', 'list');
+
+            listViewTrigger.classList.add("active");
+            gridViewTrigger.classList.remove("active");
+        });
+
+        // Function to toggle to grid-view and save preference
+        gridViewTrigger.addEventListener("click", function(event) {
+            event.preventDefault();
+            searchResultsContainer.classList.add("grid-view");
+            searchResultsContainer.classList.remove("list-view");
+            localStorage.setItem('viewMode', 'grid');
+
+            gridViewTrigger.classList.add("active");
+            listViewTrigger.classList.remove("active");
+        });
+    }
 
     // Orderby
     jQuery('.stc-checkbox').on('change', function() {
         jQuery(this).closest('form').submit();
     });
 
-    // Grid/List View Toggle Logic
-    // Check if we're on the archive page
-    // Check if we're on the archive page
-    if (document.body.classList.contains("post-type-archive-property")) {
+    // Slick Slider refresh on tab change
+    jQuery('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+        var target = jQuery(e.target).attr('href'); // Get the href attribute which is the target tab
+        var $slider = jQuery(target).find('.inner-tabs.pr ul.properties');
 
-        // Get the triggers
-        const listViewTrigger = document.querySelector(".view--list-view");
-        const gridViewTrigger = document.querySelector(".view--grid-view");
-
-        // Get the container
-        const searchResultsContainer = document.querySelector(".search-results");
-
-        // Function to toggle to list-view
-        listViewTrigger.addEventListener("click", function(event) {
-            event.preventDefault();
-            searchResultsContainer.classList.add("list-view");
-            searchResultsContainer.classList.remove("grid-view");
-
-            // Add active class to list-view trigger and remove from grid-view trigger
-            listViewTrigger.classList.add("active");
-            gridViewTrigger.classList.remove("active");
-        });
-
-        // Function to toggle to grid-view
-        gridViewTrigger.addEventListener("click", function(event) {
-            event.preventDefault();
-            searchResultsContainer.classList.add("grid-view");
-            searchResultsContainer.classList.remove("list-view");
-
-            // Add active class to grid-view trigger and remove from list-view trigger
-            gridViewTrigger.classList.add("active");
-            listViewTrigger.classList.remove("active");
-        });
-    }
+        if ($slider.length > 0) {
+            $slider.slick('refresh'); // Refresh SlickSlider to adjust its layout
+        }
+    });
 
 });
