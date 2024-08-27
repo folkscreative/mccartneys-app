@@ -25,8 +25,8 @@ get_header( 'propertyhive' ); global $wpdb; ?>
         <div class="container results-overview--info">
             <?php echo propertyhive_result_count(); ?>
             <div class="results-sorting">
-                <form method="get" class="stc-checkbox">
-                    <label><input type="checkbox" value="1" name="include_sold_stc"
+                <form class="stc-checkbox">
+                    <label><input type="checkbox" value="1" name="include_sold_stc" class="stc-checkbox-control"
                             <?php if (isset($_REQUEST['include_sold_stc'])) { echo ' checked'; } ?>> Include Sold
                         STC?</label>
                 </form>

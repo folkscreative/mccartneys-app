@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+
+
     // Set address_keyword field value if present in URL
     setFieldValueFromUrl('address_keyword', 'input[name="address_keyword"]');
 
@@ -243,6 +245,24 @@ document.addEventListener("DOMContentLoaded", function() {
     setupCheckboxes();
     closeDropdownsOnClickOutside();
 
+    // Initialize Google Places Autocomplete on the location input field
+    const locationInput = document.getElementById('address_keyword');
+    if (locationInput) {
+        const autocomplete = new google.maps.places.Autocomplete(locationInput, {
+            types: ['(regions)'], // Restrict suggestions to addresses and places
+            componentRestrictions: { country: 'uk' } // Restrict to a specific country (optional)
+        });
+
+        // If you want to handle the place selection (e.g., to get latitude and longitude), you can do so here
+        autocomplete.addListener('place_changed', function() {
+            const place = autocomplete.getPlace();
+            // Do some things in here
+
+
+        });
+    }
+
+
     // Function to identify the last visible .search-form-control (excluding submit) and apply the 'last-visible' class
     function markLastVisibleControl() {
         setTimeout(function() {
@@ -322,10 +342,28 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Orderby
-    jQuery('.stc-checkbox').on('change', function() {
-        jQuery(this).closest('form').submit();
-    });
+    // Sold STC URL Params
+    const includeSoldStcCheckbox = document.querySelector('.stc-checkbox-control');
+
+    if (includeSoldStcCheckbox) {
+        includeSoldStcCheckbox.addEventListener('change', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+
+            if (includeSoldStcCheckbox.checked) {
+                urlParams.set('include_sold_stc', '1');
+            } else {
+                urlParams.delete('include_sold_stc');
+            }
+
+            // Create the new URL with updated parameters
+            const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+
+            // Reload the page with the new URL
+            window.location.href = newUrl;
+        });
+    }
+
+
 
     // Slick Slider refresh on tab change
     jQuery('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {

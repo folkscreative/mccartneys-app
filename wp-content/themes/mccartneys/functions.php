@@ -809,39 +809,39 @@ function set_last_search()
 
 // 2. Include Sold STC
 // See snippet here: https://docs.wp-property-hive.com/article/613-add-include-sold-stc-checkbox-to-search-forms
-// add_action( 'pre_get_posts', 'remove_sold_stc_by_default' );
-// function remove_sold_stc_by_default( $q ) 
-// {
-//     if (is_admin())
-//         return;
+add_action( 'pre_get_posts', 'remove_sold_stc_by_default' );
+function remove_sold_stc_by_default( $q ) 
+{
+    if (is_admin())
+        return;
 
-//     if ( defined('DOING_CRON') && DOING_CRON )
-//         return;
+    if ( defined('DOING_CRON') && DOING_CRON )
+        return;
 
-//     if (!$q->is_post_type_archive('property') && !$q->is_tax(get_object_taxonomies('property')))
-//         return;
+    if (!$q->is_post_type_archive('property') && !$q->is_tax(get_object_taxonomies('property')))
+        return;
 
-//     if (isset($_GET['shortlisted']))
-//         return;
+    if (isset($_GET['shortlisted']))
+        return;
 
-//     $tax_query = $q->get('tax_query');
+    $tax_query = $q->get('tax_query');
 
-//     if ( !isset($_REQUEST['include_sold_stc']) ) 
-//     {
-//         if (!is_array($tax_query)) { $tax_query = array(); }
+    if ( !isset($_REQUEST['include_sold_stc']) ) 
+    {
+        if (!is_array($tax_query)) { $tax_query = array(); }
 
-//         // NOTE: change (10, 14) to the IDS of 'For Sale' and 'To Let'
-//         // These can be found under 'Property Hive > Setting > Custom Fields'
-//         $tax_query[] = array(
-//             'taxonomy' => 'availability',
-//             'field' => 'term_id',
-//             'terms' => array(103, 109), 
-//             'operator' => 'IN'
-//         );
-//     }
+        // NOTE: change (10, 14) to the IDS of 'For Sale' and 'To Let'
+        // These can be found under 'Property Hive > Setting > Custom Fields'
+        $tax_query[] = array(
+            'taxonomy' => 'availability',
+            'field' => 'term_id',
+            'terms' => array(103, 109), 
+            'operator' => 'IN'
+        );
+    }
 
-//     $q->set('tax_query', $tax_query);
-// }
+    $q->set('tax_query', $tax_query);
+}
 
 // add_filter( 'propertyhive_search_form_fields_after', 'remove_sold_stc_hidden', 10, 1 );
 // function remove_sold_stc_hidden( $form_controls )
@@ -1363,6 +1363,9 @@ function mcc_ph_search() {
 
     <input type="submit" value="search" class="search-form-control search-form-control--submit">
 </form>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA8L29YbEABF_9_LOdMzdoXt3gaLV3mWs&libraries=places">
+</script>
+
 
 <?php
 };

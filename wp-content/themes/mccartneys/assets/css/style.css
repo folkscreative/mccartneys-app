@@ -8995,6 +8995,63 @@ form.property-search input[type="submit"]:hover {
     --sb-size: 8px;
 }
 
+.pac-container {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    box-shadow: 0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+    transition: all 0.3s ease-in-out;
+    z-index: 10;
+    min-width: 165px;
+    overflow-y: auto;
+    font-family: 'Gotham';
+}
+
+
+/* Styling each item in the dropdown */
+
+.pac-item {
+    padding: 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.pac-item>span:not(span.pac-item-query) {
+    display: none;
+}
+
+
+/* Styling the highlighted query part of each item */
+
+.pac-item-query {
+    color: #555;
+    font-weight: normal;
+    /* Color for the matching part of the query */
+}
+
+
+/* Styling the hovered item */
+
+.pac-item:hover {
+    background: #f5ebf2;
+    color: #7F1B4E;
+}
+
+
+/* Styling the icon inside the item */
+
+.pac-icon {
+    display: none;
+    /* Hide default Google Maps icon */
+}
+
 .search-form-dropdown--options::-webkit-scrollbar {
     width: var(--sb-size);
 }
