@@ -1364,6 +1364,8 @@ function mcc_ph_search() {
     <input type="submit" value="search" class="search-form-control search-form-control--submit">
 </form>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA8L29YbEABF_9_LOdMzdoXt3gaLV3mWs&libraries=places">
+// Restrict API key to production domain and server
+// Define key as var in wp-config to avoid leaking this key
 </script>
 
 
