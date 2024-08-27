@@ -6857,11 +6857,14 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     width: 10px;
     height: 10px;
     right: -4px;
-    padding: 0 15px;
+    background-repeat: no-repeat;
+    background-position: right;
+
 }
-.property-wrapper.mb .accordion-item .accordion-button::before{
+.property-wrapper.mb .accordion-item .accordion-button.collapsed::before{
     transform: rotate(90deg);
 }
+
 .property-wrapper.mb .accordion-button{
     box-shadow: none;
     position: relative;
@@ -6871,7 +6874,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     display: flex;
     align-items: center;
     width: fit-content;
-    font-weight: 300;
+    font-weight: 500;
     padding: 0 15px;
 }
 .property-wrapper.mb .accordion-body {
@@ -6882,6 +6885,13 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
 } 
 .property-wrapper.mb .accordion-body .col-left{
     color: #707070;
+    max-width: 570px;
+    width: 100%;
+    padding-top: 30px;
+    padding-right: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .property-wrapper.mb .accordion-body .col-left p{
     font-size: 16px;
@@ -6936,12 +6946,15 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     flex-direction: row;
     column-gap: 10px;
 }
+.property-wrapper.mb .accordion-body .col-right{
+    height: 100%;
+}
 .property-wrapper.mb .accordion-body .col-right img {
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
 }
-.property-wrapper.mb #propertyAccordion .accordion-item:first-child() .accordion-button{
+.property-wrapper.mb #propertyAccordion .accordion-item:first-child .accordion-button{
     color: #7F1B4E !important;
 }
 /* propoerty tab for mobile css ends */
