@@ -109,7 +109,7 @@
 
 
         <!-- Start Property section here -->
-        <section class="property-wrapper">
+    <section class="property-wrapper mb">
         <div class="container">
             <h2 class="title"><?php the_field('our_locatinos_title'); ?></h2>
             <p class="description"><?php the_field('our_location_description'); ?></p>
