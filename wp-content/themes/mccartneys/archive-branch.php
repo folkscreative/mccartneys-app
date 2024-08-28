@@ -6,7 +6,6 @@ get_header(); ?>
 <section class="insight-content">
         <div class="container">
             <div class="content">
-            <div class="breadcrumb mc"><?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
                 <h1>McCartneys Branches</h1>
                 <p>We share our team's expertise across McCartneys' fields, including properties, livestock, fine art and antiques, and more.</p>
             </div>

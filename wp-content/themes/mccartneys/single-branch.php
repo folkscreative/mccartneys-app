@@ -14,7 +14,7 @@ get_header(); ?>
             <div class="col-12 col-md-6">
                 <div class="single-content-details">
                     <div class="content">
-                    <div class="breadcrumb mc"><?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
+                    <div><a href="/#office-data" class="btn-cs-white">Go Back<span><i class="fa-solid fa-angle-left"></i></span></a></div>
                     <h1><?php the_title(); ?></h1>
                     <?php the_excerpt(); ?>
                     </div>

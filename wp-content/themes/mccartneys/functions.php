@@ -373,6 +373,27 @@ function create_branch_taxonomy() {
 }
 add_action( 'init', 'create_branch_taxonomy', 0 );
 
+// Register Custom Taxonomy FC office location
+function create_fc_branch_taxonomy() {
+    $labels = array(
+        'name' => _x( 'Fc Offices Location', 'Taxonomy General Name', 'mccartneys' ),
+        'singular_name' => _x( 'Fc Office Location', 'Taxonomy Singular Name', 'mccartneys' ),
+        'menu_name' => __( 'Fc Offices Location', 'mccartneys' ),
+    );
+    $args = array(
+        'labels' => $labels,
+        'hierarchical' => true,
+        'public' => true,
+        'show_ui' => true,
+        'show_admin_column' => true,
+        'show_in_nav_menus' => true,
+        'show_tagcloud' => true,
+
+    );
+    register_taxonomy( 'fc office location', array( 'branch' ), $args );
+}
+add_action( 'init', 'create_fc_branch_taxonomy', 0 );
+
 
 // Register Custom Taxonomy
 function create_property_type_taxonomy() {
@@ -568,6 +589,183 @@ function property_tabs_shortcode() {
     }
 }
 add_shortcode( 'property_tabs', 'property_tabs_shortcode' );
+
+
+
+// FC offices tabs
+function Fc_property_tabs_shortcode() {
+    // Get all office categories
+    $terms = get_terms( array(
+        'taxonomy' => 'fc office location',
+        'hide_empty' => false,
+    ) );
+
+    if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+        ob_start(); // Start output buffering
+
+        echo '<ul class="nav nav-tabs" id="propertyTab" role="tablist">';
+        $first_tab = true;
+        foreach ( $terms as $term ) {
+            echo '<li class="nav-item">';
+            echo '<a class="nav-link' . ( $first_tab ? ' active' : '' ) . '" id="tab-' . esc_attr( $term->slug ) . '" data-bs-toggle="tab" href="#' . esc_attr( $term->slug ) . '" role="tab" aria-controls="' . esc_attr( $term->slug ) . '" aria-selected="' . ( $first_tab ? 'true' : 'false' ) . '">' . esc_html( $term->name ) . '</a>';
+            echo '</li>';
+            $first_tab = false;
+        }
+        echo '</ul>';
+
+        echo '<div class="tab-content" id="propertyTabContent">';
+        $first_tab = true;
+        foreach ( $terms as $term ) {
+            echo '<div class="tab-pane fade' . ( $first_tab ? ' show active' : '' ) . '" id="' . esc_attr( $term->slug ) . '" role="tabpanel" aria-labelledby="tab-' . esc_attr( $term->slug ) . '">';
+
+            $query = new WP_Query( array(
+                'post_type' => 'branch',
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'fc office location',
+                        'field'    => 'slug',
+                        'terms'    => $term->slug,
+                    ),
+                ),
+            ) );
+
+    if ( $query->have_posts() ) {?>
+<div class="outer-wrap">
+    <?php
+                while ( $query->have_posts() ) {
+                    $query->the_post();?>
+
+    <div class="row g-0 flex-column-reverse flex-md-row">
+        <div class="col-12 col-md-7">
+            <div class="col-left">
+                <h4 class="d-none d-md-block"><?php the_title();?></h4>
+                <p><?php the_field('stree_no');?> <?php the_field('stree_name'); ?> <?php the_field('town'); ?>
+                    <?php the_field('postcode'); ?></p>
+
+                <div class="sale-nmbr">
+                    <img
+                        src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
+                    <span><strong>Sales </strong><a
+                            href="tel:<?php the_field('sales_number');?>"><?php the_field('sales_number');?></a></span>
+                </div>
+
+                <div class="sale-nmbr d-none d-md-flex">
+                    <img
+                        src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
+                    <span><strong>Lettings </strong><a
+                            href="tel:<?php the_field('lettings_number');?>"><?php the_field('lettings_number');?></a></span>
+                </div>
+
+                <?php $properties_data=get_field('properties',get_the_ID());
+								  $livestock_data=get_field('livestock',get_the_ID());
+								 $planning_survey_data=get_field('planning_survey',get_the_ID());
+								 $antiques_data=get_field('antiques',get_the_ID());
+					             $equine_data=get_field('equine',get_the_ID());
+								 $rural_data=get_field('rural',get_the_ID());
+							?>
+
+                <ul class="office-cat-wrap">
+                    <?php if($properties_data=='True') { ?>
+                    <li class="items-wrap">
+                        <img
+                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/properties-vector-1.svg">
+                        <span>Properties</span>
+                    </li>
+                    <?Php }
+							?>
+                    <?php if($livestock_data=='True') { ?>
+                    <li class="items-wrap">
+                        <img
+                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/livestock-logo-1.svg">
+                        <span>Livestock</span>
+                    </li>
+                    <?Php }?>
+
+                    <?php if($planning_survey_data=='True') { ?>
+                    <li class="items-wrap">
+                        <img
+                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/planning-logo-1.svg">
+                        <span>Planning & Survay</span>
+                    </li>
+                    <?Php }?>
+
+                    <?php if($antiques_data=='True') { ?>
+                    <li class="items-wrap">
+                        <img
+                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/antiques-logo-1.svg">
+                        <span>Antiques</span>
+                    </li>
+                    <?Php }?>
+
+
+                    <?php if($equine_data=='True') { ?>
+                    <li class="items-wrap">
+                        <img
+                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/equine-icon.svg">
+                        <span>Equine</span>
+                    </li>
+                    <?Php }?>
+
+                    <?php if($rural_data=='True') { ?>
+                    <li class="items-wrap">
+                        <img
+                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/rural-icon.svg">
+                        <span>Rural</span>
+                    </li>
+                    <?Php }?>
+                </ul>
+                <div class="bottom-btn-wrap">
+                    <a href="<?php the_permalink(); ?>" class="btn-cs-dark">View more <span><i
+                                class="fa-solid fa-angle-right"></i></span></a>
+
+
+                    <?php if( have_rows('office_share_buttons', 'option') ): ?>
+                    <ul class="share-buttons-wrap d-none d-md-flex">
+                        <?php while( have_rows('office_share_buttons','option') ): the_row(); ?>
+
+                        <li class="item">
+
+                            <a href="<?php the_sub_field('location_share_button_link'); ?>" target="_blank">
+                                <?php
+										$share_logo = get_sub_field('location_share_image');
+										if( !empty($share_logo) ):?>
+                                <img src="<?php echo $share_logo['url']; ?>" alt="<?php echo $share_logo['alt']; ?>">
+                                <?php endif; ?>
+                            </a>
+                        </li>
+
+                        <?php endwhile; ?>
+                    </ul>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+
+        <?php if ( has_post_thumbnail() ) {?>
+        <div class="col-12 col-md-5">
+            <div class="col-right">
+                <h4 class="d-block d-md-none"><?php the_title();?></h4>
+                <?php  the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );?>
+            </div>
+        </div>
+        <?php }?>
+    </div>
+    <?php }?>
+</div>
+<?php } else {?>
+<p>No properties found in this category.</p>
+<?php }
+
+            wp_reset_postdata();?>
+</div>
+<?php $first_tab = false;
+        }?>
+</div>
+
+<?php return ob_get_clean();
+    }
+}
+add_shortcode( 'fc_property_tabs', 'Fc_property_tabs_shortcode' );
 
 // recent tabs
 function recent_property_tabs_shortcode() {

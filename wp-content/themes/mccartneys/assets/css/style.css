@@ -3308,6 +3308,7 @@ footer .cookies-menu ul li a {
 .our-marketers-wrapper .our-marketers-wrapper-content .our-marketers-body-content p {
     font-weight: 300;
     color: #707070;
+    margin: 15px 0;
 }
 
 .our-marketers-wrapper .our-marketers-wrapper-content .our-marketers-body-content .marketers-top-content {
@@ -3322,7 +3323,7 @@ footer .cookies-menu ul li a {
 .our-marketers-wrapper .our-marketers-wrapper-content .our-marketers-body-content .marketers-top-content p {
     max-width: 742px;
     width: 100%;
-    margin: 0 auto;
+    margin: 0 auto 10px;
 }
 
 .our-marketers-wrapper .our-marketers-wrapper-content .our-marketers-body-content .address {
@@ -3379,6 +3380,7 @@ footer .cookies-menu ul li a {
 
 .our-marketers-wrapper .our-marketers-wrapper-content .our-marketers-body-content .direction-content p {
     color: #707070;
+    margin: 0 0 10px;
 }
 
 
@@ -4270,7 +4272,7 @@ footer .cookies-menu ul li a {
 }
 
 .renewable-energy-wrapper .tabs-content ul li {
-    color: #6D758F;
+    color: #707070;
     font-weight: 500;
     list-style-type: disc;
     margin-left: 20px;
@@ -4753,7 +4755,11 @@ footer .cookies-menu ul li a {
     bottom: 0;
     opacity: 1;
 }
-
+.departments .slide-wrap:hover .inner p{
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 20px;
+}
 .cta-banner.land {
     padding-top: 110px;
 }
@@ -5497,7 +5503,18 @@ footer .cookies-menu ul li a {
 .branch-single .single-content-details .content {
     margin-bottom: 35px;
 }
-
+.branch-single .single-content-details .content .btn-cs-white{
+    flex-direction: row-reverse !important;
+    border: none !important;
+    box-shadow: none !important;
+    column-gap: 12px !important;
+    padding: 0 !important;
+    min-width: fit-content !important;
+    margin-bottom: 30px !important;
+}
+.branch-single .single-content-details .content .btn-cs-white:hover{
+    background-color: transparent !important;
+}
 .branch-single .single-content-details .content h1 {
     margin-bottom: 25px;
 }
@@ -6802,6 +6819,78 @@ guide-boxez .container {
 /* phips richard page ends */
 
 
+/* stamp duty page */
+.general-table{
+    color: #707070;
+}
+.general-table .container{
+    max-width: 1170px;
+}
+.general-table .content h2{
+    text-align: center;
+}
+.general-table .content p{
+    text-align: center;
+    margin-top: 27px;
+}
+.general-table .content p strong{
+    font-weight: 500;
+}
+.general-table table{
+    border: 1px solid #8D1F56;
+    border-radius: 8px;
+    margin: 0;
+    overflow: hidden;
+    border-collapse: inherit;
+    margin-top: 40px;
+}
+.general-table  tr th {
+    background-color: #8D1F56;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    padding: 28px 10px;
+}
+.general-table  tr th:first-child{
+    border-right: 1px solid #707070;
+}
+.general-table  tr td{
+    font-size: 15px;
+    line-height: 22px;
+    color: #000;
+    padding: 27px 30px;
+    text-align: center;
+}
+.general-table  tr td:first-child{
+    width: 70%;
+    text-align: start;
+    border-right: 1px solid #707070;
+}
+.general-table  tbody tr:nth-child(even)  {
+    background-color: #FEF8F8;
+}
+.our-marketer.equine.stamp{
+    padding: 100px 0;
+    color: #707070;
+}
+.pedigree-center.stamp{
+    padding: 88px 0 105px;
+    color: #707070;
+}
+.pedigree-center.stamp .col-left p{
+    margin-bottom: 60px;
+}
+.pedigree-center.stamp .col-right h4{
+    margin-bottom: 15px;
+}
+.pedigree-center.stamp .col-right p a{
+    color: #707070;
+    text-decoration: underline;
+    font-weight: 500;
+}
+/* stamp duty page ends */
+
+
 /* phips header */
 
 header.phipps-head .top-nav {
@@ -6880,10 +6969,10 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     right: -4px;
     background-repeat: no-repeat;
     background-position: right;
-
+    transform: rotate(90deg);
 }
 .property-wrapper.mb .accordion-item .accordion-button.collapsed::before{
-    transform: rotate(90deg);
+    transform: rotate(0);
 }
 
 .property-wrapper.mb .accordion-button{
@@ -8178,9 +8267,9 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         padding-bottom: 80px;
     }
     .renewable-energy-wrapper .tabs-wrapper .tabs li {
-        padding: 12px 5px;
-        font-size: 10px;
-        line-height: 13px;
+        padding: 12px 8px;
+        font-size: 12px;
+        line-height: 14px;
         min-height: 50px;
     }
     .renewable-energy-wrapper .tabs-content img {
@@ -8337,16 +8426,19 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         padding: 80px 0 80px;
     }
     .timeline-wrapper .navigation {
-        position: absolute;
+        /* position: absolute; */
+        margin-bottom: 40px;
     }
     .timeline-wrapper .navigation .navigation__link.active {
         color: transparent !important;
     }
     .timeline-wrapper .navigation .navigation__link {
         color: transparent !important;
+        font-size: 17px !important;
+        line-height: 26px !important;
     }
     .timeline-wrapper .wrapper-time {
-        padding-left: 36px;
+        /* padding-left: 36px; */
     }
     .past-charities .top-img img {
         min-height: 211px;
@@ -8610,7 +8702,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         padding: 19px 16px 0px 0;
     }
     .property-wrapper.mb .accordion-button.collapsed{
-        padding: 19px 16px 22px 0;
+        padding: 19px 16px 0 0;
     }
     .departments.equine .depart-slider .slide-wrap .inner-content{
         min-height: 69px;
@@ -8662,6 +8754,29 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     }
     .property-search section.results{
         margin-bottom: 185px;
+    }
+    .timeline-wrapper .col-left .content{
+        margin-bottom: 56px !important;
+    }
+    .general-table tr td{
+        padding: 20px 10px;
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .general-table tr td:first-child{
+        width: 50%;
+    }
+    .general-table tr th{
+        font-size: 12px;
+    }
+    .general-table table{
+        border-radius: 6px;
+    }
+    .our-marketer.equine.stamp{
+        padding: 60px 0;
+    }
+    .pedigree-center.stamp{
+        padding: 70px 0 55px;
     }
 }
 

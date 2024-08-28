@@ -193,6 +193,7 @@ get_header(); ?>
                 </div>
                 <div class="inner">
                     <h3><?php the_sub_field('slider_sale_title'); ?></h3>
+                    <p><?php the_sub_field('slider_sale_description'); ?></p>
                     <?php 
                         $department_sale_slider_link = get_sub_field('department_sale_slider_button');
                         if( $department_sale_slider_link ): 
