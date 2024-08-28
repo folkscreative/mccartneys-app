@@ -8430,10 +8430,10 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         margin-bottom: 40px;
     }
     .timeline-wrapper .navigation .navigation__link.active {
-        color: transparent !important;
+        color: #602644 !important;
     }
     .timeline-wrapper .navigation .navigation__link {
-        color: transparent !important;
+        color: #707070 !important;
         font-size: 17px !important;
         line-height: 26px !important;
     }
