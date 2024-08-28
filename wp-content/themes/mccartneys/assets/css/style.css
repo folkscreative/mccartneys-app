@@ -8569,7 +8569,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         margin-top: 40px;
     }
     .search-results .property .col-left img {
-        min-height: 300px;
+        min-height: 300px !important;
     }
     .general-page-outer p {
         font-size: 14px;
@@ -8616,14 +8616,12 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         min-height: 69px;
         padding: 6px 0;
     }
-    .search-results .property .col-left img{
-        min-height: 316px;
-    }
+    
     .search-results .property .col-right{
-        padding: 5px 22px 18px;
+        padding: 5px 22px 18px !important;
     }
     .search-results .features{
-        margin-bottom: 22px;
+        margin-bottom: 22px !important;
     }
     .search-results .property .col-right h3.price-info{
         margin-top: 2px;
@@ -8632,14 +8630,14 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         display: none;
     }
     .container.results-options--info .display-options{
-        display: none;
+        display: none !important;
     }
     section.results-overview .results-overview--info .results-sorting .stc-checkbox{
         display: none;
     }
     section.results-overview .propertyhive-result-count{
-        font-size: 12px;
-        line-height: 23px;
+        font-size: 12px !important;
+        line-height: 23px !important;
     }
     section.results-overview .results-overview--info .results-sorting .propertyhive-ordering select{
         font-size: 12px;
@@ -8651,8 +8649,8 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         padding: 20px 0;
     }
     .search-results .property{
-        margin-bottom: 25px;
-        border-radius: 7px;
+        margin-bottom: 25px !important;
+        border-radius: 7px !important;
     }
     .propertyhive-pagination .page-numbers.prev{
         margin-bottom: -150px;
