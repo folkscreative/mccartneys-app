@@ -72,6 +72,9 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         class="badge-icon">
                     <a id="galleryMedia">1/<?php echo $galleryAttachmentCount ?></a>
                 </div>
+                <div class="gallery-link-cr mcc-badge">
+                    <a id="galleryMedia">1/<?php echo $galleryAttachmentCount ?></a>
+                </div>
             </div>
 
             <div class="side-images">
@@ -79,6 +82,9 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                     class="property-secondary-image" alt="><?php the_title(); ?>">
                 <img src="<?php echo wp_get_attachment_url($gallery_attachments[2], $size = 'property-square') ?>"
                     class="property-secondary-image" alt="><?php the_title(); ?>">
+                    <div class="gallery-link-cr mcc-badge">
+                    <a id="galleryMedia">1/<?php echo $galleryAttachmentCount ?></a>
+                </div>
             </div>
         </div>
 
