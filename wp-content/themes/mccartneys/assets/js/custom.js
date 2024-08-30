@@ -53,6 +53,21 @@ jQuery(document).ready(function($) {
         $(this).toggleClass('active');
     });
 
+    $('.navigation .navigation__link').on('click', function() {
+        show_content($(this).index());
+        });
+        show_content(0);
+        function show_content(index) {
+        // Make the content visible
+        $('.wrapper-time .iteml.visible').removeClass('visible');
+        $('.wrapper-time .iteml:nth-of-type(' + (index + 1) + ')').addClass('visible');
+        
+        // Set the tab to selected
+        $('.navigation .navigation__link.selected').removeClass('selected');
+        $('.navigation .navigation__link:nth-of-type(' + (index + 1) + ')').addClass('selected');
+        // How to remove the arrow and only show it on the selected tab?
+        }
+
 
     // gallery slide
     $(document).ready(function() {
@@ -150,7 +165,7 @@ jQuery(document).ready(function($) {
         dots: true,
         arrows: true,
         infinite: true,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 2000,
         slidesToShow: 4,
         slideToScroll: 1,
@@ -355,6 +370,14 @@ jQuery(document).ready(function($) {
             $('.banner-menu').addClass('fixed');
         } else {
             $('.banner-menu').removeClass('fixed');
+        }
+    });
+    // on window scroll
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 550) {
+            $('.single-property--head .agent-btns-mb').addClass('fixed');
+        } else {
+            $('.single-property--head .agent-btns-mb').removeClass('fixed');
         }
     });
 

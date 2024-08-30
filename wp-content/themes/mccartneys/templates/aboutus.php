@@ -384,7 +384,7 @@ if ( !empty( $sale_banner ) ) { ?>
 
     <!-- Start Property section here -->
     <?php if( get_row_layout() == 'property_tabs_section' ): ?>
-       <section class="property-wrapper about-us d-none d-md-block" id="locations-about">
+       <section class="property-wrapper about-us" id="locations-about">
         <div class="container">
             <h2 class="title"><?php the_sub_field('property_tab_title'); ?></h2>
             <p class="description"><?php the_sub_field('property_tab_description'); ?></p>
@@ -396,7 +396,7 @@ if ( !empty( $sale_banner ) ) { ?>
 
      <!-- Start Property section here -->
     <?php if( get_row_layout() == 'property_tabs_section' ): ?>
-       <section class="property-wrapper mb about-us d-block d-md-none" id="locations-about">
+       <section class="property-wrapper mb about-us d-none" id="locations-about">
         <div class="container">
             <h2 class="title"><?php the_sub_field('property_tab_title'); ?></h2>
             <p class="description"><?php the_sub_field('property_tab_description'); ?></p>

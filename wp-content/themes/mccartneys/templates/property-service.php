@@ -51,7 +51,7 @@ get_header(); ?>
     <?php if( have_rows('blocks') ): ?>
         <?php while( have_rows('blocks') ): the_row(); ?>
     <?php if( get_row_layout() == 'livestock_services' ): ?>
-    <section class="livestocks-departments property-page">
+    <section class="livestocks-departments property-page mod">
         <div class="container">
             <div class="content">
                 <h2><?php the_sub_field('livestock_service_title'); ?></h2>
