@@ -8495,7 +8495,13 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         margin-bottom: 40px;
     }
     .timeline-wrapper .navigation .navigation__link.active {
+        /* color: #602644 !important; */
+        color: #707070 !important;
+        font-weight: 300;
+    }
+    .timeline-wrapper .navigation .navigation__link.selected {
         color: #602644 !important;
+        font-weight: 500;
     }
     .timeline-wrapper .navigation .navigation__link {
         color: #707070 !important;
@@ -10939,6 +10945,8 @@ body.post-type-archive-property .search-form--department {
     position: fixed;
     top: 0;
     width: 100%;
+    border-bottom: 1px solid #D0D3D4;
+    z-index: 99;
 }
 
 .single-property--head .agent-btns-mb a {
