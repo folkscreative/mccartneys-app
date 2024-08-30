@@ -1,7 +1,66 @@
 document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
 
-    // Function to set a form field value based on a URL parameter
+    // Set the department and toggle state based on body class
+    function setDepartmentFromBodyClass() {
+        const bodyClassList = document.body.classList;
+        let departmentValue = '';
+
+        if (bodyClassList.contains('page-template-residential-sale')) {
+            departmentValue = 'residential-sales';
+            document.getElementById('_parent_department_sales').checked = true;
+        } else if (bodyClassList.contains('page-template-residential-letting')) {
+            departmentValue = 'residential-lettings';
+            document.getElementById('_parent_department_lettings').checked = true;
+        } else if (bodyClassList.contains('page-template-agriculture-sale')) {
+            departmentValue = 'agricultural';
+            document.getElementById('_parent_department_sales').checked = true;
+        } else if (bodyClassList.contains('page-template-agriculture-letting')) {
+            departmentValue = 'agricultural';
+            document.getElementById('_parent_department_lettings').checked = true;
+        } else if (bodyClassList.contains('page-template-commercial-sale')) {
+            departmentValue = 'commercial';
+            document.getElementById('_parent_department_sales').checked = true;
+        } else if (bodyClassList.contains('page-template-commercial-letting')) {
+            departmentValue = 'commercial';
+            document.getElementById('_parent_department_lettings').checked = true;
+        } else if (bodyClassList.contains('page-template-new-home')) {
+            departmentValue = 'new-homes';
+        } else if (bodyClassList.contains('page-template-fine-country')) {
+            departmentValue = 'fine-and-country';
+        } else if (bodyClassList.contains('page-template-property-land-for-auction')) {
+            departmentValue = 'property-land-auctions';
+        } else if (bodyClassList.contains('page-template-development-lands')) {
+            departmentValue = 'development-land';
+        }
+
+        const departmentField = document.querySelector('input[name="department"]');
+        if (departmentField && departmentValue) {
+            departmentField.value = departmentValue;
+        }
+    }
+
+    // Handle Buy/Rent toggle based on URL parameter or body class
+    function setToggleFromUrlOrBodyClass() {
+        const departmentParam = urlParams.get('_parent_department');
+        const salesRadio = document.getElementById('_parent_department_sales');
+        const lettingsRadio = document.getElementById('_parent_department_lettings');
+        const isLettingPage = [...document.body.classList].some(className => className.includes('-letting') || className.includes('-lettings'));
+
+        if (departmentParam === 'Lettings' || isLettingPage) {
+            lettingsRadio.checked = true;
+            salesRadio.checked = false;
+        } else {
+            salesRadio.checked = true; // Default to Sales if no matching condition
+            lettingsRadio.checked = false;
+        }
+    }
+
+    // Initialize the department and toggle state
+    setDepartmentFromBodyClass();
+    setToggleFromUrlOrBodyClass();
+
+    // Function to set form field values based on URL parameters
     function setFieldValueFromUrl(paramName, fieldSelector) {
         const paramValue = urlParams.get(paramName);
         if (paramValue) {
@@ -12,100 +71,200 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Set the department field value if present in URL
+    function setDepartmentFromUrl() {
+        const departmentValue = urlParams.get('department');
+        if (departmentValue) {
+            const departmentField = document.querySelector('input[name="department"]');
+            if (departmentField) {
+                departmentField.value = departmentValue;
+            }
+        }
+    }
 
+    setDepartmentFromUrl();
 
     // Set address_keyword field value if present in URL
     setFieldValueFromUrl('address_keyword', 'input[name="address_keyword"]');
 
     // Set radius field value if present in URL
-    const radiusValue = urlParams.get('radius');
-    if (radiusValue) {
-        const radiusInput = document.querySelector(`input[name="radius"][value="${radiusValue}"]`);
-        if (radiusInput) {
-            radiusInput.checked = true;
+    function setRadiusFromUrl() {
+        const radiusValue = urlParams.get('radius');
+        if (radiusValue) {
+            const radiusInput = document.querySelector(`input[name="radius"][value="${radiusValue}"]`);
+            if (radiusInput) {
+                radiusInput.checked = true;
+                document.querySelector('.search-form--radius .search-form-dropdown--trigger').textContent = `${radiusInput.nextElementSibling.textContent.trim()}`;
+            }
         }
     }
+    setRadiusFromUrl();
 
-    // Set property_type checkboxes based on URL parameters
-    const propertyType = urlParams.getAll('property_type');
-    if (propertyType.length > 0) {
-        document.querySelectorAll('input[name="property_type"]').forEach(checkbox => {
-            if (propertyType.includes(checkbox.value)) {
+    // Handle the property type dropdown
+    function setCheckboxesFromUrl(paramName, fieldSelector) {
+        const paramValues = urlParams.getAll(paramName);
+        let selectedCount = 0;
+
+        document.querySelectorAll(fieldSelector).forEach(checkbox => {
+            if (paramValues.includes(checkbox.value)) {
                 checkbox.checked = true;
+                if (checkbox.value !== '') {
+                    selectedCount++;
+                }
+            } else if (checkbox.value === '') {
+                checkbox.checked = selectedCount === 0;
             } else {
                 checkbox.checked = false;
             }
         });
+
+        updateTriggerText(selectedCount);
     }
 
-    const bodyClassList = document.body.classList;
-    let departmentValue = '';
-
-    // Check the body classes and set the department value accordingly
-    if (bodyClassList.contains('page-template-residential-sale')) {
-        departmentValue = 'residential-sales';
-    } else if (bodyClassList.contains('page-template-residential-letting')) {
-        departmentValue = 'residential-lettings';
-    } else if (bodyClassList.contains('page-template-agriculture-sale')) {
-        departmentValue = 'agricultural';
-    } else if (bodyClassList.contains('page-template-commercial-letting')) {
-        departmentValue = 'commercial';
-    } else if (bodyClassList.contains('page-template-commercial-sale')) {
-        departmentValue = 'commercial';
-    } else if (bodyClassList.contains('page-template-new-home')) {
-        departmentValue = 'new-homes';
-    } else if (bodyClassList.contains('page-template-fine-country')) {
-        departmentValue = 'fine-and-country';
-    } else if (bodyClassList.contains('page-template-property-land-for-auction')) {
-        departmentValue = 'property-land-auctions';
-    } else if (bodyClassList.contains('page-template-development-lands')) {
-        departmentValue = 'development-land';
-    } else if (bodyClassList.contains('page-template-agriculture-letting')) {
-        departmentValue = 'agricultural';
-    }
-
-    // Set the corresponding department checkbox as checked if departmentValue is defined
-    if (departmentValue) {
-        const departmentCheckbox = document.querySelector(`input[name="department"][value="${departmentValue}"]`);
-        const showAllCheckbox = document.querySelector('input[name="department"][value=""]');
-        if (departmentCheckbox) {
-            departmentCheckbox.checked = true;
-            if (showAllCheckbox) {
-                showAllCheckbox.checked = false;
+    // Update trigger text for property type
+    function updateTriggerText(selectedCount) {
+        const triggerElement = document.querySelector('.search-form--type .search-form-dropdown--trigger');
+        if (triggerElement) {
+            if (selectedCount > 0) {
+                triggerElement.textContent = `${selectedCount} Selected`;
+            } else {
+                triggerElement.textContent = 'Property Type';
             }
         }
     }
 
-    // Automatically select the "Rent" toggle if the body class matches
-    const isLettingPage = [...bodyClassList].some(className => className.startsWith('page-template-') && className.includes('-letting'));
+    // Handle checkbox changes for property type
+    function handleCheckboxChange() {
+        const checkboxes = document.querySelectorAll('input[name="property_type[]"]');
+        const showAllCheckbox = document.querySelector('input[name="property_type[]"][value=""]');
+        let selectedCount = 0;
 
-    if (isLettingPage) {
-        const lettingsRadio = document.getElementById('_parent_department_lettings');
-        const salesRadio = document.getElementById('_parent_department_sales');
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked && checkbox.value !== '') {
+                selectedCount++;
+            }
+        });
 
-        if (lettingsRadio) lettingsRadio.checked = true;
-        if (salesRadio) salesRadio.checked = false;
-    } else {
-        const salesRadio = document.getElementById('_parent_department_sales');
-        const lettingsRadio = document.getElementById('_parent_department_lettings');
+        if (selectedCount > 0) {
+            showAllCheckbox.checked = false;
+        } else {
+            showAllCheckbox.checked = true;
+        }
 
-        if (salesRadio) salesRadio.checked = true;
-        if (lettingsRadio) lettingsRadio.checked = false;
+        updateTriggerText(selectedCount);
     }
 
-    // Initialize the jQuery UI sliders for sales and lettings
+    setCheckboxesFromUrl('property_type[]', 'input[name="property_type[]"]');
+
+    document.querySelectorAll('input[name="property_type[]"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (this.value === "") {
+                document.querySelectorAll('input[name="property_type[]"]').forEach(cb => {
+                    if (cb.value !== "") {
+                        cb.checked = false;
+                    }
+                });
+                handleCheckboxChange();
+            } else {
+                handleCheckboxChange();
+            }
+            this.blur();
+            this.focus();
+        });
+    });
+
+    handleCheckboxChange();
+
+    function toggleSliders() {
+        const salesSlider = jQuery('.range-slider.sales-only');
+        const lettingsSlider = jQuery('.range-slider.lettings-only');
+        const priceTrigger = jQuery('.trigger--price');
+
+        if (jQuery('#_parent_department_sales').is(':checked')) {
+            salesSlider.show();
+            lettingsSlider.hide();
+            updatePriceTrigger('sales');
+        } else if (jQuery('#_parent_department_lettings').is(':checked')) {
+            salesSlider.hide();
+            lettingsSlider.show();
+            updatePriceTrigger('lettings');
+        }
+    }
+
+    function abbreviatePrice(value) {
+        if (value >= 1000000) {
+            return `£${(value / 1000000).toFixed(1)}m`;
+        } else if (value >= 10000) {
+            return `£${(value / 1000).toFixed(0)}k`;
+        } else {
+            return `£${value.toLocaleString()}`;
+        }
+    }
+
+    function updatePriceTrigger(sliderType) {
+        let minValue, maxValue, triggerElement;
+
+        if (sliderType === 'sales') {
+            minValue = jQuery("#minValueSales").text().replace(/[^0-9.]/g, '');
+            maxValue = jQuery("#maxValueSales").text().replace(/[^0-9.]/g, '');
+            triggerElement = jQuery('.trigger--price');
+        } else {
+            minValue = jQuery("#minValueLettings").text().replace(/[^0-9.]/g, '');
+            maxValue = jQuery("#maxValueLettings").text().replace(/[^0-9.]/g, '');
+            triggerElement = jQuery('.trigger--price');
+        }
+
+        minValue = parseInt(minValue);
+        maxValue = parseInt(maxValue);
+
+        const minAbbreviated = abbreviatePrice(minValue);
+        const maxAbbreviated = abbreviatePrice(maxValue);
+
+        triggerElement.text(`${minAbbreviated} - ${maxAbbreviated}`);
+    }
+
+    function getSalesStepValue(currentValue) {
+        if (currentValue < 300000) {
+            return 10000;
+        } else if (currentValue < 500000) {
+            return 25000;
+        } else if (currentValue < 1000000) {
+            return 50000;
+        } else if (currentValue < 3000000) {
+            return 100000;
+        } else {
+            return 500000;
+        }
+    }
+
+    function initializeSliderValues(sliderSelector, minValueSelector, maxValueSelector, triggerType) {
+        const minValueElement = jQuery(minValueSelector);
+        const maxValueElement = jQuery(maxValueSelector);
+        const sliderValues = jQuery(sliderSelector).slider("values");
+
+        minValueElement.text("£" + sliderValues[0].toLocaleString());
+        maxValueElement.text("£" + sliderValues[1].toLocaleString());
+
+        updateSliderFill(sliderSelector, sliderValues);
+        updatePriceTrigger(triggerType);
+    }
+
     jQuery("#sales-slider-range").slider({
         range: true,
         min: 0,
         max: 10000000,
         values: [parseInt(urlParams.get('minimum_price')) || 0, parseInt(urlParams.get('maximum_price')) || 10000000],
-        step: 50000,
         slide: function(event, ui) {
             jQuery("#minValueSales").text("£" + ui.values[0].toLocaleString());
             jQuery("#maxValueSales").text("£" + ui.values[1].toLocaleString());
             jQuery("#minimum_price_input").val(ui.values[0]);
             jQuery("#maximum_price_input").val(ui.values[1]);
             updateSliderFill("#sales-slider-range", ui.values);
+            updatePriceTrigger('sales');
+            jQuery(this).slider('option', 'step', getSalesStepValue(ui.value));
+        },
+        create: function() {
+            initializeSliderValues("#sales-slider-range", "#minValueSales", "#maxValueSales", 'sales');
         }
     });
 
@@ -121,14 +280,13 @@ document.addEventListener("DOMContentLoaded", function() {
             jQuery("#minimum_rent_input").val(ui.values[0]);
             jQuery("#maximum_rent_input").val(ui.values[1]);
             updateSliderFill("#lettings-slider-range", ui.values);
+            updatePriceTrigger('lettings');
+        },
+        create: function() {
+            initializeSliderValues("#lettings-slider-range", "#minValueLettings", "#maxValueLettings", 'lettings');
         }
     });
 
-    // Update the slider fill on initial load
-    updateSliderFill("#sales-slider-range", jQuery("#sales-slider-range").slider("values"));
-    updateSliderFill("#lettings-slider-range", jQuery("#lettings-slider-range").slider("values"));
-
-    // Function to update the slider fill
     function updateSliderFill(sliderId, values) {
         const slider = jQuery(sliderId);
         const sliderRange = slider.slider("option", "max") - slider.slider("option", "min");
@@ -141,52 +299,9 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Function to toggle slider visibility
-    function toggleSliders() {
-        const salesSlider = jQuery('.range-slider.sales-only');
-        const lettingsSlider = jQuery('.range-slider.lettings-only');
-        const priceTrigger = jQuery('.trigger--price');
-
-        if (jQuery('#_parent_department_sales').is(':checked')) {
-            salesSlider.show();
-            lettingsSlider.hide();
-            priceTrigger.text('Price');
-        } else if (jQuery('#_parent_department_lettings').is(':checked')) {
-            salesSlider.hide();
-            lettingsSlider.show();
-            priceTrigger.text('Rent');
-        }
-    }
-
-    // Initialize the slider display based on the default selection
     toggleSliders();
 
     jQuery('#_parent_department_sales, #_parent_department_lettings').change(toggleSliders);
-
-    // Form submission logic to ensure correct slider values are submitted
-    jQuery('form').on('submit', function() {
-        if (jQuery('#_parent_department_lettings').is(':checked')) {
-            jQuery("#minimum_price_input").removeAttr('name');
-            jQuery("#maximum_price_input").removeAttr('name');
-        } else {
-            jQuery("#minimum_rent_input").removeAttr('name');
-            jQuery("#maximum_rent_input").removeAttr('name');
-        }
-    });
-
-    function closeDropdownsOnClickOutside() {
-        window.addEventListener('click', function(e) {
-            const dropdowns = document.querySelectorAll('.search-form-dropdown');
-
-            dropdowns.forEach(dropdown => {
-                const isClickInside = dropdown.contains(e.target);
-
-                if (!isClickInside) {
-                    dropdown.classList.remove('open');
-                }
-            });
-        });
-    }
 
     function setupDropdowns() {
         document.querySelectorAll('.search-form-control--dropdown, .search-form-control--checkboxes').forEach(dropdownControl => {
@@ -212,12 +327,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
                 selectedOption.classList.add('selected');
 
-                // Close the dropdown after selection
                 dropdown.classList.remove('open');
             });
         }
     }
-
 
     function setupCheckboxes() {
         document.querySelectorAll('.search-form-control--checkboxes').forEach(checkboxGroup => {
@@ -240,30 +353,37 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Initialize all handlers
     setupDropdowns();
     setupCheckboxes();
-    closeDropdownsOnClickOutside();
 
-    // Initialize Google Places Autocomplete on the location input field
-    const locationInput = document.getElementById('address_keyword');
-    if (locationInput) {
-        const autocomplete = new google.maps.places.Autocomplete(locationInput, {
-            types: ['(regions)'], // Restrict suggestions to addresses and places
-            componentRestrictions: { country: 'uk' } // Restrict to a specific country (optional)
-        });
+    function closeDropdownsOnClickOutside() {
+        window.addEventListener('click', function(e) {
+            const dropdowns = document.querySelectorAll('.search-form-dropdown');
 
-        // If you want to handle the place selection (e.g., to get latitude and longitude), you can do so here
-        autocomplete.addListener('place_changed', function() {
-            const place = autocomplete.getPlace();
-            // Do some things in here
+            dropdowns.forEach(dropdown => {
+                const isClickInside = dropdown.contains(e.target);
 
-
+                if (!isClickInside) {
+                    dropdown.classList.remove('open');
+                }
+            });
         });
     }
 
+    closeDropdownsOnClickOutside();
 
-    // Function to identify the last visible .search-form-control (excluding submit) and apply the 'last-visible' class
+    const locationInput = document.getElementById('address_keyword');
+    if (locationInput) {
+        const autocomplete = new google.maps.places.Autocomplete(locationInput, {
+            types: ['(regions)'],
+            componentRestrictions: { country: 'uk' }
+        });
+
+        autocomplete.addListener('place_changed', function() {
+            const place = autocomplete.getPlace();
+        });
+    }
+
     function markLastVisibleControl() {
         setTimeout(function() {
             const controls = document.querySelectorAll('.search-form-control');
@@ -275,38 +395,31 @@ document.addEventListener("DOMContentLoaded", function() {
                     style.display !== 'none' &&
                     style.visibility !== 'hidden' &&
                     control.offsetParent !== null &&
-                    !control.classList.contains('search-form-control--submit') // Exclude submit button
+                    !control.classList.contains('search-form-control--submit')
                 ) {
                     lastVisibleControl = control;
                 }
             });
 
-            // Remove the 'last-visible' class from all controls first
             controls.forEach(control => {
                 control.classList.remove('last-visible');
             });
 
-            // Apply the 'last-visible' class to the last visible control
             if (lastVisibleControl) {
                 lastVisibleControl.classList.add('last-visible');
             }
-        }, 300); // 300ms delay to allow for any CSS changes
+        }, 300);
     }
 
-    // Call the function to mark the last visible control
     markLastVisibleControl();
 
-    // Grid/List View Toggle Logic with Local Storage
     if (document.body.classList.contains("post-type-archive-property")) {
-
         const listViewTrigger = document.querySelector(".view--list-view");
         const gridViewTrigger = document.querySelector(".view--grid-view");
         const searchResultsContainer = document.querySelector(".search-results");
 
-        // Check localStorage for view preference
         const savedView = localStorage.getItem('viewMode');
 
-        // Apply saved view mode
         if (savedView === 'list') {
             searchResultsContainer.classList.add("list-view");
             searchResultsContainer.classList.remove("grid-view");
@@ -319,7 +432,6 @@ document.addEventListener("DOMContentLoaded", function() {
             listViewTrigger.classList.remove("active");
         }
 
-        // Function to toggle to list-view and save preference
         listViewTrigger.addEventListener("click", function(event) {
             event.preventDefault();
             searchResultsContainer.classList.add("list-view");
@@ -330,7 +442,6 @@ document.addEventListener("DOMContentLoaded", function() {
             gridViewTrigger.classList.remove("active");
         });
 
-        // Function to toggle to grid-view and save preference
         gridViewTrigger.addEventListener("click", function(event) {
             event.preventDefault();
             searchResultsContainer.classList.add("grid-view");
@@ -342,7 +453,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Sold STC URL Params
     const includeSoldStcCheckbox = document.querySelector('.stc-checkbox-control');
 
     if (includeSoldStcCheckbox) {
@@ -355,24 +465,68 @@ document.addEventListener("DOMContentLoaded", function() {
                 urlParams.delete('include_sold_stc');
             }
 
-            // Create the new URL with updated parameters
             const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
-
-            // Reload the page with the new URL
             window.location.href = newUrl;
         });
     }
 
-
-
-    // Slick Slider refresh on tab change
     jQuery('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
-        var target = jQuery(e.target).attr('href'); // Get the href attribute which is the target tab
+        var target = jQuery(e.target).attr('href');
         var $slider = jQuery(target).find('.inner-tabs.pr ul.properties');
 
         if ($slider.length > 0) {
-            $slider.slick('refresh'); // Refresh SlickSlider to adjust its layout
+            $slider.slick('refresh');
         }
     });
 
+    // Form submission logic to remove empty or irrelevant parameters
+    jQuery('form').on('submit', function() {
+        // Remove address_keyword if empty
+        if (!jQuery('input[name="address_keyword"]').val()) {
+            jQuery('input[name="address_keyword"]').removeAttr('name');
+        }
+
+        // Remove radius if not selected
+        if (!jQuery('input[name="radius"]:checked').val()) {
+            jQuery('input[name="radius"]').removeAttr('name');
+        }
+
+        // Remove property_type[] if "Show All" is selected
+        if (jQuery('input[name="property_type[]"][value=""]').is(':checked')) {
+            jQuery('input[name="property_type[]"]').removeAttr('name');
+        }
+
+        // Remove minimum_rent and maximum_rent if Sales is selected
+        if (jQuery('#_parent_department_sales').is(':checked')) {
+            jQuery("#minimum_rent_input").removeAttr('name');
+            jQuery("#maximum_rent_input").removeAttr('name');
+        }
+
+        // Remove minimum_price and maximum_price if Lettings is selected
+        if (jQuery('#_parent_department_lettings').is(':checked')) {
+            jQuery("#minimum_price_input").removeAttr('name');
+            jQuery("#maximum_price_input").removeAttr('name');
+        }
+
+        // Remove department if not selected or Show All
+        if (!jQuery('input[name="department"]').val()) {
+            jQuery('input[name="department"]').removeAttr('name');
+        }
+    });
+
+    // Function to update the label text for Sold STC based on department toggle
+    function updateSoldStcLabel() {
+        const stcLabel = document.querySelector('.stc-checkbox-control + span');
+        if (jQuery('#_parent_department_lettings').is(':checked')) {
+            stcLabel.textContent = 'Include Let Properties';
+        } else {
+            stcLabel.textContent = 'Include Under Offer, Sold STC';
+        }
+    }
+
+    // Call the function to update the label text on page load based on the initial state
+    updateSoldStcLabel();
+
+    // Listen for changes to the department radio buttons
+    jQuery('#_parent_department_sales, #_parent_department_lettings').change(updateSoldStcLabel);
 });

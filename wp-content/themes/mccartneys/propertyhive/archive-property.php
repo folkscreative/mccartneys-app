@@ -17,7 +17,7 @@ get_header( 'propertyhive' ); global $wpdb; ?>
     <section class="search-outer">
         <div class="container">
             <?php echo do_shortcode('[property_search]') ?>
-
+            <!-- <?php echo do_shortcode( '[property_search_form id="default"]' ); ?> -->
         </div>
 
     </section>
@@ -27,8 +27,8 @@ get_header( 'propertyhive' ); global $wpdb; ?>
             <div class="results-sorting">
                 <form class="stc-checkbox">
                     <label><input type="checkbox" value="1" name="include_sold_stc" class="stc-checkbox-control"
-                            <?php if (isset($_REQUEST['include_sold_stc'])) { echo ' checked'; } ?>> Include Sold
-                        STC?</label>
+                            <?php if (isset($_REQUEST['include_sold_stc'])) { echo ' checked'; } ?>> <span>Include Under
+                            Offer, Sold STC</span></label>
                 </form>
                 <?php echo propertyhive_catalog_ordering(); ?>
             </div>

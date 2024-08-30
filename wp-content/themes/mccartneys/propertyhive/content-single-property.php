@@ -65,26 +65,25 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
         <div class="container property-gallery d-none d-md-flex">
 
             <div class="wrapper-main-img">
-                <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>"
-                    class="main-image property-featured-image" alt="><?php the_title(); ?>">
-                <div class="gallery-count mcc-badge">
+                <a data-glightbox='gallery-images' class="glightbox"><img
+                        src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>"
+                        class="main-image property-featured-image" alt="<?php the_title(); ?>"></a>
+                <div class=" gallery-count mcc-badge">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/gallery-icon.svg" alt=""
                         class="badge-icon">
                     <a id="galleryMedia">1/<?php echo $galleryAttachmentCount ?></a>
                 </div>
-                <div class="gallery-count mcc-badge gallery-link-cr">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/gallery-icon.svg" alt=""
-                        class="badge-icon">
-                    <a id="galleryMedia">1/<?php echo $galleryAttachmentCount ?></a>
-                </div>
-                
+
+
             </div>
 
             <div class="side-images">
-                <img src="<?php echo wp_get_attachment_url($gallery_attachments[1], $size = 'property-square') ?>"
-                    class="property-secondary-image" alt="><?php the_title(); ?>">
-                <img src="<?php echo wp_get_attachment_url($gallery_attachments[2], $size = 'property-square') ?>"
-                    class="property-secondary-image" alt="><?php the_title(); ?>">
+                <a data-glightbox='gallery-images' class="glightbox"><img
+                        src="<?php echo wp_get_attachment_url($gallery_attachments[1], $size = 'property-square') ?>"
+                        class="property-secondary-image" alt="><?php the_title(); ?>"></a>
+                <a data-glightbox='gallery-images' class="glightbox"><img
+                        src="<?php echo wp_get_attachment_url($gallery_attachments[2], $size = 'property-square') ?>"
+                        class="property-secondary-image" alt="><?php the_title(); ?>"></a>
             </div>
         </div>
 
@@ -226,20 +225,8 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                                 <span>Virtual Tour</span>
                             </li>
                         </a>
+
                         <?php }
-                        if ($virtual_tours) { ?>
-                        <a id="videoTourMedia">
-                            <li class="property-media--video-tour">
-                                <img class="media-icon d-none d-md-block"
-                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/video-tour-icon.svg"
-                                    alt="">
-                                <img class="media-icon d-block d-md-none"
-                                    src="<?php echo get_template_directory_uri(); ?>/assets/images/video-tour-dark.svg"
-                                    alt="">
-                                <span>Video Tour</span>
-                            </li>
-                        </a>
-                        <? }
                         if ($brochures) { ?>
                         <a href="<?php echo wp_get_attachment_url($brochures[0]);  ?>" target="_blank"
                             id="brochureMedia">
@@ -385,48 +372,48 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
 </div><!-- #property-<?php the_ID(); ?> -->
 
-<div class="hidden virtual-tours">
+<div class=" virtual-tours glightbox" data-glightbox="video-tour">
     <?php
 foreach ($virtual_tour_urls as $virtual_tour_url) {
-    echo "<a href='" . wp_get_attachment_url( $virtual_tour_url ). "' data-lightbox='virtual-tour-images'></a>";
+    echo "<a href='" . $virtual_tour_url . "' class='glightbox'></a>";
 }
 
 ?>
 </div>
 
 
-<div class="hidden epcs">
+<div class="hidden epcs glightbox" data-glightbox="epc-media">
     <?php
 foreach ($epcs as $epc) {
-    echo "<a href='" . wp_get_attachment_url( $epc ) . "' data-lightbox='epc-images'></a>";
+    echo "<a href='" . wp_get_attachment_url( $epc ) . "' class='glightbox'><img src='". wp_get_attachment_url($epc) ."'></a>";
 }
 
 ?>
 </div>
 
-<div class="hidden floorplans">
+<div class="hidden floorplans glightbox" data-glightbox="floorplans">
     <?php
 foreach ($floorplans as $floorplan) {
-    echo "<a href='" . wp_get_attachment_url( $floorplan ) . "' data-lightbox='floorplan-images'></a>";
+    echo "<a href='" . wp_get_attachment_url( $floorplan ) . "' class='glightbox'><img src='". wp_get_attachment_url($floorplan) ."'></a>";
 }
 
 ?>
 </div>
 
-<div class="hidden galleryImages">
+<div class="hidden galleryImages glightbox" data-glightbox="gallery-images">
     <?php
 foreach ($gallery_attachments as $gallery_attachment) {
-    echo "<a href='" . wp_get_attachment_url( $gallery_attachment ) . "' data-lightbox='gallery-images'></a>";
+    echo "<a href='" . wp_get_attachment_url( $gallery_attachment ) . "' class='glightbox'><img src='". wp_get_attachment_url($gallery_attachment) ."'></a></a>";
 }
 
 ?>
 
 </div>
 
-<div class="hidden brochures">
+<div class="hidden brochures" data-glightbox="brochure">
     <?php
     foreach ($brochures as $brochure) {
-        echo "<a href='" . wp_get_attachment_url( $brochure ) . "' data-lightbox='brochure-images'></a>";
+        echo "<a href='" . wp_get_attachment_url( $brochure ) . "' class='glightbox'></a>";
     }
     ?>
 </div>

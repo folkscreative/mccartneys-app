@@ -17,30 +17,60 @@ var videoTourMedia = document.getElementById('videoTourMedia');
 var brochureMedia = document.getElementById('brochureMedia');
 var epcMedia = document.getElementById('epcMedia');
 var galleryMedia = document.getElementById('galleryMedia');
+var propMainImg = document.querySelector('.glightbox .main-image');
+var galleryThumbs = document.querySelectorAll('.glightbox .property-secondary-image');
 
 
 if (floorplanMedia) {
-    floorplanMedia.addEventListener('click', function() {
-        document.querySelector('a[data-lightbox="floorplan-images"]').click();
+    // Initialize GLightbox
+    const floorPlanLightbox = GLightbox({
+        selector: 'div.floorplans.glightbox a'
     });
+    // External trigger to open lightbox
+    floorplanMedia.addEventListener('click', function() {
+        floorPlanLightbox.open();
+    });
+
 }
 if (virtualTourMedia) {
+    // Initialize GLightbox
+    const vTourLightbox = GLightbox({
+        selector: 'div.virtual-tours.glightbox a'
+    });
+    // External trigger to open lightbox
     virtualTourMedia.addEventListener('click', function() {
-        document.querySelector('a[data-lightbox="virtual-tour-images"]').click();
+        vTourLightbox.open();
     });
+
 }
-if (videoTourMedia) {
-    videoTourMedia.addEventListener('click', function() {
-        document.querySelector('a[data-lightbox="video-tour-images"]').click();
-    });
-}
+
 if (epcMedia) {
-    epcMedia.addEventListener('click', function() {
-        document.querySelector('a[data-lightbox="epc-images"]').click();
+    // Initialize GLightbox
+    const epcLightbox = GLightbox({
+        selector: 'div.epcs.glightbox a'
     });
+    // External trigger to open lightbox
+    epcMedia.addEventListener('click', function() {
+        epcLightbox.open();
+    });
+
 }
 if (galleryMedia) {
+    // Initialize GLightbox
+    const galleryLightbox = GLightbox({
+        selector: 'div.galleryImages.glightbox a'
+    });
+    // External trigger to open lightbox
     galleryMedia.addEventListener('click', function() {
-        document.querySelector('a[data-lightbox="gallery-images"]').click();
+        galleryLightbox.open();
+    });
+    propMainImg.addEventListener('click', function() {
+        galleryLightbox.open();
+    });
+    galleryThumbs.forEach(function(thumb, index) {
+        thumb.addEventListener('click', function() {
+            // Open the GLightbox at the specific index
+            galleryLightbox.openAt(index + 1);
+        });
     });
 }

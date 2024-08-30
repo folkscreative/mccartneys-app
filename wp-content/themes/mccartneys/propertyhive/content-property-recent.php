@@ -64,6 +64,14 @@ if ( $property->featured == 'yes' )
             </li>
             <?php endif; ?>
 
+            <?php if ( $property->reception_rooms > 0 ): ?>
+            <li>
+                <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/recep-room.png"
+                    alt="">
+                <span><?php echo $property->reception_rooms; ?></span>
+            </li>
+            <?php endif; ?>
+
             <?php if (
     (!is_null($property->floor_area_to_sqft) && $property->floor_area_to_sqft !== '' && $property->floor_area_to_sqft != 0) ||
     (!is_null($property->floor_area_from_sqft) && $property->floor_area_from_sqft !== '' && $property->floor_area_from_sqft != 0)
@@ -78,6 +86,7 @@ if ( $property->featured == 'yes' )
 
         </ul>
         <p class="price"><?php echo $property->get_formatted_price(); ?></p>
+        <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
     </div>
 
 

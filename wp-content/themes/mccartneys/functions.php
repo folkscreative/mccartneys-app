@@ -152,6 +152,9 @@ function mccartneys_scripts() {
 	}
     if ( is_singular('property') ) {
 
+        
+        wp_enqueue_script( 'lightbox-js', get_template_directory_uri() . '/assets/js/glightbox.min.js', array( 'jquery' ), _S_VERSION, true );
+        wp_enqueue_style( 'lightbox-css', get_template_directory_uri() . '/assets/css/glightbox.min.css', _S_VERSION );
         wp_enqueue_script(
             'single-property', 
             get_template_directory_uri() . '/js/single-property.js', 
@@ -159,8 +162,6 @@ function mccartneys_scripts() {
             _S_VERSION, 
             true 
         );
-        wp_enqueue_script( 'lightbox-js', get_template_directory_uri() . '/assets/js/lightbox.min.js', array( 'jquery' ), _S_VERSION, true );
-        wp_enqueue_style( 'lightbox-css', get_template_directory_uri() . '/assets/css/lightbox.min.css', _S_VERSION );
     }
 }
 add_action( 'wp_enqueue_scripts', 'mccartneys_scripts' );
@@ -1251,7 +1252,7 @@ function mcc_ph_search() {
     action="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>"
     method="get" role="form">
     <div class="search-form-control search-form--radio-toggle">
-        <input type="radio" id="_parent_department_sales" name="_parent_department" value="Sales" checked>
+        <input type="radio" id="_parent_department_sales" name="_parent_department" value="Sales">
         <label for="_parent_department_sales">BUY</label>
         <input type="radio" id="_parent_department_lettings" name="_parent_department" value="Lettings">
         <label for="_parent_department_lettings">RENT</label>
@@ -1342,45 +1343,6 @@ function mcc_ph_search() {
                     <input type="hidden" name="maximum_rent" id="maximum_rent_input" value="10000">
                 </div>
 
-
-                <!-- Sales Pricing Slider -->
-                <!-- <div class="range-slider sales-only">
-                    <input type="range" id="minPriceSales" name="minimum_price" min="0" max="1000000" value="0"
-                        step="1000">
-                    <input type="range" id="maxPriceSales" name="maximum_price" min="400000" max="10000000"
-                        value="10000000" step="50000">
-                    <div class="slider-track"></div>
-                    <div class="range-values">
-                        <div class="price-wrap minWrap">
-                            <span class="price-title minTitle">Min. Price</span>
-                            <span id="minValueSales">£0</span>
-                        </div>
-
-                        <div class="price-wrap maxWrap">
-                            <span class="price-title maxTitle">Max. Price</span>
-                            <span id="maxValueSales">£10,000,000</span>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- Rental Pricing Slider -->
-                <!-- <div class="range-slider lettings-only" style="display: none;">
-                    <input type="range" id="minPriceLettings" name="minimum_rent" min="0" max="1000" value="0"
-                        step="250">
-                    <input type="range" id="maxPriceLettings" name="maximum_rent" min="1000" max="10000" value="10000"
-                        step="250">
-                    <div class="slider-track"></div>
-                    <div class="range-values">
-                        <div class="price-wrap minWrap">
-                            <span class="price-title minTitle">Min. Rent</span>
-                            <span id="minValueLettings">£0 pcm</span>
-                        </div>
-
-                        <div class="price-wrap maxWrap">
-                            <span class="price-title maxTitle">Max. Rent</span>
-                            <span id="maxValueLettings">£10,000 pcm</span>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -1460,44 +1422,44 @@ function mcc_ph_search() {
             <div class="search-form-dropdown--trigger">Property Type</div>
             <div class="search-form-dropdown--options">
                 <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type" checked value="">
+                    <input type="checkbox" name="property_type[]" checked value="">
                     <span class="search-form-checkboxes--checkbox-label"></span>
                     Show All
                 </label>
                 <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type" value="69">
+                    <input type="checkbox" name="property_type[]" value="69">
                     <span class="search-form-checkboxes--checkbox-label"></span>
                     Bungalow
                 </label>
                 <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type" value="61">
+                    <input type="checkbox" name="property_type[]" value="61">
                     <span class="search-form-checkboxes--checkbox-label"></span>
                     Detached
                 </label>
                 <hr>
                 <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type" value="62">
+                    <input type="checkbox" name="property_type[]" value="62">
                     <span class="search-form-checkboxes--checkbox-label"></span>
                     Semi-detached
                 </label>
                 <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type" value="63">
+                    <input type="checkbox" name="property_type[]" value="63">
                     <span class="search-form-checkboxes--checkbox-label"></span>
                     Terraced
                 </label>
                 <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type" value="74">
+                    <input type="checkbox" name="property_type[]" value="74">
                     <span class="search-form-checkboxes--checkbox-label"></span>
                     Flat/Apartment
                 </label>
                 <hr>
                 <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type" value="93">
+                    <input type="checkbox" name="property_type[]" value="93">
                     <span class="search-form-checkboxes--checkbox-label"></span>
                     Farms
                 </label>
                 <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type" value="83">
+                    <input type="checkbox" name="property_type[]" value="83">
                     <span class="search-form-checkboxes--checkbox-label"></span>
                     Commercial
                 </label>

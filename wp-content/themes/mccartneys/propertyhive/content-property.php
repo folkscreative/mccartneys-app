@@ -48,6 +48,9 @@ if ( $property->featured == 'yes' )
     <div class="col-right">
         <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
         <h3 class="price-info price"><?php echo $property->get_formatted_price(); ?></h3>
+        <span>Availability: <?php echo $property->availability ?></span>
+        <span>Marketing Flag: <?php echo $property->marketing_flag ?></span>
+        <span>Department: <?php echo $property->department ?></span>
         <ul class="features">
 
             <?php if (!is_null($property->property_type) && $property->property_type !== '' && trim($property->property_type) !== '') { ?>
@@ -70,6 +73,13 @@ if ( $property->featured == 'yes' )
                 <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/bath-logo.svg"
                     alt="">
                 <span><?php echo $property->bathrooms; ?></span>
+            </li>
+            <?php endif; ?>
+            <?php if ( $property->reception_rooms > 0 ): ?>
+            <li>
+                <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/recep-room.png"
+                    alt="">
+                <span><?php echo $property->reception_rooms; ?></span>
             </li>
             <?php endif; ?>
 
