@@ -1282,7 +1282,7 @@ P {
     position: absolute;
     width: 100%;
     height: 267px;
-    bottom: 200px;
+    bottom: 290px;
     z-index: -1;
     background-position: bottom center;
     background-repeat: no-repeat;
@@ -2517,11 +2517,15 @@ footer .cookies-menu ul li a {
 .livestock-faqs.faqs-wrap .faqs-wrapper .bottom-bar .content p {
     margin: 10px 0;
 }
-
+.livestock-faqs .faqs-wrapper .bottom-bar .content ul {
+    list-style-type: decimal;
+    padding-left: 40px;
+}
 .livestock-faqs .faqs-wrapper .bottom-bar .content ul li {
     font-size: 14px;
     line-height: 21px;
     color: #fff;
+    list-style-type:  decimal;
 }
 
 .livestock-faqs .faqs-wrapper .bottom-bar .content .phone {
@@ -7448,7 +7452,7 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         padding: 50px 20px;
     }
     .testimonials.property-pg::after {
-        bottom: 260px;
+        bottom: 315px;
     }
 }
 
@@ -8852,8 +8856,14 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
         background-position: 66% !important;
     }
     .livestocks-departments.mod .slide-wrap:hover .inner-content{
-        bottom: -18px;
-        height: fit-content;
+        bottom: 0 !important;
+        height: 100% !important;
+    }
+    .livestocks-departments.mod .slide-wrap .inner-content .contex a{
+        padding: 6px !important;
+    }
+    .livestocks-departments.mod .slide-wrap:hover .inner-content .contex{
+        display: block !important;
     }
     .timeline-wrapper .wrapper-time{
         height: 100%;
@@ -8865,6 +8875,9 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     }
     .timeline-wrapper .wrapper-time .iteml.visible{
         display: block;
+    }
+    .testimonials.property-pg::after {
+        bottom: 280px;
     }
 }
 
