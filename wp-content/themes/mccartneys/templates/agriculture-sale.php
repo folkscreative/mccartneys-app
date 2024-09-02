@@ -226,6 +226,12 @@ if ( !empty( $image_private ) ) { ?>
                                     <a
                                         href="tel:<?php the_sub_field('livestock_auctioneers_number'); ?>"><?php the_sub_field('livestock_auctioneers_number'); ?></a>
                                 </li>
+                                <?php if( get_sub_field('livestock_auctioneers_second_number') ): ?>
+                            <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:<?php the_sub_field('livestock_auctioneers_second_number'); ?>"><?php the_sub_field('livestock_auctioneers_second_number'); ?></a>
+                            </li>
+							<?php endif; ?>
                                 <li>
                                     <i class="fa-regular fa-envelope"></i>
                                     <a
@@ -276,6 +282,12 @@ if ( !empty( $image_private ) ) { ?>
                                     <a
                                         href="tel:<?php the_sub_field('livestock_auctioneers_number'); ?>"><?php the_sub_field('livestock_auctioneers_number'); ?></a>
                                 </li>
+                                <?php if( get_sub_field('livestock_auctioneers_second_number') ): ?>
+                            <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:<?php the_sub_field('livestock_auctioneers_second_number'); ?>"><?php the_sub_field('livestock_auctioneers_second_number'); ?></a>
+                            </li>
+							<?php endif; ?>
                                 <li>
                                     <i class="fa-regular fa-envelope"></i>
                                     <a
