@@ -9565,7 +9565,7 @@ section.results-overview .results-overview--info .results-sorting .stc-checkbox 
     /* Hide default Google Maps icon */
 }
 
-.hdpi.pac-logo::after {
+.pac-logo::after {
     display: none;
 }
 
