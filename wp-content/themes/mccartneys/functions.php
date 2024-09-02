@@ -1239,15 +1239,159 @@ function mcc_ph_import_maps($post_id, $property)
     } else {
         update_post_meta($post_id, '_parent_department', 'Sales');
     }
+
+    // New Homes - if age contains "New", let's stick it in New Homes
+    // Check if 'age' contains 'new'
+    if (isset($property['age']) && strpos(strtolower($property['age']), 'new') !== false) {
+        // Do something if 'new' is found in 'age'
+        update_post_meta($post_id, '_department', 'new-homes');
+    } 
     
     // Anything NOT IN Residential lettings OR that is a commercial that is for sale will be assigned to a parent department of Sales.
     // PROPERTY HIVE COMMENT: Ensure the 'commercial' department is deactivated and this should happen by default. No snippet needed
 }
 
 
+// Populate post types dropdown
+function populate_property_types_dropdown() {
+
+
+if ( have_posts() ) {
+    global $wp_query;
+
+    // Get all post IDs from the entire search query (not paginated)
+    $all_post_ids_query = new WP_Query( array(
+        's'              => get_search_query(),
+        'posts_per_page' => -1, // Get all posts, no pagination
+        'fields'         => 'ids', // Only retrieve post IDs
+    ) );
+
+    $all_post_ids = $all_post_ids_query->posts;
+
+    // Get terms for those posts in the 'property_type' taxonomy
+    $terms = get_terms( array(
+        'taxonomy'   => 'property_type',
+        'object_ids' => $all_post_ids,
+        'orderby'    => 'name',
+        'order'      => 'ASC',
+        'fields'     => 'all',  // To get all term data
+        'hide_empty' => true,   // Hide terms with no associated posts
+    ) );
+
+    if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
+        echo '<div class="search-form-control search-form-control--checkboxes search-form--type">';
+        echo ' <div class="search-form-dropdown">';
+        echo '<div class="search-form-dropdown--trigger">Property Type</div>';
+        echo '<div class="search-form-dropdown--options">';
+        echo '<label class="search-form-checkboxes--option">';
+        echo '<input type="checkbox" name="property_type[]" checked value="">';
+        echo '<span class="search-form-checkboxes--checkbox-label"></span>';
+        echo 'Show All';
+        echo '</label>';
+
+        foreach ( $terms as $term ) {
+            echo '<label class="search-form-checkboxes--option">';
+            echo '<input type="checkbox" name="property_type[]" value="' . esc_attr( $term->term_id ) . '">';
+            echo '<span class="search-form-checkboxes--checkbox-label"></span>';
+            echo esc_html( $term->name );
+            echo '</label>';
+        }
+
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    } else {
+        echo '<label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="69">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Bungalow
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="61">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Detached
+                    </label>
+                    <hr>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="62">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Semi-detached
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="63">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Terraced
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="74">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Flat/Apartment
+                    </label>
+                    <hr>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="93">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Farms
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="83">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Commercial
+                    </label>';
+
+
+        
+    }
+} else {
+    echo '<label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="69">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Bungalow
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="61">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Detached
+                    </label>
+                    <hr>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="62">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Semi-detached
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="63">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Terraced
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="74">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Flat/Apartment
+                    </label>
+                    <hr>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="93">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Farms
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="83">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Commercial
+                    </label>';
+}
+
+
+}
+
+
+
 // PH MCC Search Form shortcode
 function mcc_ph_search() {
+
     ?>
+
 <form class="property-search"
     action="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>"
     method="get" role="form">
@@ -1257,98 +1401,102 @@ function mcc_ph_search() {
         <input type="radio" id="_parent_department_lettings" name="_parent_department" value="Lettings">
         <label for="_parent_department_lettings">RENT</label>
     </div>
+    <div class="search-font-control search-form--filter-drawer-trigger">
+        <span class="filter-draw-trigger">Filters</span>
+    </div>
     <div class="search-form-control search-form--location">
         <input type="text" placeholder="Location" name="address_keyword" id="address_keyword">
     </div>
-    <div class="search-form-control search-form-control--dropdown search-form--radius">
-        <div class="search-form-dropdown">
-            <div class="search-form-dropdown--trigger">Search Radius</div>
-            <div class="search-form-dropdown--options">
-                <label class="search-form-dropdown--option selected">
-                    <input type="radio" name="radius" value="" checked>
-                    <span>+ 0 miles</span>
-                </label>
-                <label class="search-form-dropdown--option">
-                    <input type="radio" name="radius" value="0.25">
-                    <span>+ 1/4 miles</span>
-                </label>
-                <label class="search-form-dropdown--option">
-                    <input type="radio" name="radius" value="1">
-                    <span>+ 1 miles</span>
-                </label>
-                <label class="search-form-dropdown--option">
-                    <input type="radio" name="radius" value="3">
-                    <span>+ 3 miles</span>
-                </label>
-                <label class="search-form-dropdown--option">
-                    <input type="radio" name="radius" value="5">
-                    <span>+ 5 miles</span>
-                </label>
-                <label class="search-form-dropdown--option">
-                    <input type="radio" name="radius" value="10">
-                    <span>+ 10 miles</span>
-                </label>
-                <label class="search-form-dropdown--option">
-                    <input type="radio" name="radius" value="20">
-                    <span>+ 20 miles</span>
-                </label>
-                <label class="search-form-dropdown--option">
-                    <input type="radio" name="radius" value="30">
-                    <span>+ 30 miles</span>
-                </label>
-                <label class="search-form-dropdown--option">
-                    <input type="radio" name="radius" value="40">
-                    <span>+ 40 miles</span>
-                </label>
+    <div class="search-form-control search-form-control--filter-draw">
+        <div class="search-form-control search-form-control--dropdown search-form--radius">
+            <div class="search-form-dropdown">
+                <div class="search-form-dropdown--trigger">Search Radius</div>
+                <div class="search-form-dropdown--options">
+                    <label class="search-form-dropdown--option selected">
+                        <input type="radio" name="radius" value="" checked>
+                        <span>+ 0 miles</span>
+                    </label>
+                    <label class="search-form-dropdown--option">
+                        <input type="radio" name="radius" value="0.25">
+                        <span>+ 1/4 miles</span>
+                    </label>
+                    <label class="search-form-dropdown--option">
+                        <input type="radio" name="radius" value="1">
+                        <span>+ 1 miles</span>
+                    </label>
+                    <label class="search-form-dropdown--option">
+                        <input type="radio" name="radius" value="3">
+                        <span>+ 3 miles</span>
+                    </label>
+                    <label class="search-form-dropdown--option">
+                        <input type="radio" name="radius" value="5">
+                        <span>+ 5 miles</span>
+                    </label>
+                    <label class="search-form-dropdown--option">
+                        <input type="radio" name="radius" value="10">
+                        <span>+ 10 miles</span>
+                    </label>
+                    <label class="search-form-dropdown--option">
+                        <input type="radio" name="radius" value="20">
+                        <span>+ 20 miles</span>
+                    </label>
+                    <label class="search-form-dropdown--option">
+                        <input type="radio" name="radius" value="30">
+                        <span>+ 30 miles</span>
+                    </label>
+                    <label class="search-form-dropdown--option">
+                        <input type="radio" name="radius" value="40">
+                        <span>+ 40 miles</span>
+                    </label>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Sales Pricing - Slider -->
-    <div class="search-form-control search-form-control--dropdown search-form--price-slider">
-        <div class="search-form-dropdown">
-            <div class="search-form-dropdown--trigger trigger--price">Price</div>
-            <div class="search-form-dropdown--options">
-                <!-- Sales Pricing Slider -->
-                <div class="range-slider sales-only">
-                    <div id="sales-slider-range"></div>
-                    <div class="range-values">
-                        <div class="price-wrap minWrap">
-                            <span class="price-title minTitle">Min. Price</span>
-                            <span id="minValueSales">£0</span>
+        <!-- Sales Pricing - Slider -->
+        <div class="search-form-control search-form-control--dropdown search-form--price-slider">
+            <div class="search-form-dropdown">
+                <div class="search-form-dropdown--trigger trigger--price">Price</div>
+                <div class="search-form-dropdown--options">
+                    <!-- Sales Pricing Slider -->
+                    <div class="range-slider sales-only">
+                        <div id="sales-slider-range"></div>
+                        <div class="range-values">
+                            <div class="price-wrap minWrap">
+                                <span class="price-title minTitle">Min. Price</span>
+                                <span id="minValueSales">£0</span>
+                            </div>
+                            <div class="price-wrap maxWrap">
+                                <span class="price-title maxTitle">Max. Price</span>
+                                <span id="maxValueSales">£10,000,000</span>
+                            </div>
                         </div>
-                        <div class="price-wrap maxWrap">
-                            <span class="price-title maxTitle">Max. Price</span>
-                            <span id="maxValueSales">£10,000,000</span>
-                        </div>
+                        <input type="hidden" name="minimum_price" id="minimum_price_input" value="0">
+                        <input type="hidden" name="maximum_price" id="maximum_price_input" value="10000000">
                     </div>
-                    <input type="hidden" name="minimum_price" id="minimum_price_input" value="0">
-                    <input type="hidden" name="maximum_price" id="maximum_price_input" value="10000000">
-                </div>
 
-                <!-- Rental Pricing Slider -->
-                <div class="range-slider lettings-only" style="display: none;">
-                    <div id="lettings-slider-range"></div>
-                    <div class="range-values">
-                        <div class="price-wrap minWrap">
-                            <span class="price-title minTitle">Min. Rent</span>
-                            <span id="minValueLettings">£0 pcm</span>
+                    <!-- Rental Pricing Slider -->
+                    <div class="range-slider lettings-only" style="display: none;">
+                        <div id="lettings-slider-range"></div>
+                        <div class="range-values">
+                            <div class="price-wrap minWrap">
+                                <span class="price-title minTitle">Min. Rent</span>
+                                <span id="minValueLettings">£0 pcm</span>
+                            </div>
+                            <div class="price-wrap maxWrap">
+                                <span class="price-title maxTitle">Max. Rent</span>
+                                <span id="maxValueLettings">£10,000 pcm</span>
+                            </div>
                         </div>
-                        <div class="price-wrap maxWrap">
-                            <span class="price-title maxTitle">Max. Rent</span>
-                            <span id="maxValueLettings">£10,000 pcm</span>
-                        </div>
+                        <input type="hidden" name="minimum_rent" id="minimum_rent_input" value="0">
+                        <input type="hidden" name="maximum_rent" id="maximum_rent_input" value="10000">
                     </div>
-                    <input type="hidden" name="minimum_rent" id="minimum_rent_input" value="0">
-                    <input type="hidden" name="maximum_rent" id="maximum_rent_input" value="10000">
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Sales Pricing -->
-    <!-- <div class="search-form-control search-form-control--dropdown search-form--price sales-only">
+        <!-- Sales Pricing -->
+        <!-- <div class="search-form-control search-form-control--dropdown search-form--price sales-only">
                     <div class="search-form-dropdown">
                         <div class="search-form-dropdown--trigger">Price</div>
                         <div class="search-form-dropdown--options">
@@ -1391,8 +1539,8 @@ function mcc_ph_search() {
                         </div>
                     </div>
                 </div> -->
-    <!-- Rental Pricing -->
-    <!-- <div class="search-form-control search-form-control--dropdown search-form--rent lettings-only">
+        <!-- Rental Pricing -->
+        <!-- <div class="search-form-control search-form-control--dropdown search-form--rent lettings-only">
                     <div class="search-form-dropdown">
                         <div class="search-form-dropdown--trigger">Price</div>
                         <div class="search-form-dropdown--options">
@@ -1417,106 +1565,110 @@ function mcc_ph_search() {
                 </div> -->
 
 
-    <div class="search-form-control search-form-control--checkboxes search-form--type">
-        <div class="search-form-dropdown">
-            <div class="search-form-dropdown--trigger">Property Type</div>
-            <div class="search-form-dropdown--options">
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type[]" checked value="">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Show All
-                </label>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type[]" value="69">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Bungalow
-                </label>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type[]" value="61">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Detached
-                </label>
-                <hr>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type[]" value="62">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Semi-detached
-                </label>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type[]" value="63">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Terraced
-                </label>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type[]" value="74">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Flat/Apartment
-                </label>
-                <hr>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type[]" value="93">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Farms
-                </label>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="property_type[]" value="83">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Commercial
-                </label>
+        <!-- <div class="search-form-control search-form-control--checkboxes search-form--type">
+            <div class="search-form-dropdown">
+                <div class="search-form-dropdown--trigger">Property Type</div>
+                <div class="search-form-dropdown--options">
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" checked value="">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Show All
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="69">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Bungalow
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="61">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Detached
+                    </label>
+                    <hr>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="62">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Semi-detached
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="63">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Terraced
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="74">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Flat/Apartment
+                    </label>
+                    <hr>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="93">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Farms
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="property_type[]" value="83">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Commercial
+                    </label>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="search-form-control search-form-control--checkboxes search-form--department">
-        <div class="search-form-dropdown">
-            <div class="search-form-dropdown--trigger">Department</div>
-            <div class="search-form-dropdown--options">
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="department" checked value="">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Show All
-                </label>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="department" value="residential-sales">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Residential Sales
-                </label>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="department" value="residential-lettings">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Residential Lettings
-                </label>
-                <hr>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="department" value="commercial">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Commercial
-                </label>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="department" value="agricultural">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Agricultural
-                </label>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="department" value="new-homes">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    New Homes
-                </label>
-                <hr>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="department" value="fine-and-country">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Fine & Country
-                </label>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="department" value="property-land-auctions">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Property & Land Auctions
-                </label>
-                <label class="search-form-checkboxes--option">
-                    <input type="checkbox" name="department" value="development-land">
-                    <span class="search-form-checkboxes--checkbox-label"></span>
-                    Development Land
-                </label>
+        </div> -->
+
+        <?php 
+        populate_property_types_dropdown(); ?>
+        <div class="search-form-control search-form-control--checkboxes search-form--department">
+            <div class="search-form-dropdown">
+                <div class="search-form-dropdown--trigger">Department</div>
+                <div class="search-form-dropdown--options">
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="department" checked value="">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Show All
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="department" value="residential-sales">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Residential Sales
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="department" value="residential-lettings">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Residential Lettings
+                    </label>
+                    <hr>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="department" value="commercial">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Commercial
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="department" value="agricultural">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Agricultural
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="department" value="new-homes">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        New Homes
+                    </label>
+                    <hr>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="department" value="fine-and-country">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Fine & Country
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="department" value="property-land-auctions">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Property & Land Auctions
+                    </label>
+                    <label class="search-form-checkboxes--option">
+                        <input type="checkbox" name="department" value="development-land">
+                        <span class="search-form-checkboxes--checkbox-label"></span>
+                        Development Land
+                    </label>
+                </div>
             </div>
         </div>
     </div>

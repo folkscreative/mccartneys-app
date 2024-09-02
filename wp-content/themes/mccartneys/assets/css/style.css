@@ -2517,15 +2517,17 @@ footer .cookies-menu ul li a {
 .livestock-faqs.faqs-wrap .faqs-wrapper .bottom-bar .content p {
     margin: 10px 0;
 }
+
 .livestock-faqs .faqs-wrapper .bottom-bar .content ul {
     list-style-type: decimal;
     padding-left: 40px;
 }
+
 .livestock-faqs .faqs-wrapper .bottom-bar .content ul li {
     font-size: 14px;
     line-height: 21px;
     color: #fff;
-    list-style-type:  decimal;
+    list-style-type: decimal;
 }
 
 .livestock-faqs .faqs-wrapper .bottom-bar .content .phone {
@@ -2895,7 +2897,8 @@ footer .cookies-menu ul li a {
 .livestocks-departments .slide-wrap:hover .inner-content {
     bottom: 0;
 }
-.livestocks-departments.mod .slide-wrap:hover .inner-content{
+
+.livestocks-departments.mod .slide-wrap:hover .inner-content {
     bottom: 0;
     height: 100%;
     display: flex;
@@ -2903,9 +2906,11 @@ footer .cookies-menu ul li a {
     align-items: end;
     justify-content: end;
 }
-.livestocks-departments.mod .slide-wrap:hover .inner-content .contex{
+
+.livestocks-departments.mod .slide-wrap:hover .inner-content .contex {
     width: 100%;
 }
+
 .livestocks-departments .slider-wrapper .slick-arrow {
     font-size: 0;
     width: 33px;
@@ -8852,28 +8857,28 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     .pedigree-center.stamp {
         padding: 70px 0 55px;
     }
-    .main-banner.planning{
+    .main-banner.planning {
         background-position: 66% !important;
     }
-    .livestocks-departments.mod .slide-wrap:hover .inner-content{
+    .livestocks-departments.mod .slide-wrap:hover .inner-content {
         bottom: 0 !important;
         height: 100% !important;
     }
-    .livestocks-departments.mod .slide-wrap .inner-content .contex a{
+    .livestocks-departments.mod .slide-wrap .inner-content .contex a {
         padding: 6px !important;
     }
-    .livestocks-departments.mod .slide-wrap:hover .inner-content .contex{
+    .livestocks-departments.mod .slide-wrap:hover .inner-content .contex {
         display: block !important;
     }
-    .timeline-wrapper .wrapper-time{
+    .timeline-wrapper .wrapper-time {
         height: 100%;
         overflow-y: visible;
     }
-    .timeline-wrapper .wrapper-time .iteml{
+    .timeline-wrapper .wrapper-time .iteml {
         min-height: fit-content;
         display: none;
     }
-    .timeline-wrapper .wrapper-time .iteml.visible{
+    .timeline-wrapper .wrapper-time .iteml.visible {
         display: block;
     }
     .testimonials.property-pg::after {
@@ -9329,8 +9334,13 @@ form.property-search {
 }
 
 .search-form-control:not(.search-form--radio-toggle,
+.search-form-control--filter-draw,
 .search-form-control.last-visible) {
     border-right: 1px solid #706F70;
+}
+
+.search-form-control--filter-draw .search-form-control.last-visible {
+    border-right: none;
 }
 
 .search-form-control input,
@@ -9420,6 +9430,37 @@ form.property-search input[type="submit"]:hover {
 /* End Custom Toggle */
 
 
+/* Filter Drawer Trigger */
+
+.search-form--filter-drawer-trigger {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .search-form--filter-drawer-trigger {
+        display: block;
+    }
+}
+
+
+/* End Filter Drawer Trigger */
+
+
+/* Filter Drawer */
+
+.search-form-control--filter-draw {
+    display: flex;
+    justify-content: space-between;
+}
+
+0px 12px 16px -4px rgba(16,
+24,
+40,
+0.08),
+0px 4px 6px -2px rgba(16,
+24,
+40,
+0.03)
 /* Custom Dropdown */
 
 .search-form-control--dropdown {
@@ -9461,7 +9502,7 @@ section.results-overview .results-overview--info .results-sorting .stc-checkbox 
     transform: translateY(-10px);
     transition: all 0.3s ease-in-out;
     z-index: 10;
-    /* max-height: 410px; */
+    max-height: 410px;
     min-width: 165px;
     overflow-y: auto;
     --sb-track-color: #ffffff;
@@ -9561,7 +9602,8 @@ section.results-overview .results-overview--info .results-sorting .stc-checkbox 
     transform: translateY(0);
 }
 
-.search-form-dropdown--option {
+.search-form-dropdown--option,
+.search-form-checkboxes--option {
     padding: 10px;
     font-size: 16px;
     color: #555;
@@ -9592,7 +9634,8 @@ section.results-overview .results-overview--info .results-sorting .stc-checkbox 
     font-weight: bold;
 }
 
-.search-form-dropdown--option:hover {
+.search-form-dropdown--option:hover,
+.search-form-checkboxes--option:hover {
     background: #F7EBEE;
     color: #7F1B4E;
 }
@@ -9619,18 +9662,17 @@ section.results-overview .results-overview--info .results-sorting .stc-checkbox 
 .search-form-control--checkboxes {}
 
 .search-form-control--checkboxes .search-form-dropdown--options {
-    padding: 10px;
-    min-width: 210px;
+    min-width: 230px;
 }
 
 .search-form-checkboxes--option {
     display: flex;
     align-items: center;
     position: relative;
-    padding: 10px 0;
     font-size: 16px;
     cursor: pointer;
     user-select: none;
+    justify-content: flex-start;
 }
 
 .search-form-checkboxes--option input {
@@ -9659,6 +9701,8 @@ section.results-overview .results-overview--info .results-sorting .stc-checkbox 
     background-size: contain;
     background-position: center;
     transition: all .3s ease-in;
+    width: 20px;
+    height: 20px;
 }
 
 .search-form-checkboxes--checkbox-label::after {
@@ -10954,7 +10998,8 @@ body.post-type-archive-property .search-form--department {
     background-color: #FEF8F8D9;
     justify-content: space-between;
 }
-.single-property--head .agent-btns-mb.fixed{
+
+.single-property--head .agent-btns-mb.fixed {
     position: fixed;
     top: 0;
     width: 100%;
