@@ -322,8 +322,8 @@ get_header(); ?>
                             <i class="fa-solid fa-phone"></i>
                             <a href="tel:<?php the_sub_field('livestock_auctioneers_second_number'); ?>"><?php the_sub_field('livestock_auctioneers_second_number'); ?></a>
                             </li>
-                            <li>
 							<?php endif; ?>
+                            <li>
                             <i class="fa-regular fa-envelope"></i>
                             <a href="mailto:<?php the_sub_field('livestock_auctioneers_email'); ?>"><?php the_sub_field('livestock_auctioneers_email'); ?></a>
                             </li>
