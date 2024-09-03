@@ -1205,6 +1205,11 @@ function mcc_ph_import_maps($post_id, $property)
     {
         update_post_meta( $post_id, '_department', 'agricultural' );
     }
+
+    // Anything arriving as Agricultrural will be available as Sale rather than letting as we're not receiving a sales method.
+    if ( isset($property['type']) && in_array('agricultural', $property['type']) ) {
+        update_post_meta( $post_id, '_available_as', 'sale' );
+    }
     
     // Anything received with a type of developmentOpportunity should be assigned to the Development Land department
     if ( isset($property['type']) && ( in_array('developmentOpportunity', $property['type']) ) )
@@ -1285,7 +1290,17 @@ if ( have_posts() ) {
         'hide_empty' => true,   // Hide terms with no associated posts
     ) );
 
-    if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
+    // Get terms for those posts in the 'property_type' taxonomy
+    $commercial_terms = get_terms( array(
+        'taxonomy'   => 'commercial_property_type',
+        'object_ids' => $all_post_ids,
+        'orderby'    => 'name',
+        'order'      => 'ASC',
+        'fields'     => 'all',  // To get all term data
+        'hide_empty' => true,   // Hide terms with no associated posts
+    ) );
+
+    if ( ! is_wp_error( $terms ) && ! empty( $terms ) && (!isset($_GET['department']) && $_GET['department'] !== 'commercial') ) {
         echo '<div class="search-form-control search-form-control--checkboxes search-form--type">';
         echo ' <div class="search-form-dropdown">';
         echo '<div class="search-form-dropdown--trigger">Property Type</div>';
@@ -1295,6 +1310,7 @@ if ( have_posts() ) {
         echo '<span class="search-form-checkboxes--checkbox-label"></span>';
         echo 'Show All';
         echo '</label>';
+
 
         foreach ( $terms as $term ) {
             echo '<label class="search-form-checkboxes--option">';
@@ -1307,49 +1323,41 @@ if ( have_posts() ) {
         echo '</div>';
         echo '</div>';
         echo '</div>';
-    } else {
-        echo '<label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="69">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Bungalow
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="61">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Detached
-                    </label>
-                    <hr>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="62">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Semi-detached
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="63">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Terraced
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="74">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Flat/Apartment
-                    </label>
-                    <hr>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="93">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Farms
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="83">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Commercial
-                    </label>';
+    } elseif ( ! is_wp_error( $commercial_terms ) && ! empty( $commercial_terms ) && (isset($_GET['department']) && $_GET['department'] === 'commercial') )  {
+        echo '<div class="search-form-control search-form-control--checkboxes search-form--type">';
+        echo ' <div class="search-form-dropdown">';
+        echo '<div class="search-form-dropdown--trigger">Property Type</div>';
+        echo '<div class="search-form-dropdown--options">';
+        echo '<label class="search-form-checkboxes--option">';
+        echo '<input type="checkbox" name="commercial_property_type[]" checked value="">';
+        echo '<span class="search-form-checkboxes--checkbox-label"></span>';
+        echo 'Show All';
+        echo '</label>';
+        
+        foreach ( $commercial_terms as $commercial_term ) {
+            echo '<label class="search-form-checkboxes--option">';
+            echo '<input type="checkbox" name="commercial_property_type[]" value="' . esc_attr( $commercial_term->term_id ) . '">';
+            echo '<span class="search-form-checkboxes--checkbox-label"></span>';
+            echo esc_html( $commercial_term->name );
+            echo '</label>';
+        }
 
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
 
         
     }
 } else {
+    echo '<div class="search-form-control search-form-control--checkboxes search-form--type">';
+        echo ' <div class="search-form-dropdown">';
+        echo '<div class="search-form-dropdown--trigger">Property Type</div>';
+        echo '<div class="search-form-dropdown--options">';
+        echo '<label class="search-form-checkboxes--option">';
+        echo '<input type="checkbox" name="property_type[]" checked value="">';
+        echo '<span class="search-form-checkboxes--checkbox-label"></span>';
+        echo 'Show All';
+        echo '</label>';
     echo '<label class="search-form-checkboxes--option">
                         <input type="checkbox" name="property_type[]" value="69">
                         <span class="search-form-checkboxes--checkbox-label"></span>
@@ -1360,7 +1368,7 @@ if ( have_posts() ) {
                         <span class="search-form-checkboxes--checkbox-label"></span>
                         Detached
                     </label>
-                    <hr>
+
                     <label class="search-form-checkboxes--option">
                         <input type="checkbox" name="property_type[]" value="62">
                         <span class="search-form-checkboxes--checkbox-label"></span>
@@ -1376,7 +1384,7 @@ if ( have_posts() ) {
                         <span class="search-form-checkboxes--checkbox-label"></span>
                         Flat/Apartment
                     </label>
-                    <hr>
+
                     <label class="search-form-checkboxes--option">
                         <input type="checkbox" name="property_type[]" value="93">
                         <span class="search-form-checkboxes--checkbox-label"></span>
@@ -1387,6 +1395,9 @@ if ( have_posts() ) {
                         <span class="search-form-checkboxes--checkbox-label"></span>
                         Commercial
                     </label>';
+                            echo '</div>';
+        echo '</div>';
+        echo '</div>';
 }
 
 
@@ -1502,125 +1513,7 @@ function mcc_ph_search() {
             </div>
         </div>
 
-        <!-- Sales Pricing -->
-        <!-- <div class="search-form-control search-form-control--dropdown search-form--price sales-only">
-                    <div class="search-form-dropdown">
-                        <div class="search-form-dropdown--trigger">Price</div>
-                        <div class="search-form-dropdown--options">
-                            <label class="search-form-dropdown--option selected">
-                                <input type="radio" name="maximum_price" value="" checked>
-                                <span>No Preference</span>
-                            </label>
-                            <label class="search-form-dropdown--option">
-                                <input type="radio" name="maximum_price" value="50000">
-                                <span>£50,000</span>
-                            </label>
-                            <label class="search-form-dropdown--option">
-                                <input type="radio" name="maximum_price" value="60000">
-                                <span>£60,000</span>
-                            </label>
-                            <label class="search-form-dropdown--option">
-                                <input type="radio" name="maximum_price" value="70000">
-                                <span>£70,000</span>
-                            </label>
-                            <label class="search-form-dropdown--option">
-                                <input type="radio" name="maximum_price" value="80000">
-                                <span>£80,000</span>
-                            </label>
-                            <label class="search-form-dropdown--option">
-                                <input type="radio" name="maximum_price" value="90000">
-                                <span>£90,000</span>
-                            </label>
-                            <label class="search-form-dropdown--option">
-                                <input type="radio" name="maximum_price" value="100000">
-                                <span>£100,000</span>
-                            </label>
-                            <label class="search-form-dropdown--option">
-                                <input type="radio" name="maximum_price" value="110000">
-                                <span>£110,000</span>
-                            </label>
-                            <label class="search-form-dropdown--option">
-                                <input type="radio" name="maximum_price" value="120000">
-                                <span>£120,000</span>
-                            </label>
-                        </div>
-                    </div>
-                </div> -->
-        <!-- Rental Pricing -->
-        <!-- <div class="search-form-control search-form-control--dropdown search-form--rent lettings-only">
-                    <div class="search-form-dropdown">
-                        <div class="search-form-dropdown--trigger">Price</div>
-                        <div class="search-form-dropdown--options">
-                            <label class="search-form-dropdown--option selected">
-                                <input type="radio" name="maximum_rent" value="" checked>
-                                <span>No Preference</span>
-                            </label>
-                            <label class="search-form-dropdown--option">
-                                <input type="radio" name="maximum_rent" value="50000">
-                                <span>£1,000 pcm</span>
-                            </label>
-                            <label class="search-form-dropdown--option">
-                                <input type="radio" name="maximum_rent" value="60000">
-                                <span>£1,500 pcm</span>
-                            </label>
-                            <label class="search-form-dropdown--option">
-                                <input type="radio" name="maximum_rent" value="70000">
-                                <span>£2,000 pcm</span>
-                            </label>
-                        </div>
-                    </div>
-                </div> -->
 
-
-        <!-- <div class="search-form-control search-form-control--checkboxes search-form--type">
-            <div class="search-form-dropdown">
-                <div class="search-form-dropdown--trigger">Property Type</div>
-                <div class="search-form-dropdown--options">
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" checked value="">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Show All
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="69">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Bungalow
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="61">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Detached
-                    </label>
-                    <hr>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="62">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Semi-detached
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="63">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Terraced
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="74">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Flat/Apartment
-                    </label>
-                    <hr>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="93">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Farms
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="83">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Commercial
-                    </label>
-                </div>
-            </div>
-        </div> -->
 
         <?php 
         populate_property_types_dropdown(); ?>

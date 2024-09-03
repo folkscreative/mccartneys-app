@@ -100,6 +100,79 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     setRadiusFromUrl();
 
+    // Function to set property type based on department
+    function setPropertyTypeFromUrl(department) {
+        const paramName = department === 'commercial' ? 'commercial_property_type[]' : 'property_type[]';
+        const fieldSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"]' : 'input[name="property_type[]"]';
+
+        setCheckboxesFromUrl(paramName, fieldSelector);
+    }
+
+    // Function to handle checkbox changes for property type or commercial property type
+    function handleCheckboxChange(department) {
+        const fieldSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"]' : 'input[name="property_type[]"]';
+        const showAllCheckboxSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"][value=""]' : 'input[name="property_type[]"][value=""]';
+
+        const checkboxes = document.querySelectorAll(fieldSelector);
+        const showAllCheckbox = document.querySelector(showAllCheckboxSelector);
+        let selectedCount = 0;
+
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked && checkbox.value !== '') {
+                selectedCount++;
+            }
+        });
+
+        if (selectedCount > 0) {
+            showAllCheckbox.checked = false;
+        } else {
+            showAllCheckbox.checked = true;
+        }
+
+        updateTriggerText(selectedCount);
+    }
+
+    // Call this function based on the department
+    function initializePropertyTypeLogic() {
+        const department = urlParams.get('department');
+        setPropertyTypeFromUrl(department);
+
+        const fieldSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"]' : 'input[name="property_type[]"]';
+        document.querySelectorAll(fieldSelector).forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.value === "") {
+                    document.querySelectorAll(fieldSelector).forEach(cb => {
+                        if (cb.value !== "") {
+                            cb.checked = false;
+                        }
+                    });
+                    handleCheckboxChange(department);
+                } else {
+                    handleCheckboxChange(department);
+                }
+                this.blur();
+                this.focus();
+            });
+        });
+
+        handleCheckboxChange(department);
+    }
+
+    // Call the function on page load
+    initializePropertyTypeLogic();
+
+    // Update trigger text for property type
+    function updateTriggerText(selectedCount) {
+        const triggerElement = document.querySelector('.search-form--type .search-form-dropdown--trigger');
+        if (triggerElement) {
+            if (selectedCount > 0) {
+                triggerElement.textContent = `${selectedCount} Selected`;
+            } else {
+                triggerElement.textContent = 'Property Type';
+            }
+        }
+    }
+
     // Handle the property type dropdown
     function setCheckboxesFromUrl(paramName, fieldSelector) {
         const paramValues = urlParams.getAll(paramName);
@@ -121,60 +194,7 @@ document.addEventListener("DOMContentLoaded", function() {
         updateTriggerText(selectedCount);
     }
 
-    // Update trigger text for property type
-    function updateTriggerText(selectedCount) {
-        const triggerElement = document.querySelector('.search-form--type .search-form-dropdown--trigger');
-        if (triggerElement) {
-            if (selectedCount > 0) {
-                triggerElement.textContent = `${selectedCount} Selected`;
-            } else {
-                triggerElement.textContent = 'Property Type';
-            }
-        }
-    }
-
-    // Handle checkbox changes for property type
-    function handleCheckboxChange() {
-        const checkboxes = document.querySelectorAll('input[name="property_type[]"]');
-        const showAllCheckbox = document.querySelector('input[name="property_type[]"][value=""]');
-        let selectedCount = 0;
-
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked && checkbox.value !== '') {
-                selectedCount++;
-            }
-        });
-
-        if (selectedCount > 0) {
-            showAllCheckbox.checked = false;
-        } else {
-            showAllCheckbox.checked = true;
-        }
-
-        updateTriggerText(selectedCount);
-    }
-
-    setCheckboxesFromUrl('property_type[]', 'input[name="property_type[]"]');
-
-    document.querySelectorAll('input[name="property_type[]"]').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            if (this.value === "") {
-                document.querySelectorAll('input[name="property_type[]"]').forEach(cb => {
-                    if (cb.value !== "") {
-                        cb.checked = false;
-                    }
-                });
-                handleCheckboxChange();
-            } else {
-                handleCheckboxChange();
-            }
-            this.blur();
-            this.focus();
-        });
-    });
-
-    handleCheckboxChange();
-
+    // Handle slider toggles and price updates
     function toggleSliders() {
         const salesSlider = jQuery('.range-slider.sales-only');
         const lettingsSlider = jQuery('.range-slider.lettings-only');
@@ -491,9 +511,12 @@ document.addEventListener("DOMContentLoaded", function() {
             jQuery('input[name="radius"]').removeAttr('name');
         }
 
-        // Remove property_type[] if "Show All" is selected
-        if (jQuery('input[name="property_type[]"][value=""]').is(':checked')) {
-            jQuery('input[name="property_type[]"]').removeAttr('name');
+        // Remove property_type[] or commercial_property_type[] if "Show All" is selected
+        const department = urlParams.get('department');
+        const propertyTypeField = department === 'commercial' ? 'input[name="commercial_property_type[]"]' : 'input[name="property_type[]"]';
+
+        if (jQuery(`${propertyTypeField}[value=""]`).is(':checked')) {
+            jQuery(propertyTypeField).removeAttr('name');
         }
 
         // Remove minimum_rent and maximum_rent if Sales is selected
