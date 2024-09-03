@@ -1242,7 +1242,7 @@ function mcc_ph_import_maps($post_id, $property)
 
     // New Homes - if age contains "New", let's stick it in New Homes
     // Check if 'age' contains 'new'
-    if (isset($property['age']) && strpos(strtolower($property['age']), 'new') !== false) {
+    if (isset($property['age']) && strtolower($property['age']) == 'new') {
         // Do something if 'new' is found in 'age'
         update_post_meta($post_id, '_department', 'new-homes');
     } 
