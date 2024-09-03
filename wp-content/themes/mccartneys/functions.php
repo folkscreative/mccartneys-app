@@ -1206,10 +1206,6 @@ function mcc_ph_import_maps($post_id, $property)
         update_post_meta( $post_id, '_department', 'agricultural' );
     }
 
-    // Anything arriving as Agricultrural will be available as Sale rather than letting as we're not receiving a sales method.
-    if ( isset($property['type']) && in_array('agricultural', $property['type']) ) {
-        update_post_meta( $post_id, '_available_as', 'sale' );
-    }
     
     // Anything received with a type of developmentOpportunity should be assigned to the Development Land department
     if ( isset($property['type']) && ( in_array('developmentOpportunity', $property['type']) ) )
@@ -1266,142 +1262,82 @@ function mcc_ph_import_maps($post_id, $property)
 
 // Populate post types dropdown
 function populate_property_types_dropdown() {
-
-
-if ( have_posts() ) {
     global $wp_query;
 
-    // Get all post IDs from the entire search query (not paginated)
-    $all_post_ids_query = new WP_Query( array(
+    // Get all post IDs from the entire search query (not just the current page)
+    $all_post_ids_query = new WP_Query(array(
         's'              => get_search_query(),
+        'post_type'      => $wp_query->query_vars['post_type'], // Ensure we match the post type from the main query
         'posts_per_page' => -1, // Get all posts, no pagination
         'fields'         => 'ids', // Only retrieve post IDs
-    ) );
+    ));
 
     $all_post_ids = $all_post_ids_query->posts;
 
-    // Get terms for those posts in the 'property_type' taxonomy
-    $terms = get_terms( array(
-        'taxonomy'   => 'property_type',
+    // Determine which taxonomy to use based on the 'department' parameter
+    $taxonomy = isset($_GET['department']) && $_GET['department'] === 'commercial' ? 'commercial_property_type' : 'property_type';
+
+    // Get the terms associated with these post IDs
+    $terms = get_terms(array(
+        'taxonomy'   => $taxonomy,
         'object_ids' => $all_post_ids,
         'orderby'    => 'name',
         'order'      => 'ASC',
         'fields'     => 'all',  // To get all term data
         'hide_empty' => true,   // Hide terms with no associated posts
-    ) );
+    ));
 
-    // Get terms for those posts in the 'property_type' taxonomy
-    $commercial_terms = get_terms( array(
-        'taxonomy'   => 'commercial_property_type',
-        'object_ids' => $all_post_ids,
-        'orderby'    => 'name',
-        'order'      => 'ASC',
-        'fields'     => 'all',  // To get all term data
-        'hide_empty' => true,   // Hide terms with no associated posts
-    ) );
-
-    if ( ! is_wp_error( $terms ) && ! empty( $terms ) && (!isset($_GET['department']) && $_GET['department'] !== 'commercial') ) {
+    // Check if we got terms and there were no errors
+    if (!is_wp_error($terms) && !empty($terms)) {
         echo '<div class="search-form-control search-form-control--checkboxes search-form--type">';
         echo ' <div class="search-form-dropdown">';
         echo '<div class="search-form-dropdown--trigger">Property Type</div>';
         echo '<div class="search-form-dropdown--options">';
         echo '<label class="search-form-checkboxes--option">';
-        echo '<input type="checkbox" name="property_type[]" checked value="">';
+        echo '<input type="checkbox" name="' . esc_attr($taxonomy) . '[]" checked value="">';
         echo '<span class="search-form-checkboxes--checkbox-label"></span>';
         echo 'Show All';
         echo '</label>';
 
-
-        foreach ( $terms as $term ) {
+        foreach ($terms as $term) {
             echo '<label class="search-form-checkboxes--option">';
-            echo '<input type="checkbox" name="property_type[]" value="' . esc_attr( $term->term_id ) . '">';
+            echo '<input type="checkbox" name="' . esc_attr($taxonomy) . '[]" value="' . esc_attr($term->term_id) . '">';
             echo '<span class="search-form-checkboxes--checkbox-label"></span>';
-            echo esc_html( $term->name );
+            echo esc_html($term->name);
             echo '</label>';
         }
 
         echo '</div>';
         echo '</div>';
         echo '</div>';
-    } elseif ( ! is_wp_error( $commercial_terms ) && ! empty( $commercial_terms ) && (isset($_GET['department']) && $_GET['department'] === 'commercial') )  {
-        echo '<div class="search-form-control search-form-control--checkboxes search-form--type">';
-        echo ' <div class="search-form-dropdown">';
-        echo '<div class="search-form-dropdown--trigger">Property Type</div>';
-        echo '<div class="search-form-dropdown--options">';
-        echo '<label class="search-form-checkboxes--option">';
-        echo '<input type="checkbox" name="commercial_property_type[]" checked value="">';
-        echo '<span class="search-form-checkboxes--checkbox-label"></span>';
-        echo 'Show All';
-        echo '</label>';
-        
-        foreach ( $commercial_terms as $commercial_term ) {
-            echo '<label class="search-form-checkboxes--option">';
-            echo '<input type="checkbox" name="commercial_property_type[]" value="' . esc_attr( $commercial_term->term_id ) . '">';
-            echo '<span class="search-form-checkboxes--checkbox-label"></span>';
-            echo esc_html( $commercial_term->name );
-            echo '</label>';
-        }
-
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-
-        
+    } else {
+        // Fallback in case no terms were found or there's an error
+        display_fallback_property_types();
     }
-} else {
+}
+
+function display_fallback_property_types() {
     echo '<div class="search-form-control search-form-control--checkboxes search-form--type">';
-        echo ' <div class="search-form-dropdown">';
-        echo '<div class="search-form-dropdown--trigger">Property Type</div>';
-        echo '<div class="search-form-dropdown--options">';
-        echo '<label class="search-form-checkboxes--option">';
-        echo '<input type="checkbox" name="property_type[]" checked value="">';
-        echo '<span class="search-form-checkboxes--checkbox-label"></span>';
-        echo 'Show All';
-        echo '</label>';
-    echo '<label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="69">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Bungalow
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="61">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Detached
-                    </label>
-
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="62">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Semi-detached
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="63">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Terraced
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="74">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Flat/Apartment
-                    </label>
-
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="93">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Farms
-                    </label>
-                    <label class="search-form-checkboxes--option">
-                        <input type="checkbox" name="property_type[]" value="83">
-                        <span class="search-form-checkboxes--checkbox-label"></span>
-                        Commercial
-                    </label>';
-                            echo '</div>';
-        echo '</div>';
-        echo '</div>';
+    echo ' <div class="search-form-dropdown">';
+    echo '<div class="search-form-dropdown--trigger">Property Type</div>';
+    echo '<div class="search-form-dropdown--options">';
+    echo '<label class="search-form-checkboxes--option">';
+    echo '<input type="checkbox" name="property_type[]" checked value="">';
+    echo '<span class="search-form-checkboxes--checkbox-label"></span>';
+    echo 'Show All';
+    echo '</label>';
+    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="69"><span class="search-form-checkboxes--checkbox-label"></span>Bungalow</label>';
+    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="61"><span class="search-form-checkboxes--checkbox-label"></span>Detached</label>';
+    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="62"><span class="search-form-checkboxes--checkbox-label"></span>Semi-detached</label>';
+    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="63"><span class="search-form-checkboxes--checkbox-label"></span>Terraced</label>';
+    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="74"><span class="search-form-checkboxes--checkbox-label"></span>Flat/Apartment</label>';
+    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="93"><span class="search-form-checkboxes--checkbox-label"></span>Farms</label>';
+    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="83"><span class="search-form-checkboxes--checkbox-label"></span>Commercial</label>';
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
 }
 
-
-}
 
 
 
