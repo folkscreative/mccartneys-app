@@ -101,20 +101,25 @@ document.addEventListener("DOMContentLoaded", function() {
     setRadiusFromUrl();
 
     // Function to set property type based on department
-    function setPropertyTypeFromUrl(department) {
-        const paramName = department === 'commercial' ? 'commercial_property_type[]' : 'property_type[]';
-        const fieldSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"]' : 'input[name="property_type[]"]';
+    function setCheckboxesFromUrl(paramName, fieldSelector) {
+        const paramValues = urlParams.getAll(paramName);
 
-        setCheckboxesFromUrl(paramName, fieldSelector);
+        // Set checkboxes based on URL parameters
+        document.querySelectorAll(fieldSelector).forEach(checkbox => {
+            if (paramValues.includes(checkbox.value)) {
+                checkbox.checked = true;
+            } else {
+                checkbox.checked = false; // Ensure only the specified checkboxes are checked
+            }
+        });
+
+        // After setting all checkboxes, update the count based on actual selections
+        updateSelectedCount(fieldSelector);
     }
 
-    // Function to handle checkbox changes for property type or commercial property type
-    function handleCheckboxChange(department) {
-        const fieldSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"]' : 'input[name="property_type[]"]';
-        const showAllCheckboxSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"][value=""]' : 'input[name="property_type[]"][value=""]';
-
+    // Function to count selected checkboxes and update the display
+    function updateSelectedCount(fieldSelector) {
         const checkboxes = document.querySelectorAll(fieldSelector);
-        const showAllCheckbox = document.querySelector(showAllCheckboxSelector);
         let selectedCount = 0;
 
         checkboxes.forEach(checkbox => {
@@ -123,39 +128,43 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
+        updateTriggerText(selectedCount);
+    }
+
+    // Function to handle checkbox changes for property type or commercial property type
+    function handleCheckboxChange(department) {
+        const fieldSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"]' : 'input[name="property_type[]"]';
+        const showAllCheckboxSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"][value=""]' : 'input[name="property_type[]"][value=""]';
+
+        const showAllCheckbox = document.querySelector(showAllCheckboxSelector);
+
+        updateSelectedCount(fieldSelector);
+
+        // Handle "Show All" logic
+        const selectedCount = document.querySelectorAll(`${fieldSelector}:checked`).length;
         if (selectedCount > 0) {
             showAllCheckbox.checked = false;
         } else {
             showAllCheckbox.checked = true;
         }
-
-        updateTriggerText(selectedCount);
     }
 
-    // Call this function based on the department
+    // Initialize the property type logic
     function initializePropertyTypeLogic() {
         const department = urlParams.get('department');
-        setPropertyTypeFromUrl(department);
-
         const fieldSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"]' : 'input[name="property_type[]"]';
+        const paramName = department === 'commercial' ? 'commercial_property_type[]' : 'property_type[]';
+
+        setCheckboxesFromUrl(paramName, fieldSelector);
+
+        // Set up change event listeners for checkboxes
         document.querySelectorAll(fieldSelector).forEach(checkbox => {
             checkbox.addEventListener('change', function() {
-                if (this.value === "") {
-                    document.querySelectorAll(fieldSelector).forEach(cb => {
-                        if (cb.value !== "") {
-                            cb.checked = false;
-                        }
-                    });
-                    handleCheckboxChange(department);
-                } else {
-                    handleCheckboxChange(department);
-                }
+                handleCheckboxChange(department);
                 this.blur();
                 this.focus();
             });
         });
-
-        handleCheckboxChange(department);
     }
 
     // Call the function on page load
@@ -171,27 +180,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 triggerElement.textContent = 'Property Type';
             }
         }
-    }
-
-    // Handle the property type dropdown
-    function setCheckboxesFromUrl(paramName, fieldSelector) {
-        const paramValues = urlParams.getAll(paramName);
-        let selectedCount = 0;
-
-        document.querySelectorAll(fieldSelector).forEach(checkbox => {
-            if (paramValues.includes(checkbox.value)) {
-                checkbox.checked = true;
-                if (checkbox.value !== '') {
-                    selectedCount++;
-                }
-            } else if (checkbox.value === '') {
-                checkbox.checked = selectedCount === 0;
-            } else {
-                checkbox.checked = false;
-            }
-        });
-
-        updateTriggerText(selectedCount);
     }
 
     // Handle slider toggles and price updates
@@ -237,10 +225,19 @@ document.addEventListener("DOMContentLoaded", function() {
         minValue = parseInt(minValue);
         maxValue = parseInt(maxValue);
 
-        const minAbbreviated = abbreviatePrice(minValue);
-        const maxAbbreviated = abbreviatePrice(maxValue);
+        // Check if min and max values are default (e.g., minValue is 0 and maxValue is the slider's max)
+        const isDefaultRange = (sliderType === 'sales' && minValue === 0 && maxValue === 3500000) ||
+            (sliderType === 'lettings' && minValue === 0 && maxValue === 5000);
 
-        triggerElement.text(`${minAbbreviated} - ${maxAbbreviated}`);
+        if (isDefaultRange && sliderType === 'sales') {
+            triggerElement.text('Price');
+        } else if (isDefaultRange && sliderType === 'lettings') {
+            triggerElement.text('Rent');
+        } else {
+            const minAbbreviated = abbreviatePrice(minValue);
+            const maxAbbreviated = abbreviatePrice(maxValue);
+            triggerElement.text(`${minAbbreviated} - ${maxAbbreviated}`);
+        }
     }
 
     function getSalesStepValue(currentValue) {
@@ -272,8 +269,8 @@ document.addEventListener("DOMContentLoaded", function() {
     jQuery("#sales-slider-range").slider({
         range: true,
         min: 0,
-        max: 10000000,
-        values: [parseInt(urlParams.get('minimum_price')) || 0, parseInt(urlParams.get('maximum_price')) || 10000000],
+        max: 3500000,
+        values: [parseInt(urlParams.get('minimum_price')) || 0, parseInt(urlParams.get('maximum_price')) || 3500000],
         slide: function(event, ui) {
             jQuery("#minValueSales").text("£" + ui.values[0].toLocaleString());
             jQuery("#maxValueSales").text("£" + ui.values[1].toLocaleString());
@@ -291,8 +288,8 @@ document.addEventListener("DOMContentLoaded", function() {
     jQuery("#lettings-slider-range").slider({
         range: true,
         min: 0,
-        max: 10000,
-        values: [parseInt(urlParams.get('minimum_rent')) || 0, parseInt(urlParams.get('maximum_rent')) || 10000],
+        max: 5000,
+        values: [parseInt(urlParams.get('minimum_rent')) || 0, parseInt(urlParams.get('maximum_rent')) || 5000],
         step: 250,
         slide: function(event, ui) {
             jQuery("#minValueLettings").text("£" + ui.values[0].toLocaleString() + " pcm");

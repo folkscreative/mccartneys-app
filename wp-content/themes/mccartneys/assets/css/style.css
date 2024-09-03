@@ -9456,7 +9456,8 @@ form.property-search input[type="submit"]:hover {
 
 /* Custom Dropdown */
 
-.search-form-control--dropdown {
+.search-form-control--dropdown,
+.search-form-control--checkboxes {
     position: relative;
     user-select: none;
     width: 200px;

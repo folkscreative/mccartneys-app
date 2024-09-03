@@ -48,17 +48,15 @@ if ( $property->featured == 'yes' )
     <div class="col-right">
         <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
         <h3 class="price-info price"><?php echo $property->get_formatted_price(); ?></h3>
-        <span>Availability: <?php echo $property->availability ?></span>
-        <span>Marketing Flag: <?php echo $property->marketing_flag ?></span>
-        <span>Department: <?php echo $property->department ?></span>
+
         <ul class="features">
 
             <?php if (!is_null($property->property_type) && $property->property_type !== '' && trim($property->property_type) !== '') { ?>
-            <li>
+            <!-- <li>
                 <img class="feature-icon"
                     src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-property-type.svg" alt="">
                 <span class=""><?php echo $property->property_type; ?></span>
-            </li>
+            </li> -->
             <?php }?>
             <?php if ( $property->bedrooms > 0 ): ?>
             <li>
