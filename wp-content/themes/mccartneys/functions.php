@@ -1327,12 +1327,12 @@ function display_fallback_property_types() {
     echo 'Show All';
     echo '</label>';
     echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="69"><span class="search-form-checkboxes--checkbox-label"></span>Bungalow</label>';
-    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="61"><span class="search-form-checkboxes--checkbox-label"></span>Detached</label>';
-    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="62"><span class="search-form-checkboxes--checkbox-label"></span>Semi-detached</label>';
-    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="63"><span class="search-form-checkboxes--checkbox-label"></span>Terraced</label>';
+    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="60"><span class="search-form-checkboxes--checkbox-label"></span>House</label>';
+    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="62"><span class="search-form-checkboxes--checkbox-label"></span>Semi-Detached House</label>';
+    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="61"><span class="search-form-checkboxes--checkbox-label"></span>Detached House</label>';
+    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="63"><span class="search-form-checkboxes--checkbox-label"></span>Terraced House</label>';
     echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="74"><span class="search-form-checkboxes--checkbox-label"></span>Flat/Apartment</label>';
-    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="93"><span class="search-form-checkboxes--checkbox-label"></span>Farms</label>';
-    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="83"><span class="search-form-checkboxes--checkbox-label"></span>Commercial</label>';
+    echo '<label class="search-form-checkboxes--option"><input type="checkbox" name="property_type[]" value="93"><span class="search-form-checkboxes--checkbox-label"></span>Farm</label>';
     echo '</div>';
     echo '</div>';
     echo '</div>';
