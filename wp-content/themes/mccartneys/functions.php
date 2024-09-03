@@ -1242,10 +1242,17 @@ function mcc_ph_import_maps($post_id, $property)
 
     // New Homes - if age contains "New", let's stick it in New Homes
     // Check if 'age' contains 'new'
-    if (isset($property['age']) && strtolower($property['age']) == 'new') {
-        // Do something if 'new' is found in 'age'
+    if (isset($property['age'])) {
+    if (is_array($property['age'])) {
+        // Convert all elements of the array to lowercase and check if 'new' is in the array
+        if (in_array('new', array_map('strtolower', $property['age']))) {
+            update_post_meta($post_id, '_department', 'new-homes');
+        }
+    } elseif (strtolower($property['age']) == 'new') {
         update_post_meta($post_id, '_department', 'new-homes');
-    } 
+    }
+}
+
     
     // Anything NOT IN Residential lettings OR that is a commercial that is for sale will be assigned to a parent department of Sales.
     // PROPERTY HIVE COMMENT: Ensure the 'commercial' department is deactivated and this should happen by default. No snippet needed
