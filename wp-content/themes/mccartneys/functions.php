@@ -511,7 +511,7 @@ function property_tabs_shortcode() {
                     <li class="items-wrap">
                         <img
                             src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/planning-logo-1.svg">
-                        <span>Planning & Survay</span>
+                        <span>Planning & Survey</span>
                     </li>
                     <?Php }?>
 
@@ -690,7 +690,7 @@ function Fc_property_tabs_shortcode() {
                     <li class="items-wrap">
                         <img
                             src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/planning-logo-1.svg">
-                        <span>Planning & Survay</span>
+                        <span>Planning & Survey</span>
                     </li>
                     <?Php }?>
 
