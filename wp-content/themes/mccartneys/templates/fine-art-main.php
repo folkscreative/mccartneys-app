@@ -144,7 +144,6 @@ get_header(); ?>
                         <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>" class="w-100">
                     <?php endif; ?>
                     <ul class="info-box">
-                    <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
                     <li>
                             <i class="fa-solid fa-phone"></i>
                             <a href="tel:<?php the_sub_field('livestock_auctioneers_number'); ?>"><?php the_sub_field('livestock_auctioneers_number'); ?></a>
@@ -205,8 +204,7 @@ get_header(); ?>
                     <?php endif; ?>
                         <ul class="info-box">
                         <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
-                            <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
-                    <li>
+                        <li>
                             <i class="fa-solid fa-phone"></i>
                             <a href="tel:<?php the_sub_field('livestock_auctioneers_number'); ?>"><?php the_sub_field('livestock_auctioneers_number'); ?></a>
                             </li>
