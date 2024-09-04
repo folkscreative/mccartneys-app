@@ -169,13 +169,12 @@ if ( !empty( $image_private ) ) { ?>
                     <div class="info-wrapper">
                     <?php
                     $ac_image = get_sub_field('livestock_auctioneers_image');
-                    
+
                     ?>
                     <?php if( !empty($ac_image) ):?>
                         <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>" class="w-100">
                     <?php endif; ?>
                     <ul class="info-box">
-                    <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
                         <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
                         <li>
                             <i class="fa-solid fa-phone"></i>
