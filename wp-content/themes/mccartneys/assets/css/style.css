@@ -1829,6 +1829,7 @@ footer .cookies-menu ul li a {
 
 .inner-banner-wrapper .property-search .search-form--location {
     min-width: 135px;
+    line-height: 18px;
 }
 
 .inner-banner-wrapper .property-search .search-form--price-slider {
@@ -7459,6 +7460,18 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     .testimonials.property-pg::after {
         bottom: 315px;
     }
+    form.property-search input[type="submit"]{
+        max-width: 90px !important;
+    }
+    .search-form-dropdown--trigger{
+        font-size: 12px !important;
+    }
+    .property-search .search-form-control--filter-draw .search-form--radius{
+        width: 40% !important;
+    }
+    .property-search .search-form-control--filter-draw .search-form--price-slider{
+        width: 30% !important;
+    }
 }
 
 @media (max-width: 767px) {
@@ -9438,7 +9451,7 @@ form.property-search input[type="submit"]:hover {
 
 @media screen and (max-width: 768px) {
     .search-form--filter-drawer-trigger {
-        display: block;
+        display: none;
     }
 }
 
@@ -9460,7 +9473,26 @@ form.property-search input[type="submit"]:hover {
 .search-form-control--checkboxes {
     position: relative;
     user-select: none;
-    width: 200px;
+    /* width: 200px; */
+}
+.property-search .search-form--location{
+    width: 12%;
+    line-height: 18px;
+}
+.property-search .search-form-control--filter-draw{
+    width: 50%;
+}
+.property-search .search-form-control--filter-draw .search-form--radius{
+    width: 33%;
+}
+.property-search .search-form-control--filter-draw .search-form--price-slider{
+    width: 33%;
+}
+.property-search .search-form-control--filter-draw .search-form-control--checkboxes {
+    width: 33%;
+}
+.inner-banner-wrapper .inner .middle-col .search-form-control--dropdown{
+    width: auto;
 }
 
 .search-form-dropdown {
