@@ -58,16 +58,16 @@
             <div class="depart-slider depar">
                 <?php while( have_rows('our_departments_slider', 'option') ): the_row(); ?>
                 <div class="slide-wrap">
-                <?php 
+                    <?php 
                         $department_cartneys_slider_link = get_sub_field('department_slider_button', 'option');
                         if( $department_cartneys_slider_link ): 
                             $department_cartneys_slider_link_url = $department_cartneys_slider_link['url'];
                             $department_cartneys_slider_link_title = $department_cartneys_slider_link['title'];
                             $department_cartneys_slider_link_target = $department_cartneys_slider_link['target'] ? $department_cartneys_slider_link['target'] : '_self';
                             ?>
-                        <a class="btn-transparent" href="<?php echo esc_url( $department_cartneys_slider_link_url ); ?>"
-                            target="<?php echo esc_attr( $department_cartneys_slider_link_target ); ?>">sdfsd</a>
-                        <?php endif; ?>
+                    <a class="btn-transparent" href="<?php echo esc_url( $department_cartneys_slider_link_url ); ?>"
+                        target="<?php echo esc_attr( $department_cartneys_slider_link_target ); ?>">sdfsd</a>
+                    <?php endif; ?>
                     <?php
                 $department_slider_bg_image = get_sub_field('our_departments_thumbnail', 'option');
                 if( !empty($department_slider_bg_image) ):?>
@@ -108,7 +108,7 @@
     <!-- End Property section here -->
 
 
-        <!-- Start Property section here -->
+    <!-- Start Property section here -->
     <section class="property-wrapper mb d-none" id="office-data">
         <div class="container">
             <h2 class="title"><?php the_field('our_locatinos_title'); ?></h2>
@@ -147,7 +147,7 @@
             <div class="tab-content" id="propertyTabContent">
                 <div class="tab-pane fade show active" id="auction" role="tabpanel" aria-labelledby="tab-auction">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="property-land-auctions"]');?>
+                        <?php echo do_shortcode('[recent_properties department="property-land-auctions" ]');?>
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=property-land-auctions">View

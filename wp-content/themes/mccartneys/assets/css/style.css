@@ -10315,6 +10315,33 @@ section.recent-properties::before {
     object-fit: cover;
 }
 
+.negotiator-profile-wrap {
+    box-shadow: 0px 0.684px 2.736px 0px rgba(25, 33, 61, 0.08);
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin: -33px 0 30px;
+}
+
+
+/* Overide an previously set styles for the wrapped image as other styles are still viable for mobile */
+
+.single-property .negotiator-profile-wrap .negotiatior-profile {
+    border-radius: unset;
+    text-align: initial;
+    width: 100%;
+    height: auto;
+    margin: initial;
+    box-shadow: initial;
+    object-fit: initial;
+}
+
 .single-property .branch-info-wrap {
     text-align: center;
 }

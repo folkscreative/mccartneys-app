@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
 
+
     // Set the department and toggle state based on body class
     function setDepartmentFromBodyClass() {
         const bodyClassList = document.body.classList;
@@ -59,6 +60,60 @@ document.addEventListener("DOMContentLoaded", function() {
     // Initialize the department and toggle state
     setDepartmentFromBodyClass();
     setToggleFromUrlOrBodyClass();
+
+
+    const departmentField = document.querySelector('input[name="department"]');
+    const salesRadio = document.getElementById('_parent_department_sales');
+    const lettingsRadio = document.getElementById('_parent_department_lettings');
+    const bodyClassList = document.body.classList;
+    let initialDepartmentValue = departmentField ? departmentField.value : '';
+
+    // Check if the URL contains department parameter
+    const departmentParam = urlParams.get('department');
+
+    // Check if the body class is .home or .post-type-archive-property
+    const isHomeOrArchivePage = bodyClassList.contains('home') || bodyClassList.contains('post-type-archive-property');
+
+    // Function to handle toggle change
+    function handleBuyRentToggle() {
+        if (lettingsRadio.checked) {
+            // Rent is selected
+            if (!departmentParam && isHomeOrArchivePage) {
+                // Scenario 1: No department parameter in URL and correct body class
+                departmentField.value = 'residential-lettings';
+            } else if (departmentParam === 'residential-sales') {
+                // Scenario 2: department equals residential-sales
+                departmentField.value = 'residential-lettings';
+            }
+        } else if (salesRadio.checked) {
+            // Buy is selected
+            if (!departmentParam && isHomeOrArchivePage) {
+                // Scenario 1: No department parameter in URL and correct body class
+                departmentField.value = ''; // Reset to initial unset state
+            } else if (departmentParam === 'residential-sales') {
+                // Scenario 2: department equals residential-sales
+                departmentField.value = 'residential-sales';
+            } else if (departmentParam === 'residential-lettings') {
+                // Scenario 3: department equals residential-lettings
+                departmentField.value = 'residential-sales';
+            }
+        }
+    }
+
+    // Set initial state when page loads
+    function setInitialBuyRentState() {
+        if (lettingsRadio.checked) {
+            handleBuyRentToggle();
+        }
+    }
+
+    // Add event listeners to the Buy/Rent toggle radio buttons
+    salesRadio.addEventListener('change', handleBuyRentToggle);
+    lettingsRadio.addEventListener('change', handleBuyRentToggle);
+
+    // Set the initial state on page load
+    setInitialBuyRentState();
+
 
     // Function to set form field values based on URL parameters
     function setFieldValueFromUrl(paramName, fieldSelector) {

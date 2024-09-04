@@ -10,7 +10,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-
+$website_logo = get_field('upload_logo', 'option');
+$fine_country_logo = wp_get_attachment_url('325');
 global $property;
 
 
@@ -263,7 +264,13 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                     </div>
                     <div class="branch-info mobile d-block d-md-none">
                         <div class="img-wrap">
-                            <img src="//placehold.it/300/300" alt="" class="negotiatior-profile">
+                            <img src="<?php if ($property->department === "fine-and-country") {
+                            echo $fine_country_logo;
+                        } else {
+                        echo $website_logo['url']; 
+                        };?>" alt="<?php if ($property->department === "fine-and-country") {
+                            echo 'Fine & Country Logo';
+                        } else { echo $website_logo['alt']; };?>" class="negotiatior-profile">
                         </div>
                         <div class="content">
                             <h5>Get In Touch</h5>
@@ -331,7 +338,13 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                 <div class="col-12 col-md-4 branch-info-wrap d-none d-md-block">
 
                     <div class="branch-info">
-                        <img src="//placehold.it/300/300" alt="" class="negotiatior-profile">
+                        <div class="negotiator-profile-wrap"><img src="<?php if ($property->department === "fine-and-country") {
+                            echo $fine_country_logo;
+                        } else {
+                        echo $website_logo['url']; 
+                        };?>" alt="<?php if ($property->department === "fine-and-country") {
+                            echo 'Fine & Country Logo';
+                        } else { echo $website_logo['alt']; };?>" class="negotiatior-profile"></div>
                         <h5>Get In Touch</h5>
                         <?php if ( $property->office_telephone_number != '' )
                         {	

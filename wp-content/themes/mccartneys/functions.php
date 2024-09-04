@@ -466,22 +466,22 @@ function property_tabs_shortcode() {
                 <p><?php the_field('stree_no');?> <?php the_field('stree_name'); ?> <?php the_field('town'); ?>
                     <?php the_field('postcode'); ?></p>
 
-                    <?php if( get_field('sales_number') ): ?>
+                <?php if( get_field('sales_number') ): ?>
                 <div class="sale-nmbr">
                     <img
                         src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
                     <span><strong>Sales </strong><a
                             href="tel:<?php the_field('sales_number');?>"><?php the_field('sales_number');?></a></span>
                 </div>
-<?php endif;?>
-<?php if( get_field('lettings_number') ): ?>
+                <?php endif;?>
+                <?php if( get_field('lettings_number') ): ?>
                 <div class="sale-nmbr d-none d-md-flex">
                     <img
                         src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
                     <span><strong>Lettings </strong><a
                             href="tel:<?php the_field('lettings_number');?>"><?php the_field('lettings_number');?></a></span>
                 </div>
-<?php endif;?>
+                <?php endif;?>
                 <?php $properties_data=get_field('properties',get_the_ID());
 								  $livestock_data=get_field('livestock',get_the_ID());
 								 $planning_survey_data=get_field('planning_survey',get_the_ID());
@@ -645,7 +645,7 @@ function Fc_property_tabs_shortcode() {
                 <p><?php the_field('stree_no');?> <?php the_field('stree_name'); ?> <?php the_field('town'); ?>
                     <?php the_field('postcode'); ?></p>
 
-                    <?php if( get_field('sales_number') ): ?>
+                <?php if( get_field('sales_number') ): ?>
                 <div class="sale-nmbr">
                     <img
                         src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
@@ -660,7 +660,7 @@ function Fc_property_tabs_shortcode() {
                     <span><strong>Lettings </strong><a
                             href="tel:<?php the_field('lettings_number');?>"><?php the_field('lettings_number');?></a></span>
                 </div>
-                    <?php endif;?>
+                <?php endif;?>
                 <?php $properties_data=get_field('properties',get_the_ID());
 								  $livestock_data=get_field('livestock',get_the_ID());
 								 $planning_survey_data=get_field('planning_survey',get_the_ID());
