@@ -10043,7 +10043,7 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
 .search-results.grid-view ul.properties {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     gap: 1em;
     transition: all .3s;
 }
