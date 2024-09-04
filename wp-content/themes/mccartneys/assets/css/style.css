@@ -7148,6 +7148,98 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
     margin: 12px 0 12px 20px;
 }
 
+/* filter property mobile */
+section.search-outer.filter {
+    background-color: #fff;
+}
+section.search-outer.filter .container {
+    padding: 0;
+}
+.mobile-filter{
+    position: relative;
+}
+.mobile-filter .property-search{
+    background-color: transparent;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: 0;
+}
+.mobile-filter .filter-btn{
+    position: absolute;
+    top: 0;
+    right: 25px;
+    color: var(--Monochrome-grey, #707070);
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Gotham;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 1.65px;
+    padding: 7px 15px;
+    text-transform: uppercase;
+    min-width: 119px;
+    border-radius: 41px;
+    border: 1px solid #E1E4ED;
+    background: #FFF;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.10)
+}
+.mobile-filter .filter-btn svg{
+    
+}
+.mobile-filter .filter-btn .close{
+    display: none;
+}
+.mobile-filter .filter-btn.active .open{
+    display: none;
+}
+.mobile-filter .filter-btn.active .close{
+    display: block;
+}
+.mobile-filter .property-search .search-form-control--filter-draw{
+   display: none;
+}
+.mobile-filter .property-search .search-form--location{
+    border: none !important;
+    width: 100%;
+    background-color: #F7EBEE;
+    padding: 20px 25px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.mobile-filter .search-form--radio-toggle{
+    margin-left: 25px;
+}
+.mobile-filter .property-search .search-form--location input{
+    min-height: 49px;
+    border-radius: 30px;
+    text-align: start;
+    padding: 0 20px;
+}
+.mobile-filter .property-search input[type="submit"]{
+    margin-left: auto;
+    margin-top: 0;
+    margin-right: 8px;
+    position: absolute;
+    bottom: 56px;
+    right: 26px;
+}
+.popup-filter .property-search{
+    padding: 0;
+    background-color: transparent;
+}
+.popup-filter .search-form--radio-toggle{
+    display: none;
+}
+.popup-filter .search-form--location{
+    display: none;
+}
+/* filter property mobile */
+
+
+
 
 /* Responsieness */
 

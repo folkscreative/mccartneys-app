@@ -14,6 +14,10 @@ jQuery(document).ready(function($) {
     $('.main-popup .outer').click(function() {
         $(this).children('.sub-menu').addClass('show');
     });
+    $(".mobile-filter .filter-btn").click(function() {
+        $(this).toggleClass("active");
+        $(".popup-filter").toggleClass("active");
+      });
     // popup
     $('.hamburger-icn').click(function() {
         $('.page').toggleClass('show');
