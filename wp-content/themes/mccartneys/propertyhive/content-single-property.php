@@ -314,7 +314,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                     </div>
                     <?php } ?>
 
-                    <div class="explore-info-wrap">
+                    <!-- <div class="explore-info-wrap">
                         <h4>Explore the area</h4>
                         <div class="mcc-badge-group-key">
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit
@@ -331,7 +331,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                                         </path>
                                     </svg></span></a>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
 

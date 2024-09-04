@@ -23,6 +23,10 @@ $branch_ph_office_map = [
 ];
 // Get the current page slug
 $current_slug = get_post_field('post_name', get_the_ID());
+
+// No recent results message
+$no_results_message = "No properties in this department for this branch"
+
 ?>
 <main class="single-branch page-wrap">
     <section class="branch-single">
@@ -191,10 +195,10 @@ $current_slug = get_post_field('post_name', get_the_ID());
                             $office_id = $branch_ph_office_map[$current_slug];
 
                             // Output the desired shortcode with the mapped office ID
-                           echo do_shortcode('[recent_properties department="property-land-auctions" office_id="' . $office_id . '"]');
+                           echo do_shortcode('[properties department="property-land-auctions" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
                         } else {
                             // Optionally handle cases where the slug isn't in the map
-                            echo do_shortcode('[recent_properties department="property-land-auctions"]');
+                            echo do_shortcode('[properties department="property-land-auctions" no_results_output="' . $no_results_message . '"]');
                         }
                     ?>
 
@@ -212,10 +216,10 @@ $current_slug = get_post_field('post_name', get_the_ID());
                             $office_id = $branch_ph_office_map[$current_slug];
 
                             // Output the desired shortcode with the mapped office ID
-                            echo do_shortcode( '[recent_properties department="residential-sales" office_id="' . $office_id . '"]');
+                            echo do_shortcode( '[recent_properties department="residential-sales" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
                         } else {
                             // Optionally handle cases where the slug isn't in the map
-                            echo do_shortcode( '[recent_properties department="residential-sales"]');
+                            echo do_shortcode( '[recent_properties department="residential-sales" no_results_output="' . $no_results_message . '"]');
                         }
                     ?>
 
@@ -233,10 +237,10 @@ $current_slug = get_post_field('post_name', get_the_ID());
                             $office_id = $branch_ph_office_map[$current_slug];
 
                             // Output the desired shortcode with the mapped office ID
-                            echo do_shortcode('[recent_properties department="residential-lettings" office_id="' . $office_id . '"]');
+                            echo do_shortcode('[recent_properties department="residential-lettings" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
                         } else {
                             // Optionally handle cases where the slug isn't in the map
-                            echo do_shortcode('[recent_properties department="residential-lettings"]');
+                            echo do_shortcode('[recent_properties department="residential-lettings" no_results_output="' . $no_results_message . '"]');
                         }
                     ?>
 
@@ -254,10 +258,10 @@ $current_slug = get_post_field('post_name', get_the_ID());
                             $office_id = $branch_ph_office_map[$current_slug];
 
                             // Output the desired shortcode with the mapped office ID
-                            echo do_shortcode('[recent_properties department="new-homes" office_id="' . $office_id . '"]');
+                            echo do_shortcode('[recent_properties department="new-homes" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
                         } else {
                             // Optionally handle cases where the slug isn't in the map
-                            echo do_shortcode('[recent_properties department="new-homes"]');
+                            echo do_shortcode('[recent_properties department="new-homes" no_results_output="' . $no_results_message . '"]');
                         }
                     ?>
 
