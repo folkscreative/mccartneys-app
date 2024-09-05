@@ -5692,6 +5692,9 @@ footer .cookies-menu ul li a {
     column-gap: 20px;
 }
 
+.post-boxes.case .post-content .category-date .ca-post-badge{
+    display: none !important;
+}
 .post-content .category-date .ca-post-badge {
     color: #8D1F56;
     text-align: center;

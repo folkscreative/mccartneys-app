@@ -49,7 +49,7 @@ wp_reset_postdata();?>
 </div>
  </section>
 
-<div class="post-boxes">
+<div class="post-boxes case">
 <div class="container">
     <div class="category-nav">
     <h2>Latest Articles</h2>
@@ -63,7 +63,7 @@ wp_reset_postdata();?>
             <div class="row g-3">
                 <?php
                 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-                $all_posts = new WP_Query(array('posts_per_page' => 6, 'post_type' => 'case-studies', 'paged' => $paged));
+                $all_posts = new WP_Query(array('posts_per_page' => 6, 'post_type' => 'case-studies',  'offset' => 1, 'paged' => $paged));
                 if ($all_posts->have_posts()) {
                     while ($all_posts->have_posts()) {
                         $all_posts->the_post();
