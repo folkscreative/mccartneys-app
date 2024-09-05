@@ -5545,7 +5545,7 @@ footer .cookies-menu ul li a {
     margin-bottom: 30px !important;
 }
 
-.branch-single .single-content-details .content .btn-cs-white:hover {
+.branch-single .single-content-details .content .btn-cs-white:hover::after {
     background-color: transparent !important;
 }
 

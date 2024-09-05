@@ -23,14 +23,18 @@ get_header(); ?>
             
             
            <div class="contact-form">
-            <?php echo do_shortcode('[contact-form-7 id="35180b3" title="Contact form 1"] '); ?>
+
+           <iframe id="JotFormIFrame-242453847375061" title="Contact McCartneys" onload="window.parent.scrollTo(0,0)" allowtransparency="true" allow="geolocation; microphone; camera; fullscreen"
+            src="https://form.jotform.com/242453847375061" frameborder="0" width="100%" height="850px" scrolling="no">
+            </iframe>
+            <?php //echo do_shortcode('[contact-form-7 id="35180b3" title="Contact form 1"] '); ?>
            </div>
             
             <div class="connect-wrap">
             <?php if( have_rows('social_media_buttons', 'option') ): ?>
             <ul>
             <?php while( have_rows('social_media_buttons', 'option') ): the_row(); ?>
-                <li><a href="<?php $social_link= get_sub_field('social_media_link'); 
+                <li><a href="<?php $social_link= the_sub_field('social_media_link'); 
                 echo $echo;
                 ?>"><?php  $social_label = get_sub_field('social_media_label');
                 echo $social_label;

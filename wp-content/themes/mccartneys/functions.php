@@ -305,7 +305,7 @@ if ( $case_query->have_posts() ) :
         </div>
         <div class="col-12 col-md-7 col-right-text align-content-center">
             <h4><strong><?php the_title(); ?>,</strong><?php the_field('case_study_sub_title');?></h4>
-            <?php the_content();?>
+            <p><?php the_excerpt();?></p>
             <a href="<?php the_permalink(); ?>" class="btn-cs-dark">Read more<span><i
                         class="fa-solid fa-angle-right"></i></span></a>
         </div>
