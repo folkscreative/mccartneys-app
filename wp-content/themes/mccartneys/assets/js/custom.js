@@ -17,7 +17,11 @@ jQuery(document).ready(function($) {
     $(".mobile-filter .filter-btn").click(function() {
         $(this).toggleClass("active");
         $(".popup-filter").toggleClass("active");
-      });
+    });
+    //   sharepopup
+    $(".share-pop-btn").click(function() {
+        $(".branch-share-popup").toggleClass("active");
+    });
     // popup
     $('.hamburger-icn').click(function() {
         $('.page').toggleClass('show');
@@ -59,18 +63,19 @@ jQuery(document).ready(function($) {
 
     $('.navigation .navigation__link').on('click', function() {
         show_content($(this).index());
-        });
-        show_content(0);
-        function show_content(index) {
+    });
+    show_content(0);
+
+    function show_content(index) {
         // Make the content visible
         $('.wrapper-time .iteml.visible').removeClass('visible');
         $('.wrapper-time .iteml:nth-of-type(' + (index + 1) + ')').addClass('visible');
-        
+
         // Set the tab to selected
         $('.navigation .navigation__link.selected').removeClass('selected');
         $('.navigation .navigation__link:nth-of-type(' + (index + 1) + ')').addClass('selected');
         // How to remove the arrow and only show it on the selected tab?
-        }
+    }
 
 
     // gallery slide
@@ -410,24 +415,24 @@ jQuery(document).ready(function($) {
     $(document).ready(function() {
         const $tabs = $('.tab');
         const $contents = $('.tab-content');
-    
+
         $tabs.on('click', function() {
             const tabId = $(this).data('tab');
-    
+
             $tabs.removeClass('active');
             $contents.removeClass('active');
-    
+
             $(this).addClass('active');
             $('#' + tabId).addClass('active');
         });
-    
+
         // Activate the first tab and content by default
         if ($tabs.length > 0) {
             $tabs.first().addClass('active');
             $contents.first().addClass('active');
         }
     });
-    
+
 
     //id to timeline
 

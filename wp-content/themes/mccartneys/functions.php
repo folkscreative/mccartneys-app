@@ -801,12 +801,15 @@ function recent_property_tabs_shortcode() {
     </ul>
 </div>
 <div class="tab-content" id="propertyTabContent">
-    <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
-        <!-- TAB CONTENT -->
-    </div>
+    
     <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="tab-sale">
         <!-- TAB CONTENT -->
     </div>
+    
+    <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
+        <!-- TAB CONTENT -->
+    </div>
+   
     <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="tab-rent">
         <!-- TAB CONTENT -->
     </div>

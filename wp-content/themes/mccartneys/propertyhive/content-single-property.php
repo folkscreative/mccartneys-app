@@ -142,7 +142,40 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
     <section class="single-property--info">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-8">
+                <div class="col-12 col-md-8" style="position: relative; ">
+                <a class="share-pop-btn"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20" fill="none">
+                <g clip-path="url(#clip0_1547_48556)">
+                    <path d="M11.6176 5.37422L11.7189 5.32094L11.6942 5.20917C11.6464 4.99216 11.6202 4.76879 11.6202 4.53958C11.6202 2.81559 13.0227 1.41367 14.7461 1.41367C16.4701 1.41367 17.872 2.81618 17.872 4.53958C17.872 6.26358 16.4695 7.66549 14.7461 7.66549C13.8139 7.66549 12.9776 7.25276 12.4041 6.60172L12.3261 6.5132L12.2217 6.56811L6.97632 9.32706L6.88056 9.37742L6.89814 9.48418C6.9262 9.65464 6.944 9.82532 6.944 9.99928C6.944 10.171 6.92621 10.3395 6.89883 10.5073L6.88143 10.614L6.97702 10.6642L11.825 13.2151L11.933 13.272L12.0106 13.1777C12.6179 12.4399 13.5377 11.9692 14.5647 11.9692C16.3881 11.9692 17.8719 13.453 17.8719 15.2765C17.8719 17.1 16.3881 18.5845 14.5647 18.5845C12.7413 18.5845 11.2574 17.1001 11.2574 15.2765C11.2574 15.0409 11.283 14.8113 11.3303 14.5891L11.3539 14.478L11.2534 14.4252L6.45256 11.8998L6.34259 11.8419L6.26529 11.9392C5.69195 12.6608 4.80915 13.1253 3.81888 13.1253C2.09489 13.1253 0.692969 11.7228 0.692969 9.99941C0.692969 8.27541 2.09548 6.8735 3.81888 6.8735C4.80629 6.8735 5.68703 7.33593 6.26046 8.05478L6.3378 8.15174L6.44756 8.094L11.6176 5.37422ZM5.60677 9.99968V9.99956C5.60677 9.0132 4.80433 8.21156 3.81878 8.21156C2.83242 8.21156 2.03079 9.01401 2.03079 9.99956C2.03079 10.9859 2.83323 11.7875 3.81878 11.7875C4.80448 11.7875 5.60598 10.9851 5.60677 9.99968ZM12.958 4.54009V4.54021C12.958 5.52657 13.7604 6.32821 14.746 6.32821C15.7323 6.32821 16.534 5.52576 16.534 4.54021C16.534 3.55385 15.7315 2.75222 14.746 2.75222C13.7603 2.75222 12.9588 3.55394 12.958 4.54009ZM16.5348 15.2768C16.5348 14.1904 15.6512 13.3068 14.5648 13.3068C13.4784 13.3068 12.5948 14.1904 12.5948 15.2768C12.5948 16.3632 13.4784 17.2468 14.5648 17.2468C15.6512 17.2468 16.5348 16.3632 16.5348 15.2768Z" fill="#707070" stroke="white" stroke-width="0.3"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0_1547_48556">
+                    <rect width="18.5625" height="18.5625" fill="white" transform="translate(0 0.71875)"/>
+                    </clipPath>
+                </defs>
+                </svg></a>
+                <div class="branch-share-popup">
+                    <h4>Share</h4>
+                <?php
+                    $Url = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
+                    $Url .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+                    ?>
+                    <!-- Facebook -->
+                    <a href="http://www.facebook.com/sharer.php?u=<?php echo $Url; ?>" target="_blank" style="text-decoration:none">
+                        <img src="<?php echo get_template_directory_uri()?>/assets/images/facebook-grey.svg" alt="">
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?php echo $Url; ?>" target="_blank" style="text-decoration:none">
+                    <img src="<?php echo get_template_directory_uri()?>/assets/images/linkedin-grey.svg" alt="">
+                    </a>
+
+                    
+                <!-- Instagram Profile Button -->
+                    <a class="fb-share" href="https://www.instagram.com/sharer.php?u=<?php echo $Url; ?>" target="_blank" style="text-decoration:none">
+                    <img src="<?php echo get_template_directory_uri()?>/assets/images/instagram-grey.svg" alt="">
+                </a>
+                </div>
+
                     <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
                     <h2 class="price-info price"><?php echo $property->get_formatted_price(); ?></h2>
                     <h1 class="property-address">
