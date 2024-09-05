@@ -32,7 +32,7 @@ if ($query->have_posts()) :
             <div class="post-content">
                 <div class="category-date">
                     <div class="ca-post-badge">
-                        <?php $category = get_the_category(); echo $category[0]->cat_name; ?>
+                        <?php //$category = get_the_category(); echo $category[0]->cat_name; ?>
                     </div>
                     <div class="date">
                         <?php echo get_the_date('M d, Y'); ?>
@@ -40,7 +40,7 @@ if ($query->have_posts()) :
                 </div>
                 <h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
                 <div class="contex"><?php the_content(); ?></div>
-                <p class="author"><?php the_author(); ?></p>
+                <p class="author"><?php //the_author(); ?></p>
             </div>
         </div>
     <?php endwhile;
