@@ -8,7 +8,7 @@ get_header(); ?>
             <div class="content">
             <div class="breadcrumb mc"><?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
                 <h1>McCartneys Case Studies</h1>
-                <p>We share our team's expertise across McCartneys' fields, including properties, livestock, fine art and antiques, and more.</p>
+                <p>McCartneys Planning and Survey Department undertake a wide range of projects from initial conception, through to handing over keys on a completed property. We are pleased to showcase several of the projects we have been involved in, to show the variability in both project overview, location and expertise undertaken.</p>
             </div>
         
     
@@ -18,7 +18,7 @@ $current_post_id = $post->ID;
 // The query to get the specific post
 $query = new WP_Query(array(
     'post_type' => 'case-studies',
-    'posts_per_page' => 1, 
+    'posts_per_page' => 4, 
     'order' => 'DESC' )); 
 if ($query->have_posts()) :
     while ($query->have_posts()) : $query->the_post(); ?>
