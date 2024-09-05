@@ -211,6 +211,7 @@ function mccartneys()
     wp_enqueue_script('jquery', true);
     wp_enqueue_script('load-lightbox-script','https://mreq.github.io/slick-lightbox/dist/slick-lightbox.js');
     wp_enqueue_script('load-fa-script','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js');
+    wp_enqueue_script('load-zopla','https://api.zooplavaluations.co.uk/resource/widgetiframeloader?key=6c6f59de-0996-4851-8433-4da120b9a1e3');
 	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '', 'all');
 	wp_enqueue_script('slick-js', get_template_directory_uri() . '/assets/js/slick.min.js', array(), '', 'all');
 	wp_enqueue_script('custom', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'), '', true);
@@ -787,10 +788,11 @@ function recent_property_tabs_shortcode() {
 <div class="outer-wrapper">
     <h2 class="title"><?php the_sub_field('recent_property_title'); ?></h2>
     <ul class="nav nav-tabs" id="propertyTab" role="tablist">
-        <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-auction" data-bs-toggle="tab"
+    <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-sale" data-bs-toggle="tab" href="#sale"
+    role="tab" aria-controls="sale" aria-selected="false" tabindex="-1">Sale</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link " id="tab-auction" data-bs-toggle="tab"
                 href="#auction" role="tab" aria-controls="auction" aria-selected="true">Auction</a></li>
-        <li class="nav-item" role="presentation"><a class="nav-link" id="tab-sale" data-bs-toggle="tab" href="#sale"
-                role="tab" aria-controls="sale" aria-selected="false" tabindex="-1">Sale</a></li>
+       
         <li class="nav-item" role="presentation"><a class="nav-link" id="tab-rent" data-bs-toggle="tab" href="#rent"
                 role="tab" aria-controls="rent" aria-selected="false" tabindex="-1">Rent</a></li>
         <li class="nav-item" role="presentation"><a class="nav-link" id="tab-new-homes" data-bs-toggle="tab"
@@ -799,10 +801,10 @@ function recent_property_tabs_shortcode() {
     </ul>
 </div>
 <div class="tab-content" id="propertyTabContent">
-    <div class="tab-pane fade show active" id="auction" role="tabpanel" aria-labelledby="tab-auction">
+    <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
         <!-- TAB CONTENT -->
     </div>
-    <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
+    <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="tab-sale">
         <!-- TAB CONTENT -->
     </div>
     <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="tab-rent">

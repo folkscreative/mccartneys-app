@@ -18,9 +18,6 @@ get_header(); ?>
      <div class="container">
             <div class="outer-wrap">
             <div class="content">
-            <h2><?php the_sub_field('livestock_banner_title'); ?></h2>
-            <?php the_sub_field('livestock_banner_content'); ?>
-            
             
            <div class="contact-form">
 

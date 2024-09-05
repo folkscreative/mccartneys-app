@@ -2300,6 +2300,9 @@ footer .cookies-menu ul li a {
 .livestock-auctioneers .livestock-auctioneers-content {
     border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .livestock-auctioneers .livestock-auctioneers-content.col-left {
@@ -2366,6 +2369,7 @@ footer .cookies-menu ul li a {
 .livestock-auctioneers .livestock-auctioneers-content .team-content {
     background-color: #F7EBEE;
     padding: 12px 16px 12px;
+    flex-grow: 1;
 }
 
 .livestock-auctioneers .livestock-auctioneers-content .team-content h4 {
@@ -4467,7 +4471,8 @@ footer .cookies-menu ul li a {
 }
 
 .case-study-plan .outer .col-right-text p {
-    margin: 32px 0 34px;
+    /* margin: 32px 0 34px; */
+    margin: 0 0 17px;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
@@ -5559,6 +5564,9 @@ footer .cookies-menu ul li a {
     flex-direction: row;
     justify-content: space-between;
     column-gap: 20px;
+}
+.branch-single .single-content-details .inner-wrapper .col-right{
+    min-width: 150px;
 }
 
 .branch-single .single-content-details .inner-wrapper .col-left h5:first-child {
@@ -11116,6 +11124,14 @@ body.post-type-archive-property .search-form--department {
     font-weight: 300;
     color: #706F70;
     font-weight: 800
+}
+.propertyhive-recent-properties-shortcode .office-slider .col-right .price-info.price-qualifier{
+    font-family: Gotham;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 22px;
+    text-transform: capitalize;
 }
 
 .propertyhive-recent-properties-shortcode .slick-arrow {

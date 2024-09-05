@@ -61,7 +61,7 @@
 					$header_main_btn_title = $header_main_btn['title'];
 					$header_main_btn_target = $header_main_btn['target'] ? $header_main_btn['target'] : '_self';
 					?>
-					<a class="btn-cs-darker" href="<?php echo esc_url( $header_main_btn_url ); ?>" target="<?php echo esc_attr( $header_main_btn_target ); ?>"><?php echo esc_html( $header_main_btn_title ); ?></a>
+					<a class="btn-cs-darker zt-ovt-button" href="#"><?php echo esc_html( $header_main_btn_title ); ?></a>
 				<?php endif; ?>
 		</div>
 		</div>
@@ -104,7 +104,7 @@
 					$header_main_btn_title = $header_main_btn['title'];
 					$header_main_btn_target = $header_main_btn['target'] ? $header_main_btn['target'] : '_self';
 					?>
-					<a class="btn-cs-darker" href="<?php echo esc_url( $header_main_btn_url ); ?>" target="<?php echo esc_attr( $header_main_btn_target ); ?>"><?php echo esc_html( $header_main_btn_title ); ?></a>
+					<a class="btn-cs-darker zt-ovt-button" href="#"><?php echo esc_html( $header_main_btn_title ); ?></a>
 				<?php endif; ?>
 		</div>
 		</div>
@@ -166,7 +166,7 @@
 				)
 			);
 			?>
-			<div class="valuation-btn"> 
+			<div class="valuation-btn zt-ovt-button"> 
 				<?php 
 				$header_main_btn = get_field('header_main_button', 'option');
 				if( $header_main_btn ): 
