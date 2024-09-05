@@ -18,7 +18,7 @@ $current_post_id = $post->ID;
 // The query to get the specific post
 $query = new WP_Query(array(
     'post_type' => 'case-studies',
-    'posts_per_page' => -1, 
+    'posts_per_page' => 4, 
     'order' => 'DESC' )); 
 if ($query->have_posts()) :
     while ($query->have_posts()) : $query->the_post(); ?>
