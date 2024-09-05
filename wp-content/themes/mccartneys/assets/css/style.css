@@ -5673,7 +5673,9 @@ footer .cookies-menu ul li a {
 .insight-content .content h1 {
     margin: 39px 0 26px;
 }
-
+.insight-content.case-template .post{
+    margin-bottom: 25px;
+}
 .insight-content .post {
     display: flex;
     flex-direction: row;

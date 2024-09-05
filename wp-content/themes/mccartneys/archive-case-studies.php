@@ -3,7 +3,7 @@
 get_header(); ?>
 
 
-<section class="insight-content">
+<section class="insight-content case-template">
         <div class="container">
             <div class="content">
             <div class="breadcrumb mc"><?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
@@ -18,7 +18,7 @@ $current_post_id = $post->ID;
 // The query to get the specific post
 $query = new WP_Query(array(
     'post_type' => 'case-studies',
-    'posts_per_page' => 1, 
+    'posts_per_page' => -1, 
     'order' => 'DESC' )); 
 if ($query->have_posts()) :
     while ($query->have_posts()) : $query->the_post(); ?>
@@ -49,11 +49,25 @@ wp_reset_postdata();?>
 </div>
  </section>
 
-<div class="post-boxes case">
+ <div class="post-boxes">
 <div class="container">
     <div class="category-nav">
     <h2>Latest Articles</h2>
 
+    <!-- Tabs navigation -->
+    <ul class="nav nav-tabs" id="categoryTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All</button>
+        </li>
+        <?php
+        $categories = get_categories();
+        foreach ($categories as $category) {
+            echo '<li class="nav-item" role="presentation">';
+            echo '<button class="nav-link" id="' . $category->slug . '-tab" data-bs-toggle="tab" data-bs-target="#' . $category->slug . '" type="button" role="tab" aria-controls="' . $category->slug . '" aria-selected="false">' . $category->name . '</button>';
+            echo '</li>';
+        }
+        ?>
+    </ul>
     </div>
     
     
@@ -63,7 +77,7 @@ wp_reset_postdata();?>
             <div class="row g-3">
                 <?php
                 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-                $all_posts = new WP_Query(array('posts_per_page' => 6, 'post_type' => 'case-studies',  'offset' => 1, 'paged' => $paged));
+                $all_posts = new WP_Query(array('posts_per_page' => 6, 'paged' => $paged));
                 if ($all_posts->have_posts()) {
                     while ($all_posts->have_posts()) {
                         $all_posts->the_post();
@@ -94,7 +108,6 @@ wp_reset_postdata();?>
             echo '<div class="row">';
             $cat_posts = new WP_Query(array(
                 'cat' => $cat_id,
-                'post_type' => 'case-studies',
                 'posts_per_page' => 6,
                 'paged' => $cat_paged
             ));
