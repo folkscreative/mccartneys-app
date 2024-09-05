@@ -39,7 +39,7 @@ get_header();
 <section class="posts-single-data"> 
 	<div class="container">
 		<div class="row">
-			<div class="col-12 col-sm-6">
+			<div class="col-12 col-sm-3">
 				<div class="col-left">
 					<!-- <h4>Summary</h4>
 					<ul>
@@ -75,7 +75,7 @@ get_header();
                     
 				</div>
 			</div>
-			<div class="col-12 col-sm-6">
+			<div class="col-12 col-sm-9">
 				<div class="col-right">
 					<?php the_content(); ?>
                     <div class="pagination">
