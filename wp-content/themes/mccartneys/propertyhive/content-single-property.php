@@ -156,9 +156,14 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                 <div class="branch-share-popup">
                     <h4>Share</h4>
                     <?php echo sharethis_inline_buttons(); ?>
-                    <div class="background">
-                    <p class="clipboard">Copy URL</p>
+                    <div class="copy-outer">
+                    <div class="copy-url-img">
+                        <img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/09/copy-icon.svg"> 
                     </div>
+                    <div class="copy-content">
+                        <p class="clipboard">Copy URL</p>
+                    </div>
+                        </div>
             <script>
                 var $temp = $("<p>");
                 var $url = $(location).attr('href');
