@@ -183,6 +183,18 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                 <div class="copy-content">
                     <button class="clipboard">Copy URL</button>
                 </div>
+                <script>
+                    var $temp = $("<p>");
+                    var $url = $(location).attr('href');
+
+                    $('.clipboard').on('click', function() {
+                    $("body").append($temp);
+                    $temp.val($url).select();
+                    document.execCommand("copy");
+                    $temp.remove();
+                    $("p").text("URL copied!");
+                    });
+                <script>
      
                 </div>
 
