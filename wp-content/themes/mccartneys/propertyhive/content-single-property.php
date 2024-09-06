@@ -153,12 +153,27 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                     </clipPath>
                 </defs>
                 </svg></a>
-                
                 <div class="branch-share-popup">
                     <h4>Share</h4>
-                <?php echo sharethis_inline_buttons(); ?>
-                
-     
+                <?php
+                    $Url = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
+                    $Url .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+                    ?>
+                    <!-- Facebook -->
+                    <a href="http://www.facebook.com/sharer.php?u=<?php echo $Url; ?>" target="_blank" style="text-decoration:none">
+                        <img src="<?php echo get_template_directory_uri()?>/assets/images/facebook-grey.svg" alt="">
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?php echo $Url; ?>" target="_blank" style="text-decoration:none">
+                    <img src="<?php echo get_template_directory_uri()?>/assets/images/linkedin-grey.svg" alt="">
+                    </a>
+
+                    
+                <!-- Instagram Profile Button -->
+                    <a class="fb-share" href="https://www.instagram.com/sharer.php?u=<?php echo $Url; ?>" target="_blank" style="text-decoration:none">
+                    <img src="<?php echo get_template_directory_uri()?>/assets/images/instagram-grey.svg" alt="">
+                </a>
                 </div>
 
                     <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
