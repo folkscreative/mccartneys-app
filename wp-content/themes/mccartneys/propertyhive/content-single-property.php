@@ -176,7 +176,14 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                 <!-- </a> -->
 
                 <?php echo sharethis_inline_buttons(); ?>
-                
+                <div class="copy-outer">
+                <div class="copy-url-img">
+                    <img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/09/copy-icon.svg"> 
+                </div>
+                <div class="copy-content">
+                    <p class="clipboard">Copy URL</p>
+                </div>
+     
                 </div>
 
                     <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>

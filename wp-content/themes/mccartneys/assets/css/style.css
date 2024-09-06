@@ -11426,3 +11426,18 @@ body.post-type-archive-property .search-form--department {
 
 
 /* general page css ends */
+
+
+.copy-outer {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.copy-outer .copy-content p.clipboard {
+    font-family: Gotham;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+}
