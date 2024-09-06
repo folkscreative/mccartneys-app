@@ -11431,7 +11431,8 @@ body.post-type-archive-property .search-form--department {
 .copy-outer {
     display: flex;
     align-items: center;
-    gap: 10px
+    gap: 10px;
+    padding-top: 20px;
 }
 
 .copy-outer .copy-content p.clipboard {
