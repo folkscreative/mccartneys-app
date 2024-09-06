@@ -169,12 +169,13 @@ $no_results_message = "No properties in this department for this branch"
             <div class="outer-wrapper">
                 <h2 class="title"><?php the_sub_field('recent_property_title'); ?></h2>
                 <ul class="nav nav-tabs" id="propertyTab" role="tablist">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-auction"
-                            data-bs-toggle="tab" href="#auction" role="tab" aria-controls="auction"
-                            aria-selected="true">Auction</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" id="tab-sale" data-bs-toggle="tab"
+                <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-sale" data-bs-toggle="tab"
                             href="#sale" role="tab" aria-controls="sale" aria-selected="false" tabindex="-1">Sale</a>
                     </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" id="tab-auction"
+                            data-bs-toggle="tab" href="#auction" role="tab" aria-controls="auction"
+                            aria-selected="true">Auction</a></li>
+                    
                     <li class="nav-item" role="presentation"><a class="nav-link" id="tab-rent" data-bs-toggle="tab"
                             href="#rent" role="tab" aria-controls="rent" aria-selected="false" tabindex="-1">Rent</a>
                     </li>
@@ -185,7 +186,7 @@ $no_results_message = "No properties in this department for this branch"
                 </ul>
             </div>
             <div class="tab-content" id="propertyTabContent">
-                <div class="tab-pane fade show active" id="auction" role="tabpanel" aria-labelledby="tab-auction">
+                <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
                     <div class="inner-tabs pr">
 
                         <?php
@@ -207,7 +208,7 @@ $no_results_message = "No properties in this department for this branch"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=property-land-auctions">View
                         all properties</a>
                 </div>
-                <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
+                <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="tab-sale">
                     <div class="inner-tabs pr">
                         <?php
                         // Check if the current slug exists in the map
