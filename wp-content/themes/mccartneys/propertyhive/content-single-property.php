@@ -181,7 +181,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                     <img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/09/copy-icon.svg"> 
                 </div>
                 <div class="copy-content">
-                    <p class="clipboard">Copy URL</p>
+                    <p class="copy-url">Copy URL</p>
                 </div>
      
                 </div>

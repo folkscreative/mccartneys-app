@@ -11434,7 +11434,7 @@ body.post-type-archive-property .search-form--department {
     gap: 10px
 }
 
-.copy-outer .copy-content p.clipboard {
+.copy-outer .copy-content p.copy-url {
     font-family: Gotham;
     font-size: 14px;
     font-style: normal;
