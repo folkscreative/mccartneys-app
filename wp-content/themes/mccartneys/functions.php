@@ -1702,3 +1702,55 @@ function property_mobile_tabs_shortcode() {
     }
 }
 add_shortcode( 'property_mobile_tabs', 'property_mobile_tabs_shortcode' );
+
+
+
+//custom breadcrume
+function custom_breadcrumbs() {
+    // Settings
+    $separator = ' &raquo; ';
+    $home_title = 'Home';
+ 
+    // Get the query & post information
+    global $post;
+ 
+    // Build the breadcrumbs
+    echo '<ul id="breadcrumbs">';
+ 
+    // Home page
+    echo '<li><a href="' . get_home_url() . '">' . $home_title . '</a></li>';
+    echo '<li>' . $separator . '</li>';
+ 
+    if ( is_single() ) { // Single post
+        // Get post category info
+        $category = get_the_category();
+        if ( $category ) {
+            $last_category = end( array_values( $category ) );
+            $cat_parents = rtrim( get_category_parents( $last_category->term_id, true, ',' ), ',' );
+            $cat_parents = explode( ',', $cat_parents );
+ 
+            foreach ( $cat_parents as $parent ) {
+                echo '<li>' . $parent . '</li>';
+                echo '<li>' . $separator . '</li>';
+            }
+        }
+        echo '<li>' . get_the_title() . '</li>';
+    } elseif ( is_page() ) { // Page
+        if ( $post->post_parent ) {
+            $parent_id = $post->post_parent;
+            $crumbs = array();
+            while ( $parent_id ) {
+                $page = get_page( $parent_id );
+                $crumbs[] = '<li><a href="' . get_permalink( $page->ID ) . '">' . get_the_title( $page->ID ) . '</a></li>';
+                $parent_id = $page->post_parent;
+            }
+            $crumbs = array_reverse( $crumbs );
+            foreach ( $crumbs as $crumb ) {
+                echo $crumb;
+                echo '<li>' . $separator . '</li>';
+            }
+        }
+        echo '<li>' . get_the_title() . '</li>';
+    }
+    echo '</ul>';
+}
