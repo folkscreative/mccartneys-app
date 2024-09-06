@@ -153,6 +153,28 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                     </clipPath>
                 </defs>
                 </svg></a>
+
+                <div class="copy-outer">
+                <div class="copy-url-img">
+                    <img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/09/copy-icon.svg"> 
+                </div>
+                <div class="copy-content">
+                    <p class="copy-url">Copy URL</p>
+                </div>
+                <script>
+  var $temp = $("<p>");
+var $url = $(location).attr('href');
+
+$('.copy-url').on('click', function() {
+  $("body").append($temp);
+  $temp.val($url).select();
+  document.execCommand("copy");
+  $temp.remove();
+  $("p").text("URL copied!");
+})
+  </script>
+
+
                 <div class="branch-share-popup">
                     <h4>Share</h4>
                 <?php
@@ -176,13 +198,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                 <!-- </a> -->
 
                 <?php echo sharethis_inline_buttons(); ?>
-                <div class="copy-outer">
-                <div class="copy-url-img">
-                    <img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/09/copy-icon.svg"> 
-                </div>
-                <div class="copy-content">
-                    <p class="copy-url">Copy URL</p>
-                </div>
+                
      
                 </div>
 
