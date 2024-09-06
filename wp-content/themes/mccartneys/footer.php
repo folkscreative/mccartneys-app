@@ -304,17 +304,26 @@
 
 
 <script>
-	var $temp = jQuery("<p>");
-var $url = jQuery(location).attr('href');
+    document.getElementById('copyUrlButton').addEventListener('click', function() {
+        // Get the current URL
+        const url = window.location.href;
+        
+        // Create a temporary input element to hold the URL
+        const tempInput = document.createElement('input');
+        document.body.appendChild(tempInput);
+        tempInput.value = url;
 
-jQuery('.clipboard').on('click', function() {
-	jQuery("body").append($temp);
-$temp.val($url).select();
-document.execCommand("copy");
-$temp.remove();
-jQuery("p").text("URL copied!");
-})
-	</script>
+        // Select the text and copy it to the clipboard
+        tempInput.select();
+        document.execCommand('copy');
+
+        // Remove the temporary input element
+        document.body.removeChild(tempInput);
+
+        // Update the status text to indicate the URL was copied
+        document.getElementById('status').textContent = 'URL copied!';
+    });
+</script>
 <!-- <button id="clickBtn">Click Me To See PopUp</button>
 <div id="popup">
     <div class="popup-container">

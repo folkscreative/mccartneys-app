@@ -11435,7 +11435,7 @@ body.post-type-archive-property .search-form--department {
     padding-top: 20px;
 }
 
-.copy-outer .copy-content p.clipboard {
+.copy-outer .copy-content button p {
     font-family: Gotham;
     font-size: 14px;
     font-style: normal;
