@@ -156,6 +156,21 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                 <div class="branch-share-popup">
                     <h4>Share</h4>
                     <?php echo sharethis_inline_buttons(); ?>
+                    <div class="background">
+                    <p class="clipboard">Copy URL</p>
+                    </div>
+            <script>
+                var $temp = $("<p>");
+                var $url = $(location).attr('href');
+
+                $('.clipboard').on('click', function() {
+                $("body").append($temp);
+                $temp.val($url).select();
+                document.execCommand("copy");
+                $temp.remove();
+                $("p").text("URL copied!");
+                })
+                </script>
                 </div>
 
                     <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
