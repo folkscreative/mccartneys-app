@@ -1729,9 +1729,8 @@ function custom_breadcrumbs() {
             $cat_parents = rtrim( get_category_parents( $last_category->term_id, true, ',' ), ',' );
             $cat_parents = explode( ',', $cat_parents );
  
-            foreach ( $cat_parents as $parent ) {?>
-                <li>insights</li>
-                <?php echo '<li>' . $separator . '</li>';
+            foreach ( $cat_parents as $parent ) {
+                 echo '<li>'.'insights'. get_the_title() . '</li>';
             }
         }
         echo '<li>' . get_the_title() . '</li>';
