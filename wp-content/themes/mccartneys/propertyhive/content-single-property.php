@@ -153,50 +153,9 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                     </clipPath>
                 </defs>
                 </svg></a>
-
-                <div class="copy-outer">
-                <div class="copy-url-img">
-                    <img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/09/copy-icon.svg"> 
-                </div>
-                <div class="copy-content">
-                    <p class="copy-url">Copy URL</p>
-                </div>
-                <script>
-  var $temp = $("<p>");
-var $url = $(location).attr('href');
-
-$('.copy-url').on('click', function() {
-  $("body").append($temp);
-  $temp.val($url).select();
-  document.execCommand("copy");
-  $temp.remove();
-  $("p").text("URL copied!");
-})
-  </script>
-
-
+                
                 <div class="branch-share-popup">
                     <h4>Share</h4>
-                <?php
-                   // $Url = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
-                    //$Url .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-                    ?>
-                    <!-- Facebook -->
-                    <!-- <a href="http://www.facebook.com/sharer.php?u=<?php echo $Url; ?>" target="_blank" style="text-decoration:none">
-                        <img src="<?php echo get_template_directory_uri()?>/assets/images/facebook-grey.svg" alt="">
-                    </a> -->
-
-                    <!-- LinkedIn -->
-                    <!-- <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?php echo $Url; ?>" target="_blank" style="text-decoration:none">
-                    <img src="<?php echo get_template_directory_uri()?>/assets/images/linkedin-grey.svg" alt="">
-                    </a> -->
-
-                    
-                <!-- Instagram Profile Button -->
-                    <!-- <a class="fb-share" href="https://www.instagram.com/sharer.php?u=<?php echo $Url; ?>" target="_blank" style="text-decoration:none">
-                    <img src="<?php echo get_template_directory_uri()?>/assets/images/instagram-grey.svg" alt=""> -->
-                <!-- </a> -->
-
                 <?php echo sharethis_inline_buttons(); ?>
                 
      
