@@ -11431,11 +11431,13 @@ body.post-type-archive-property .search-form--department {
 .copy-outer {
     display: flex;
     align-items: center;
-    gap: 10px;
     padding-top: 20px;
 }
-
-.copy-outer .copy-content button p {
+.copy-outer .copy-content button {
+    background: transparent;
+    border: none;
+}
+.copy-outer .copy-content button#copyUrlButton p {
     font-family: Gotham;
     font-size: 14px;
     font-style: normal;
