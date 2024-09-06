@@ -505,6 +505,7 @@ jQuery(document).ready(function($) {
 });
 
 
+
 // insight category tab
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -526,4 +527,16 @@ document.addEventListener('DOMContentLoaded', function() {
             window.history.replaceState({}, '', newUrl);
         });
     });
+});
+
+
+var $temp = $("<p>");
+var $url = $(location).attr('href');
+
+$('.clipboard').on('click', function() {
+  $("body").append($temp);
+  $temp.val($url).select();
+  document.execCommand("copy");
+  $temp.remove();
+  $("p").text("URL copied!");
 });
