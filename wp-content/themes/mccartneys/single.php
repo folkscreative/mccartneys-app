@@ -22,14 +22,7 @@ get_header();
             <?php }?>
         <div class="container">
             <div class="content">
-            <div class="breadcrumb">
-                
-            <?php //if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?>
-        
-            <?php if (function_exists('custom_breadcrumbs')) {
-    custom_breadcrumbs();
-} ?>
-        </div>
+            <div class="breadcrumb"><?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
             <h2><?php the_title(); ?></h2>
             <p class="date">
                         <?php echo get_the_date('M/d/Y'); ?>
