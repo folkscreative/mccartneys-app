@@ -11050,8 +11050,9 @@ body.single-property.department-fine-and-country {
     font-weight: 300;
     line-height: 21px;
     padding: 0 0 0 10px !important;
+    margin: 0 !important;
 }
-.branch-share-popup .copy-content p{
+.branch-share-popup .copy-content #status{
     margin: 0 !important;
     display: none;
 }
