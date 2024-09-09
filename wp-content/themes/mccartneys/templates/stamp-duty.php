@@ -27,7 +27,7 @@ get_header(); ?>
     <?php endif; ?>
     
     <!-- boxes -->
-<?php if( get_row_layout() == 'general_text' ): ?>
+<?php if( get_row_layout() == 'general-text' ): ?>
         <section class="general-table">
            <div class="container">
                <div class="content">
