@@ -8231,6 +8231,7 @@ section.search-outer.filter .container {
     }
     .livestock-auctioneers .container{
         padding-bottom: 0;
+        flex-direction: column;
     }
     .livestock-auctioneers .livestock-auctioneers-content h2 {
         padding: 0 0 18px;
@@ -11009,8 +11010,8 @@ body.single-property.department-fine-and-country {
 }
 
 .branch-share-popup .sharethis-inline-share-buttons{
-    display: flex;
-    justify-content: start;
+    display: flex !important;
+    justify-content: start !important;
 }
 .branch-share-popup .sharethis-inline-share-buttons .st-btn{
     background-color: #707070 !important;
