@@ -22,6 +22,10 @@ jQuery(document).ready(function($) {
     $(".share-pop-btn").click(function() {
         $(".branch-share-popup").toggleClass("active");
     });
+    // toogle on team
+    $(".toogle-expert").click(function() {
+        $(".livestock-auctioneers .container").toggleClass("collapsed");
+    });
     // popup
     $('.hamburger-icn').click(function() {
         $('.page').toggleClass('show');

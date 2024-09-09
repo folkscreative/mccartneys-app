@@ -201,9 +201,12 @@ if ( !empty( $image_private ) ) { ?>
     <!-- Livestock Auctioneers start here -->
     <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
     <section class="livestock-auctioneers sale d-none d-md-block">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-4 col-lg-3">
+        <div class="container collapsed">
+        <input type='checkbox' id='show-all'>
+        <label for='show-all' class='text-show btn-cs-dark toogle-expert'>View more</label>
+        <label for='show-all' class='text-hide btn-cs-dark toogle-expert'>View less</label>
+            <div class="row g-4 action-trim">
+                 <div class="col-4 col-lg-3 action-trim-item">
                     <div class="livestock-auctioneers-content col-left">
                         <h2><?php the_sub_field('livestock_auctioneer_heading'); ?></h2>
                         <p><?php the_sub_field('livestock_auctioneer_content'); ?></p>
@@ -211,19 +214,18 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
                 <?php if( have_rows('livestock_auctioneers_details') ):
                      while ( have_rows('livestock_auctioneers_details') ) : the_row();?>
-
-                <div class="col-4 col-lg-3">
+                     
+                <div class="col-4 col-lg-3 action-trim-item">
                     <div class="livestock-auctioneers-content">
-                        <div class="info-wrapper">
-                            <?php
+                    <div class="info-wrapper">
+                    <?php
                     $ac_image = get_sub_field('livestock_auctioneers_image');
                     ?>
-                            <?php if( !empty($ac_image) ):?>
-                            <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>"
-                                class="w-100">
-                            <?php endif; ?>
-                            <ul class="info-box">
-                            <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
+                    <?php if( !empty($ac_image) ):?>
+                        <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>" class="w-100">
+                    <?php endif; ?>
+                    <ul class="info-box">
+                    <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
                     <li>
                             <i class="fa-solid fa-phone"></i>
                             <a href="tel:<?php the_sub_field('livestock_auctioneers_number'); ?>"><?php the_sub_field('livestock_auctioneers_number'); ?></a>
@@ -242,14 +244,14 @@ if ( !empty( $image_private ) ) { ?>
                             <a href="mailto:<?php the_sub_field('livestock_auctioneers_email'); ?>"><?php the_sub_field('livestock_auctioneers_email'); ?></a>
                             </li>
                             <?php endif; ?>
-                            </ul>
+                        </ul>
                         </div>
                         <div class="team-content">
                             <h4><?php the_sub_field('livestock_auctioneers_name'); ?></h4>
                             <p><?php the_sub_field('livestock_auctioneers_post_title'); ?></p>
                         </div>
                     </div>
-                </div>
+                </div>      
                 <?php endwhile; ?><?php endif;?>
             </div>
         </div>

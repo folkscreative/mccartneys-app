@@ -11518,7 +11518,17 @@ body.post-type-archive-property .search-form--department {
 .livestock-auctioneers #show-all:not(:checked) ~ .text-show { display: inline-block; }
 .livestock-auctioneers #show-all { display: none; }
 
-.livestock-auctioneers label{
+.livestock-auctioneers .text-show {
+    /* position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); */
+    text-align: center;
+    cursor: pointer;
+    margin: -100px auto 100px;
+    min-width: 199px;
+}
+.livestock-auctioneers .text-hide {
     /* position: absolute;
     bottom: 0;
     left: 50%;
@@ -11526,4 +11536,15 @@ body.post-type-archive-property .search-form--department {
     text-align: center;
     cursor: pointer;
     margin: 100px auto 0;
+    min-width: 199px;
+}
+
+.livestock-auctioneers .container.collapsed::after{
+    content: "";
+    width: 100%;
+    height: 390px;
+    position: absolute;
+    display: block;
+    bottom: 0;
+    background: linear-gradient(183deg, rgba(255, 255, 255, 0.76) 17.55%, #ffffff 40.94%);
 }
