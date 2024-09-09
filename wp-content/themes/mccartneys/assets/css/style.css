@@ -7324,7 +7324,7 @@ section.search-outer.filter .container {
     height: fit-content;
     background-color: #fff;
     position: absolute;
-    z-index: 5;
+    z-index: 1;
     border-radius: 0 !important;
     overflow: hidden;
     height: 0;
