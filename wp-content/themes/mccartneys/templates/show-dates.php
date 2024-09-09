@@ -51,7 +51,7 @@ if ( !empty( $image_private ) ) { ?>
                                     $show_dt_button_title = $show_dt_button['title'];
                                     $show_dt_button_target = $show_dt_button['target'] ? $show_dt_button['target'] : '_self';
                                     ?>
-                                    <a class="btn-cs-dark" href="<?php echo esc_url( $show_dt_button_url ); ?>" target="<?php echo esc_attr( $show_dt_button_target ); ?>"><?php echo esc_html( $show_dt_button_title ); ?></a>
+                                    <a class="btn-cs-dark" href="<?php echo esc_url( $show_dt_button_url ); ?>" target="<?php echo esc_attr( $show_dt_button_target ); ?>"><?php echo esc_html( $show_dt_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
                                 <?php endif; ?>
                                 <?php 
                                 $sale_report_button = get_sub_field('livestock_sales_report_button');

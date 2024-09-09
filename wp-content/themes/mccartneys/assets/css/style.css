@@ -1600,6 +1600,16 @@ P {
 .insights-wrapper .content {
     margin: 0 auto 72px;
 }
+.page-template-fine-country .insights-wrapper:after{
+    background-image: url(../images/fine-ftr-bg.png) !important;
+}
+.page-template-fine-country footer{
+    background-color: #A78F51 !important;
+}
+.page-template-fine-country .property-wrapper::after{
+    background-image: url(../images/tabs-fc-fine.png) !important;
+}
+
 
 .insights-wrapper:after {
     content: '';
@@ -2292,9 +2302,12 @@ footer .cookies-menu ul li a {
 .livestock-auctioneers {
     padding: 100px 0 110px;
 }
-
 .livestock-auctioneers .container {
     max-width: 1170px;
+    position: relative;
+    /* padding-bottom: 100px; */
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .livestock-auctioneers .livestock-auctioneers-content {
@@ -8216,6 +8229,9 @@ section.search-outer.filter .container {
         flex-grow: 1;
         padding: 12px 8px 12px;
     }
+    .livestock-auctioneers .container{
+        padding-bottom: 0;
+    }
     .livestock-auctioneers .livestock-auctioneers-content h2 {
         padding: 0 0 18px;
     }
@@ -8231,6 +8247,7 @@ section.search-outer.filter .container {
         justify-content: center;
         column-gap: 5px;
         margin-top: 15px;
+        flex-wrap: wrap;
     }
     .livestock-auctioneers .slick-dots li button {
         font-size: 0;
@@ -10991,6 +11008,25 @@ body.single-property.department-fine-and-country {
     display: block;
 }
 
+.branch-share-popup .sharethis-inline-share-buttons{
+    display: flex;
+    justify-content: start;
+}
+.branch-share-popup .sharethis-inline-share-buttons .st-btn{
+    background-color: #707070 !important;
+    min-width: fit-content !important;
+    padding: 0 6px !important;
+}
+.branch-share-popup .sharethis-inline-share-buttons .st-btn img{
+    filter: none !important;
+    width: 21px !important;
+    height: 21px !important;
+    top: 6px !important;
+}
+.branch-share-popup .sharethis-inline-share-buttons .st-btn .stn-label{
+    display: none;
+}
+
 .branch-share-popup {
     display: none;
     position: absolute;
@@ -10998,14 +11034,26 @@ body.single-property.department-fine-and-country {
     top: 59px;
     background-color: #fff;
     z-index: 1;
-    max-width: 350px;
+    max-width: 200px;
     width: 100%;
     padding: 20px 15px;
     box-shadow: 0px 0.684px 2.736px 0px rgb(25 33 61 / 38%);
     border-radius: 8px;
 }
 .branch-share-popup img{
-    width: 28px;
+    width: 21px;
+}
+.branch-share-popup .copy-content #copyUrlButton{
+    color: #707070;
+    font-size: 14px !important;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 21px;
+    padding: 0 0 0 10px !important;
+}
+.branch-share-popup .copy-content p{
+    margin: 0 !important;
+    display: none;
 }
 
 .price-qualifier {
@@ -11443,4 +11491,22 @@ body.post-type-archive-property .search-form--department {
     font-style: normal;
     font-weight: 300;
     line-height: 24px;
+}
+
+/* livestock auctioneer */
+.livestock-auctioneers .action-trim .action-trim-item:nth-of-type(n + 13) { display: none; }
+.livestock-auctioneers #show-all:checked ~ .action-trim .action-trim-item { display: block; }
+.livestock-auctioneers #show-all ~ label[for='show-all'] { display: none; }
+.livestock-auctioneers #show-all:checked ~ .text-hide { display: inline-block; }
+.livestock-auctioneers #show-all:not(:checked) ~ .text-show { display: inline-block; }
+.livestock-auctioneers #show-all { display: none; }
+
+.livestock-auctioneers label{
+    /* position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); */
+    text-align: center;
+    cursor: pointer;
+    margin: 100px auto 0;
 }
