@@ -7935,7 +7935,7 @@ section.search-outer.filter .container {
     .recent-property-wrapper .outer-wrapper .nav-tabs li a {
         font-size: 10px;
         line-height: 19px;
-        padding: 3px 6px;
+        padding: 5px 18px;
     }
     .recent-property-wrapper .inner-tabs {
         padding-top: 0;
@@ -8195,6 +8195,10 @@ section.search-outer.filter .container {
     }
     .our-marketer .marketer-buttons {
         margin: 0;
+    }
+    .livestocks-departments.property-page .slide-wrap .inner-content .contex a{
+        height: 32px;
+        margin: 16px 0;
     }
     .livestock-auctioneers {
         padding: 75px 0 73px;
@@ -9161,6 +9165,9 @@ section.search-outer.filter .container {
         width: 100% !important;
         margin-bottom: 18px;
     }
+    .popup-filter .search-form-dropdown--trigger::after{
+        position: relative !important;
+    }
 }
 
 @media (max-width: 575px) {
@@ -9309,23 +9316,26 @@ section.search-outer.filter .container {
         object-fit: cover;
     }
     .recent-property-wrapper .outer-wrapper .nav-tabs {
-        column-gap: 2px;
-        justify-content: space-between;
+        /* column-gap: 2px;
+        justify-content: space-between; */
+        column-gap: 12px;
+        justify-content: start;
+        flex-wrap: wrap
     }
     .recent-property-wrapper .outer-wrapper .nav-tabs li:first-child {
-        width: 27%;
+        /* width: 27%; */
         text-align: center;
     }
     .recent-property-wrapper .outer-wrapper .nav-tabs li:nth-child(2) {
-        width: 18%;
+        /* width: 18%; */
         text-align: center;
     }
     .recent-property-wrapper .outer-wrapper .nav-tabs li:nth-child(3) {
-        width: 18%;
+        /* width: 18%; */
         text-align: center;
     }
     .recent-property-wrapper .outer-wrapper .nav-tabs li:last-child {
-        width: 33%;
+        /* width: 33%; */
         text-align: center;
     }
 }
