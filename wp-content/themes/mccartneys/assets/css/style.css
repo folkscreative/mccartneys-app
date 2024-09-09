@@ -11055,7 +11055,11 @@ body.single-property.department-fine-and-country {
 }
 .branch-share-popup .copy-content #status{
     margin: 0 !important;
-    display: none;
+    position: absolute;
+    font-size: 14px;
+    bottom: 0;
+    padding-left: 9px;
+    color: red;
 }
 
 .price-qualifier {
