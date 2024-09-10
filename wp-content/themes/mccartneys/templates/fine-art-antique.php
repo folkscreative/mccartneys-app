@@ -83,7 +83,7 @@ if ( !empty( $image_private ) ) { ?>
                      while ( have_rows('auction_room_social') ) : the_row();
                      $act_img = get_sub_field('auction_room_icon');
                      ?>
-                        <li><a href=""><img src="<?php the_sub_field('auction_room_link'); ?>">
+                        <li><a href="<?php the_sub_field('auction_room_link'); ?>">
                         <?php if( !empty($act_img) ):?>
                         <img src="<?php echo $act_img['url']; ?>" alt="<?php echo $act_img['alt']; ?>">
                     <?php endif; ?>
