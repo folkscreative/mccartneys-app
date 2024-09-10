@@ -152,7 +152,7 @@ if ( !empty( $image_private ) ) { ?>
 
         <!-- Livestock Auctioneers start here -->
  <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
-    <section class="livestock-auctioneers d-none d-md-block">
+    <section class="livestock-auctioneers d-none d-md-block" id="fine-auctioneer">
         <div class="container">
             <div class="row g-4">
                  <div class="col-4 col-lg-3">
