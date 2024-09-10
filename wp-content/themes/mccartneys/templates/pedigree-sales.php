@@ -105,7 +105,16 @@ if ( !empty( $image_private ) ) { ?>
                     <div class="col-left">
                     <h2><?php the_sub_field('call_to_action_title'); ?></h2>
                     <p><?php the_sub_field('call_to_action_content'); ?></p>
-                    <a class="btn-rural" href="<?php the_sub_field('call_to_action_link'); ?>"><?php the_sub_field('call_to_action_label'); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                    <?php 
+                        $cta_box_link = get_sub_field('cta_secondary_button');
+                        if( $cta_box_link ): 
+                            $cta_box_link_url = $cta_box_link['url'];
+                            $cta_box_link_title = $cta_box_link['title'];
+                            $cta_box_link_target = $cta_box_link['target'] ? $cta_box_link['target'] : '_self';
+                            ?>
+                        <a class="btn-rural" href="<?php echo esc_url( $cta_box_link_url ); ?>"
+                            target="<?php echo esc_attr( $cta_box_link_target ); ?>"><?php echo esc_html( $cta_box_link_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-12 col-md-7">
