@@ -222,7 +222,7 @@ get_header(); ?>
     <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
     <section class="livestock-auctioneers d-none d-md-block" id="rural-actioner">
         <div class="container collapsed">
-            <input type='checkbox' id='show-all' style="display:none;">
+            <input type='checkbox' id='show-all'>
             <label for='show-all' class='text-show btn-cs-dark toogle-expert'>View more</label>
             <label for='show-all' class='text-hide btn-cs-dark toogle-expert'>View less</label>
             <div class="row g-4 action-trim">
