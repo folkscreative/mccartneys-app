@@ -1717,7 +1717,7 @@ footer .connect-wrap ul li a {
 }
 
 
-footer .pipps-icon span {
+footer .pipps-icons span {
     font-size: 16px;
     line-height: 16px;
     color: #fff;
@@ -1726,14 +1726,14 @@ footer .pipps-icon span {
     display: block;
 }
 
-footer .pipps-icon ul {
+footer .pipps-icons ul {
     display: flex;
     flex-direction: row;
     column-gap: 8px;
 }
 
 
-footer .pipps-icon ul li a {
+footer .pipps-icons ul li a {
     color: #8D1F56;
     border-radius: 50%;
     font-size: 17px;
