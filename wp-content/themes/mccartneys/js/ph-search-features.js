@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
 
 
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Set up change event listeners for checkboxes
         document.querySelectorAll(fieldSelector).forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
+            checkbox.addEventListener('change', function () {
                 handleCheckboxChange(department);
                 this.blur();
                 this.focus();
@@ -326,7 +326,7 @@ document.addEventListener("DOMContentLoaded", function() {
         min: 0,
         max: 3500000,
         values: [parseInt(urlParams.get('minimum_price')) || 0, parseInt(urlParams.get('maximum_price')) || 3500000],
-        slide: function(event, ui) {
+        slide: function (event, ui) {
             jQuery("#minValueSales").text("£" + ui.values[0].toLocaleString());
             jQuery("#maxValueSales").text("£" + ui.values[1].toLocaleString());
             jQuery("#minimum_price_input").val(ui.values[0]);
@@ -335,7 +335,7 @@ document.addEventListener("DOMContentLoaded", function() {
             updatePriceTrigger('sales');
             jQuery(this).slider('option', 'step', getSalesStepValue(ui.value));
         },
-        create: function() {
+        create: function () {
             initializeSliderValues("#sales-slider-range", "#minValueSales", "#maxValueSales", 'sales');
         }
     });
@@ -346,7 +346,7 @@ document.addEventListener("DOMContentLoaded", function() {
         max: 5000,
         values: [parseInt(urlParams.get('minimum_rent')) || 0, parseInt(urlParams.get('maximum_rent')) || 5000],
         step: 250,
-        slide: function(event, ui) {
+        slide: function (event, ui) {
             jQuery("#minValueLettings").text("£" + ui.values[0].toLocaleString() + " pcm");
             jQuery("#maxValueLettings").text("£" + ui.values[1].toLocaleString() + " pcm");
             jQuery("#minimum_rent_input").val(ui.values[0]);
@@ -354,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function() {
             updateSliderFill("#lettings-slider-range", ui.values);
             updatePriceTrigger('lettings');
         },
-        create: function() {
+        create: function () {
             initializeSliderValues("#lettings-slider-range", "#minValueLettings", "#maxValueLettings", 'lettings');
         }
     });
@@ -377,7 +377,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function setupDropdowns() {
         document.querySelectorAll('.search-form-control--dropdown, .search-form-control--checkboxes').forEach(dropdownControl => {
-            dropdownControl.addEventListener('click', function(event) {
+            dropdownControl.addEventListener('click', function (event) {
                 const dropdown = this.querySelector('.search-form-dropdown');
 
                 if (event.target.tagName === 'INPUT' && event.target.type === 'range') {
@@ -389,7 +389,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         for (const option of document.querySelectorAll('.search-form-dropdown--option input[type="radio"]')) {
-            option.addEventListener('change', function() {
+            option.addEventListener('change', function () {
                 const selectedOption = this.closest('.search-form-dropdown--option');
                 const dropdown = this.closest('.search-form-dropdown');
                 dropdown.querySelector('.search-form-dropdown--trigger').textContent = selectedOption.textContent.trim();
@@ -429,7 +429,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setupCheckboxes();
 
     function closeDropdownsOnClickOutside() {
-        window.addEventListener('click', function(e) {
+        window.addEventListener('click', function (e) {
             const dropdowns = document.querySelectorAll('.search-form-dropdown');
 
             dropdowns.forEach(dropdown => {
@@ -451,17 +451,17 @@ document.addEventListener("DOMContentLoaded", function() {
             componentRestrictions: { country: 'uk' }
         });
 
-        autocomplete.addListener('place_changed', function() {
+        autocomplete.addListener('place_changed', function () {
             const place = autocomplete.getPlace();
         });
     }
 
     function markLastVisibleControl() {
-        setTimeout(function() {
+        setTimeout(function () {
             const controls = document.querySelectorAll('.search-form-control');
             let lastVisibleControl = null;
 
-            controls.forEach(function(control) {
+            controls.forEach(function (control) {
                 const style = window.getComputedStyle(control);
                 if (
                     style.display !== 'none' &&
@@ -504,7 +504,7 @@ document.addEventListener("DOMContentLoaded", function() {
             listViewTrigger.classList.remove("active");
         }
 
-        listViewTrigger.addEventListener("click", function(event) {
+        listViewTrigger.addEventListener("click", function (event) {
             event.preventDefault();
             searchResultsContainer.classList.add("list-view");
             searchResultsContainer.classList.remove("grid-view");
@@ -514,7 +514,7 @@ document.addEventListener("DOMContentLoaded", function() {
             gridViewTrigger.classList.remove("active");
         });
 
-        gridViewTrigger.addEventListener("click", function(event) {
+        gridViewTrigger.addEventListener("click", function (event) {
             event.preventDefault();
             searchResultsContainer.classList.add("grid-view");
             searchResultsContainer.classList.remove("list-view");
@@ -528,7 +528,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const includeSoldStcCheckbox = document.querySelector('.stc-checkbox-control');
 
     if (includeSoldStcCheckbox) {
-        includeSoldStcCheckbox.addEventListener('change', function() {
+        includeSoldStcCheckbox.addEventListener('change', function () {
             const urlParams = new URLSearchParams(window.location.search);
 
             if (includeSoldStcCheckbox.checked) {
@@ -542,17 +542,9 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    jQuery('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
-        var target = jQuery(e.target).attr('href');
-        var $slider = jQuery(target).find('.inner-tabs.pr ul.properties');
-
-        if ($slider.length > 0) {
-            $slider.slick('refresh');
-        }
-    });
 
     // Form submission logic to remove empty or irrelevant parameters
-    jQuery('form').on('submit', function() {
+    jQuery('form').on('submit', function () {
         // Remove address_keyword if empty
         if (!jQuery('input[name="address_keyword"]').val()) {
             jQuery('input[name="address_keyword"]').removeAttr('name');
@@ -604,4 +596,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Listen for changes to the department radio buttons
     jQuery('#_parent_department_sales, #_parent_department_lettings').change(updateSoldStcLabel);
+
+    jQuery('.filter-draw-trigger').on('click', function () {
+        // Toggle the 'open' class on the filter draw
+        jQuery('.search-form-control--filter-draw').toggleClass('open');
+        jQuery('input.search-form-control--submit').toggleClass('drawer-open');
+
+        // Toggle visibility of icons inside the trigger
+        jQuery('.filter-draw-trigger .icon_open').toggle(); // Toggle icon_open visibility
+        jQuery('.filter-draw-trigger .icon_close').toggle(); // Toggle icon_close visibility
+    });
+
+    // Ensure the initial state of icons
+    jQuery('.filter-draw-trigger .icon_close').hide(); // Hide icon_close initially
 });

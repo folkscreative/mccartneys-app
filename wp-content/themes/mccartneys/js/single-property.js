@@ -1,5 +1,5 @@
-jQuery(document).ready(function() {
-    jQuery('.read-more').click(function() {
+jQuery(document).ready(function () {
+    jQuery('.read-more').click(function () {
         jQuery('.property-description').toggleClass('collapsed');
 
         if (jQuery('.property-description').hasClass('collapsed')) {
@@ -27,7 +27,7 @@ if (floorplanMedia) {
         selector: 'div.floorplans.glightbox a'
     });
     // External trigger to open lightbox
-    floorplanMedia.addEventListener('click', function() {
+    floorplanMedia.addEventListener('click', function () {
         floorPlanLightbox.open();
     });
 
@@ -38,7 +38,7 @@ if (virtualTourMedia) {
         selector: 'div.virtual-tours.glightbox a'
     });
     // External trigger to open lightbox
-    virtualTourMedia.addEventListener('click', function() {
+    virtualTourMedia.addEventListener('click', function () {
         vTourLightbox.open();
     });
 
@@ -50,7 +50,7 @@ if (epcMedia) {
         selector: 'div.epcs.glightbox a'
     });
     // External trigger to open lightbox
-    epcMedia.addEventListener('click', function() {
+    epcMedia.addEventListener('click', function () {
         epcLightbox.open();
     });
 
@@ -61,14 +61,14 @@ if (galleryMedia) {
         selector: 'div.galleryImages.glightbox a'
     });
     // External trigger to open lightbox
-    galleryMedia.addEventListener('click', function() {
+    galleryMedia.addEventListener('click', function () {
         galleryLightbox.open();
     });
-    propMainImg.addEventListener('click', function() {
+    propMainImg.addEventListener('click', function () {
         galleryLightbox.open();
     });
-    galleryThumbs.forEach(function(thumb, index) {
-        thumb.addEventListener('click', function() {
+    galleryThumbs.forEach(function (thumb, index) {
+        thumb.addEventListener('click', function () {
             // Open the GLightbox at the specific index
             galleryLightbox.openAt(index + 1);
         });
@@ -85,6 +85,27 @@ const enquiryModal = GLightbox({
 });
 
 // External trigger to open lightbox
-document.getElementById('enquiryTrigger').addEventListener('click', function() {
+document.getElementById('enquiryTrigger').addEventListener('click', function () {
     enquiryModal.open();
+});
+
+// Sharer
+document.getElementById('copyUrlButton').addEventListener('click', function () {
+    // Get the current URL
+    const url = window.location.href;
+
+    // Create a temporary input element to hold the URL
+    const tempInput = document.createElement('input');
+    document.body.appendChild(tempInput);
+    tempInput.value = url;
+
+    // Select the text and copy it to the clipboard
+    tempInput.select();
+    document.execCommand('copy');
+
+    // Remove the temporary input element
+    document.body.removeChild(tempInput);
+
+    // Update the status text to indicate the URL was copied
+    document.getElementById('status').textContent = 'URL copied!';
 });

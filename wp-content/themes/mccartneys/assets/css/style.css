@@ -1600,16 +1600,18 @@ P {
 .insights-wrapper .content {
     margin: 0 auto 72px;
 }
-.page-template-fine-country .insights-wrapper:after{
+
+.page-template-fine-country .insights-wrapper:after {
     background-image: url(../images/fine-ftr-bg.png) !important;
 }
-.page-template-fine-country footer{
+
+.page-template-fine-country footer {
     background-color: #A78F51 !important;
 }
-.page-template-fine-country .property-wrapper::after{
+
+.page-template-fine-country .property-wrapper::after {
     background-image: url(../images/tabs-fc-fine.png) !important;
 }
-
 
 .insights-wrapper:after {
     content: '';
@@ -2302,6 +2304,7 @@ footer .cookies-menu ul li a {
 .livestock-auctioneers {
     padding: 100px 0 110px;
 }
+
 .livestock-auctioneers .container {
     max-width: 1170px;
     position: relative;
@@ -7193,23 +7196,27 @@ header.phipps-head .main-header .header-inner-wrap #mega-menu-main-menu .mega-me
 section.search-outer.filter {
     background-color: #fff;
 }
-section.search-outer .property-search .search-form-dropdown--trigger{
+
+section.search-outer .property-search .search-form-dropdown--trigger {
     position: relative;
 }
-section.search-outer .property-search .search-form-dropdown--trigger::after{
+
+section.search-outer .property-search .search-form-dropdown--trigger::after {
     content: "";
     font-family: dashicons;
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     padding-left: 6px;
     font-weight: 600;
     font-size: 12px;
 }
-.inner-banner-wrapper .property-search .search-form-dropdown--trigger{
+
+.inner-banner-wrapper .property-search .search-form-dropdown--trigger {
     position: relative;
     padding-right: 18px;
 }
-.inner-banner-wrapper .property-search .search-form-dropdown--trigger::after{
+
+.inner-banner-wrapper .property-search .search-form-dropdown--trigger::after {
     content: "";
     font-family: dashicons;
     position: absolute;
@@ -7218,7 +7225,6 @@ section.search-outer .property-search .search-form-dropdown--trigger::after{
     font-weight: 600;
     font-size: 12px;
 }
-
 
 section.search-outer.filter .container {
     padding: 0;
@@ -7683,13 +7689,12 @@ section.search-outer.filter .container {
     form.property-search input[type="submit"] {
         max-width: 90px !important;
     }
-    .home-filter-cs .property-search .search-form-control--filter-draw .search-form--price-slider{
+    .home-filter-cs .property-search .search-form-control--filter-draw .search-form--price-slider {
         width: 30%;
     }
-    .home-filter-cs .property-search .search-form-control--filter-draw .search-form--radius{
+    .home-filter-cs .property-search .search-form-control--filter-draw .search-form--radius {
         width: 40%;
     }
-    
 }
 
 @media (max-width: 767px) {
@@ -8196,7 +8201,7 @@ section.search-outer.filter .container {
     .our-marketer .marketer-buttons {
         margin: 0;
     }
-    .livestocks-departments.property-page .slide-wrap .inner-content .contex a{
+    .livestocks-departments.property-page .slide-wrap .inner-content .contex a {
         height: 32px;
         margin: 16px 0;
     }
@@ -8233,7 +8238,7 @@ section.search-outer.filter .container {
         flex-grow: 1;
         padding: 12px 8px 12px;
     }
-    .livestock-auctioneers .container{
+    .livestock-auctioneers .container {
         padding-bottom: 0;
         flex-direction: column;
     }
@@ -9165,7 +9170,7 @@ section.search-outer.filter .container {
         width: 100% !important;
         margin-bottom: 18px;
     }
-    .popup-filter .search-form-dropdown--trigger::after{
+    .popup-filter .search-form-dropdown--trigger::after {
         position: relative !important;
     }
 }
@@ -10228,6 +10233,119 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
 }
 
 
+/* Search Mobile Styles */
+
+@media screen and (max-width:768px) {
+    section.search-outer {
+        background-color: initial;
+    }
+    form.property-search {
+        flex-wrap: wrap;
+        background-color: initial;
+    }
+    .search-form--radio-toggle {
+        align-self: flex-start;
+    }
+    .search-form--filter-drawer-trigger {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--Monochrome-grey, #707070);
+        text-align: center;
+        font-feature-settings: 'liga' off, 'clig' off;
+        padding: 7px 15px;
+        min-width: 110px;
+        border-radius: 41px;
+        border: 1px solid #E1E4ED;
+        background: #FFF;
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.10);
+        align-self: center;
+    }
+    .search-form--filter-drawer-trigger span {
+        font-family: Gotham;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 23px;
+        letter-spacing: 1.65px;
+        text-transform: uppercase;
+    }
+    .property-search .search-form--location {
+        width: 100% !important;
+        /* Shouldn't need to use !important here, why has the size been hard set with an important somewhere else? */
+    }
+    .property-search .search-form--location input {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        min-height: 49px;
+        border-radius: 30px;
+        text-align: start;
+        padding: 0 20px;
+        padding-right: 30%;
+    }
+    .search-form--location::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 69px;
+        position: absolute;
+        left: 0;
+        background-color: #F7EBEE;
+        z-index: -1;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    .property-search .search-form-control--filter-draw {
+        width: 100% !important;
+        /* Shouldn't need to use !important here, why has the size been hard set with an important somewhere else? */
+        display: flex;
+        flex-direction: column;
+        display: none;
+        transition: all .3s;
+    }
+    .property-search .search-form-control--filter-draw.open {
+        display: flex;
+        transition: all .3s;
+    }
+    .property-search .search-form-control--filter-draw .search-form-control {
+        width: 100% !important;
+        /* Shouldn't need to use !important here, why has the size been hard set with an important somewhere else? */
+    }
+    form.property-search input[type="submit"] {
+        max-width: 100% !important;
+        /* Shouldn't need to use !important here, why has the size been hard set with an important somewhere else? */
+        position: relative;
+        top: -63px;
+        right: 5px;
+        width: 30%;
+        margin-left: auto;
+        transition: all .3s;
+    }
+    form.property-search input[type="submit"].drawer-open {
+        top: initial;
+        right: initial;
+        width: 100%;
+        margin: auto;
+        margin-top: 10px;
+    }
+    .property-search .search-form-control:not(.search-form--radio-toggle,
+    .search-form-control--filter-draw,
+    .search-form-control.last-visible) {
+        border-right: none;
+    }
+    .property-search .search-form-control--filter-draw .search-form-control {
+        border: 1px solid #B4B9C9 !important;
+        border-radius: 7px !important;
+        padding: 10px 0 !important;
+        margin-top: 10px;
+    }
+    .property-search .search-form-control--filter-draw .search-form-control:first-of-type {
+        margin-top: 0;
+    }
+}
+
+
 /* Archive Properties */
 
 .search-results .property {
@@ -11019,22 +11137,25 @@ body.single-property.department-fine-and-country {
     display: block;
 }
 
-.branch-share-popup .sharethis-inline-share-buttons{
+.branch-share-popup .sharethis-inline-share-buttons {
     display: flex !important;
     justify-content: start !important;
 }
-.branch-share-popup .sharethis-inline-share-buttons .st-btn{
+
+.branch-share-popup .sharethis-inline-share-buttons .st-btn {
     background-color: #707070 !important;
     min-width: fit-content !important;
     padding: 0 6px !important;
 }
-.branch-share-popup .sharethis-inline-share-buttons .st-btn img{
+
+.branch-share-popup .sharethis-inline-share-buttons .st-btn img {
     filter: none !important;
     width: 21px !important;
     height: 21px !important;
     top: 6px !important;
 }
-.branch-share-popup .sharethis-inline-share-buttons .st-btn .stn-label{
+
+.branch-share-popup .sharethis-inline-share-buttons .st-btn .stn-label {
     display: none;
 }
 
@@ -11051,10 +11172,12 @@ body.single-property.department-fine-and-country {
     box-shadow: 0px 0.684px 2.736px 0px rgb(25 33 61 / 38%);
     border-radius: 8px;
 }
-.branch-share-popup img{
+
+.branch-share-popup img {
     width: 21px;
 }
-.branch-share-popup .copy-content #copyUrlButton{
+
+.branch-share-popup .copy-content #copyUrlButton {
     color: #707070;
     font-size: 14px !important;
     font-style: normal;
@@ -11063,7 +11186,8 @@ body.single-property.department-fine-and-country {
     padding: 0 0 0 10px !important;
     margin: 0 !important;
 }
-.branch-share-popup .copy-content #status{
+
+.branch-share-popup .copy-content #status {
     margin: 0 !important;
     position: absolute;
     font-size: 14px;
@@ -11491,16 +11615,17 @@ body.post-type-archive-property .search-form--department {
 
 /* general page css ends */
 
-
 .copy-outer {
     display: flex;
     align-items: center;
     padding-top: 20px;
 }
+
 .copy-outer .copy-content button {
     background: transparent;
     border: none;
 }
+
 .copy-outer .copy-content button#copyUrlButton p {
     font-family: Gotham;
     font-size: 14px;
@@ -11510,13 +11635,32 @@ body.post-type-archive-property .search-form--department {
     margin: 0 !important;
 }
 
+
 /* livestock auctioneer */
-.livestock-auctioneers .action-trim .action-trim-item:nth-of-type(n + 13) { display: none; }
-.livestock-auctioneers #show-all:checked ~ .action-trim .action-trim-item { display: block; }
-.livestock-auctioneers #show-all ~ label[for='show-all'] { display: none; }
-.livestock-auctioneers #show-all:checked ~ .text-hide { display: inline-block; }
-.livestock-auctioneers #show-all:not(:checked) ~ .text-show { display: inline-block; }
-.livestock-auctioneers #show-all { display: none; }
+
+.livestock-auctioneers .action-trim .action-trim-item:nth-of-type(n+13) {
+    display: none;
+}
+
+.livestock-auctioneers #show-all:checked~.action-trim .action-trim-item {
+    display: block;
+}
+
+.livestock-auctioneers #show-all~label[for='show-all'] {
+    display: none;
+}
+
+.livestock-auctioneers #show-all:checked~.text-hide {
+    display: inline-block;
+}
+
+.livestock-auctioneers #show-all:not(:checked)~.text-show {
+    display: inline-block;
+}
+
+.livestock-auctioneers #show-all {
+    display: none;
+}
 
 .livestock-auctioneers .text-show {
     /* position: absolute;
@@ -11528,6 +11672,7 @@ body.post-type-archive-property .search-form--department {
     margin: -100px auto 100px;
     min-width: 199px;
 }
+
 .livestock-auctioneers .text-hide {
     /* position: absolute;
     bottom: 0;
@@ -11539,7 +11684,7 @@ body.post-type-archive-property .search-form--department {
     min-width: 199px;
 }
 
-.livestock-auctioneers .container.collapsed::after{
+.livestock-auctioneers .container.collapsed::after {
     content: "";
     width: 100%;
     height: 407px;

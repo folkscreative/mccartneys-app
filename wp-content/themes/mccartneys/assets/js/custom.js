@@ -1,8 +1,8 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     $('.main-popup .sub-menu').prepend('<div class="outer-item"><p class="prepend"></p><span class="cross-icon"></span></div>');
     $('.main-popup .menu-item-has-children').append('<span class="list-arrow"><i class="fa-solid fa-angle-right"></i>');
     $('.page-id-1190 .our-marketer .marketer-buttons a').append('<span><i class="fa-solid fa-angle-right"></i>');
-    $('.menu .outer').click(function() {
+    $('.menu .outer').click(function () {
         var $anchortext = $(this).children('a:first-child').text();
         $('.main-popup .sub-menu .prepend').html($anchortext);
     });
@@ -11,37 +11,37 @@ jQuery(document).ready(function($) {
     //         event.preventDefault();
     //     });
     // });
-    $('.main-popup .outer').click(function() {
+    $('.main-popup .outer').click(function () {
         $(this).children('.sub-menu').addClass('show');
     });
-    $(".mobile-filter .filter-btn").click(function() {
+    $(".mobile-filter .filter-btn").click(function () {
         $(this).toggleClass("active");
         $(".popup-filter").toggleClass("active");
     });
     //   sharepopup
-    $(".share-pop-btn").click(function() {
+    $(".share-pop-btn").click(function () {
         $(".branch-share-popup").toggleClass("active");
     });
     // toogle on team
-    $(".toogle-expert").click(function() {
+    $(".toogle-expert").click(function () {
         $(".livestock-auctioneers .container").toggleClass("collapsed");
     });
     // popup
-    $('.hamburger-icn').click(function() {
+    $('.hamburger-icn').click(function () {
         $('.page').toggleClass('show');
         $('.main-popup').toggleClass('active');
     });
-    $(document).on('click', '.cross-icon', function() {
+    $(document).on('click', '.cross-icon', function () {
         $('.page').removeClass('show');
         $('.main-popup').removeClass('active');
         $(this).closest('ul.sub-menu').removeClass('show');
     });
-    $(document).on('click', '.outer-item .prepend', function() {
+    $(document).on('click', '.outer-item .prepend', function () {
         $(this).closest('ul.sub-menu').removeClass('show');
     });
     // slick refresh
-    $(document).ready(function() {
-        $('.nav-link').on('click', function() {
+    $(document).ready(function () {
+        $('.nav-link').on('click', function () {
             $('ul.properties').slick('refresh');
         });
     });
@@ -58,14 +58,14 @@ jQuery(document).ready(function($) {
     // $(document).ready(function() {
     //     $('.faqs-wrapper .faqs-item:nth-child(2) .bottom-bar').slideDown();
     // });
-    $('.faqs-wrapper .faqs-item').on('click', function() {
+    $('.faqs-wrapper .faqs-item').on('click', function () {
         $(this).children('.bottom-bar').slideToggle(300);
         $(this).siblings().children('.bottom-bar').slideUp(300);
         $(this).siblings().removeClass('active');
         $(this).toggleClass('active');
     });
 
-    $('.navigation .navigation__link').on('click', function() {
+    $('.navigation .navigation__link').on('click', function () {
         show_content($(this).index());
     });
     show_content(0);
@@ -83,7 +83,7 @@ jQuery(document).ready(function($) {
 
 
     // gallery slide
-    $(document).ready(function() {
+    $(document).ready(function () {
         var $slider = $('.gallery-thumbnail');
         var $currentSlide = $('.current-slide');
         var $totalSlides = $('.total-slides');
@@ -99,7 +99,7 @@ jQuery(document).ready(function($) {
         $totalSlides.text($slider.slick("getSlick").slideCount);
 
         // Update number indicator on after slide change
-        $slider.on('afterChange', function(event, slick, currentSlide) {
+        $slider.on('afterChange', function (event, slick, currentSlide) {
             $currentSlide.text(currentSlide + 1);
         });
     });
@@ -153,23 +153,23 @@ jQuery(document).ready(function($) {
         slidesToShow: 3,
         slideToScroll: 1,
         responsive: [{
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 2,
-                    centerMode: false,
-                    /* set centerMode to false to show complete slide instead of 3 */
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 1,
-                    centerMode: false,
-                    /* set centerMode to false to show complete slide instead of 3 */
-                    slidesToScroll: 1
-                }
+            breakpoint: 991,
+            settings: {
+                slidesToShow: 2,
+                centerMode: false,
+                /* set centerMode to false to show complete slide instead of 3 */
+                slidesToScroll: 1
             }
+        },
+        {
+            breakpoint: 767,
+            settings: {
+                slidesToShow: 1,
+                centerMode: false,
+                /* set centerMode to false to show complete slide instead of 3 */
+                slidesToScroll: 1
+            }
+        }
         ]
     });
     // livestock service
@@ -183,23 +183,23 @@ jQuery(document).ready(function($) {
         slidesToShow: 4,
         slideToScroll: 1,
         responsive: [{
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 2,
-                    centerMode: false,
-                    /* set centerMode to false to show complete slide instead of 3 */
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 2,
-                    centerMode: false,
-                    /* set centerMode to false to show complete slide instead of 3 */
-                    slidesToScroll: 1
-                }
+            breakpoint: 991,
+            settings: {
+                slidesToShow: 2,
+                centerMode: false,
+                /* set centerMode to false to show complete slide instead of 3 */
+                slidesToScroll: 1
             }
+        },
+        {
+            breakpoint: 767,
+            settings: {
+                slidesToShow: 2,
+                centerMode: false,
+                /* set centerMode to false to show complete slide instead of 3 */
+                slidesToScroll: 1
+            }
+        }
         ]
     });
     // Testimonials
@@ -231,25 +231,25 @@ jQuery(document).ready(function($) {
         // adaptiveHeight: true,
         slideToScroll: 1,
         responsive: [{
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 3,
-                    centerMode: false,
-                    /* set centerMode to false to show complete slide instead of 3 */
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    arrows: false,
-                    dots: true,
-                    slidesToShow: 1,
-                    centerMode: false,
-                    /* set centerMode to false to show complete slide instead of 3 */
-                    slidesToScroll: 1
-                }
+            breakpoint: 991,
+            settings: {
+                slidesToShow: 3,
+                centerMode: false,
+                /* set centerMode to false to show complete slide instead of 3 */
+                slidesToScroll: 1
             }
+        },
+        {
+            breakpoint: 767,
+            settings: {
+                arrows: false,
+                dots: true,
+                slidesToShow: 1,
+                centerMode: false,
+                /* set centerMode to false to show complete slide instead of 3 */
+                slidesToScroll: 1
+            }
+        }
         ]
     });
 
@@ -263,31 +263,31 @@ jQuery(document).ready(function($) {
         // adaptiveHeight: true,
         slideToScroll: 1,
         responsive: [{
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 3,
-                    centerMode: false,
-                    /* set centerMode to false to show complete slide instead of 3 */
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    arrows: false,
-                    dots: true,
-                    slidesToShow: 1,
-                    centerMode: false,
-                    /* set centerMode to false to show complete slide instead of 3 */
-                    slidesToScroll: 1
-                }
+            breakpoint: 991,
+            settings: {
+                slidesToShow: 3,
+                centerMode: false,
+                /* set centerMode to false to show complete slide instead of 3 */
+                slidesToScroll: 1
             }
+        },
+        {
+            breakpoint: 767,
+            settings: {
+                arrows: false,
+                dots: true,
+                slidesToShow: 1,
+                centerMode: false,
+                /* set centerMode to false to show complete slide instead of 3 */
+                slidesToScroll: 1
+            }
+        }
         ]
     });
 
 
     // btn
-    $('.filter-btn a').click(function() {
+    $('.filter-btn a').click(function () {
         $('.filter-btn a').removeClass('active'); // Remove the class from all elements
         $(this).addClass('active'); // Add the class to the clicked element
     });
@@ -378,7 +378,7 @@ jQuery(document).ready(function($) {
         }]
     });
     // on window scroll
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(this).scrollTop() > 850) {
             $('.banner-menu').addClass('fixed');
         } else {
@@ -386,7 +386,7 @@ jQuery(document).ready(function($) {
         }
     });
     // on window scroll
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(this).scrollTop() > 550) {
             $('.single-property--head .agent-btns-mb').addClass('fixed');
         } else {
@@ -416,11 +416,11 @@ jQuery(document).ready(function($) {
     //         contents[0].classList.add('active');
     //     }
     // });
-    $(document).ready(function() {
+    $(document).ready(function () {
         const $tabs = $('.tab');
         const $contents = $('.tab-content');
 
-        $tabs.on('click', function() {
+        $tabs.on('click', function () {
             const tabId = $(this).data('tab');
 
             $tabs.removeClass('active');
@@ -440,21 +440,21 @@ jQuery(document).ready(function($) {
 
     //id to timeline
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         var items = $('.iteml');
 
         // Assign IDs to the items based on their order
-        items.each(function(index) {
+        items.each(function (index) {
             $(this).attr('id', (index + 1).toString());
         });
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         var items = $('.wrapper-time .iteml');
         var links = $('.navigation a');
 
         // Assign IDs to corresponding anchors
-        items.each(function(index) {
+        items.each(function (index) {
             var itemId = $(this).attr('id');
             var link = links.eq(index); // Get the corresponding link
 
@@ -464,9 +464,9 @@ jQuery(document).ready(function($) {
     });
 
     // timelineeeeeeeeeeeee
-    jQuery(document).ready(function($) {
+    jQuery(document).ready(function ($) {
         // Smooth scrolling
-        $('.navigation__link').bind('click', function(e) {
+        $('.navigation__link').bind('click', function (e) {
             e.preventDefault(); // prevent hard jump, the default behavior
 
             var target = $(this).attr("href"); // Set the target as variable
@@ -474,7 +474,7 @@ jQuery(document).ready(function($) {
             // perform animated scrolling by getting top-position of target-element and set it as scroll target
             $('.wrapper-time').stop().animate({
                 scrollTop: $(target).offset().top + $('.wrapper-time').scrollTop() - $('.wrapper-time').offset().top
-            }, 800, function() {
+            }, 800, function () {
                 // location.hash = target; //attach the hash (#jumptarget) to the pageurl
             });
 
@@ -482,11 +482,11 @@ jQuery(document).ready(function($) {
         });
 
         // Scroll event handler
-        $('.wrapper-time').scroll(function() {
+        $('.wrapper-time').scroll(function () {
             var scrollDistance = $('.wrapper-time').scrollTop();
 
             // Assign active class to nav links while scrolling
-            $('.iteml').each(function(i) {
+            $('.iteml').each(function (i) {
                 // Calculate the middle point of the .outer div
                 var outerHeight = $('.wrapper-time').height();
                 var sectionTop = $(this).offset().top - $('.wrapper-time').offset().top + scrollDistance;
@@ -500,7 +500,7 @@ jQuery(document).ready(function($) {
         }).scroll(); // Trigger scroll handler on page load
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Add 'active' class to the first child
         $('.navigation .navigation__link:first-child').addClass('active');
     });
@@ -508,10 +508,19 @@ jQuery(document).ready(function($) {
 
 });
 
+jQuery('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+    var target = jQuery(e.target).attr('href');
+    var $slider = jQuery(target).find('.inner-tabs.pr ul.properties');
+
+    if ($slider.length > 0) {
+        $slider.slick('refresh');
+    }
+});
+
 
 
 // insight category tab
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const activeTab = urlParams.get('tab');
     if (activeTab) {
@@ -523,7 +532,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.querySelectorAll('#categoryTabs button').forEach(tab => {
-        tab.addEventListener('click', function() {
+        tab.addEventListener('click', function () {
             const target = this.getAttribute('data-bs-target').substring(1);
             const params = new URLSearchParams(window.location.search);
             params.set('tab', target);
@@ -532,5 +541,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-
