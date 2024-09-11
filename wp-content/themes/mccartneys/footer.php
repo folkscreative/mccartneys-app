@@ -340,35 +340,35 @@
         </div>
     </div>
 </div> -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js"></script>
     <script>
-    jQuery(document).ready(function() {
+    $(document).ready(function() {
     // Button click handler for 'View more'
-    jQuery('#scrollButton').on('click', function() {
+    $('#scrollButton').on('click', function() {
         // Check if the checkbox is checked (View more clicked)
-        if (jQuery('#show-all').prop('checked')) {
+        if ($('#show-all').prop('checked')) {
             // Smooth scroll to the bottom of the target section
             gsap.to(window, {duration: 1.5, scrollTo: "#rural-actioner", ease: "power1.out"});
             
             // Show the "Scroll to Top" button
             gsap.delayedCall(1.5, function() {
-                jQuery('#scrollToTopButton').fadeIn();
+                $('#scrollToTopButton').fadeIn();
             });
         }
     });
 
     // Button click handler for 'View less'
-    jQuery('#scrollToTopButton').on('click', function() {
+    $('#scrollToTopButton').on('click', function() {
         // Check if the checkbox is unchecked (View less clicked)
-        if (!jQuery('#show-all').prop('checked')) {
+        if (!$('#show-all').prop('checked')) {
             // Smooth scroll to the top of the page
             gsap.to(window, {duration: 1.5, scrollTo: 0, ease: "power1.out"});
             
             // Hide the "Scroll to Top" button
             gsap.delayedCall(1.5, function() {
-                jQuery('#scrollToTopButton').fadeOut();
+                $('#scrollToTopButton').fadeOut();
             });
         }
     });
