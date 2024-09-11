@@ -1716,6 +1716,19 @@ footer .connect-wrap ul li a {
     justify-content: center;
 }
 
+footer .connect-wrap.pipps-icon ul li a {
+    color: #8D1F56;
+    border-radius: 50%;
+    font-size: 17px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
 footer .col-right .links-wrapper {
     display: flex;
     flex-direction: row;
