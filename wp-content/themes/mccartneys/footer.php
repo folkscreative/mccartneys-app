@@ -341,29 +341,31 @@
     </div>
 </div> -->
 
-<script>
-    jQuery(document).ready(function($) {
-  // When 'View more' button is clicked
-  $('.text-show').click(function() {
-    // Expand the section
-    $('#rural-actioner .container').removeClass('collapsed');
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Button click handler to scroll to the bottom
+            $('#scrollButton').on('click', function() {
+                // Smooth scroll to the target section
+                gsap.to(window, {duration: 1.5, scrollTo: "#target", ease: "power1.out"});
+                
+                // Show the "Scroll to Top" button after scrolling
+                gsap.delayedCall(1.5, function() {
+                    $('#scrollToTopButton').fadeIn();
+                });
+            });
 
-    // Smooth scroll to the bottom of the section
-    $('html, body').animate({
-      scrollTop: $('#rural-actioner').offset().top + $('#rural-actioner').height()
-    }, 800);
-  });
-
-  // When 'View less' button is clicked
-  $('.text-hide').click(function() {
-    // Collapse the section
-    $('#rural-actioner .container').addClass('collapsed');
-
-    // Smooth scroll back to the top of the section
-    $('html, body').animate({
-      scrollTop: $('#rural-actioner').offset().top
-    }, 800);
-  });
-});
-
-</script>
+            // Button click handler to scroll to the top
+            $('#scrollToTopButton').on('click', function() {
+                // Smooth scroll to the top of the page
+                gsap.to(window, {duration: 1.5, scrollTo: 0, ease: "power1.out"});
+                
+                // Hide the "Scroll to Top" button after scrolling back up
+                gsap.delayedCall(1.5, function() {
+                    $('#scrollToTopButton').fadeOut();
+                });
+            });
+        });
+    </script>
