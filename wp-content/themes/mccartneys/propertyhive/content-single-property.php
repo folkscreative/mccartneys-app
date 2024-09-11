@@ -479,8 +479,8 @@ const enquiryModal = GLightbox({
 });
 
 // External trigger to open lightbox
-document.getElementById('enquiryTrigger).addEventListener('
-click ', function() {
-enquiryModal.open();
+// External trigger to open lightbox
+document.getElementById('enquiryTrigger').addEventListener('click', function() {
+    enquiryModal.open();
 });
 </script>
