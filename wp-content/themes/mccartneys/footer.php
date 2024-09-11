@@ -342,24 +342,28 @@
 </div> -->
 
 <script>
-    $(function() {
-        // This will select everything with the class smoothScroll
-        // This should prevent problems with carousel, scrollspy, etc...
-        $('.smoothScroll').click(function() {
-          if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-              $('html,body').animate({
-                scrollTop: target.offset().top - 100
-              }, 1000); // The number here represents the speed of the scroll in milliseconds
-              return false;
-            }
-          }
-        });
-      });
-      
-      // Change the speed to whatever you want
-      // Personally i think 1000 is too much
-      // Try 800 or below, it seems not too much but it will make a difference
+    jQuery(document).ready(function($) {
+  // When 'View more' button is clicked
+  $('.text-show').click(function() {
+    // Expand the section
+    $('#rural-actioner .container').removeClass('collapsed');
+
+    // Smooth scroll to the bottom of the section
+    $('html, body').animate({
+      scrollTop: $('#rural-actioner').offset().top + $('#rural-actioner').height()
+    }, 800);
+  });
+
+  // When 'View less' button is clicked
+  $('.text-hide').click(function() {
+    // Collapse the section
+    $('#rural-actioner .container').addClass('collapsed');
+
+    // Smooth scroll back to the top of the section
+    $('html, body').animate({
+      scrollTop: $('#rural-actioner').offset().top
+    }, 800);
+  });
+});
+
 </script>

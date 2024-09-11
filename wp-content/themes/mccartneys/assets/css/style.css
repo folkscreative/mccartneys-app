@@ -11694,3 +11694,25 @@ body.post-type-archive-property .search-form--department {
     bottom: 0;
     background: linear-gradient(183deg, rgba(255, 255, 255, 0.76) 17.55%, #ffffff 40.94%);
 }
+
+
+.collapsed .action-trim {
+    height: 200px; /* Adjust based on how much content you want to show when collapsed */
+    overflow: hidden;
+  }
+  
+  .text-hide {
+    display: none;
+  }
+  
+  #show-all:checked ~ .text-show {
+    display: none;
+  }
+  
+  #show-all:checked ~ .text-hide {
+    display: inline-block;
+  }
+  
+  #show-all:checked ~ .container {
+    max-height: none;
+  }
