@@ -111,14 +111,18 @@
                         <?php if( get_field('connect_with_us', 'option') ): ?>
                         <span><?php the_field('connect_with_us', 'option'); ?></span>
                         <?php endif; ?>
-                        <?php if( have_rows('social_media_buttons', 'option') ): ?>
+                        <?php if( have_rows('social_links_phipps', 'option') ): ?>
                         <ul>
-                            <?php while( have_rows('social_media_buttons', 'option') ): the_row(); ?>
-                            <li><a href="<?php $social_link= the_sub_field('social_media_link'); 
-								echo $echo;
-								?>" target="_blank"><?php  $social_label = get_sub_field('social_media_label');
-								echo $social_label;
-								?></a></li>
+                            <?php while( have_rows('social_links_phipps', 'option') ): the_row(); ?>
+                            <li>
+                            <a href="<?php the_sub_field('location_share_button_link'); ?>" target="_blank">
+                                <?php
+										$share_logo = get_sub_field('location_share_image');
+										if( !empty($share_logo) ):?>
+                                <img src="<?php echo $share_logo['url']; ?>" alt="<?php echo $share_logo['alt']; ?>">
+                                <?php endif; ?>
+                            </a>
+                            </li>
                             <?php endwhile; ?>
                         </ul>
                         <?php endif; ?>
@@ -341,25 +345,3 @@
     </div>
 </div> -->
 
-<script>
-    jQuery(function() {
-        // This will select everything with the class smoothScroll
-        // This should prevent problems with carousel, scrollspy, etc...
-        jQuery('.smoothScroll').click(function() {
-          if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-                jQuery('.livestock-auctioneers').animate({
-                scrollTop: target.offset().top - 100
-              }, 1000); // The number here represents the speed of the scroll in milliseconds
-              return false;
-            }
-          }
-        });
-      });
-      
-      // Change the speed to whatever you want
-      // Personally i think 1000 is too much
-      // Try 800 or below, it seems not too much but it will make a difference
-</script>

@@ -223,8 +223,6 @@ get_header(); ?>
     <section class="livestock-auctioneers d-none d-md-block" id="rural-actioner">
         <div class="container collapsed">
         <input type='checkbox' id='show-all'>
-        <a class="smoothScroll" href="#bottom">Bottom</a>
-        <a class="smoothScroll" href="#top" id="bottom">top</a>
       <label for='show-all' class='text-show btn-cs-dark toogle-expert'>View more</label>
         <label for='show-all' class='text-hide btn-cs-dark toogle-expert'>View less</label>
             <div class="row g-4 action-trim">
