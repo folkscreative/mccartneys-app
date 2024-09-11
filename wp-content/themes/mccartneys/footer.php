@@ -345,26 +345,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js"></script>
     
     <script>
-        $(document).ready(function() {
+        jQuery(document).ready(function() {
             // Button click handler to scroll to the bottom
-            $('#scrollButton').on('click', function() {
+            jQuery('#scrollButton').on('click', function() {
                 // Smooth scroll to the target section
                 gsap.to(window, {duration: 1.5, scrollTo: "#target", ease: "power1.out"});
                 
                 // Show the "Scroll to Top" button after scrolling
                 gsap.delayedCall(1.5, function() {
-                    $('#scrollToTopButton').fadeIn();
+                    jQuery('#scrollToTopButton').fadeIn();
                 });
             });
 
             // Button click handler to scroll to the top
-            $('#scrollToTopButton').on('click', function() {
+            jQuery('#scrollToTopButton').on('click', function() {
                 // Smooth scroll to the top of the page
                 gsap.to(window, {duration: 1.5, scrollTo: 0, ease: "power1.out"});
                 
                 // Hide the "Scroll to Top" button after scrolling back up
                 gsap.delayedCall(1.5, function() {
-                    $('#scrollToTopButton').fadeOut();
+                    jQuery('#scrollToTopButton').fadeOut();
                 });
             });
         });
