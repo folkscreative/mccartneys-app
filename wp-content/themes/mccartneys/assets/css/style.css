@@ -11728,42 +11728,43 @@ body.post-type-archive-property .search-form--department {
 
 /* smooth animation*/
 
-/* Show only 3 columns by default */
-.container.collapsed .action-trim-item:nth-child(n+4) {
+/* By default, show only the first 3 columns */
+.livestock-auctioneers .container.collapsed .action-trim-item:nth-child(n+4) {
     display: none;
 }
 
 /* When 'View More' is clicked, show all columns */
-#show-all:checked ~ .container .action-trim-item {
+.livestock-auctioneers #show-all:checked ~ .container .action-trim-item {
     display: block;
 }
 
 /* Smooth transition effect for height */
-.container .action-trim {
-    max-height: 300px; /* Adjust based on the height of 3 columns */
+.livestock-auctioneers .container .action-trim {
+    max-height: 500px; /* Adjust based on the height of 3 columns */
     overflow: hidden;
     transition: max-height 0.5s ease-out;
 }
 
 /* Expanded state when 'View More' is clicked */
-#show-all:checked ~ .container .action-trim {
-    max-height: 1000px; /* Adjust based on the content height */
+.livestock-auctioneers #show-all:checked ~ .container .action-trim {
+    max-height: 1000px; /* Adjust based on content height */
     transition: max-height 0.5s ease-in;
 }
 
 /* Toggle 'View More' and 'View Less' button visibility */
-.text-hide {
+.livestock-auctioneers .text-hide {
     display: none;
 }
 
-#show-all:checked ~ .container label.text-hide {
+.livestock-auctioneers #show-all:checked ~ .container label.text-hide {
     display: inline-block;
 }
 
-#show-all:not(:checked) ~ .container label.text-show {
+.livestock-auctioneers #show-all:not(:checked) ~ .container label.text-show {
     display: inline-block;
 }
 
-#show-all:checked ~ .container label.text-show {
+.livestock-auctioneers #show-all:checked ~ .container label.text-show {
     display: none;
 }
+
