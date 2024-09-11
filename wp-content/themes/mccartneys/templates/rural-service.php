@@ -215,15 +215,16 @@ get_header(); ?>
 
 
     
-   
+
+    
     <!-- Livestock Auctioneers start here -->
     
     <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
     <section class="livestock-auctioneers d-none d-md-block" id="rural-actioner">
         <div class="container collapsed">
         <input type='checkbox' id='show-all'>
-        <label for='show-all' id="scrollButton" class='text-show btn-cs-dark toogle-expert scroll-btn'>View more</label>
-        <label for='show-all'id="scrollToTopButton"  class='text-hide btn-cs-dark toogle-expert scroll-btn'>View less</label>
+        <a class="smoothScroll" href="#bottom"><label for='show-all' class='text-show btn-cs-dark toogle-expert'>View more</label></a>
+        <a class="smoothScroll" href="#top" id="bottom"><label for='show-all' class='text-hide btn-cs-dark toogle-expert'>View less</label></a>
             <div class="row g-4 action-trim">
                  <div class="col-4 col-lg-3 action-trim-item">
                     <div class="livestock-auctioneers-content col-left">

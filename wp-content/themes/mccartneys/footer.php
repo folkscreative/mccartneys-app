@@ -341,36 +341,25 @@
     </div>
 </div> -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js"></script>
-    <script>
-    jQuery(document).ready(function() {
-    // Button click handler for 'View more'
-    jQuery('#scrollButton').on('click', function() {
-        // Check if the checkbox is checked (View more clicked)
-        if (jQuery('#show-all').prop('checked')) {
-            // Smooth scroll to the bottom of the target section
-            gsap.to(window, {duration: 2.5, scrollTo: "#rural-actioner", ease: "power1.out"});
-            
-            // Show the "Scroll to Top" button
-            gsap.delayedCall(2.5, function() {
-                jQuery('#scrollToTopButton').fadeIn();
-            });
-        }
-    });
-
-    // Button click handler for 'View less'
-    jQuery('#scrollToTopButton').on('click', function() {
-        // Check if the checkbox is unchecked (View less clicked)
-        if (!jQuery('#show-all').prop('checked')) {
-            // Smooth scroll to the top of the page
-            gsap.to(window, {duration: 2.5, scrollTo: 0, ease: "power1.out"});
-            
-            // Hide the "Scroll to Top" button
-            gsap.delayedCall(2.5, function() {
-                jQuery('#scrollButton').fadeOut();
-            });
-        }
-    });
-});
+<script>
+    jQuery(function() {
+        // This will select everything with the class smoothScroll
+        // This should prevent problems with carousel, scrollspy, etc...
+        jQuery('.smoothScroll').click(function() {
+          if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+            if (target.length) {
+                jQuery('html,body').animate({
+                scrollTop: target.offset().top - 100
+              }, 1000); // The number here represents the speed of the scroll in milliseconds
+              return false;
+            }
+          }
+        });
+      });
+      
+      // Change the speed to whatever you want
+      // Personally i think 1000 is too much
+      // Try 800 or below, it seems not too much but it will make a difference
 </script>
