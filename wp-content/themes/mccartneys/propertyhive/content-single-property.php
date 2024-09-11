@@ -467,20 +467,3 @@ foreach ($gallery_attachments as $gallery_attachment) {
     }
     ?>
 </div>
-
-<script>
-// Initialize GLightbox
-const enquiryModal = GLightbox({
-    elements: [{
-        content: document.getElementById('enquiryModal').innerHTML,
-        width: '80vw', // Optional: Set width of the lightbox
-        height: 'auto'
-    }]
-});
-
-// External trigger to open lightbox
-// External trigger to open lightbox
-document.getElementById('enquiryTrigger').addEventListener('click', function() {
-    enquiryModal.open();
-});
-</script>
