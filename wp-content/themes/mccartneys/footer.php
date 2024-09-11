@@ -345,15 +345,3 @@
     </div>
 </div> -->
 
-
-<script>
-    // The function toggles more (hidden) text when the user clicks on "Read more". The IF ELSE statement ensures that the text 'read more' and 'read less' changes interchangeably when clicked on.
-JQuery('.moreless-button').click(function() {
-    JQuery('.info-wrapper').slideToggle();
-    if (JQuery('.moreless-button').text() == "Read more") {
-        JQuery(this).text("Read less")
-    } else {
-        JQuery(this).text("Read more")
-    }
-  });
-</script>

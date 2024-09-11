@@ -11726,3 +11726,34 @@ body.post-type-archive-property .search-form--department {
 }
 
 
+/* smooth animation*/
+
+/* Initial hidden state for the container */
+.container.collapsed .action-trim {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+
+/* Expanded state when 'View More' is clicked */
+#show-all:checked ~ .container .action-trim {
+    max-height: 500px; /* Adjust according to content height */
+    transition: max-height 0.5s ease-in;
+}
+
+/* Toggle the visibility of 'View More' and 'View Less' buttons */
+.text-hide {
+    display: none;
+}
+
+#show-all:checked ~ .container label.text-hide {
+    display: inline-block;
+}
+
+#show-all:not(:checked) ~ .container label.text-show {
+    display: inline-block;
+}
+
+#show-all:checked ~ .container label.text-show {
+    display: none;
+}

@@ -221,49 +221,48 @@ get_header(); ?>
     
     <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
     <section class="livestock-auctioneers d-none d-md-block" id="rural-actioner">
-        <div class="container">
-        <!-- <input type='checkbox' id='show-all'> -->
-      <!-- <label for='show-all' class='text-show btn-cs-dark toogle-expert'>View more</label>
-        <label for='show-all' class='text-hide btn-cs-dark toogle-expert'>View less</label> -->
+        <div class="container collapsed">
+            <input type='checkbox' id='show-all' style="display:none;">
+            <label for='show-all' class='text-show btn-cs-dark toogle-expert'>View more</label>
+            <label for='show-all' class='text-hide btn-cs-dark toogle-expert'>View less</label>
             <div class="row g-4 action-trim">
-                 <div class="col-4 col-lg-3 action-trim-item">
+                <div class="col-4 col-lg-3 action-trim-item">
                     <div class="livestock-auctioneers-content col-left">
                         <h2><?php the_sub_field('livestock_auctioneer_heading'); ?></h2>
                         <p><?php the_sub_field('livestock_auctioneer_content'); ?></p>
                     </div>
                 </div>
                 <?php if( have_rows('livestock_auctioneers_details') ):
-                     while ( have_rows('livestock_auctioneers_details') ) : the_row();?>
-                     
+                    while ( have_rows('livestock_auctioneers_details') ) : the_row();?>
                 <div class="col-4 col-lg-3 action-trim-item">
                     <div class="livestock-auctioneers-content">
-                    <div class="info-wrapper">
-                    <?php
-                    $ac_image = get_sub_field('livestock_auctioneers_image');
-                    ?>
-                    <?php if( !empty($ac_image) ):?>
-                        <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>" class="w-100">
-                    <?php endif; ?>
-                    <ul class="info-box">
-                    <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
-                    <li>
+                        <div class="info-wrapper">
+                        <?php
+                        $ac_image = get_sub_field('livestock_auctioneers_image');
+                        ?>
+                        <?php if( !empty($ac_image) ):?>
+                            <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>" class="w-100">
+                        <?php endif; ?>
+                        <ul class="info-box">
+                        <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
+                        <li>
                             <i class="fa-solid fa-phone"></i>
                             <a href="tel:<?php the_sub_field('livestock_auctioneers_number'); ?>"><?php the_sub_field('livestock_auctioneers_number'); ?></a>
-                            </li>
-                            <?php endif; ?>
-                            <?php if( get_sub_field('livestock_auctioneers_second_number') ): ?>
-                            <li>
+                        </li>
+                        <?php endif; ?>
+                        <?php if( get_sub_field('livestock_auctioneers_second_number') ): ?>
+                        <li>
                             <i class="fa-solid fa-phone"></i>
                             <a href="tel:<?php the_sub_field('livestock_auctioneers_second_number'); ?>"><?php the_sub_field('livestock_auctioneers_second_number'); ?></a>
-                            </li>
-							<?php endif; ?>
+                        </li>
+                        <?php endif; ?>
 
-                            <?php if( get_sub_field('livestock_auctioneers_email') ): ?>
-                            <li>
+                        <?php if( get_sub_field('livestock_auctioneers_email') ): ?>
+                        <li>
                             <i class="fa-regular fa-envelope"></i>
                             <a href="mailto:<?php the_sub_field('livestock_auctioneers_email'); ?>"><?php the_sub_field('livestock_auctioneers_email'); ?></a>
-                            </li>
-                            <?php endif; ?>
+                        </li>
+                        <?php endif; ?>
                         </ul>
                         </div>
                         <div class="team-content">
@@ -272,15 +271,13 @@ get_header(); ?>
                         </div>
                     </div>
                 </div>      
-                <?php endwhile; ?><?php endif;?>
-                <a class="moreless-button" href="#">Read more</a>
+                <?php endwhile; ?><?php endif; ?>
             </div>
         </div>
     </section>
-    <?php endif;?>
+<?php endif; ?>
+
     
-
-
     <!-- Livestock Auctioneers ends here -->
 
     <!-- Livestock Auctioneers for mobile start here -->
