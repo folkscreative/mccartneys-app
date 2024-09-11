@@ -107,7 +107,7 @@
                     <a href="<?php echo site_url(); ?>" class="footer-logo"><img src="<?php echo $ftr_logo['url']; ?>"
                             alt="<?php echo $ftr_logo['alt']; ?>"></a>
                     <?php endif; ?>
-                    <div class="connect-wrap pipps-icons">
+                    <div class="pipps-icons">
                         <?php if( get_field('connect_with_us', 'option') ): ?>
                         <span><?php the_field('connect_with_us', 'option'); ?></span>
                         <?php endif; ?>
