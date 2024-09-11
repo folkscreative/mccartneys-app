@@ -401,8 +401,9 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
                         <!-- Div content to open in lightbox -->
                         <div id="enquiryModal" style="display:none;">
-                            <h2>Hello from Lightbox</h2>
-                            <p>This is some custom content inside a div!</p>
+                            <h2>Property Enquiry</h2>
+                            <p>This modal needs some styling and content. I don't know what form is being used and I
+                                can't see this element in Figma 👀</p>
                         </div>
 
                     </div>
