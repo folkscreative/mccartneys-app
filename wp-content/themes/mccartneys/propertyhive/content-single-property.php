@@ -390,7 +390,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 		                    { ?>
                         <span class="negotiator-name"><?php echo $property->negotiator_name; ?></span>
                         <?php } ?>
-                        <a class="btn-bn-light" href="#" target="_self">Request A Viewing<span><svg
+                        <a class="btn-bn-light" id="enquiryTrigger">Request A Viewing<span><svg
                                     class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
                                     data-prefix="fas" data-icon="angle-right" role="img"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
@@ -398,6 +398,12 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                                         d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
                                     </path>
                                 </svg></span></a>
+
+                        <!-- Div content to open in lightbox -->
+                        <div id="enquiryModal" style="display:none;">
+                            <h2>Hello from Lightbox</h2>
+                            <p>This is some custom content inside a div!</p>
+                        </div>
 
                     </div>
                 </div>
@@ -461,3 +467,20 @@ foreach ($gallery_attachments as $gallery_attachment) {
     }
     ?>
 </div>
+
+<script>
+// Initialize GLightbox
+const enquiryModal = GLightbox({
+    elements: [{
+        content: document.getElementById('enquiryModal').innerHTML,
+        width: '80vw', // Optional: Set width of the lightbox
+        height: 'auto'
+    }]
+});
+
+// External trigger to open lightbox
+document.getElementById('enquiryTrigger).addEventListener('
+click ', function() {
+enquiryModal.open();
+});
+</script>
