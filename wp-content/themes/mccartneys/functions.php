@@ -145,6 +145,7 @@ function mccartneys_scripts() {
     wp_enqueue_script( 'mccartneys-ph-search-features', get_template_directory_uri() . '/js/ph-search-features.js', array( 'jquery' ), _S_VERSION, true );
     wp_enqueue_script( 'jquery-ui-core', array( 'jquery' ), true );
     wp_enqueue_script( 'jquery-ui-slider', array( 'jquery' ), true );
+    wp_enqueue_script( 'jquery-ui-touch-punch', get_template_directory_uri() . '/assets/js/jquery.ui.touch-punch.min.js', array('jquery', 'jquery-ui-core', 'jquery-ui-slider'), _S_VERSION, true );
     wp_enqueue_style( 'jquery-ui-css', get_template_directory_uri() . '/assets/css/jquery-ui.min.css', _S_VERSION );
     wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBA8L29YbEABF_9_LOdMzdoXt3gaLV3mWs&libraries=places', '', _S_VERSION , true );
 
