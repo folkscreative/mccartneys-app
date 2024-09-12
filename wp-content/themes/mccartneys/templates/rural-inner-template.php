@@ -41,7 +41,7 @@ get_header(); ?>
                     <?php endif; ?>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 align-content-center">
+                <div class="col-12 col-md-6">
                     <div class="col-left">
                         <?php if (get_sub_field('equine_sale_title')): ?>
                             <h2><?php the_sub_field('equine_sale_title'); ?></h2>

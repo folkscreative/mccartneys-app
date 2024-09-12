@@ -154,7 +154,7 @@ get_header(); ?>
     <section class="our-marketer equine app rurals">
         <div class="container">
             <div class="row g-5">
-                <div class="col-12 col-md-6 align-content-center">
+                <div class="col-12 col-md-6">
                     <div class="col-left">
                         <?php if (get_sub_field('equine_app_title')): ?>
                             <h2><?php the_sub_field('equine_app_title'); ?></h2>
