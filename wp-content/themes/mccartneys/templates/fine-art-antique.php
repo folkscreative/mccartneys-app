@@ -267,30 +267,36 @@ if ( !empty( $image_private ) ) { ?>
 
 <!-- <section gallery start here -->
 <?php if( get_row_layout() == 'auction_room_gallery' ): ?>
- <section class="auction-gallery art">
-    <div class="container">
-        <h2><?php the_sub_field('auction_gallery_title'); ?></h2>
-        <p><?php the_sub_field('auction_gallery_description'); ?></p>
-        <div class="row">
-            <div class="col-12">
-                <div class="gallery-detail">
-                <?php 
-                $images = get_sub_field('auction_room_gallery');
-                if( $images ): ?>
-                    <ul>
-                    <?php foreach( $images as $image ): ?>
-                        <li>
-                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-                            <p><?php echo esc_html($image['caption']); ?></p>
-                        </li>
-                    <?php endforeach; ?>
-                    </ul>
-                <?php endif; ?>
+    <section class="auction-gallery art" id="gallery">
+        <div class="container">
+            <h2><?php the_sub_field('auction_gallery_title'); ?></h2>
+            <p><?php the_sub_field('auction_gallery_description'); ?></p>
+            <div class="row g-0">
+                <div class="col-12">
+                    <div class="gallery-detail">
+                    <?php 
+                    $images = get_sub_field('auction_room_gallery');
+                    if( $images ): ?>
+                        
+                        <?php foreach( $images as $image ): ?>
+                            
+                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                    
+                        <?php endforeach; ?>
+                        
+                    <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>            
- </section>
+        <!-- Lightbox -->
+        <div id="lightbox">
+            <div class="close">x</div>
+            <div class="prev"><i class="fa-solid fa-angle-left"></i></div>
+            <div class="next"><i class="fa-solid fa-angle-right"></i></div>
+            <img src="#">
+        </div>            
+    </section>
  <?php endif;?>
     <?php endwhile; ?>
     <?php endif; ?>

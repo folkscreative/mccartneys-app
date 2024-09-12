@@ -359,18 +359,24 @@ get_header(); ?>
                     <?php 
                     $images = get_sub_field('auction_room_gallery');
                     if( $images ): ?>
-                        <ul>
+                        
                         <?php foreach( $images as $image ): ?>
-                            <li>
-                                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-                                <p><?php echo esc_html($image['caption']); ?></p>
-                            </li>
+                            
+                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                    
                         <?php endforeach; ?>
-                        </ul>
+                        
                     <?php endif; ?>
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Lightbox -->
+        <div id="lightbox">
+            <div class="close">x</div>
+            <div class="prev"><i class="fa-solid fa-angle-left"></i></div>
+            <div class="next"><i class="fa-solid fa-angle-right"></i></div>
+            <img src="#">
         </div>            
     </section>
     <?php endif;?>

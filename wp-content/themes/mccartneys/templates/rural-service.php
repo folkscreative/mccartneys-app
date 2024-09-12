@@ -221,10 +221,10 @@ get_header(); ?>
     
     <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
     <section class="livestock-auctioneers d-none d-md-block" id="rural-actioner">
-        <div class="container collapsed">
-        <input type='checkbox' id='show-all'>
+        <div class="container">
+        <!-- <input type='checkbox' id='show-all'>
       <label for='show-all' class='text-show btn-cs-dark toogle-expert'>View more</label>
-        <label for='show-all' class='text-hide btn-cs-dark toogle-expert'>View less</label>
+        <label for='show-all' class='text-hide btn-cs-dark toogle-expert'>View less</label> -->
             <div class="row g-4 action-trim">
                  <div class="col-4 col-lg-3 action-trim-item">
                     <div class="livestock-auctioneers-content col-left">
@@ -232,10 +232,12 @@ get_header(); ?>
                         <p><?php the_sub_field('livestock_auctioneer_content'); ?></p>
                     </div>
                 </div>
-                <?php if( have_rows('livestock_auctioneers_details') ):
-                     while ( have_rows('livestock_auctioneers_details') ) : the_row();?>
-                     
-                <div class="col-4 col-lg-3 action-trim-item">
+                <?php if( have_rows('livestock_auctioneers_details') ):?>
+                    
+                    <ul id="myList">
+                        <?php  while ( have_rows('livestock_auctioneers_details') ) : the_row();?>
+                        <li>
+                        <div class="col-4 col-lg-3 action-trim-item">
                     <div class="livestock-auctioneers-content">
                     <div class="info-wrapper">
                     <?php
@@ -271,12 +273,42 @@ get_header(); ?>
                             <p><?php the_sub_field('livestock_auctioneers_post_title'); ?></p>
                         </div>
                     </div>
-                </div>      
-                <?php endwhile; ?><?php endif;?>
+                </div>   
+                        </li>
+                        <?php endwhile; ?>
+                </ul> 
+                  
+
+               <?php endif;?>
+              
+               <div id="loadMore">Load more</div>
+               <div id="showLess">Show less</div>
+               <style>
+  #myList li{ display:none;
+}
+#loadMore {
+    color:green;
+    cursor:pointer;
+}
+#loadMore:hover {
+    color:black;
+}
+#showLess {
+    color:red;
+    cursor:pointer;
+}
+#showLess:hover {
+    color:black;
+}
+</style>
             </div>
         </div>
     </section>
     <?php endif;?>
+
+
+   
+
     
     <!-- Livestock Auctioneers ends here -->
 
