@@ -349,7 +349,7 @@
 // livestock items
 jQuery(document).ready(function($){
     var initialItems = 3;  // Number of items to show initially
-    var loadMoreItems = 17; // Number of items to show on each load more
+    var loadMoreItems = 50; // Number of items to show on each load more
     var totalItems = $(".repeat-team").length; // Total items
     var stopAtItems = 11; // Number of items to stop at when clicking "Load Less"
 
