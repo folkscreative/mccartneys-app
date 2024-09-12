@@ -11752,7 +11752,7 @@ body.post-type-archive-property .search-form--department {
 	justify-content: center;
 	align-items: center;
 	color: #fff;
-    z-index: 999;
+    z-index: 99999;
 }
 
 .close, .prev, .next {
@@ -11763,7 +11763,7 @@ body.post-type-archive-property .search-form--department {
 .close {
 	right: 10px;
 	top: 10px;
-    font-size: 20px;
+    font-size: 27px;
 }
 
 .prev {
