@@ -508,8 +508,8 @@ jQuery(document).ready(function ($) {
             link.attr('href', '#' + itemId);
         });
     });
-    // livestock itemd
-    jQuery(document).ready(function($){
+    // livestock items
+    $(document).ready(function($){
         var initialItems = 3;  // Number of items to show initially
         var loadMoreItems = 17; // Number of items to show on each load more
         var totalItems = $(".repeat-team").length; // Total items
