@@ -389,7 +389,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 		                    { ?>
                         <span class="negotiator-name"><?php echo $property->negotiator_name; ?></span>
                         <?php } ?>
-                        <a class="btn-bn-light" id="enquiryTrigger">Request A Viewing<span><svg
+                        <a class="btn-bn-light" id="enquiryTrigger">Request a viewing Jotform<span><svg
                                     class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
                                     data-prefix="fas" data-icon="angle-right" role="img"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
