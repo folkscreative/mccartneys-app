@@ -161,9 +161,6 @@ if ( !empty( $sale_banner ) ) { ?>
  <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
     <section class="livestock-auctioneers d-none d-md-block" id="livestck-actioner">
         <div class="container collapsed">
-        <input type='checkbox' id='show-all'>
-        <label for='show-all' class='text-show btn-cs-dark toogle-expert'>View more</label>
-        <label for='show-all' class='text-hide btn-cs-dark toogle-expert'>View less</label>
             <div class="row g-4 action-trim">
                  <div class="col-4 col-lg-3 action-trim-item">
                     <div class="livestock-auctioneers-content col-left">
@@ -174,7 +171,7 @@ if ( !empty( $sale_banner ) ) { ?>
                 <?php if( have_rows('livestock_auctioneers_details') ):
                      while ( have_rows('livestock_auctioneers_details') ) : the_row();?>
                      
-                <div class="col-4 col-lg-3 action-trim-item">
+                <div class="col-4 col-lg-3 action-trim-item repeat-team">
                     <div class="livestock-auctioneers-content">
                     <div class="info-wrapper">
                     <?php
@@ -214,6 +211,8 @@ if ( !empty( $sale_banner ) ) { ?>
                 <?php endwhile; ?><?php endif;?>
             </div>
         </div>
+        <button class="load-more btn-cs-dark toogle-expert">Load More</button>
+        <button class="load-less btn-cs-dark toogle-expert" style="display:none;">Load Less</button>
     </section>
     <?php endif; ?>
     <!-- Livestock Auctioneers ends here -->
