@@ -3269,8 +3269,8 @@ footer .cookies-menu ul li a {
 
 /* Show Date Page */
 
-.show-dates {
-    padding: 49px 0 0;
+.show-dates { 
+    padding: 49px 0 130px;
 }
 
 .show-dates .container {
