@@ -10863,6 +10863,7 @@ section.recent-properties::before {
 
 .single-property .branch-info .btn-bn-light {
     margin-top: 15px;
+    max-width: 250px;
 }
 
 .single-property .branch-info span {
