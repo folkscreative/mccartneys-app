@@ -142,7 +142,7 @@ jQuery(document).ready(function ($) {
                 slidesToScroll: 1
             }
         }]
-    });
+    }); 
     // insigh
     $('.insigh').slick({
         dots: true,

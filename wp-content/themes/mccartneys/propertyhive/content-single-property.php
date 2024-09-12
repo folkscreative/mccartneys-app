@@ -312,7 +312,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                             echo '</a>';
                             }
                             ?>
-                            <span class="branch-name">Request a viewing Jotform</span>
+                            <span class="branch-name">Request a viewing Jotform</span> 
                             <?php if ( $property->negotiator_name != '' )
 		                    { ?>
                             <span class="negotiator-name"><?php echo $property->negotiator_name; ?></span>
