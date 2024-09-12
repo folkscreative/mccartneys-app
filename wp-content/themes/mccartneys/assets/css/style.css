@@ -3990,26 +3990,32 @@ footer .cookies-menu ul li a {
     border-radius: 8px;
     object-fit: cover;
     cursor: pointer;
+    display: none;
 }
 
 .auction-gallery .gallery-detail  img:first-child {
     grid-area: a;
+    display: block;
 }
 
 .auction-gallery .gallery-detail img:nth-child(2) {
     grid-area: b;
+    display: block;
 }
 
-.auction-gallery .gallery-detail img:nth-child(2) {
+.auction-gallery .gallery-detail img:nth-child(3) {
     grid-area: c;
+    display: block;
 }
 
 .auction-gallery .gallery-detail img:nth-child(4) {
     grid-area: d;
+    display: block;
 }
 
 .auction-gallery .gallery-detail img:last-child {
     grid-area: e;
+    display: block;
 }
 
 .btn-art {
