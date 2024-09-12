@@ -71,6 +71,43 @@ if ( !empty( $image_private ) ) { ?>
     </section>
     <!-- Show Dates ends -->
     <?php endif; ?>
+
+<!--  faqs -->
+<?php if( get_row_layout() == 'frequently_asked_questions' ): ?>
+    <section class="livestock-faqs faqs-wrap equine">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-12">
+                    <div class="col-left">
+                         <h2><?php the_sub_field('frequently_asked_question_title'); ?></h2>
+                         <p><?php the_sub_field('frequently_asked_question_description'); ?></p>
+                    </div>
+                </div>
+                <div class="col-12">
+                     <div class="faqs-wrapper">
+                     <?php if( have_rows('frequently_asked_question_detail') ):
+                             while ( have_rows('frequently_asked_question_detail') ) : the_row();?>
+                        <div class="faqs-item">
+                             <div class="top-bar">
+                                <h4><?php the_sub_field('frequently_asked_questions_question'); ?></h4>
+                                <span class="plus-icon"><i class="fa-solid fa-plus"></i></span>
+                             </div>
+                             <div class="bottom-bar">
+                             <div class="content">
+                             <?php the_sub_field('frequently_asked_questions_answers'); ?>
+                                 
+                             </div>
+                             <span class="x-icon"><i class="fa-solid fa-xmark"></i></span>
+                             </div>
+                        </div>
+                        <?php endwhile; ?>
+                        <?php endif; ?> 
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
     <?php endwhile; ?>
     <?php endif; ?>
     
