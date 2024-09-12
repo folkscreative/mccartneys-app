@@ -107,7 +107,7 @@ if ( !empty( $image_private ) ) { ?>
             </div>
         </div>
     </section>
-    <?php endif; ?>
+    <?php endif; ?>  
     <?php endwhile; ?>
     <?php endif; ?>
     
