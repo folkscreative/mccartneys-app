@@ -6301,7 +6301,7 @@ footer .cookies-menu ul li a {
 .contactus-banner .connect-wrap {
     display: flex;
     justify-content: end;
-    margin-top: -64px;
+    margin-top: 25px;
 }
 
 .contactus-banner .connect-wrap ul li a {
