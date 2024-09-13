@@ -11662,6 +11662,10 @@ body.post-type-archive-property .search-form--department {
  }
 
 .general-page-outer.error-404 h1.page-title span {
+    font-family: Gotham;
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: bold;
    color: #602644;
    padding-bottom: 10px;
 }
