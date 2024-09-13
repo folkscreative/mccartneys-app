@@ -11653,6 +11653,11 @@ body.post-type-archive-property .search-form--department {
     font-weight: 500;
 }
 
+.general-page-outer.error-404 h1 span {
+   color: #602644;
+   padding-bottom: 10px;
+}
+
 
 /* general page css ends */
 
