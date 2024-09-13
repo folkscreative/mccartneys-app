@@ -87,7 +87,19 @@ if ( !empty( $image_private ) ) { ?>
                     <h3><?php the_sub_field('form_description'); ?></h3>
                     <span class="divider"></span>
                     <span class="info"><?php the_sub_field('form_name'); ?></span>
-                    <a href="<?php the_sub_field('form_cta_link'); ?>" class="btn-rural"><?php the_sub_field('form_cta_label'); ?></a>
+
+
+
+
+                    <?php 
+                                $show_pdf = get_sub_field('form_cta_link');
+                                if( $show_pdf ): 
+                                    $show_pdf_url = $show_pdf['url'];
+                                    $show_pdf_title = $show_pdf['title'];
+                                    $show_pdf_target = $show_pdf['target'] ? $show_pdf['target'] : '_self';
+                                    ?>
+                                    <a class="btn-rural" href="<?php echo esc_url( $show_pdf_url ); ?>" target="<?php echo esc_attr( $show_pdf_title ); ?>"><?php echo esc_html( $show_pdf_target ); ?></a>
+                                <?php endif; ?>
                 </div>
                 <?php endwhile; ?><?php endif; ?>
             </div>
