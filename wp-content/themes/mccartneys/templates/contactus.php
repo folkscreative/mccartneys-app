@@ -72,13 +72,13 @@ get_header(); ?>
                     <p><?php the_sub_field('call_to_action_content'); ?></p>
                 
                         <?php 
-                                $show_dt_button_cta = get_sub_field('call_to_action_link');
-                                if( $show_dt_button_cta ): 
-                                    $show_dt_button_url = $show_dt_button_cta['url'];
-                                    $show_dt_button_title = $show_dt_button_cta['title'];
-                                    $show_dt_button_target = $show_dt_button_cta['target'] ? $show_dt_button_cta['target'] : '_blank';
+                                $show_cta_button = get_sub_field('call_to_action_link');
+                                if( $show_cta_button ): 
+                                    $show_cta_button_url = $show_cta_button['url'];
+                                    $show_cta_button_title = $show_cta_button['title'];
+                                    $show_cta_button_target = $show_cta_button['target'] ? $show_cta_button['target'] : '_blank';
                                     ?>
-                                    <a class="btn-cs-light" href="<?php echo esc_url( $show_dt_button_url ); ?>" target="<?php echo esc_attr( $show_dt_button_target ); ?>"><?php echo esc_html( $show_dt_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                                    <a class="btn-cs-light" href="<?php echo esc_url( $show_cta_button_url ); ?>" target="<?php echo esc_attr( $show_cta_button_target ); ?>"><?php echo esc_html( $show_cta_button_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
                                 <?php endif; ?>
                     </div>
                 </div>
