@@ -13,7 +13,7 @@ get_header();
            <div class="container">
                <div class="content">
 			   <h1 class="page-title"> <span>ERROR 404 </span><br> We couldn't find the page you are looking for! </h1>
-				<a href="https://wordpress-1285863-4695980.cloudwaysapps.com" class="btn-cs-dark">Go Back</a>
+				<a href="<?php echo site_url(); ?>" class="btn-cs-dark">Go Back</a>
                </div>
         </div>
         </section>

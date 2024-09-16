@@ -9229,6 +9229,10 @@ section.search-outer.filter .container {
     .popup-filter .search-form-dropdown--trigger::after {
         position: relative !important;
     }
+    .general-page-outer.error-404 h1.page-title span {
+        font-size: 36px !important;
+        line-height: 36px !important;
+    }
 }
 
 @media (max-width: 575px) {
@@ -11673,21 +11677,17 @@ body.post-type-archive-property .search-form--department {
 }
 
 .general-page-outer.error-404 h1.page-title  {
-    font-family: Gotham;
-    font-size: 48px;
-    line-height: 48px;
-    font-weight: bold;
     text-transform: capitalize;
     margin-bottom: 30px;
  }
 
 .general-page-outer.error-404 h1.page-title span {
-    font-family: Gotham;
     font-size: 48px;
     line-height: 48px;
     font-weight: bold;
    color: #602644;
-   margin-bottom: 10px;
+   margin-bottom: 30px;
+   display: inline-block;
 }
 
 
