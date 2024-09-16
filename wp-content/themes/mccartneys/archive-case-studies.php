@@ -21,7 +21,7 @@ $query = new WP_Query(array(
     'order' => 'DESC' )); 
 if ($query->have_posts()) :
     while ($query->have_posts()) : $query->the_post(); ?>
-        <div class="post d-none d-md-flex">
+        <div class="post d-md-flex">
         <img src="<?php the_post_thumbnail_url(); ?>" alt="">
             <div class="post-content">
                 <h4><strong><?php the_title(); ?>,</strong><?php the_field('case_study_sub_title');?></h4>

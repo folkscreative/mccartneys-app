@@ -5503,7 +5503,7 @@ footer .cookies-menu ul li a {
 .current-vacancies .wrap .job-detail p {
     margin-bottom: 20px;
     font-size: 15px;
-    word-break: break-all;
+    /* word-break: break-all; */
 }
 
 .current-vacancies .wrap .job-detail p strong {
@@ -5748,6 +5748,7 @@ footer .cookies-menu ul li a {
 
 .insight-content.case-template .post-content h4 {
     font-weight: 300;
+    margin-bottom: 17px;
 }
 
 .insight-content.case-template .post-content h4 strong {
@@ -5840,6 +5841,7 @@ footer .cookies-menu ul li a {
 
 .post .post-content {
     padding: 30px 43px 30px 73px;
+    color: #707070;
 }
 
 .post .post-content h2 {
