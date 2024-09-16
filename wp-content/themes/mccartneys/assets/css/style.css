@@ -5745,6 +5745,23 @@ footer .cookies-menu ul li a {
     margin: 39px 0 26px;
 }
 
+
+.insight-content.case-template .post-content h4 {
+    font-weight: 300;
+}
+
+.insight-content.case-template .post-content h4 strong {
+    font-weight: 500;
+    padding-right: 10px;
+}
+
+.insight-content.case-template .post-content a {
+   margin-top: 25px;
+}
+
+
+
+
 .insight-content.case-template .post {
     margin-bottom: 30px;
 }
