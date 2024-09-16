@@ -72,7 +72,7 @@ get_header(); ?>
                     <p><?php the_sub_field('call_to_action_content'); ?></p>
                 
                         <?php 
-                                $show_cta_button = get_sub_field('call_to_action_link');
+                                $show_cta_button = get_sub_field('cta_secondary_button');
                                 if( $show_cta_button ): 
                                     $show_cta_button_url = $show_cta_button['url'];
                                     $show_cta_button_title = $show_cta_button['title'];
