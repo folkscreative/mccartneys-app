@@ -10,7 +10,6 @@ get_header(); ?>
                 <h1>McCartneys Case Studies</h1>
                 <p>McCartneys Planning and Survey Department undertake a wide range of projects from initial conception, through to handing over keys on a completed property. We are pleased to showcase several of the projects we have been involved in, to show the variability in both project overview, location and expertise undertaken.</p>
             </div>
-        
     
      <?php
 global $post;
@@ -23,20 +22,12 @@ $query = new WP_Query(array(
 if ($query->have_posts()) :
     while ($query->have_posts()) : $query->the_post(); ?>
         <div class="post d-none d-md-flex">
-            <?php if (has_post_thumbnail()) : ?>
-                <div class="post-thumbnail">
-                <a class="btn-transparent" href="<?php the_permalink(); ?>">Link</a>
-                    <?php the_post_thumbnail('large'); ?>
-                </div>
-            <?php endif; ?>
+        <img src="<?php the_post_thumbnail_url(); ?>" alt="">
             <div class="post-content">
-                <div class="category-date">
-        
-                    <div class="date">
-                        <?php echo get_the_date('M d, Y'); ?>
-                    </div>
-                </div>
-                <h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+                <h4><strong><?php the_title(); ?>,</strong><?php the_field('case_study_sub_title');?></h4>
+            <p><?php the_excerpt();?></p>
+            <a href="<?php the_permalink(); ?>" class="btn-cs-dark">Read more<span><i
+                        class="fa-solid fa-angle-right"></i></span></a>
               
 
             </div>
