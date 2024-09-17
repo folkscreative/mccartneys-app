@@ -1717,3 +1717,24 @@ function property_mobile_tabs_shortcode() {
     }
 }
 add_shortcode( 'property_mobile_tabs', 'property_mobile_tabs_shortcode' );
+
+
+// JSON Load Path
+function my_acf_json_load_point( $paths ) {
+    // Remove the original path (optional).
+    unset($paths[0]);
+
+    // Append the new path and return it.
+    $paths[] = get_stylesheet_directory() . '/acf-json';
+
+    return $paths;
+}
+add_filter( 'acf/settings/load_json', 'my_acf_json_load_point' );
+
+// JSON Save Path
+function my_acf_json_save_point( $path ) {
+    // Update the path where ACF saves JSON data.
+    $path = get_stylesheet_directory() . '/acf-json';
+    return $path;
+}
+add_filter( 'acf/settings/save_json', 'my_acf_json_save_point' );
