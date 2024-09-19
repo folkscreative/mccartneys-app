@@ -17,7 +17,7 @@ get_header( 'propertyhive' ); global $wpdb; ?>
     <section class="search-outer d-md-block">
         <div class="container">
             <?php echo do_shortcode('[property_search]') ?>
-
+            <?php // echo do_shortcode('[property_search_form id="default"]') ?>
         </div>
 
     </section>

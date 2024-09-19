@@ -1304,7 +1304,7 @@ function populate_property_types_dropdown() {
         echo ' <div class="search-form-dropdown">';
         echo '<div class="search-form-dropdown--trigger">Property Type</div>';
         echo '<div class="search-form-dropdown--options">';
-        echo '<label class="search-form-checkboxes--option' . esc_attr( $term->slug ) . '">';
+        echo '<label class="search-form-checkboxes--option' . esc_attr( $term->slug ) . ' show-all">';
         echo '<input type="checkbox" name="' . esc_attr($taxonomy) . '[]" checked value="">';
         echo '<span class="search-form-checkboxes--checkbox-label"></span>';
         echo 'Show All';

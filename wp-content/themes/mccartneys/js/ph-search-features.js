@@ -79,22 +79,17 @@ document.addEventListener("DOMContentLoaded", function () {
         if (lettingsRadio.checked) {
             // Rent is selected
             if (!departmentParam && isHomeOrArchivePage) {
-                // Scenario 1: No department parameter in URL and correct body class
                 departmentField.value = 'residential-lettings';
             } else if (departmentParam === 'residential-sales') {
-                // Scenario 2: department equals residential-sales
                 departmentField.value = 'residential-lettings';
             }
         } else if (salesRadio.checked) {
             // Buy is selected
             if (!departmentParam && isHomeOrArchivePage) {
-                // Scenario 1: No department parameter in URL and correct body class
                 departmentField.value = ''; // Reset to initial unset state
             } else if (departmentParam === 'residential-sales') {
-                // Scenario 2: department equals residential-sales
                 departmentField.value = 'residential-sales';
             } else if (departmentParam === 'residential-lettings') {
-                // Scenario 3: department equals residential-lettings
                 departmentField.value = 'residential-sales';
             }
         }
@@ -115,7 +110,60 @@ document.addEventListener("DOMContentLoaded", function () {
     setInitialBuyRentState();
 
 
-    // Function to set form field values based on URL parameters
+    // Conditions for updating the price/rent field names
+    function updatePriceAndRentFields() {
+        const department = urlParams.get('department');
+        const isSales = salesRadio.checked;
+        const isLettings = lettingsRadio.checked;
+
+        if (isSales && department === 'commercial') {
+            // Update field names to commercial specific ones for sales
+            document.querySelector("#minimum_price_input").setAttribute('name', 'commercial_minimum_price');
+            document.querySelector("#maximum_price_input").setAttribute('name', 'commercial_maximum_price');
+        } else if (isLettings && department === 'commercial') {
+            // Update field names to commercial specific ones for lettings
+            document.querySelector("#minimum_rent_input").setAttribute('name', 'commercial_minimum_rent');
+            document.querySelector("#maximum_rent_input").setAttribute('name', 'commercial_maximum_rent');
+        } else {
+            // Reset to default field names if conditions are not met
+            document.querySelector("#minimum_price_input").setAttribute('name', 'minimum_price');
+            document.querySelector("#maximum_price_input").setAttribute('name', 'maximum_price');
+            document.querySelector("#minimum_rent_input").setAttribute('name', 'minimum_rent');
+            document.querySelector("#maximum_rent_input").setAttribute('name', 'maximum_rent');
+        }
+    }
+
+    // Check URL for commercial-specific parameters and update fields accordingly
+    function handleUrlParams() {
+        if (urlParams.has('commercial_minimum_price')) {
+            document.querySelector("#minimum_price_input").setAttribute('name', 'commercial_minimum_price');
+            document.querySelector("#minimum_price_input").value = urlParams.get('commercial_minimum_price');
+        }
+        if (urlParams.has('commercial_maximum_price')) {
+            document.querySelector("#maximum_price_input").setAttribute('name', 'commercial_maximum_price');
+            document.querySelector("#maximum_price_input").value = urlParams.get('commercial_maximum_price');
+        }
+        if (urlParams.has('commercial_minimum_rent')) {
+            document.querySelector("#minimum_rent_input").setAttribute('name', 'commercial_minimum_rent');
+            document.querySelector("#minimum_rent_input").value = urlParams.get('commercial_minimum_rent');
+        }
+        if (urlParams.has('commercial_maximum_rent')) {
+            document.querySelector("#maximum_rent_input").setAttribute('name', 'commercial_maximum_rent');
+            document.querySelector("#maximum_rent_input").value = urlParams.get('commercial_maximum_rent');
+        }
+    }
+
+    // Run the field updates and handle URL params
+    updatePriceAndRentFields();
+    handleUrlParams();
+
+    // Add event listeners for Sales/Lettings toggle changes
+    salesRadio.addEventListener('change', updatePriceAndRentFields);
+    lettingsRadio.addEventListener('change', updatePriceAndRentFields);
+
+    // Continue with the rest of the existing code...
+
+    // Set form field values based on URL parameters
     function setFieldValueFromUrl(paramName, fieldSelector) {
         const paramValue = urlParams.get(paramName);
         if (paramValue) {
@@ -187,40 +235,139 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Function to handle checkbox changes for property type or commercial property type
-    function handleCheckboxChange(department) {
+    function handleCheckboxChange(department, clickedCheckbox = null) {
         const fieldSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"]' : 'input[name="property_type[]"]';
         const showAllCheckboxSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"][value=""]' : 'input[name="property_type[]"][value=""]';
-
         const showAllCheckbox = document.querySelector(showAllCheckboxSelector);
 
-        updateSelectedCount(fieldSelector);
-
-        // Handle "Show All" logic
-        const selectedCount = document.querySelectorAll(`${fieldSelector}:checked`).length;
-        if (selectedCount > 0) {
-            showAllCheckbox.checked = false;
+        // If "Show All" is clicked, clear all other checkboxes
+        if (clickedCheckbox === showAllCheckbox) {
+            document.querySelectorAll(fieldSelector).forEach(checkbox => {
+                checkbox.checked = false; // Uncheck all other checkboxes
+                const parentElement = checkbox.closest('.search-form-checkboxes--option');
+                if (parentElement) {
+                    parentElement.classList.remove('checked'); // Remove checked class from parent
+                }
+            });
+            showAllCheckbox.checked = true; // Ensure "Show All" is checked
         } else {
-            showAllCheckbox.checked = true;
+            // If any other checkbox is clicked, "Show All" should be unchecked
+            showAllCheckbox.checked = false;
+
+            // Toggle the clicked checkbox and update its parent class
+            if (clickedCheckbox) {
+                const parentElement = clickedCheckbox.closest('.search-form-checkboxes--option');
+                if (clickedCheckbox.checked) {
+                    parentElement.classList.add('checked');
+                } else {
+                    parentElement.classList.remove('checked');
+                }
+            }
+
+            // Check the total number of selected checkboxes after the change
+            const selectedCount = document.querySelectorAll(`${fieldSelector}:checked`).length;
+
+            // If no checkboxes are selected, automatically select "Show All"
+            if (selectedCount === 0) {
+                showAllCheckbox.checked = true;
+            }
+        }
+
+        // Always update the selected count after any user change
+        updateSelectedCount(fieldSelector);
+    }
+
+    // Function to manually update the count of selected checkboxes
+    function updateSelectedCount(fieldSelector) {
+        const showAllCheckboxSelector = fieldSelector.includes('commercial') ?
+            'input[name="commercial_property_type[]"][value=""]' :
+            'input[name="property_type[]"][value=""]';
+        const showAllCheckbox = document.querySelector(showAllCheckboxSelector);
+
+        // Count the selected checkboxes, excluding "Show All"
+        const selectedCount = document.querySelectorAll(`${fieldSelector}:checked`).length;
+        const actualSelectedCount = showAllCheckbox.checked ? 0 : selectedCount; // Don't count if "Show All" is checked
+
+        const triggerElement = document.querySelector('.search-form--type .search-form-dropdown--trigger');
+
+        if (triggerElement) {
+            if (actualSelectedCount > 0) {
+                triggerElement.textContent = `${actualSelectedCount} Selected`;
+            } else {
+                triggerElement.textContent = 'Property Type';
+            }
         }
     }
+
+    // Function to disable checkbox event listeners during initialization
+    function disableCheckboxEventListeners(fieldSelector) {
+        document.querySelectorAll(fieldSelector).forEach(checkbox => {
+            checkbox.setAttribute('data-listener-disabled', 'true'); // Flag that disables event listener temporarily
+        });
+    }
+
+    // Function to re-enable checkbox event listeners after initial load
+    function enableCheckboxEventListeners(department, fieldSelector) {
+        document.querySelectorAll(fieldSelector).forEach(checkbox => {
+            checkbox.removeAttribute('data-listener-disabled'); // Re-enable listeners by removing flag
+
+            // Only attach event listener if it's not already disabled
+            checkbox.addEventListener('change', function () {
+                if (!checkbox.getAttribute('data-listener-disabled')) {
+                    handleCheckboxChange(department, this);
+                }
+            });
+        });
+    }
+
 
     // Initialize the property type logic
     function initializePropertyTypeLogic() {
         const department = urlParams.get('department');
         const fieldSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"]' : 'input[name="property_type[]"]';
         const paramName = department === 'commercial' ? 'commercial_property_type[]' : 'property_type[]';
+        const showAllCheckboxSelector = department === 'commercial' ? 'input[name="commercial_property_type[]"][value=""]' : 'input[name="property_type[]"][value=""]';
+        const showAllCheckbox = document.querySelector(showAllCheckboxSelector);
 
+        // Disable event listeners during initialization to avoid double counting
+        disableCheckboxEventListeners(fieldSelector);
+
+        // Manually set checkboxes from URL parameters without triggering change events
         setCheckboxesFromUrl(paramName, fieldSelector);
 
-        // Set up change event listeners for checkboxes
+        // Ensure checked class is added to parent elements for pre-selected checkboxes on page load
         document.querySelectorAll(fieldSelector).forEach(checkbox => {
-            checkbox.addEventListener('change', function () {
-                handleCheckboxChange(department);
-                this.blur();
-                this.focus();
-            });
+            const parentElement = checkbox.closest('.search-form-checkboxes--option');
+            if (parentElement) {
+                if (checkbox.checked) {
+                    parentElement.classList.add('checked');
+                } else {
+                    parentElement.classList.remove('checked');
+                }
+            }
+        });
+
+        // Automatically select "Show All" if no other checkboxes are selected on page load
+        const selectedCount = document.querySelectorAll(`${fieldSelector}:checked`).length;
+        if (selectedCount === 0) {
+            showAllCheckbox.checked = true; // Automatically check "Show All" if no values are selected
+        } else {
+            showAllCheckbox.checked = false; // Deselect "Show All" if other checkboxes are selected
+        }
+
+        // Re-enable checkbox event listeners after initialization
+        enableCheckboxEventListeners(department, fieldSelector);
+
+        // Manually update the selected count on page load without triggering events
+        updateSelectedCount(fieldSelector);
+
+        // Add event listener to "Show All" checkbox to clear all other selections when selected
+        showAllCheckbox.addEventListener('change', function () {
+            handleCheckboxChange(department, this);
         });
     }
+
+
 
     // Call the function on page load
     initializePropertyTypeLogic();
@@ -541,7 +688,6 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = newUrl;
         });
     }
-
 
     // Form submission logic to remove empty or irrelevant parameters
     jQuery('form').on('submit', function () {
