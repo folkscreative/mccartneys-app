@@ -20,6 +20,10 @@ $branch_ph_office_map = [
 'stourport-on-severn' => 1805,
 'welshpool' => 1806,
 'worcester' => 1807,
+'fine-country-brecon-office' => 29977,
+'fine-country-hay-on-wye-office' => 29978,
+'fine-country-ludlow-office' => 29979,
+'fine-country-mid-wales-office' => 29980,
 ];
 // Get the current page slug
 $current_slug = get_post_field('post_name', get_the_ID());
@@ -169,13 +173,13 @@ $no_results_message = "No properties in this department for this branch"
             <div class="outer-wrapper">
                 <h2 class="title"><?php the_sub_field('recent_property_title'); ?></h2>
                 <ul class="nav nav-tabs" id="propertyTab" role="tablist">
-                <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-sale" data-bs-toggle="tab"
-                            href="#sale" role="tab" aria-controls="sale" aria-selected="false" tabindex="-1">Sale</a>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-sale"
+                            data-bs-toggle="tab" href="#sale" role="tab" aria-controls="sale" aria-selected="false"
+                            tabindex="-1">Sale</a>
                     </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" id="tab-auction"
-                            data-bs-toggle="tab" href="#auction" role="tab" aria-controls="auction"
-                            aria-selected="true">Auction</a></li>
-                    
+                    <li class="nav-item" role="presentation"><a class="nav-link" id="tab-auction" data-bs-toggle="tab"
+                            href="#auction" role="tab" aria-controls="auction" aria-selected="true">Auction</a></li>
+
                     <li class="nav-item" role="presentation"><a class="nav-link" id="tab-rent" data-bs-toggle="tab"
                             href="#rent" role="tab" aria-controls="rent" aria-selected="false" tabindex="-1">Rent</a>
                     </li>

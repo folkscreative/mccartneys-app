@@ -1193,12 +1193,12 @@ function rewrites_init()
 add_action( "propertyhive_property_imported_reapit_foundations_json", 'mcc_ph_import_maps', 10, 2 );
 function mcc_ph_import_maps($post_id, $property)
 {
-    // Properties arriving from branch codes BRE, HAY, LUD should be assigned to the department Fine and Country.
+    // Properties arriving from branch codes BRF, HOW, FCL, FCM or WPL should be assigned to the department Fine and Country.
     if ( isset( $property['officeIds'] ) && is_array( $property['officeIds'] ) && count( $property['officeIds'] ) > 0 )
     {
         foreach ( $property['officeIds'] as $office_id )
         {
-            if ( $office_id == 'BRE' || $office_id == 'HAY' || $office_id == 'LUD' )
+            if ( $office_id == 'BRF' || $office_id == 'HOW' || $office_id == 'FCL' || $office_id == 'FCM' || $office_id == 'WPL' )
             {
                 update_post_meta( $post_id, '_department', 'fine-and-country' );
             }
