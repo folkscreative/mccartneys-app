@@ -3,6 +3,7 @@ get_header();
 
 // Map the branch slug to the PH Office ID
 $branch_ph_office_map = [
+    // slug of branch => ph office ID
 'brecon' => 1791,
 'brecon-livestock-market' => 1792,
 'builth-wells' => 1793,
@@ -20,10 +21,10 @@ $branch_ph_office_map = [
 'stourport-on-severn' => 1805,
 'welshpool' => 1806,
 'worcester' => 1807,
-'fine-country-brecon-office' => 29977,
-'fine-country-hay-on-wye-office' => 29978,
-'fine-country-ludlow-office' => 29979,
-'fine-country-mid-wales-office' => 29980,
+'fine-country-brecon-office' => 34806,
+'fine-country-hay-on-wye-office' => 34807,
+'fine-country-ludlow-office' => 34808,
+'fine-country-mid-wales-office' => 34809,
 ];
 // Get the current page slug
 $current_slug = get_post_field('post_name', get_the_ID());
