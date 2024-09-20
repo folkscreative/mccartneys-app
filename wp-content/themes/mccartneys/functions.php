@@ -1451,8 +1451,10 @@ function mcc_ph_search() {
                                 <span id="maxValueSales">£3,500,000</span>
                             </div>
                         </div>
-                        <input type="hidden" name="minimum_price" id="minimum_price_input" value="0">
-                        <input type="hidden" name="maximum_price" id="maximum_price_input" value="3500000">
+                        <input type="hidden" name="minimum_price" id="minimum_price_input">
+                        <input type="hidden" name="maximum_price" id="maximum_price_input">
+                        <input type="hidden" name="commercial_minimum_price" id="commercial_minimum_price_input">
+                        <input type="hidden" name="commercial_maximum_price" id="commercial_maximum_price_input">
                     </div>
 
                     <!-- Rental Pricing Slider -->
@@ -1468,8 +1470,10 @@ function mcc_ph_search() {
                                 <span id="maxValueLettings">£5,000 pcm</span>
                             </div>
                         </div>
-                        <input type="hidden" name="minimum_rent" id="minimum_rent_input" value="0">
-                        <input type="hidden" name="maximum_rent" id="maximum_rent_input" value="5000">
+                        <input type="hidden" name="minimum_rent" id="minimum_rent_input">
+                        <input type="hidden" name="maximum_rent" id="maximum_rent_input">
+                        <input type="hidden" name="commercial_minimum_rent" id="commercial_minimum_rent_input">
+                        <input type="hidden" name="commercial_maximum_rent" id="commercial_maximum_rent_input">
                     </div>
 
                 </div>

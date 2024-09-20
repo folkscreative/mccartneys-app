@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
-    setPriceAndRentFieldsFromUrl();
-
+    updatePriceAndRentFields();
 
     // Set the department and toggle state based on body class
     function setDepartmentFromBodyClass() {
@@ -41,6 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
             departmentField.value = departmentValue;
         }
     }
+
+
 
     // Handle Buy/Rent toggle based on URL parameter or body class
     function setToggleFromUrlOrBodyClass() {
@@ -110,59 +111,71 @@ document.addEventListener("DOMContentLoaded", function () {
     // Set the initial state on page load
     setInitialBuyRentState();
 
+    function updateFieldFromURL(param, fieldSelector) {
+        const value = urlParams.get(param);
+        const field = document.querySelector(fieldSelector);
+
+        if (value !== null && field) {
+            if (!field.value) { // Only set value if it is empty
+                field.value = value;
+                console.log(`Setting ${param}: ${value}, Field: ${fieldSelector}, Value: ${field.value}`);
+            } else {
+                console.log(`Field ${fieldSelector} already has a value: ${field.value}, skipping update.`);
+            }
+        } else {
+            if (!field) {
+                console.log(`Field ${fieldSelector} not found in DOM`);
+            } else {
+                console.log(`${param} not found in URL`);
+            }
+        }
+    }
+
+
+
+
+
 
     function updatePriceAndRentFields() {
-        const department = urlParams.get('department'); // Check the department
-        const parentDepartment = urlParams.get('_parent_department'); // Check the parent department (Sales or Lettings)
-        const isSales = parentDepartment === 'Sales';
-        const isLettings = parentDepartment === 'Lettings';
+        const department = urlParams.get('department');
+        const isSales = urlParams.get('_parent_department') === 'Sales';
+        const isLettings = urlParams.get('_parent_department') === 'Lettings';
+
+        // Avoid clearing the fields at the beginning of the function
+        // Only clear fields when necessary
+        // Only clear the fields if they haven't been set yet
+        if (!jQuery("#commercial_minimum_price_input").val() && !jQuery("#commercial_maximum_price_input").val()) {
+            // Clear fields here only if necessary
+            jQuery("#commercial_minimum_price_input").val("");
+            jQuery("#commercial_maximum_price_input").val("");
+        }
 
         if (department === 'commercial') {
             if (isSales) {
-                // If commercial sales, set commercial fields for price
-                document.querySelector("#minimum_price_input").setAttribute('name', 'commercial_minimum_price');
-                document.querySelector("#maximum_price_input").setAttribute('name', 'commercial_maximum_price');
+                updateFieldFromURL('commercial_minimum_price', '#commercial_minimum_price_input');
+                updateFieldFromURL('commercial_maximum_price', '#commercial_maximum_price_input');
             } else if (isLettings) {
-                // If commercial lettings, set commercial fields for rent
-                document.querySelector("#minimum_rent_input").setAttribute('name', 'commercial_minimum_rent');
-                document.querySelector("#maximum_rent_input").setAttribute('name', 'commercial_maximum_rent');
+                updateFieldFromURL('commercial_minimum_rent', '#commercial_minimum_rent_input');
+                updateFieldFromURL('commercial_maximum_rent', '#commercial_maximum_rent_input');
             }
         } else {
-            // If not commercial, set the residential fields for price and rent
-            document.querySelector("#minimum_price_input").setAttribute('name', 'minimum_price');
-            document.querySelector("#maximum_price_input").setAttribute('name', 'maximum_price');
-            document.querySelector("#minimum_rent_input").setAttribute('name', 'minimum_rent');
-            document.querySelector("#maximum_rent_input").setAttribute('name', 'maximum_rent');
+            if (isSales) {
+                updateFieldFromURL('minimum_price', '#minimum_price_input');
+                updateFieldFromURL('maximum_price', '#maximum_price_input');
+            } else if (isLettings) {
+                updateFieldFromURL('minimum_rent', '#minimum_rent_input');
+                updateFieldFromURL('maximum_rent', '#maximum_rent_input');
+            }
         }
     }
 
 
 
 
-
-    // Check URL for commercial-specific parameters and update fields accordingly
-    function handleUrlParams() {
-        if (urlParams.has('commercial_minimum_price')) {
-            document.querySelector("#minimum_price_input").setAttribute('name', 'commercial_minimum_price');
-            document.querySelector("#minimum_price_input").value = urlParams.get('commercial_minimum_price');
-        }
-        if (urlParams.has('commercial_maximum_price')) {
-            document.querySelector("#maximum_price_input").setAttribute('name', 'commercial_maximum_price');
-            document.querySelector("#maximum_price_input").value = urlParams.get('commercial_maximum_price');
-        }
-        if (urlParams.has('commercial_minimum_rent')) {
-            document.querySelector("#minimum_rent_input").setAttribute('name', 'commercial_minimum_rent');
-            document.querySelector("#minimum_rent_input").value = urlParams.get('commercial_minimum_rent');
-        }
-        if (urlParams.has('commercial_maximum_rent')) {
-            document.querySelector("#maximum_rent_input").setAttribute('name', 'commercial_maximum_rent');
-            document.querySelector("#maximum_rent_input").value = urlParams.get('commercial_maximum_rent');
-        }
-    }
 
     // Run the field updates and handle URL params
     updatePriceAndRentFields();
-    handleUrlParams();
+
 
 
 
@@ -182,44 +195,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Ensure the price/rent input fields are updated before sliders initialize
-    function setPriceAndRentFieldsFromUrl() {
-        const department = urlParams.get('department');
-        const parentDepartment = urlParams.get('_parent_department'); // Check the parent department
 
-        if (department === 'commercial') {
-            // Commercial Sales or Lettings
-            if (parentDepartment === 'Sales') {
-                if (urlParams.has('commercial_minimum_price')) {
-                    document.querySelector("#minimum_price_input").value = urlParams.get('commercial_minimum_price');
-                }
-                if (urlParams.has('commercial_maximum_price')) {
-                    document.querySelector("#maximum_price_input").value = urlParams.get('commercial_maximum_price');
-                }
-            } else if (parentDepartment === 'Lettings') {
-                if (urlParams.has('commercial_minimum_rent')) {
-                    document.querySelector("#minimum_rent_input").value = urlParams.get('commercial_minimum_rent');
-                }
-                if (urlParams.has('commercial_maximum_rent')) {
-                    document.querySelector("#maximum_rent_input").value = urlParams.get('commercial_maximum_rent');
-                }
-            }
-        } else {
-            // Handle Residential Cases
-            if (urlParams.has('minimum_price')) {
-                document.querySelector("#minimum_price_input").value = urlParams.get('minimum_price');
-            }
-            if (urlParams.has('maximum_price')) {
-                document.querySelector("#maximum_price_input").value = urlParams.get('maximum_price');
-            }
-            if (urlParams.has('minimum_rent')) {
-                document.querySelector("#minimum_rent_input").value = urlParams.get('minimum_rent');
-            }
-            if (urlParams.has('maximum_rent')) {
-                document.querySelector("#maximum_rent_input").value = urlParams.get('maximum_rent');
-            }
-        }
-    }
+
 
 
 
@@ -255,6 +232,9 @@ document.addEventListener("DOMContentLoaded", function () {
             updatePriceTriggerFields('commercial_lettings');
         }
     }
+
+
+
 
 
 
@@ -607,6 +587,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    function updateSliderValues(sliderType, minValue, maxValue) {
+        if (sliderType === 'commercial_sales') {
+            document.querySelector("#commercial_minimum_price_input").value = minValue;
+            document.querySelector("#commercial_maximum_price_input").value = maxValue;
+        } else if (sliderType === 'commercial_lettings') {
+            document.querySelector("#commercial_minimum_rent_input").value = minValue;
+            document.querySelector("#commercial_maximum_rent_input").value = maxValue;
+        } else if (sliderType === 'sales') {
+            document.querySelector("#minimum_price_input").value = minValue;
+            document.querySelector("#maximum_price_input").value = maxValue;
+        } else if (sliderType === 'lettings') {
+            document.querySelector("#minimum_rent_input").value = minValue;
+            document.querySelector("#maximum_rent_input").value = maxValue;
+        }
+    }
+
 
 
     function initializeSliderValues(sliderSelector, minValueSelector, maxValueSelector, triggerType) {
@@ -621,43 +617,151 @@ document.addEventListener("DOMContentLoaded", function () {
         updatePriceTrigger(triggerType);
     }
 
+
     jQuery("#sales-slider-range").slider({
         range: true,
         min: 0,
         max: 3500000,
-        values: [parseInt(urlParams.get('minimum_price')) || 0, parseInt(urlParams.get('maximum_price')) || 3500000],
+        values: [
+            // Prioritize commercial fields if the department is commercial
+            parseInt(jQuery("#commercial_minimum_price_input").val()) || parseInt(urlParams.get('commercial_minimum_price')) ||
+            // Otherwise use standard fields
+            parseInt(jQuery("#minimum_price_input").val()) || parseInt(urlParams.get('minimum_price')) || 0,
+
+            parseInt(jQuery("#commercial_maximum_price_input").val()) || parseInt(urlParams.get('commercial_maximum_price')) ||
+            // Otherwise use standard fields
+            parseInt(jQuery("#maximum_price_input").val()) || parseInt(urlParams.get('maximum_price')) || 3500000
+        ],
         slide: function (event, ui) {
             jQuery("#minValueSales").text("£" + ui.values[0].toLocaleString());
             jQuery("#maxValueSales").text("£" + ui.values[1].toLocaleString());
-            jQuery("#minimum_price_input").val(ui.values[0]);
-            jQuery("#maximum_price_input").val(ui.values[1]);
+
+            const department = urlParams.get('department');
+
+            if (department === 'commercial') {
+                // Update commercial price fields if the department is commercial
+                jQuery("#commercial_minimum_price_input").val(ui.values[0]);
+                jQuery("#commercial_maximum_price_input").val(ui.values[1]);
+            } else {
+                // Update standard price fields if not commercial
+                jQuery("#minimum_price_input").val(ui.values[0]);
+                jQuery("#maximum_price_input").val(ui.values[1]);
+            }
+
             updateSliderFill("#sales-slider-range", ui.values);
             updatePriceTrigger('sales');
             jQuery(this).slider('option', 'step', getSalesStepValue(ui.value));
         },
         create: function () {
+            // Initialize slider values from hidden fields (respecting both standard and commercial fields)
             initializeSliderValues("#sales-slider-range", "#minValueSales", "#maxValueSales", 'sales');
         }
     });
+
+    function initializeCommercialSaleSliders() {
+        if (document.body.classList.contains('page-template-commercial-sale')) {
+
+            jQuery("#sales-slider-range").slider({
+                range: true,
+                min: 0,
+                max: 3500000,
+                values: [
+                    parseInt(jQuery("#commercial_minimum_price_input").val()) || 0,
+                    parseInt(jQuery("#commercial_maximum_price_input").val()) || 3500000
+                ],
+                slide: function (event, ui) {
+                    jQuery("#minValueSales").text("£" + ui.values[0].toLocaleString());
+                    jQuery("#maxValueSales").text("£" + ui.values[1].toLocaleString());
+
+                    // Update commercial price fields directly
+                    jQuery("#commercial_minimum_price_input").val(ui.values[0]);
+                    jQuery("#commercial_maximum_price_input").val(ui.values[1]);
+
+                    updateSliderFill("#sales-slider-range", ui.values);
+                    updatePriceTrigger('sales');
+                    jQuery(this).slider('option', 'step', getSalesStepValue(ui.value));
+                },
+                create: function () {
+                    initializeSliderValues("#sales-slider-range", "#minValueSales", "#maxValueSales", 'sales');
+                }
+            });
+        }
+    }
+
+
 
     jQuery("#lettings-slider-range").slider({
         range: true,
         min: 0,
         max: 5000,
-        values: [parseInt(urlParams.get('minimum_rent')) || 0, parseInt(urlParams.get('maximum_rent')) || 5000],
+        values: [
+            // Prioritize commercial fields if the department is commercial
+            parseInt(jQuery("#commercial_minimum_rent_input").val()) || parseInt(urlParams.get('commercial_minimum_rent')) ||
+            // Otherwise use standard fields
+            parseInt(jQuery("#minimum_rent_input").val()) || parseInt(urlParams.get('minimum_rent')) || 0,
+
+            parseInt(jQuery("#commercial_maximum_rent_input").val()) || parseInt(urlParams.get('commercial_maximum_rent')) ||
+            // Otherwise use standard fields
+            parseInt(jQuery("#maximum_rent_input").val()) || parseInt(urlParams.get('maximum_rent')) || 5000
+        ],
         step: 250,
         slide: function (event, ui) {
             jQuery("#minValueLettings").text("£" + ui.values[0].toLocaleString() + " pcm");
             jQuery("#maxValueLettings").text("£" + ui.values[1].toLocaleString() + " pcm");
-            jQuery("#minimum_rent_input").val(ui.values[0]);
-            jQuery("#maximum_rent_input").val(ui.values[1]);
+
+            const department = urlParams.get('department');
+
+            if (department === 'commercial') {
+                // Update commercial rent fields if the department is commercial
+                jQuery("#commercial_minimum_rent_input").val(ui.values[0]);
+                jQuery("#commercial_maximum_rent_input").val(ui.values[1]);
+            } else {
+                // Update standard rent fields if not commercial
+                jQuery("#minimum_rent_input").val(ui.values[0]);
+                jQuery("#maximum_rent_input").val(ui.values[1]);
+            }
+
             updateSliderFill("#lettings-slider-range", ui.values);
             updatePriceTrigger('lettings');
         },
         create: function () {
+            // Initialize slider values from hidden fields (respecting both standard and commercial fields)
             initializeSliderValues("#lettings-slider-range", "#minValueLettings", "#maxValueLettings", 'lettings');
         }
     });
+
+    function initializeCommercialLettingSliders() {
+        if (document.body.classList.contains('page-template-commercial-letting')) {
+            jQuery("#lettings-slider-range").slider({
+                range: true,
+                min: 0,
+                max: 5000,
+                values: [
+                    parseInt(jQuery("#commercial_minimum_rent_input").val()) || 0,
+                    parseInt(jQuery("#commercial_maximum_rent_input").val()) || 5000
+                ],
+                step: 250,
+                slide: function (event, ui) {
+                    jQuery("#minValueLettings").text("£" + ui.values[0].toLocaleString() + " pcm");
+                    jQuery("#maxValueLettings").text("£" + ui.values[1].toLocaleString() + " pcm");
+
+                    // Update commercial rent fields directly
+                    jQuery("#commercial_minimum_rent_input").val(ui.values[0]);
+                    jQuery("#commercial_maximum_rent_input").val(ui.values[1]);
+
+                    updateSliderFill("#lettings-slider-range", ui.values);
+                    updatePriceTrigger('lettings');
+                },
+                create: function () {
+                    initializeSliderValues("#lettings-slider-range", "#minValueLettings", "#maxValueLettings", 'lettings');
+                }
+            });
+        }
+    }
+
+
+
+
 
     function updateSliderFill(sliderId, values) {
         const slider = jQuery(sliderId);
@@ -746,18 +850,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Ensure that sliders and input fields are updated correctly on page load
     function initializePriceAndRentFields() {
-        // Update the hidden input field names based on the department
+        // First, set the hidden input fields from the URL parameters
         updatePriceAndRentFields();
 
-        // Set the hidden input fields with URL parameters
-        setPriceAndRentFieldsFromUrl();
-
-        // Update sliders with the values from the input fields
+        // Then, update sliders with the values from the input fields
         updateSlidersAndInputsFromUrl('sales');
         updateSlidersAndInputsFromUrl('lettings');
         updateSlidersAndInputsFromUrl('commercial_sales');
         updateSlidersAndInputsFromUrl('commercial_lettings');
     }
+
+
 
 
     initializePriceAndRentFields();
@@ -887,33 +990,90 @@ document.addEventListener("DOMContentLoaded", function () {
             jQuery(propertyTypeField).removeAttr('name');
         }
 
-        // Remove minimum_rent and maximum_rent if Sales is selected
+        // Check the parent department toggle
         if (jQuery('#_parent_department_sales').is(':checked')) {
+            // If Sales is selected, remove the rent fields (standard and commercial)
             jQuery("#minimum_rent_input").removeAttr('name');
             jQuery("#maximum_rent_input").removeAttr('name');
+            jQuery("#commercial_minimum_rent_input").removeAttr('name');
+            jQuery("#commercial_maximum_rent_input").removeAttr('name');
         }
 
-        // Remove minimum_price and maximum_price if Lettings is selected
         if (jQuery('#_parent_department_lettings').is(':checked')) {
+            // If Lettings is selected, remove the price fields (standard and commercial)
             jQuery("#minimum_price_input").removeAttr('name');
             jQuery("#maximum_price_input").removeAttr('name');
+            jQuery("#commercial_minimum_price_input").removeAttr('name');
+            jQuery("#commercial_maximum_price_input").removeAttr('name');
         }
 
         // Remove department if not selected or Show All
         if (!jQuery('input[name="department"]').val()) {
             jQuery('input[name="department"]').removeAttr('name');
         }
+
+        // If department is commercial, remove standard fields
+        if (department === 'commercial') {
+            jQuery('input[name="minimum_price"]').removeAttr('name');
+            jQuery('input[name="maximum_price"]').removeAttr('name');
+            jQuery('input[name="minimum_rent"]').removeAttr('name');
+            jQuery('input[name="maximum_rent"]').removeAttr('name');
+        } else {
+            // If not commercial, remove commercial fields
+            jQuery('input[name="commercial_minimum_price"]').removeAttr('name');
+            jQuery('input[name="commercial_maximum_price"]').removeAttr('name');
+            jQuery('input[name="commercial_minimum_rent"]').removeAttr('name');
+            jQuery('input[name="commercial_maximum_rent"]').removeAttr('name');
+        }
+
+        // **NEW: Handling for page-template-commercial-sale**
+        if (document.body.classList.contains('page-template-commercial-sale')) {
+            // We are on a commercial sale page, so remove standard pricing fields and retain commercial pricing fields
+            jQuery('input[name="minimum_price"]').removeAttr('name');
+            jQuery('input[name="maximum_price"]').removeAttr('name');
+
+            // Ensure commercial pricing fields are retained
+            jQuery("#commercial_minimum_price_input").attr('name', 'commercial_minimum_price');
+            jQuery("#commercial_maximum_price_input").attr('name', 'commercial_maximum_price');
+
+            // Remove commercial rent fields as they are irrelevant on this page
+            jQuery("#commercial_minimum_rent_input").removeAttr('name');
+            jQuery("#commercial_maximum_rent_input").removeAttr('name');
+        }
+
+        // **NEW: Handling for page-template-commercial-letting**
+        if (document.body.classList.contains('page-template-commercial-letting')) {
+            // We are on a commercial letting page, so remove standard rent fields and retain commercial rent fields
+            jQuery('input[name="minimum_rent"]').removeAttr('name');
+            jQuery('input[name="maximum_rent"]').removeAttr('name');
+
+            // Ensure commercial rent fields are retained
+            jQuery("#commercial_minimum_rent_input").attr('name', 'commercial_minimum_rent');
+            jQuery("#commercial_maximum_rent_input").attr('name', 'commercial_maximum_rent');
+
+            // Remove commercial pricing fields as they are irrelevant on this page
+            jQuery("#commercial_minimum_price_input").removeAttr('name');
+            jQuery("#commercial_maximum_price_input").removeAttr('name');
+        }
     });
+
+
 
     // Function to update the label text for Sold STC based on department toggle
     function updateSoldStcLabel() {
         const stcLabel = document.querySelector('.stc-checkbox-control + span');
-        if (jQuery('#_parent_department_lettings').is(':checked')) {
-            stcLabel.textContent = 'Include Let Properties';
-        } else {
-            stcLabel.textContent = 'Include Under Offer, Sold STC';
+        const stcCheckbox = document.querySelector('.stc-checkbox-control');
+
+        // Check if the checkbox exists on the page before proceeding
+        if (stcCheckbox && stcLabel) {
+            if (jQuery('#_parent_department_lettings').is(':checked')) {
+                stcLabel.textContent = 'Include Let Properties';
+            } else {
+                stcLabel.textContent = 'Include Under Offer, Sold STC';
+            }
         }
     }
+
 
     // Call the function to update the label text on page load based on the initial state
     updateSoldStcLabel();
@@ -933,4 +1093,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Ensure the initial state of icons
     jQuery('.filter-draw-trigger .icon_close').hide(); // Hide icon_close initially
+    initializeCommercialSaleSliders(); // For commercial sale pages
+    initializeCommercialLettingSliders(); // For commercial letting pages
 });
