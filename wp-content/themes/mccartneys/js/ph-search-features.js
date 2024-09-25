@@ -170,18 +170,48 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    // Function to update the hidden field based on department and parent department selection
+    function updateCommercialHiddenField() {
+        const department = document.querySelector('input[name="department"]').value;
+        const isSalesChecked = document.getElementById('_parent_department_sales').checked;
+        const isLettingsChecked = document.getElementById('_parent_department_lettings').checked;
+        const hiddenField = document.getElementById('commercial_for_sale_to_rent'); // Hidden field
+
+        if (department === 'commercial') {
+            if (isSalesChecked) {
+                hiddenField.value = 'for_sale';
+            } else if (isLettingsChecked) {
+                hiddenField.value = 'to_rent';
+            }
+        } else {
+            hiddenField.value = ''; // Clear the hidden field if not commercial
+        }
+    }
+
+
+
+
 
 
 
     // Run the field updates and handle URL params
     updatePriceAndRentFields();
+    updateCommercialHiddenField();
+
 
 
 
 
     // Add event listeners for Sales/Lettings toggle changes
-    salesRadio.addEventListener('change', updatePriceAndRentFields);
-    lettingsRadio.addEventListener('change', updatePriceAndRentFields);
+    salesRadio.addEventListener('change', function () {
+        handleBuyRentToggle(); // Existing function
+        updateCommercialHiddenField();
+    });
+
+    lettingsRadio.addEventListener('change', function () {
+        handleBuyRentToggle(); // Existing function
+        updateCommercialHiddenField();
+    });
 
 
     // Set form field values based on URL parameters
@@ -252,6 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setDepartmentFromUrl();
+    updateCommercialHiddenField();
 
     // Set address_keyword field value if present in URL
     setFieldValueFromUrl('address_keyword', 'input[name="address_keyword"]');
@@ -460,10 +491,12 @@ document.addEventListener("DOMContentLoaded", function () {
             salesSlider.show();
             lettingsSlider.hide();
             updatePriceTrigger('sales');
+            updateCommercialHiddenField();
         } else if (jQuery('#_parent_department_lettings').is(':checked')) {
             salesSlider.hide();
             lettingsSlider.show();
             updatePriceTrigger('lettings');
+            updateCommercialHiddenField();
         }
     }
 

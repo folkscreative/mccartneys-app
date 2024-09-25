@@ -1539,7 +1539,7 @@ function mcc_ph_search() {
             </div>
         </div>
     </div>
-
+    <input type="hidden" name="commercial_for_sale_to_rent" id="commercial_for_sale_to_rent" value="">
     <input type="submit" value="search" class="search-form-control search-form-control--submit">
 </form>
 
