@@ -90,53 +90,64 @@ wp_reset_postdata();?>
                 ?>
             </div>
             <div class="pagination-container">
-                <?php
-                echo paginate_links(array(
-                    'total' => $all_posts->max_num_pages,
-                    'prev_text' => __('<span><i class="fa-solid fa-angle-left"></i></span> Back'),
-                    'next_text' => __('Next <span><i class="fa-solid fa-angle-right"></i></span>'),
-                    'mid_size' => 2,
-                    'end_size' => 1,
-                    'current' => $paged,
-                ));
-                ?>
+            <?php
+            
+            $posts_per_page = 6;
+
+            // Get the current page number from the URL
+            $paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
+
+            // Custom WP_Query for your custom post type
+            $args = array(
+                'post_type' => 'posts',
+                'posts_per_page' => $posts_per_page,
+                'paged' => $paged,
+            );
+
+            $custom_query = new WP_Query($args);
+
+            if ($custom_query->have_posts()) {
+                echo '<div class="custom-post-list">';
+                
+                while ($custom_query->have_posts()) {
+                    $custom_query->the_post();
+                    
+                    // Output your custom post structure here
+                    echo '<div class="custom-post-item">';
+                    the_title('<h2>', '</h2>');
+                    the_excerpt();
+                    echo '</div>';
+                }
+                
+                echo '</div>'; // End of custom-post-list
+                
+                // Pagination Links
+                $total_pages = $custom_query->max_num_pages;
+
+                if ($total_pages > 1) {
+                    echo '<div class="pagination">';
+                    echo paginate_links(array(
+                        'current' => $paged,
+                        'total' => $total_pages,
+                        'prev_text' => __('« Prev'),
+                        'next_text' => __('Next »'),
+                        'mid_size' => 2,
+                    ));
+                    echo '</div>';
+                }
+                
+                wp_reset_postdata(); // Reset the post data after custom query
+            } else {
+                // If no posts are found
+                echo '<p>No posts found for this custom post type.</p>';
+            }
+            ?>
+
             </div>
         </div>
-        <?php
-        foreach ($categories as $category) {
-            $cat_slug = $category->slug;
-            $cat_id = $category->term_id;
-            $cat_paged = (isset($_GET['paged_' . $cat_slug])) ? absint($_GET['paged_' . $cat_slug]) : 1;
-            echo '<div class="tab-pane fade" id="' . $cat_slug . '" role="tabpanel" aria-labelledby="' . $cat_slug . '-tab">';
-            echo '<div class="row">';
-            $cat_posts = new WP_Query(array(
-                'cat' => $cat_id,
-                'posts_per_page' => 6,
-                'paged' => $cat_paged
-            ));
-            if ($cat_posts->have_posts()) {
-                while ($cat_posts->have_posts()) {
-                    $cat_posts->the_post();
-                    get_template_part('template-parts/content', 'custom');
-                }
-            }
-            echo '</div>';
-            echo '<div class="pagination-container">';
-            echo paginate_links(array(
-                'total' => $cat_posts->max_num_pages,
-                'prev_text' => __('<span><i class="fa-solid fa-angle-left"></i></span> Back'),
-                'next_text' => __('Next <span><i class="fa-solid fa-angle-right"></i></span>'),
-                'mid_size' => 2,
-                'end_size' => 1,
-                'current' => $cat_paged,
-                'add_args' => array('paged_' . $cat_slug => '%#%'),
-                'format' => '?paged_' . $cat_slug . '=%#%',
-            ));
-            echo '</div>';
-            echo '</div>';
-            wp_reset_postdata();
-        }
-        ?>
+        
+
+
     </div>
 </div>
 </div>
