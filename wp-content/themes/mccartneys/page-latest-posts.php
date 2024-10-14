@@ -55,7 +55,7 @@ wp_reset_postdata();?>
 <div class="post-boxes">
 <div class="container">
     <div class="category-nav">
-    <h2>Latest Article</h2>
+    <h2>Latest Articles</h2>
 
     <!-- Tabs navigation -->
     <ul class="nav nav-tabs" id="categoryTabs" role="tablist">
@@ -79,8 +79,11 @@ wp_reset_postdata();?>
         <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
             <div class="row g-3">
                 <?php
-                $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-                $all_posts = new WP_Query(array('posts_per_page' => 6, 'paged' => $paged));
+                $paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
+                $all_posts = new WP_Query(array(
+                    'posts_per_page' => 6,
+                    'paged' => $paged,
+                ));
                 if ($all_posts->have_posts()) {
                     while ($all_posts->have_posts()) {
                         $all_posts->the_post();
@@ -90,64 +93,56 @@ wp_reset_postdata();?>
                 ?>
             </div>
             <div class="pagination-container">
-            <?php
-            
-            $posts_per_page = 6;
-
-            // Get the current page number from the URL
-            $paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
-
-            // Custom WP_Query for your custom post type
-            $args = array(
-                'post_type' => 'posts',
-                'posts_per_page' => $posts_per_page,
-                'paged' => $paged,
-            );
-
-            $custom_query = new WP_Query($args);
-
-            if ($custom_query->have_posts()) {
-                echo '<div class="custom-post-list">';
-                
-                while ($custom_query->have_posts()) {
-                    $custom_query->the_post();
-                    
-                    // Output your custom post structure here
-                    echo '<div class="custom-post-item">';
-                    the_title('<h2>', '</h2>');
-                    the_excerpt();
-                    echo '</div>';
-                }
-                
-                echo '</div>'; // End of custom-post-list
-                
-                // Pagination Links
-                $total_pages = $custom_query->max_num_pages;
-
-                if ($total_pages > 1) {
-                    echo '<div class="pagination">';
-                    echo paginate_links(array(
-                        'current' => $paged,
-                        'total' => $total_pages,
-                        'prev_text' => __('« Prev'),
-                        'next_text' => __('Next »'),
-                        'mid_size' => 2,
-                    ));
-                    echo '</div>';
-                }
-                
-                wp_reset_postdata(); // Reset the post data after custom query
-            } else {
-                // If no posts are found
-                echo '<p>No posts found for this custom post type.</p>';
-            }
-            ?>
-
+                <?php
+                 echo paginate_links(array(
+                    'total' => $all_posts->max_num_pages,
+                    'prev_text' => __('<span><i class="fa-solid fa-angle-left"></i></span> Back'),
+                    'next_text' => __('Next <span><i class="fa-solid fa-angle-right"></i></span>'),
+                    'mid_size' => 2,
+                    'end_size' => 1,
+                    'current' => $paged,
+                ));
+                ?>
             </div>
         </div>
+        <?php
+        foreach ($categories as $category) {
+            $cat_slug = $category->slug;
+            $cat_id = $category->term_id;
         
-
-
+            $cat_paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
+            echo '<div class="tab-pane fade" id="' . $cat_slug . '" role="tabpanel" aria-labelledby="' . $cat_slug . '-tab">';
+            echo '<div class="row">';
+            // WP Query for each category
+    $cat_posts = new WP_Query(array(
+        'cat' => $cat_id,
+        'posts_per_page' => 6,
+        'paged' => $cat_paged,
+    ));
+    if ($cat_posts->have_posts()) {
+        while ($cat_posts->have_posts()) {
+            $cat_posts->the_post();
+            get_template_part('template-parts/content', 'custom');
+        }
+    }
+    echo '</div>';
+    echo '<div class="pagination-container">';
+            // Pagination for category
+    echo paginate_links(array(
+        'total' => $cat_posts->max_num_pages,
+        'prev_text' => __('<span><i class="fa-solid fa-angle-left"></i></span> Back'),
+        'next_text' => __('Next <span><i class="fa-solid fa-angle-right"></i></span>'),
+        'mid_size' => 2,
+        'end_size' => 1,
+        'current' => $cat_paged,
+        'format' => '?paged=%#%', // Standard pagination format
+        'add_args' => array('tab' => $cat_slug), // Pass the tab to the pagination links
+    ));
+            echo '</div>';
+            echo '</div>';
+            wp_reset_postdata();
+        }
+        ?>
     </div>
 </div>
 </div>
@@ -156,3 +151,18 @@ wp_reset_postdata();?>
 
 
 
+<script>
+    // Preserve the active tab on page reload
+$(function () {
+    var activeTab = localStorage.getItem('activeTab');
+    if (activeTab) {
+        $('#categoryTabs a[href="' + activeTab + '"]').tab('show');
+    }
+
+    // Save the active tab in local storage
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var href = $(e.target).attr('href');
+        localStorage.setItem('activeTab', href);
+    });
+});
+</script>
