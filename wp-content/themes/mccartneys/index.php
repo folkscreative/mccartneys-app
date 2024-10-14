@@ -65,7 +65,7 @@ wp_reset_postdata();?>
 <div class="post-boxes">
 <div class="container">
     <div class="category-nav">
-    <h2>Latest Articles</h2>
+    <h2>Latest Article</h2>
 
     <!-- Tabs navigation -->
     <ul class="nav nav-tabs" id="categoryTabs" role="tablist">
