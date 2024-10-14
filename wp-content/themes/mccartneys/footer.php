@@ -159,11 +159,12 @@
                     <h3><?php the_field('phipps_group_title', 'option'); ?></h3>
                     <?php endif; ?>
 
-
                     <?php
-								$ph_logo = get_field('phipps_group_image', 'option');
-								if( !empty($ph_logo) ):?>
-                    <img src="<?php echo $ph_logo['url']; ?>" alt="<?php echo $ph_logo['alt']; ?>">
+                        $ph_logo = get_field('phipps_group_image', 'option');
+                        if( !empty($ph_logo) ):?>
+                        <a href="<?php echo site_url(); ?>">
+                        <img src="<?php echo $ph_logo['url']; ?>" alt="<?php echo $ph_logo['alt']; ?>">
+                    </a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -262,9 +263,11 @@
                     <div class="blocks">
                         <?php while( have_rows('mc_group_images', 'option') ): the_row(); ?>
                         <?php
-								$mc_logo = get_sub_field('mc_group_image', 'option');
-								if( !empty($mc_logo) ):?>
-                        <img src="<?php echo $mc_logo['url']; ?>" alt="<?php echo $mc_logo['alt']; ?>">
+                            $mc_logo = get_sub_field('mc_group_image', 'option');
+                            if( !empty($mc_logo) ):?>
+                            <a href="<?php the_sub_field('phipps_mc_link', 'option'); ?>">
+                            <img src="<?php echo $mc_logo['url']; ?>" alt="<?php echo $mc_logo['alt']; ?>">
+                            </a>
                         <?php endif; ?>
                         <?php endwhile; ?>
                     </div>

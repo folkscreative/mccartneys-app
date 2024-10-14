@@ -56,8 +56,7 @@ $no_results_message = "No properties in this department for this branch"
                         <div class="inner-wrapper">
                             <div class="col-left">
                                 <?php the_field('branches_content_data_info'); ?>
-                                <a href="<?php echo site_url('contact-us'); ?>" class="btn-cs-white">Contact us<span><i
-                                            class="fa-solid fa-angle-right"></i></span></a>
+                                
                             </div>
                             <div class="col-right">
                                 <h4>Services we provide:</h4>

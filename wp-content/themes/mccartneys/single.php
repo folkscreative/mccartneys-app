@@ -47,7 +47,6 @@ get_header();
 						<li>Lorem ipsum dolor</li>
 					</ul> -->
 					<p><strong><?php echo get_the_date('M/d/Y'); ?></strong></p>
-                    <p><strong>Created by <?php the_author(); ?></strong></p>
                     <p><?php $category = get_the_category(); echo $category[0]->cat_name; ?></p>
                     <h4>Share</h4>
                     
