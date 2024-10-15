@@ -106,26 +106,36 @@ wp_reset_postdata();?>
             </div>
         </div>
         <?php
-        foreach ($categories as $category) {
-            $cat_slug = $category->slug;
-            $cat_id = $category->term_id;
-        
-            $cat_paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
-            echo '<div class="tab-pane fade" id="' . $cat_slug . '" role="tabpanel" aria-labelledby="' . $cat_slug . '-tab">';
-            echo '<div class="row">';
-            // WP Query for each category
+foreach ($categories as $category) {
+    $cat_slug = $category->slug;
+    $cat_id = $category->term_id;
+    
+    // Retrieve the current page number for each category
+    $cat_paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
+    
+    echo '<div class="tab-pane fade" id="' . $cat_slug . '" role="tabpanel" aria-labelledby="' . $cat_slug . '-tab">';
+    echo '<div class="row">';
+
+    // WP Query for each category
     $cat_posts = new WP_Query(array(
         'cat' => $cat_id,
         'posts_per_page' => 6,
         'paged' => $cat_paged,
     ));
+    
     if ($cat_posts->have_posts()) {
         while ($cat_posts->have_posts()) {
             $cat_posts->the_post();
             get_template_part('template-parts/content', 'custom');
         }
+    } else {
+        echo '<p>No posts found in this category.</p>';
     }
-    echo '</div>';
+
+    echo '</div>'; // End of row
+
+    // Pagination for category
+    echo '<div class="pagination-container">';
     echo paginate_links(array(
         'total' => $cat_posts->max_num_pages,
         'prev_text' => __('<span><i class="fa-solid fa-angle-left"></i></span> Back'),
@@ -133,43 +143,36 @@ wp_reset_postdata();?>
         'mid_size' => 2,
         'end_size' => 1,
         'current' => $cat_paged,
-        'format' => '?tab=' . $cat_slug . '&paged=%#%',
-        'add_args' => array('tab' => $cat_slug),
+        'format' => '?paged=%#%', // Standard pagination format
+        'add_args' => array('tab' => $cat_slug), // Add tab parameter to pagination links
     ));
-            echo '</div>';
-            echo '</div>';
-            wp_reset_postdata();
-        }
-        ?>
+    echo '</div>'; // End of pagination container
+
+    echo '</div>'; // End of tab-pane
+    wp_reset_postdata();
+}
+?>
+
     </div>
-</div> 
+</div>
 </div>
 <?php get_footer(); ?>
 
 
 
 
-<script> 
+<script>
+    // Preserve the active tab on page reload
 $(function () {
-    // Check if there is a tab parameter in the URL
-    var urlParams = new URLSearchParams(window.location.search);
-    var activeTab = urlParams.get('tab') || localStorage.getItem('activeTab');
-
+    var activeTab = localStorage.getItem('activeTab');
     if (activeTab) {
-        $('#categoryTabs a[href="#' + activeTab + '"]').tab('show');
+        $('#categoryTabs a[href="' + activeTab + '"]').tab('show');
     }
 
-    // Save the active tab in local storage and update the URL
+    // Save the active tab in local storage
     $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
-        var href = $(e.target).attr('href').substring(1);
+        var href = $(e.target).attr('href');
         localStorage.setItem('activeTab', href);
-
-        // Reset pagination to page 1 when switching tabs
-        var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?tab=' + href + '&paged=1';
-        window.history.pushState({ path: newUrl }, '', newUrl);
-
-        // Optionally reload the content via AJAX or refresh the page
-        location.reload(); // Reload page to update posts for the selected category
     });
 });
 </script>
