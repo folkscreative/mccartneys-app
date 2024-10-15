@@ -126,25 +126,23 @@ wp_reset_postdata();?>
         }
     }
     echo '</div>';
-    echo '<div class="pagination-container">';
-            // Pagination for category
-            echo paginate_links(array(
-                'total' => $cat_posts->max_num_pages,
-                'prev_text' => __('<span><i class="fa-solid fa-angle-left"></i></span> Back'),
-                'next_text' => __('Next <span><i class="fa-solid fa-angle-right"></i></span>'),
-                'mid_size' => 2,
-                'end_size' => 1,
-                'current' => $cat_paged,
-                'format' => '?paged=%#%',
-                'add_args' => array('tab' => $cat_slug), // Pass the tab to the pagination links
-            ));
+    echo paginate_links(array(
+        'total' => $cat_posts->max_num_pages,
+        'prev_text' => __('<span><i class="fa-solid fa-angle-left"></i></span> Back'),
+        'next_text' => __('Next <span><i class="fa-solid fa-angle-right"></i></span>'),
+        'mid_size' => 2,
+        'end_size' => 1,
+        'current' => $cat_paged,
+        'format' => '?tab=' . $cat_slug . '&paged=%#%',
+        'add_args' => array('tab' => $cat_slug),
+    ));
             echo '</div>';
             echo '</div>';
             wp_reset_postdata();
         }
         ?>
     </div>
-</div>
+</div> 
 </div>
 <?php get_footer(); ?>
 
@@ -166,9 +164,12 @@ $(function () {
         var href = $(e.target).attr('href').substring(1);
         localStorage.setItem('activeTab', href);
 
-        // Update URL without reloading the page
-        var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?tab=' + href;
+        // Reset pagination to page 1 when switching tabs
+        var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?tab=' + href + '&paged=1';
         window.history.pushState({ path: newUrl }, '', newUrl);
+
+        // Optionally reload the content via AJAX or refresh the page
+        location.reload(); // Reload page to update posts for the selected category
     });
 });
 </script>
