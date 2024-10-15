@@ -128,16 +128,16 @@ wp_reset_postdata();?>
     echo '</div>';
     echo '<div class="pagination-container">';
             // Pagination for category
-    echo paginate_links(array(
-        'total' => $cat_posts->max_num_pages,
-        'prev_text' => __('<span><i class="fa-solid fa-angle-left"></i></span> Back'),
-        'next_text' => __('Next <span><i class="fa-solid fa-angle-right"></i></span>'),
-        'mid_size' => 2,
-        'end_size' => 1,
-        'current' => $cat_paged,
-        'format' => '?paged=%#%', // Standard pagination format
-        'add_args' => array('tab' => $cat_slug), // Pass the tab to the pagination links
-    ));
+            echo paginate_links(array(
+                'total' => $cat_posts->max_num_pages,
+                'prev_text' => __('<span><i class="fa-solid fa-angle-left"></i></span> Back'),
+                'next_text' => __('Next <span><i class="fa-solid fa-angle-right"></i></span>'),
+                'mid_size' => 2,
+                'end_size' => 1,
+                'current' => $cat_paged,
+                'format' => '?paged=%#%',
+                'add_args' => array('tab' => $cat_slug), // Pass the tab to the pagination links
+            ));
             echo '</div>';
             echo '</div>';
             wp_reset_postdata();
@@ -151,18 +151,24 @@ wp_reset_postdata();?>
 
 
 
-<script>
-    // Preserve the active tab on page reload
+<script> 
 $(function () {
-    var activeTab = localStorage.getItem('activeTab');
+    // Check if there is a tab parameter in the URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var activeTab = urlParams.get('tab') || localStorage.getItem('activeTab');
+
     if (activeTab) {
-        $('#categoryTabs a[href="' + activeTab + '"]').tab('show');
+        $('#categoryTabs a[href="#' + activeTab + '"]').tab('show');
     }
 
-    // Save the active tab in local storage
+    // Save the active tab in local storage and update the URL
     $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
-        var href = $(e.target).attr('href');
+        var href = $(e.target).attr('href').substring(1);
         localStorage.setItem('activeTab', href);
+
+        // Update URL without reloading the page
+        var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?tab=' + href;
+        window.history.pushState({ path: newUrl }, '', newUrl);
     });
 });
 </script>
