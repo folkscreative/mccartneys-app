@@ -50,7 +50,7 @@ get_header(); ?>
 
     <!-- Start Property section here -->
     <?php if( get_row_layout() == 'property_tabs_section' ): ?>
-       <section class="property-wrapper contact about-us">
+       <section class="property-wrapper contact about-us" id="office-data">
         <div class="container">
             <h2 class="title"><?php the_sub_field('property_tab_title'); ?></h2>
             <p class="description"><?php the_sub_field('property_tab_description'); ?></p>
