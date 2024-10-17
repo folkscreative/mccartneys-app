@@ -58,13 +58,13 @@ $no_results_message = "No properties in this department for this branch"
 
 <a href="<?php 
     if (is_page('contact-us')) { 
-        // If you're on the Contact page
-        echo home_url() . '/contact-us/#office-data'; 
+        // If you're on the Contact page, use the hardcoded link
+        echo '/contact-us/#office-data'; 
     } elseif (is_front_page()) { 
-        // If you're on the Home page
-        echo home_url() . '/#office-data'; 
+        // If you're on the Home page, use the hardcoded home link
+        echo '/#office-data'; 
     } else { 
-        // Default case for other pages (if needed)
+        // For other pages, use the dynamic permalink
         echo get_permalink() . '#office-data'; 
     }
 ?>" class="btn-cs-white">
