@@ -51,7 +51,23 @@ $no_results_message = "No properties in this department for this branch"
                         <div class="content">
                             <div>
                                 <!-- <a href="/#office-data" class="btn-cs-white">Go Back<span><i class="fa-solid fa-angle-left"></i></span></a> -->
-                                <a href="<?php echo get_permalink() . '#office-data'; ?>" class="btn-cs-white">
+                                <!-- <a href="<?php echo get_permalink() . '#office-data'; ?>" class="btn-cs-white">
+    Go Back<span><i class="fa-solid fa-angle-left"></i></span>
+</a> -->
+
+
+<a href="<?php 
+    if (is_page('contact-us')) { 
+        // If you're on the Contact page
+        echo get_permalink() . '#office-data'; 
+    } elseif (is_front_page()) { 
+        // If you're on the Home page
+        echo home_url() . '/#office-data'; 
+    } else { 
+        // Default case for other pages
+        echo get_permalink() . '#office-data'; 
+    }
+?>" class="btn-cs-white">
     Go Back<span><i class="fa-solid fa-angle-left"></i></span>
 </a>
                         </div>
