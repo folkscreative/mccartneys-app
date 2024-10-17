@@ -79,16 +79,17 @@ if ( !empty( $image_private ) ) { ?>
             <div class="outer-wrapper">
                 <h2 class="title"><?php the_sub_field('recent_property_title'); ?></h2>
                 <ul class="nav nav-tabs" id="propertyTab" role="tablist">
-                <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-sale" data-bs-toggle="tab"
+                <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-rent" data-bs-toggle="tab"
+                            href="#rent" role="tab" aria-controls="rent" aria-selected="false" tabindex="-1">Rent</a>
+                    </li>
+                <li class="nav-item" role="presentation"><a class="nav-link" id="tab-sale" data-bs-toggle="tab"
                             href="#sale" role="tab" aria-controls="sale" aria-selected="false" tabindex="-1">Sale</a>
                     </li>
                     <li class="nav-item" role="presentation"><a class="nav-link" id="tab-auction"
                             data-bs-toggle="tab" href="#auction" role="tab" aria-controls="auction"
                             aria-selected="true">Auction</a></li>
                     
-                    <li class="nav-item" role="presentation"><a class="nav-link" id="tab-rent" data-bs-toggle="tab"
-                            href="#rent" role="tab" aria-controls="rent" aria-selected="false" tabindex="-1">Rent</a>
-                    </li>
+                    
                     <li class="nav-item" role="presentation"><a class="nav-link" id="tab-new-homes" data-bs-toggle="tab"
                             href="#new-homes" role="tab" aria-controls="new-homes" aria-selected="false"
                             tabindex="-1">New Homes</a>
