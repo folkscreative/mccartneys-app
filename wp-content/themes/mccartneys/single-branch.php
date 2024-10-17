@@ -80,7 +80,7 @@ $no_results_message = "No properties in this department for this branch"
                         <div class="content">
                             <div>
                                 <!-- <a href="/#office-data" class="btn-cs-white">Go Back<span><i class="fa-solid fa-angle-left"></i></span></a> -->
-                                <a href="<?php echo get_permalink() . '#office-data'; ?>"  class="btn-cs-white">Go Back<span><i class="fa-solid fa-angle-left"></i></span></a>
+                                <a href="<?php get_permalink() . '#office-data'; ?>"  class="btn-cs-white">Go Back<span><i class="fa-solid fa-angle-left"></i></span></a>
                         </div>
                             <h1><?php the_title(); ?></h1>
                             <?php the_excerpt(); ?>
