@@ -44,14 +44,49 @@ $no_results_message = "No properties in this department for this branch"
                     </div>
                 </div>
                 <?php }?>
+
+
+                <?php
+                    // Get the current URL
+                    $current_url = get_permalink(); // This retrieves the current page URL
+
+                    // Define the anchor ID
+                    $anchor_id = '#office-data'; // Replace 'your-section-id' with your actual ID
+
+                    // Concatenate the current URL with the anchor ID
+                    $full_url = $current_url . $anchor_id;
+
+                    // Output the full URL with the ID
+                    echo $full_url;
+                    ?>
+
+                    <script>
+                        // Get the current URL
+                    let currentUrl = window.location.href;
+
+                    // Define your anchor ID
+                    let anchorId = "#office-data"; // Replace with your actual ID
+
+                    // Combine the current URL with the anchor ID
+                    let fullUrl = currentUrl + anchorId;
+
+                    // Optionally, use or output the URL
+                    console.log(fullUrl);
+
+                    </script>
+
                 <div class="col-12 col-md-6">
                     <div class="single-content-details">
                         <div class="content">
-                            <div><a href="/#office-data" class="btn-cs-white">Go Back<span><i
-                                            class="fa-solid fa-angle-left"></i></span></a></div>
+                            <div>
+                                <!-- <a href="/#office-data" class="btn-cs-white">Go Back<span><i class="fa-solid fa-angle-left"></i></span></a> -->
+                                <a href="<?php echo get_permalink() . '#office-data'; ?>"  class="btn-cs-white">Go Back<span><i class="fa-solid fa-angle-left"></i></span></a>
+                        </div>
                             <h1><?php the_title(); ?></h1>
                             <?php the_excerpt(); ?>
                         </div>
+
+                        
 
                         <div class="inner-wrapper">
                             <div class="col-left">
