@@ -70,26 +70,26 @@ if ( !empty( $image_private ) ) { ?>
     </section>
     <?php endif; ?>
     <!-- Pedigree Center ends -->
-
+ 
     <!-- recent property section start here -->
-    <?php if( get_row_layout() == 'recent_property_section' ): ?>
+      <?php if( get_row_layout() == 'recent_property_section' ): ?>
     <section class="recent-property-wrapper">
         <div class="container">
 
             <div class="outer-wrapper">
                 <h2 class="title"><?php the_sub_field('recent_property_title'); ?></h2>
                 <ul class="nav nav-tabs" id="propertyTab" role="tablist">
-                
                 <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-rent" data-bs-toggle="tab"
                             href="#rent" role="tab" aria-controls="rent" aria-selected="false" tabindex="-1">Rent</a>
                     </li>
-                <li class="nav-item" role="presentation"><a class="nav-link" id="tab-sale" data-bs-toggle="tab"
-                            href="#sale" role="tab" aria-controls="sale" aria-selected="false" tabindex="-1">Sale</a>
+                
+                <li class="nav-item" role="presentation"><a class="nav-link " id="tab-sale"
+                            data-bs-toggle="tab" href="#sale" role="tab" aria-controls="sale" aria-selected="false"
+                            tabindex="-1">Sale</a>
                     </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" id="tab-auction"
-                            data-bs-toggle="tab" href="#auction" role="tab" aria-controls="auction"
-                            aria-selected="true">Auction</a></li>
-                    
+                    <li class="nav-item" role="presentation"><a class="nav-link" id="tab-auction" data-bs-toggle="tab"
+                            href="#auction" role="tab" aria-controls="auction" aria-selected="true">Auction</a></li>
+
                    
                     <li class="nav-item" role="presentation"><a class="nav-link" id="tab-new-homes" data-bs-toggle="tab"
                             href="#new-homes" role="tab" aria-controls="new-homes" aria-selected="false"
@@ -101,7 +101,7 @@ if ( !empty( $image_private ) ) { ?>
                 <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
                     <div class="inner-tabs pr">
 
-                    <?php
+                        <?php
                         // Check if the current slug exists in the map
                         if (array_key_exists($current_slug, $branch_ph_office_map)) {
                             // Get the office ID associated with the current slug
@@ -115,8 +115,6 @@ if ( !empty( $image_private ) ) { ?>
                         }
                     ?>
 
-
-                        <?php echo do_shortcode('[recent_properties department="property-land-auctions"]');?>
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=property-land-auctions">View
@@ -124,7 +122,20 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
                 <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="residential-sales"]');?>
+                        <?php
+                        // Check if the current slug exists in the map
+                        if (array_key_exists($current_slug, $branch_ph_office_map)) {
+                            // Get the office ID associated with the current slug
+                            $office_id = $branch_ph_office_map[$current_slug];
+
+                            // Output the desired shortcode with the mapped office ID
+                            echo do_shortcode( '[recent_properties department="residential-sales" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
+                        } else {
+                            // Optionally handle cases where the slug isn't in the map
+                            echo do_shortcode( '[recent_properties department="residential-sales" no_results_output="' . $no_results_message . '"]');
+                        }
+                    ?>
+
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=residential-sales">View
@@ -132,7 +143,20 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
                 <div class="tab-pane fade show active" id="rent" role="tabpanel" aria-labelledby="tab-rent">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties _parent_department="Lettings"]');?>
+                        <?php
+                        // Check if the current slug exists in the map
+                        if (array_key_exists($current_slug, $branch_ph_office_map)) {
+                            // Get the office ID associated with the current slug
+                            $office_id = $branch_ph_office_map[$current_slug];
+
+                            // Output the desired shortcode with the mapped office ID
+                            echo do_shortcode('[recent_properties department="residential-lettings" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
+                        } else {
+                            // Optionally handle cases where the slug isn't in the map
+                            echo do_shortcode('[recent_properties department="residential-lettings" no_results_output="' . $no_results_message . '"]');
+                        }
+                    ?>
+
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=Lettings">View
@@ -140,7 +164,20 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
                 <div class="tab-pane fade" id="new-homes" role="tabpanel" aria-labelledby="tab-new-homes">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="new-homes"]');?>
+                        <?php
+                        // Check if the current slug exists in the map
+                        if (array_key_exists($current_slug, $branch_ph_office_map)) {
+                            // Get the office ID associated with the current slug
+                            $office_id = $branch_ph_office_map[$current_slug];
+
+                            // Output the desired shortcode with the mapped office ID
+                            echo do_shortcode('[recent_properties department="new-homes" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
+                        } else {
+                            // Optionally handle cases where the slug isn't in the map
+                            echo do_shortcode('[recent_properties department="new-homes" no_results_output="' . $no_results_message . '"]');
+                        }
+                    ?>
+
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=new-homes">View
@@ -148,7 +185,16 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
 
             </div>
-            
+            <!-- <?php 
+            $recent_pr_button = get_sub_field('recent_property_button');
+            if( $recent_pr_button ): 
+                $recent_pr_button_url = $recent_pr_button['url'];
+                $recent_pr_button_title = $recent_pr_button['title'];
+                $recent_pr_button_target = $recent_pr_button['target'] ? $recent_pr_button['target'] : '_self';
+                ?>
+            <a class="btn-cs-dark" href="<?php echo esc_url( $recent_pr_button_url ); ?>"
+                target="<?php echo esc_attr( $recent_pr_button_target ); ?>"><?php echo esc_html( $recent_pr_button_title ); ?></a>
+            <?php endif; ?> -->
         </div>
     </section>
     <?php endif; ?>
