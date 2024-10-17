@@ -103,7 +103,7 @@ if ( !empty( $image_private ) ) { ?>
             <div class="tab-content" id="propertyTabContent">
                 <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="property-land-auctions"]');?>
+                        <?php echo do_shortcode('[recent_properties department="property-land-auctions"  no_results_output="' . $no_results_message . '"]');?>
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=property-land-auctions">View
