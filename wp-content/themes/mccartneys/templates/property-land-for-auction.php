@@ -164,7 +164,7 @@ if ( !empty( $image_private ) ) { ?>
                             tabindex="-1">New Homes</a>
                     </li>
                 </ul>
-            </div>
+            </div> 
             <div class="tab-content" id="propertyTabContent">
                 <div class="tab-pane fade show active" id="auction" role="tabpanel" aria-labelledby="tab-auction">
                     <div class="inner-tabs pr">
