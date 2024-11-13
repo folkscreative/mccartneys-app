@@ -129,16 +129,16 @@ if ( !empty( $image_private ) ) { ?>
                             $office_id = $branch_ph_office_map[$current_slug];
 
                             // Output the desired shortcode with the mapped office ID
-                            echo do_shortcode( '[recent_properties department="residential-sales" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
+                            echo do_shortcode( '[recent_properties department="development-land" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
                         } else {
                             // Optionally handle cases where the slug isn't in the map
-                            echo do_shortcode( '[recent_properties department="residential-sales" no_results_output="' . $no_results_message . '"]');
+                            echo do_shortcode( '[recent_properties department="development-land" no_results_output="' . $no_results_message . '"]');
                         }
                     ?>
 
                     </div>
                     <a class="btn-cs-dark"
-                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=residential-sales">View
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=development-land">View
                         all properties</a>
                 </div>
                 <div class="tab-pane fade show active" id="rent" role="tabpanel" aria-labelledby="tab-rent">
