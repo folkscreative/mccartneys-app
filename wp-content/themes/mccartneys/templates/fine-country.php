@@ -103,36 +103,44 @@ if ( !empty( $image_private ) ) { ?>
             <div class="tab-content" id="propertyTabContent">
                 <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="property-land-auctions"  no_results_output="' . $no_results_message . '"]');?>
+
+                        <?php
+                $department = "property-land-auctions"; // Assuming department is set here
+                $property_count = 0; // Assuming property count is set here
+
+                if ($department == "property-land-auctions" && $property_count == 0) {
+                    echo "<div class='no-property-message'>No auction found</div>";
+                } else {
+                    ?>
+                    <div class="inner-tabs pr">
+                        <?php echo do_shortcode('[recent_properties department="property-land-auctions"]'); ?>
+                    </div>
+                    <?php
+                }
+            ?>
+                    
+                    
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=property-land-auctions">View
                         all properties</a>
                 </div>
-
-
-
-
-
                 <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
                     <div class="inner-tabs pr">
-                        <?php //echo do_shortcode('[recent_properties department="residential-sales"]');?>
-
                         <?php
-                        // Check if the current slug exists in the map
-                        if (array_key_exists($current_slug, $branch_ph_office_map)) {
-                            // Get the office ID associated with the current slug
-                            $office_id = $branch_ph_office_map[$current_slug];
+                $department = "fine-and-country"; // Assuming department is set here
+                $property_count = 0; // Assuming property count is set here
 
-                            // Output the desired shortcode with the mapped office ID
-                           echo do_shortcode('[properties department="fine-and-country" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
-                        } else {
-                            // Optionally handle cases where the slug isn't in the map
-                            echo do_shortcode('[properties department="fine-and-country" no_results_output="' . $no_results_message . '"]');
-                        }
+                if ($department == "fine-and-country" && $property_count == 0) {
+                    echo "<div class='no-property-message'>No property found</div>";
+                } else {
                     ?>
-
-
+                    <div class="inner-tabs pr">
+                        <?php echo do_shortcode('[recent_properties department="fine-and-country"]'); ?>
+                    </div>
+                    <?php
+                }
+                ?>
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=fine-and-country">View
@@ -145,7 +153,20 @@ if ( !empty( $image_private ) ) { ?>
 
                 <div class="tab-pane fade show active" id="rent" role="tabpanel" aria-labelledby="tab-rent">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties _parent_department="Lettings"]');?>
+                                                <?php
+                        $department = "Lettings"; // Assuming department is set here
+                        $property_count = 0; // Assuming property count is set here
+
+                        if ($department == "Lettings" && $property_count == 0) {
+                            echo "<div class='no-property-message'>No property found</div>";
+                        } else {
+                            ?>
+                            <div class="inner-tabs pr">
+                                <?php echo do_shortcode('[recent_properties _parent_department="Lettings"]'); ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=Lettings">View
@@ -153,7 +174,21 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
                 <div class="tab-pane fade" id="new-homes" role="tabpanel" aria-labelledby="tab-new-homes">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="new-homes"]');?>
+                        
+                                            <?php
+                    $department = "new-homes"; // Assuming department is set here
+                    $property_count = 0; // Assuming property count is set here
+
+                    if ($department == "new-homes" && $property_count == 0) {
+                        echo "<div class='no-property-message'>No property found</div>";
+                    } else {
+                        ?>
+                        <div class="inner-tabs pr">
+                            <?php echo do_shortcode('[recent_properties department="new-homes"]'); ?>
+                        </div>
+                        <?php
+                    }
+                    ?>
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=new-homes">View
