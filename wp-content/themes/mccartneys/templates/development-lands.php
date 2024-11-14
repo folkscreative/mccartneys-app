@@ -121,19 +121,31 @@ if ( !empty( $image_private ) ) { ?>
                         all properties</a>
                 </div>
                 <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
-                    <div class="inner-tabs pr">
+                    
+                <?php
+                        $department = "development-land"; // Set the department variable
+                        $no_results_message = "No property found"; // Set the message to display when no properties are available
+                        ?>
+
+                        <div class="inner-tabs pr">
+                            <?php
+                            echo do_shortcode('[recent_properties department="' . $department . '" no_results_output="' . $no_results_message . '"]');
+                            ?>
+                
+                
+                <div class="inner-tabs pr">
                         <?php
                         // Check if the current slug exists in the map
-                        if (array_key_exists($current_slug, $branch_ph_office_map)) {
+                        //if (array_key_exists($current_slug, $branch_ph_office_map)) {
                             // Get the office ID associated with the current slug
-                            $office_id = $branch_ph_office_map[$current_slug];
+                            //$office_id = $branch_ph_office_map[$current_slug];
 
                             // Output the desired shortcode with the mapped office ID
-                            echo do_shortcode( '[recent_properties department="development-land" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
-                        } else {
+                           // echo do_shortcode( '[recent_properties department="development-land" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
+                        //} else {
                             // Optionally handle cases where the slug isn't in the map
-                            echo do_shortcode( '[recent_properties department="development-land" no_results_output="' . $no_results_message . '"]');
-                        }
+                           // echo do_shortcode( '[recent_properties department="development-land" no_results_output="' . $no_results_message . '"]');
+                        //}
                     ?>
 
                     </div>
