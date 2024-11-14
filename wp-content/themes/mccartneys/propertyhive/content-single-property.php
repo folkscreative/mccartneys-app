@@ -225,6 +225,20 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
 
 
+                        <?php if ( $property->councial_tax_band > 0 )  { ?>
+
+
+                        <li class="mcc-badge">
+                            <div class="feature-info">
+                                <h6>Councial Tax Band</h6>
+                                <span><?php echo $property->councial_tax_band; ?></span>
+                            </div>
+                        </li>
+                        <?php }?>
+
+
+
+
                     </ul>
 
                     <ul class="property-media">
