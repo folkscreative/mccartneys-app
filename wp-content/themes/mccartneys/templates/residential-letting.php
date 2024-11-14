@@ -116,10 +116,10 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
                 <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="residential-sales"]');?>
+                        <?php echo do_shortcode('[recent_properties department="residential-lettings"]');?>
                     </div>
                     <a class="btn-cs-dark"
-                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=residential-sales">View
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=residential-lettings">View
                         all properties</a>
                 </div>
                 <div class="tab-pane fade show active" id="rent" role="tabpanel" aria-labelledby="tab-rent">
