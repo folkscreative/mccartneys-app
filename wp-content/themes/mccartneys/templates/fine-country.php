@@ -114,10 +114,7 @@ if ( !empty( $image_private ) ) { ?>
 
                 <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="fine-and-country"]');?>
-                    </div>
-            
-                        <?php
+                    <?php
                         // Check if the current slug exists in the map
                         if (array_key_exists($current_slug, $branch_ph_office_map)) {
                             // Get the office ID associated with the current slug
@@ -130,6 +127,9 @@ if ( !empty( $image_private ) ) { ?>
                             echo do_shortcode('[properties department="fine-and-country" no_results_output="' . $no_results_message . '"]');
                         }
                     ?>
+                    </div>
+            
+                       
 
                 <a class="btn-cs-dark" href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=residential-sales">View
                         all properties</a>
