@@ -99,22 +99,21 @@ if ( !empty( $image_private ) ) { ?>
             </div>
             <div class="tab-content" id="propertyTabContent">
                 <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
-                    <div class="inner-tabs pr">
-                        <?php
-                    $department = "property-land-auctions"; // Assuming department is set here
-                    $property_count = 0; // Assuming property count is set here
+                                        <?php
+                        $department = "property-land-auctions"; // Assuming department is set here
+                        $property_count = 0; // Assuming property count is set here
 
-                    if ($department == "property-land-auctions" && $property_count == 0) {
-                        echo "<div class='no-property-message'>No property found</div>";
-                    } else {
+                        if ($department == "property-land-auctions" && $property_count == 0) {
+                            echo "<div class='no-property-message'>No property found</div>";
+                        } else {
+                            ?>
+                            <div class="inner-tabs pr">
+                                <?php echo do_shortcode('[recent_properties department="property-land-auctions"]'); ?>
+                            </div>
+                            <?php
+                        }
                         ?>
-                        <div class="inner-tabs pr">
-                            <?php echo do_shortcode('[recent_properties department="property-land-auctions"]'); ?>
-                        </div>
-                        <?php
-                    }
-                    ?>
-                    </div>
+
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=property-land-auctions">View
                         all properties</a>
