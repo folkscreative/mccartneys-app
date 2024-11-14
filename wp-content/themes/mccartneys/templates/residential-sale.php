@@ -101,10 +101,10 @@ if ( !empty( $image_private ) ) { ?>
                 <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
                     <div class="inner-tabs pr">
                         <?php
-                        $department = "property-land-auctions"; // Assuming department is set here
-                        $property_count = 0; // Assuming property count is set here
+                        $department_aucd = "property-land-auctions"; // Assuming department is set here
+                        $property_count_aucd = 0; // Assuming property count is set here
 
-                        if ($department == "property-land-auctions" && $property_count == 0) {
+                        if ($department_aucd == "property-land-auctions" && $property_count_aucd == 0) {
                             echo "<div class='no-property-message'>No auction found</div>";
                         } else {
                             ?>
@@ -121,13 +121,13 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
                 <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="residential-sales"]');?>
+                      
                     
                         <?php
-                        $department = "residential-sales"; // Assuming department is set here
-                        $property_count = 0; // Assuming property count is set here
+                        $department_rsale = "residential-sales"; // Assuming department is set here
+                        $property_count_rsale = 0; // Assuming property count is set here
 
-                        if ($department == "residential-sales" && $property_count == 0) {
+                        if ($department_rsale == "residential-sales" && $property_count_rsale == 0) {
                             echo "<div class='no-property-message'>No property found</div>";
                         } else {
                             ?>
@@ -146,10 +146,10 @@ if ( !empty( $image_private ) ) { ?>
                 <div class="tab-pane fade show active" id="rent" role="tabpanel" aria-labelledby="tab-rent">
                     <div class="inner-tabs pr">
                         <?php
-                        $department = "Lettings"; // Assuming department is set here
-                        $property_count = 0; // Assuming property count is set here
+                        $department_let = "Lettings"; // Assuming department is set here
+                        $property_count_let = 0; // Assuming property count is set here
 
-                        if ($department == "Lettings" && $property_count == 0) {
+                        if ($department_let == "Lettings" && $property_count_let == 0) {
                             echo "<div class='no-property-message'>No property found</div>";
                         } else {
                             ?>
@@ -168,10 +168,10 @@ if ( !empty( $image_private ) ) { ?>
                 <div class="tab-pane fade" id="new-homes" role="tabpanel" aria-labelledby="tab-new-homes">
                     <div class="inner-tabs pr">
                                         <?php
-                $department = "new-homes"; // Assuming department is set here
-                $property_count = 0; // Assuming property count is set here
+                $department_neh = "new-homes"; // Assuming department is set here
+                $property_count_neh = 0; // Assuming property count is set here
 
-                if ($department == "new-homes" && $property_count == 0) {
+                if ($department_neh == "new-homes" && $property_count_neh == 0) {
                     echo "<div class='no-property-message'>No property found</div>";
                 } else {
                     ?>
