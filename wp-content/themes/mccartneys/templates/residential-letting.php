@@ -103,10 +103,10 @@ if ( !empty( $image_private ) ) { ?>
                     <div class="inner-tabs pr">
                       
                         <?php
-                $department = "property-land-auctions"; // Assuming department is set here
-                $property_count = 0; // Assuming property count is set here
+                $department_auc = "property-land-auctions"; // Assuming department is set here
+                $property_count_auc = 0; // Assuming property count is set here
 
-                if ($department == "property-land-auctions" && $property_count == 0) {
+                if ($department_auc == "property-land-auctions" && $property_count_auc == 0) {
                     echo "<div class='no-property-message'>No auction found</div>";
                 } else {
                     ?>
@@ -123,7 +123,22 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
                 <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="residential-sales"]');?>
+                    
+                        <?php
+                        $department_res = "residential-sales"; // Assuming department is set here
+                        $property_count_res = 0; // Assuming property count is set here
+
+                        if ($department_res == "residential-sales" && $property_count_res == 0) {
+                            echo "<div class='no-property-message'>No property found</div>";
+                        } else {
+                            ?>
+                            <div class="inner-tabs pr">
+                                <?php echo do_shortcode('[recent_properties department="residential-sales"]'); ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
+
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=residential-sales">View
@@ -133,10 +148,10 @@ if ( !empty( $image_private ) ) { ?>
                     <div class="inner-tabs pr">
                        
                         <?php
-                        $department = "Lettings"; // Assuming department is set here
-                        $property_count = 0; // Assuming property count is set here
+                        $department_rent = "Lettings"; // Assuming department is set here
+                        $property_count_rent = 0; // Assuming property count is set here
 
-                        if ($department == "Lettings" && $property_count == 0) {
+                        if ($department_rent == "Lettings" && $property_count_rent == 0) {
                             echo "<div class='no-property-message'>No property found</div>";
                         } else {
                             ?>
@@ -155,10 +170,10 @@ if ( !empty( $image_private ) ) { ?>
                     <div class="inner-tabs pr">
                       
                         <?php
-                    $department = "new-homes"; // Assuming department is set here
-                    $property_count = 0; // Assuming property count is set here
+                    $department_newh = "new-homes"; // Assuming department is set here
+                    $property_count_newh = 0; // Assuming property count is set here
 
-                    if ($department == "new-homes" && $property_count == 0) {
+                    if ($department_newh == "new-homes" && $property_count_newh == 0) {
                         echo "<div class='no-property-message'>No property found</div>";
                     } else {
                         ?>
