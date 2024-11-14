@@ -223,13 +223,16 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         </li>
                         <?php }?>
 
-
-
                         <?php if ( $property->council_tax_band ) {?>
-                            <div class="mcc-bdge">
-                                <span>Council Tax - Council Tax Band <?php echo $property->council_tax_band; ?></span>
+                        <li class="mcc-badge">
+                            <!-- <img class="badge-icon"
+                                src="<?php echo get_template_directory_uri(); ?>/assets/images/recep-room.png" alt=""> -->
+                            <div class="feature-info">
+                                <h6>Council Tax Band</h6>
+                                <span><?php echo $property->council_tax_band; ?></span>
                             </div>
-                            <?php } ?>
+                        </li>
+                        <?php }?>
 
                     </ul>
 
