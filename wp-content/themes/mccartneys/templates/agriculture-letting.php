@@ -79,13 +79,15 @@ if ( !empty( $image_private ) ) { ?>
             <div class="outer-wrapper">
                 <h2 class="title"><?php the_sub_field('recent_property_title'); ?></h2>
                 <ul class="nav nav-tabs" id="propertyTab" role="tablist">
-                
-                <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-rent" data-bs-toggle="tab"
-                            href="#rent" role="tab" aria-controls="rent" aria-selected="false" tabindex="-1">Rent</a>
-                    </li>
-                <li class="nav-item" role="presentation"><a class="nav-link" id="tab-sale" data-bs-toggle="tab"
+
+                <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-sale" data-bs-toggle="tab"
                             href="#sale" role="tab" aria-controls="sale" aria-selected="false" tabindex="-1">Sale</a>
                     </li>
+                
+                <li class="nav-item" role="presentation"><a class="nav-link " id="tab-rent" data-bs-toggle="tab"
+                            href="#rent" role="tab" aria-controls="rent" aria-selected="false" tabindex="-1">Rent</a>
+                    </li>
+                   
                     <li class="nav-item" role="presentation"><a class="nav-link" id="tab-auction"
                             data-bs-toggle="tab" href="#auction" role="tab" aria-controls="auction"
                             aria-selected="true">Auction</a></li>
@@ -99,9 +101,27 @@ if ( !empty( $image_private ) ) { ?>
             </div>
             <div class="tab-content" id="propertyTabContent">
                 <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
+
+                <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="tab-sale">
+                    <div class="inner-tabs pr">
+                        <?php echo do_shortcode('[recent_properties department="agricultural"]');?>
+                    </div>
+                    <a class="btn-cs-dark"
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=agricultural">View
+                        all properties</a>
+                </div>
+
+                <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="tab-rent">
+                    <div class="inner-tabs pr">
+                        <?php echo do_shortcode('[recent_properties _parent_department="Lettings"]');?>
+                    </div>
+                    <a class="btn-cs-dark"
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=Lettings">View
+                        all properties</a>
+                </div>
                 <?php
                         $department = "property-land-auctions"; // Set the department variable
-                        $no_results_message = "No property found"; // Set the message to display when no properties are available
+                        $no_results_message = "No properties found"; // Set the message to display when no properties are available
                         ?>
 
                         <div class="inner-tabs pr">
@@ -113,22 +133,8 @@ if ( !empty( $image_private ) ) { ?>
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=property-land-auctions">View
                         all properties</a>
                 </div>
-                <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
-                    <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="residential-sales"]');?>
-                    </div>
-                    <a class="btn-cs-dark"
-                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=residential-sales">View
-                        all properties</a>
-                </div>
-                <div class="tab-pane fade show active" id="rent" role="tabpanel" aria-labelledby="tab-rent">
-                    <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties _parent_department="Lettings"]');?>
-                    </div>
-                    <a class="btn-cs-dark"
-                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=Lettings">View
-                        all properties</a>
-                </div>
+                
+               
                 <div class="tab-pane fade" id="new-homes" role="tabpanel" aria-labelledby="tab-new-homes">
                     <div class="inner-tabs pr">
                         <?php echo do_shortcode('[recent_properties department="new-homes"]');?>
