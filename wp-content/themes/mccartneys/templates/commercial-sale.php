@@ -110,18 +110,12 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
                 <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="tab-rent">
                     
-                <?php
-                        $department = "commercial-lettings"; // Set the department variable
-                        $no_results_message = "No properties found"; // Set the message to display when no properties are available
-                        ?>
-                
-                <div class="inner-tabs pr">
-                <?php
-                            echo do_shortcode('[recent_properties department="' . $department . '" no_results_output="' . $no_results_message . '"]');
-                            ?>
+                    <div class="inner-tabs pr">
+                    <?php echo do_shortcode('[recent_properties _parent_department="Lettings"]');?>   
+                           
                     </div>
                     <a class="btn-cs-dark"
-                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=commercial-lettings">View
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=Lettings">View
                         all properties</a>
                 </div>
 
