@@ -155,7 +155,7 @@ if ( !empty( $image_private ) ) { ?>
                 <div class="tab-pane fade show active" id="auction" role="tabpanel" aria-labelledby="tab-auction">
                 <?php
                         $department = "property-land-auctions"; // Set the department variable
-                        $no_results_message = "No property found"; // Set the message to display when no properties are available
+                        $no_results_message = "No properties found"; // Set the message to display when no properties are available
                         ?>
 
                         <div class="inner-tabs pr">
