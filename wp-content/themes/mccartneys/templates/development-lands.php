@@ -136,16 +136,16 @@ if ( !empty( $image_private ) ) { ?>
                 <div class="inner-tabs pr">
                         <?php
                         // Check if the current slug exists in the map
-                        //if (array_key_exists($current_slug, $branch_ph_office_map)) {
-                            // Get the office ID associated with the current slug
-                            //$office_id = $branch_ph_office_map[$current_slug];
+                        if (array_key_exists($current_slug, $branch_ph_office_map)) {
+                             //Get the office ID associated with the current slug
+                            $office_id = $branch_ph_office_map[$current_slug];
 
-                            // Output the desired shortcode with the mapped office ID
-                           // echo do_shortcode( '[recent_properties department="development-land" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
-                        //} else {
+                             //Output the desired shortcode with the mapped office ID
+                            echo do_shortcode( '[recent_properties department="development-land" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
+                        } else {
                             // Optionally handle cases where the slug isn't in the map
-                           // echo do_shortcode( '[recent_properties department="development-land" no_results_output="' . $no_results_message . '"]');
-                        //}
+                            echo do_shortcode( '[recent_properties department="development-land" no_results_output="' . $no_results_message . '"]');
+                        }
                     ?>
 
                     </div>
