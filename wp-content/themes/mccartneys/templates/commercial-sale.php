@@ -112,7 +112,7 @@ if ( !empty( $image_private ) ) { ?>
                     
                     <div class="inner-tabs pr">
                             <?php
-                            echo do_shortcode('[recent_properties department=" _parent_department="commercial"]');
+                            echo do_shortcode('[recent_properties department=" _parent_department="Lettings"]');
                             ?>
                            
                     </div>
