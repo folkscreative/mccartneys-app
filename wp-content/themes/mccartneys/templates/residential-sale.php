@@ -118,9 +118,6 @@ if ( !empty( $image_private ) ) { ?>
                         all properties</a>
                 </div>
 
-
-                
-
                 <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
                     <div class="inner-tabs pr">
                         <?php
