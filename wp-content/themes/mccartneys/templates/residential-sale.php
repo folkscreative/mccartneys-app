@@ -98,6 +98,8 @@ if ( !empty( $image_private ) ) { ?>
                 </ul>
             </div>
             <div class="tab-content" id="propertyTabContent">
+
+
             <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="tab-sale">
                     <div class="inner-tabs pr">
                         <?php echo do_shortcode('[recent_properties department="residential-sales"]');?>
@@ -109,12 +111,16 @@ if ( !empty( $image_private ) ) { ?>
 
                 <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="tab-rent">
                     <div class="inner-tabs pr">
-                    <?php echo do_shortcode('[recent_properties _parent_department="Lettings"]');?>  
+                        <?php echo do_shortcode('[recent_properties department="residential-lettings"]');?>
                     </div>
                     <a class="btn-cs-dark"
-                        href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=Lettings">View
+                        href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=residential-lettings">View
                         all properties</a>
                 </div>
+
+
+                
+
                 <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
                     <div class="inner-tabs pr">
                         <?php
@@ -132,6 +138,8 @@ if ( !empty( $image_private ) ) { ?>
                         href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=property-land-auctions">View
                         all properties</a>
                 </div>
+               
+                
                 <div class="tab-pane fade" id="new-homes" role="tabpanel" aria-labelledby="tab-new-homes">
                     <div class="inner-tabs pr">
                         <?php echo do_shortcode('[recent_properties department="new-homes"]');?>
