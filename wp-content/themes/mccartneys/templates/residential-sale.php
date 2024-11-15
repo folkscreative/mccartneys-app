@@ -99,7 +99,17 @@ if ( !empty( $image_private ) ) { ?>
             </div>
             <div class="tab-content" id="propertyTabContent">
 
-                <div class="tab-pane fade show active" id="rent" role="tabpanel" aria-labelledby="tab-rent">
+
+            <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="tab-sale">
+                    <div class="inner-tabs pr">
+                        <?php echo do_shortcode('[recent_properties department="residential-sales"]');?>
+                    </div>
+                    <a class="btn-cs-dark"
+                        href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=residential-sales">View
+                        all properties</a>
+                </div>
+
+                <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="tab-rent">
                     <div class="inner-tabs pr">
                         <?php echo do_shortcode('[recent_properties department="residential-lettings"]');?>
                     </div>
@@ -109,18 +119,20 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
 
 
-                <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
-                    <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="residential-sales"]');?>
-                    </div>
-                    <a class="btn-cs-dark"
-                        href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=residential-sales">View
-                        all properties</a>
-                </div>
+                
 
                 <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="property-land-auctions"]');?>
+                        <?php
+                        $department = "property-land-auctions"; // Set the department variable
+                        $no_results_message = "No properties found"; // Set the message to display when no properties are available
+                        ?>
+
+                        <div class="inner-tabs pr">
+                            <?php
+                            echo do_shortcode('[recent_properties department="' . $department . '" no_results_output="' . $no_results_message . '"]');
+                            ?>
+                        </div>
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=property-land-auctions">View
