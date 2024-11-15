@@ -79,12 +79,14 @@ if ( !empty( $image_private ) ) { ?>
                 <h2 class="title"><?php the_sub_field('recent_property_title'); ?></h2>
                 <ul class="nav nav-tabs" id="propertyTab" role="tablist">
 
-                <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-rent" data-bs-toggle="tab"
-                            href="#rent" role="tab" aria-controls="rent" aria-selected="false" tabindex="-1">Rent</a>
-                    </li>
-                <li class="nav-item" role="presentation"><a class="nav-link" id="tab-sale" data-bs-toggle="tab"
+
+                <li class="nav-item" role="presentation"><a class="nav-link active" id="tab-sale" data-bs-toggle="tab"
                             href="#sale" role="tab" aria-controls="sale" aria-selected="false" tabindex="-1">Sale</a>
                     </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link " id="tab-rent" data-bs-toggle="tab"
+                            href="#rent" role="tab" aria-controls="rent" aria-selected="false" tabindex="-1">Rent</a>
+                    </li>
+                     
                     <li class="nav-item" role="presentation"><a class="nav-link" id="tab-auction"
                             data-bs-toggle="tab" href="#auction" role="tab" aria-controls="auction"
                             aria-selected="true">Auction</a></li>
@@ -107,8 +109,16 @@ if ( !empty( $image_private ) ) { ?>
                         all properties</a>
                 </div>
                 <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="tab-rent">
-                    <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="commercial-lettings"]');?>
+                    
+                <?php
+                        $department = "commercial-lettings"; // Set the department variable
+                        $no_results_message = "No property found"; // Set the message to display when no properties are available
+                        ?>
+                
+                <div class="inner-tabs pr">
+                <?php
+                            echo do_shortcode('[recent_properties department="' . $department . '" no_results_output="' . $no_results_message . '"]');
+                            ?>
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=commercial-lettings">View
@@ -116,7 +126,7 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
 
                 <div class="tab-pane fade" id="auction" role="tabpanel" aria-labelledby="tab-auction">
-                <?php
+                        <?php
                         $department = "property-land-auctions"; // Set the department variable
                         $no_results_message = "No property found"; // Set the message to display when no properties are available
                         ?>
