@@ -1224,7 +1224,7 @@ P {
 
 .properties-center .information-wrapper {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 20px;
 }
 
@@ -3532,7 +3532,7 @@ footer .cookies-menu ul li a {
 }
 
 .properties-center .col-right a {
-    min-width: 199px;
+    min-width: 224px;
 }
 
 
