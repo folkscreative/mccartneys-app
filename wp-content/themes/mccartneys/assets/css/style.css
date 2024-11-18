@@ -1222,8 +1222,13 @@ P {
     padding-bottom: 44px;
 }
 
+.properties-center .information-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
 .recent-property-wrapper .btn-cs-dark {
-    margin-left: auto;
     min-width: 199px;
 }
 
