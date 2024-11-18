@@ -141,6 +141,8 @@ if ( !empty( $image_private ) ) { ?>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=new-homes">View
                         all properties</a>
+                        <a class="btn-cs-dark"
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=new-homes">Information for Tenants</a>
                 </div>
 
             </div>
