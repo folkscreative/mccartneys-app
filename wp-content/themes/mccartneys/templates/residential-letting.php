@@ -52,6 +52,19 @@ if ( !empty( $image_private ) ) { ?>
                     <div class="col-right">
                         <h2 class="title d-none d-md-block"><?php the_sub_field('livestock_sales_title'); ?></h2>
                         <?php the_sub_field('forthcoming_sales_right_content_area'); ?>
+                        <div class="information-wrapper">
+                        <?php 
+                        $pc_top_button_talent = get_sub_field('forthcoming_sales_report_cta_link');
+                        if( $pc_top_button_talent ): 
+                            $pc_top_button_tal_url = $pc_top_button_talent['url'];
+                            $pc_top_button_tal_title = $pc_top_button_talent['title'];
+                            $pc_top_button_tal_target = $pc_top_button_talent['target'] ? $pc_top_button_talent['target'] : '_self';
+                            ?>
+                        <a class="btn-cs-dark" href="<?php echo esc_url( $pc_top_button_tal_url ); ?>"
+                            target="<?php echo esc_attr( $pc_top_button_tal_target ); ?>"><?php echo esc_html( $pc_top_button_tal_title ); ?><span><i
+                                    class="fa-solid fa-angle-right"></i></span></a>
+                        <?php endif; ?>
+                        
                         <?php 
                         $pc_top_button = get_sub_field('forthcoming_sales_&_catalogues_cta_link');
                         if( $pc_top_button ): 
@@ -63,6 +76,7 @@ if ( !empty( $image_private ) ) { ?>
                             target="<?php echo esc_attr( $pc_top_button_target ); ?>"><?php echo esc_html( $pc_top_button_title ); ?><span><i
                                     class="fa-solid fa-angle-right"></i></span></a>
                         <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
