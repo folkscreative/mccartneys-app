@@ -138,11 +138,13 @@ if ( !empty( $image_private ) ) { ?>
                     <div class="inner-tabs pr">
                         <?php echo do_shortcode('[recent_properties department="new-homes"]');?>
                     </div>
+                    <div class="recent-property-btn">
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=new-homes">View
                         all properties</a>
-                        <a class="btn-cs-dark"
-                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=new-homes">Information for Tenants</a>
+                        <a class="btn-cs-dark" href="/information-for-tenants/">Information for Tenants</a>
+                    </div>
+                       
                 </div>
 
             </div>
