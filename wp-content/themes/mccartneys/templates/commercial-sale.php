@@ -102,20 +102,7 @@ if ( !empty( $image_private ) ) { ?>
 
             <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="tab-sale">
                     <div class="inner-tabs pr">
-                        
-                        <?php
-                        // Check if the current slug exists in the map
-                        if (array_key_exists($current_slug, $branch_ph_office_map)) {
-                            // Get the office ID associated with the current slug
-                            $office_id = $branch_ph_office_map[$current_slug];
-
-                            // Output the desired shortcode with the mapped office ID
-                           echo do_shortcode('[properties _parent_department="Sales" office_id="' . $office_id . '"]');
-                        } else {
-                            // Optionally handle cases where the slug isn't in the map
-                            echo do_shortcode('[properties _parent_department="Sales"]');
-                        }
-                    ?>
+                        <?php echo do_shortcode('[recent_properties _parent_department="Sales"]');?>
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=Sales">View
@@ -124,10 +111,10 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
                 <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="tab-rent">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="commercial" _parent_department="lettings"]');?>
+                        <?php echo do_shortcode('[recent_properties _parent_department="Lettings"]');?>
                     </div>
                     <a class="btn-cs-dark"
-                        href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=lettings">View
+                        href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=Lettings">View
                         all properties</a>
                 </div>
 
