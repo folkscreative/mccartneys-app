@@ -111,7 +111,7 @@ if ( !empty( $image_private ) ) { ?>
                 </div>
                 <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="tab-rent">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties _parent_department="Lettings"]');?>
+                        <?php echo do_shortcode('[recent_properties department="commercial"]');?>
                     </div>
             <a class="btn-cs-dark"
                 href="<?php 
