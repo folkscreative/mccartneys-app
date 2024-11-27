@@ -110,15 +110,15 @@ if ( !empty( $image_private ) ) { ?>
                             $office_id = $branch_ph_office_map[$current_slug];
 
                             // Output the desired shortcode with the mapped office ID
-                           echo do_shortcode('[properties _parent_department="sales" office_id="' . $office_id . '" no_results_output="' . $no_results_message . '"]');
+                           echo do_shortcode('[properties _parent_department="Sales" office_id="' . $office_id . '"]');
                         } else {
                             // Optionally handle cases where the slug isn't in the map
-                            echo do_shortcode('[properties _parent_department="sales" no_results_output="' . $no_results_message . '"]');
+                            echo do_shortcode('[properties _parent_department="Sales"]');
                         }
                     ?>
                     </div>
                     <a class="btn-cs-dark"
-                        href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=sales">View
+                        href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=Sales">View
                         all properties
                     </a>
                 </div>
