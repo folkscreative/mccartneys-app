@@ -102,19 +102,19 @@ if ( !empty( $image_private ) ) { ?>
 
             <div class="tab-pane fade show active" id="sale" role="tabpanel" aria-labelledby="tab-sale">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties _parent_department="Sales"]');?>
+                    <?php echo do_shortcode('[recent_properties department="commercial" parent_department="Sales"]');?>
                     </div>
                     <a class="btn-cs-dark"
-                        href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>department=commercial">View
+                        href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>">View
                         all properties
                     </a>
                 </div>
                 <div class="tab-pane fade" id="rent" role="tabpanel" aria-labelledby="tab-rent">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties _parent_department="Lettings"]');?>
+                    <?php echo do_shortcode('[recent_properties department="commercial" parent_department="Lettings"]');?>
                     </div>
                     <a class="btn-cs-dark"
-                        href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?_parent_department=Lettings">View
+                        href="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>">View
                         all properties</a>
                 </div>
 
@@ -130,7 +130,7 @@ if ( !empty( $image_private ) ) { ?>
                             ?>
                         </div>
                     <a class="btn-cs-dark"
-                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=property-land-auctions">View
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>">View
                         all properties</a>
                 </div>
                 
@@ -140,7 +140,7 @@ if ( !empty( $image_private ) ) { ?>
                         <?php echo do_shortcode('[recent_properties department="new-homes"]');?>
                     </div>
                     <a class="btn-cs-dark"
-                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=new-homes">View
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>">View
                         all properties</a>
                 </div>
 
