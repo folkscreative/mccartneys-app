@@ -100,16 +100,16 @@ if ( !empty( $image_private ) ) { ?>
 
             <div class="tab-pane fade show active" id="rent" role="tabpanel" aria-labelledby="tab-rent">
                     <div class="inner-tabs pr">
-                    <?php echo do_shortcode('[recent_properties department="residential-lettings"]');?>
+                    <?php echo do_shortcode('[recent_properties department="commercial" parent_department="Lettings"]');?>
                     </div>
                     <a class="btn-cs-dark"
-                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=residential-lettings">View
+                        href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>">View
                         all properties</a>
                 </div>
 
                 <div class="tab-pane fade" id="sale" role="tabpanel" aria-labelledby="tab-sale">
                     <div class="inner-tabs pr">
-                        <?php echo do_shortcode('[recent_properties department="commercial"]');?>
+                    <?php echo do_shortcode('[recent_properties department="commercial" parent_department="Sales"]');?>
                     </div>
                     <a class="btn-cs-dark"
                         href="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>?department=commercial">View
@@ -213,7 +213,7 @@ if ( !empty( $image_private ) ) { ?>
     <!-- Livestock Auctioneers start here -->
     <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
         <section class="livestock-auctioneers sale d-none d-md-block">
-        <div class="container collapsed">
+        <div class="container">
             <div class="row g-4 action-trim">
                  <div class="col-4 col-lg-3 action-trim-item">
                     <div class="livestock-auctioneers-content col-left">
@@ -264,8 +264,8 @@ if ( !empty( $image_private ) ) { ?>
                 <?php endwhile; ?><?php endif;?>
             </div>
         </div>
-        <button class="load-more btn-cs-dark toogle-expert">Load More</button>
-        <button class="load-less btn-cs-dark toogle-expert" style="display:none;">Load Less</button>
+        <!-- <button class="load-more btn-cs-dark toogle-expert">Load More</button>
+        <button class="load-less btn-cs-dark toogle-expert" style="display:none;">Load Less</button> -->
     </section>
     <?php endif; ?>
     <!-- Livestock Auctioneers ends here -->

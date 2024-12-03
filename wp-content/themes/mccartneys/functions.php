@@ -1742,3 +1742,139 @@ function my_acf_json_save_point( $path ) {
     return $path;
 }
 add_filter( 'acf/settings/save_json', 'my_acf_json_save_point' );
+
+
+
+
+// Sales date CPT
+function register_sales_dates_cpt() {
+    $labels = array(
+        'name'               => _x('Sales Dates', 'post type general name'),
+        'singular_name'      => _x('Sales Date', 'post type singular name'),
+        'menu_name'          => __('Sales Dates'),
+        'name_admin_bar'     => __('Sales Date'),
+        'add_new'            => __('Add New'),
+        'add_new_item'       => __('Add New Sales Date'),
+        'edit_item'          => __('Edit Sales Date'),
+        'new_item'           => __('New Sales Date'),
+        'view_item'          => __('View Sales Date'),
+        'all_items'          => __('All Sales Dates'),
+        'search_items'       => __('Search Sales Dates'),
+        'not_found'          => __('No Sales Dates found.'),
+        'not_found_in_trash' => __('No Sales Dates found in Trash.'),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'menu_position'      => 20,
+        'supports'           => array('title', 'editor', 'custom-fields'),
+        'has_archive'        => true,
+        'rewrite'            => array('slug' => 'sales-dates'),
+    );
+
+    register_post_type('sales_dates', $args);
+}
+add_action('init', 'register_sales_dates_cpt');
+
+
+
+// add meta boxes
+
+function sales_dates_meta_boxes() {
+    add_meta_box(
+        'sales_dates_meta_box',
+        'Sales Date Details',
+        'sales_dates_meta_box_callback',
+        'sales_dates'
+    );
+}
+add_action('add_meta_boxes', 'sales_dates_meta_boxes');
+
+function sales_dates_meta_box_callback($post) {
+    // Retrieve existing values
+    $show_name = get_post_meta($post->ID, 'show_name', true);
+    $show_date = get_post_meta($post->ID, 'show_date', true);
+    $location = get_post_meta($post->ID, 'location', true);
+    $additional_info = get_post_meta($post->ID, 'additional_info', true);
+    $enter_now = get_post_meta($post->ID, 'enter_now', true);
+    $download_url = get_post_meta($post->ID, 'download_url', true);
+
+    // Fields
+    ?>
+    <p>
+        <label for="show_name">Show Name</label><br>
+        <input type="text" id="show_name" name="show_name" value="<?php echo esc_attr($show_name); ?>" style="width: 100%;">
+    </p>
+    <p>
+        <label for="show_date">Show Date</label><br>
+        <input type="date" id="show_date" name="show_date" value="<?php echo esc_attr($show_date); ?>" style="width: 100%;">
+    </p>
+    <p>
+        <label for="location">Location</label><br>
+        <input type="text" id="location" name="location" value="<?php echo esc_attr($location); ?>" style="width: 100%;">
+    </p>
+    <p>
+        <label for="additional_info">Additional Information</label><br>
+        <textarea id="additional_info" name="additional_info" style="width: 100%;"><?php echo esc_textarea($additional_info); ?></textarea>
+    </p>
+    <p>
+        <label for="enter_now">Enter Now (URL)</label><br>
+        <input type="url" id="enter_now" name="enter_now" value="<?php echo esc_url($enter_now); ?>" style="width: 100%;">
+    </p>
+    <p>
+        <label for="download_url">Download URL</label><br>
+        <input type="url" id="download_url" name="download_url" value="<?php echo esc_url($download_url); ?>" style="width: 100%;">
+    </p>
+    <?php
+}
+
+function save_sales_dates_meta($post_id) {
+    // Save custom fields
+    if (array_key_exists('show_name', $_POST)) {
+        update_post_meta($post_id, 'show_name', sanitize_text_field($_POST['show_name']));
+    }
+    if (array_key_exists('show_date', $_POST)) {
+        update_post_meta($post_id, 'show_date', sanitize_text_field($_POST['show_date']));
+    }
+    if (array_key_exists('location', $_POST)) {
+        update_post_meta($post_id, 'location', sanitize_text_field($_POST['location']));
+    }
+    if (array_key_exists('additional_info', $_POST)) {
+        update_post_meta($post_id, 'additional_info', sanitize_textarea_field($_POST['additional_info']));
+    }
+    if (array_key_exists('enter_now', $_POST)) {
+        update_post_meta($post_id, 'enter_now', esc_url_raw($_POST['enter_now']));
+    }
+    if (array_key_exists('download_url', $_POST)) {
+        update_post_meta($post_id, 'download_url', esc_url_raw($_POST['download_url']));
+    }
+}
+add_action('save_post', 'save_sales_dates_meta');
+
+
+
+function register_show_type_taxonomy() {
+    $labels = array(
+        'name'              => _x('Show Types', 'taxonomy general name'),
+        'singular_name'     => _x('Show Type', 'taxonomy singular name'),
+        'search_items'      => __('Search Show Types'),
+        'all_items'         => __('All Show Types'),
+        'edit_item'         => __('Edit Show Type'),
+        'add_new_item'      => __('Add New Show Type'),
+    );
+
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array('slug' => 'show-type'),
+    );
+
+    register_taxonomy('show_type', array('sales_dates'), $args);
+}
+add_action('init', 'register_show_type_taxonomy');

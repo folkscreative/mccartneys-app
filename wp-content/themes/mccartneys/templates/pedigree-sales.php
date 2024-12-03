@@ -143,7 +143,7 @@ if ( !empty( $image_private ) ) { ?>
           <!-- Livestock Auctioneers start here -->
  <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
     <section class="livestock-auctioneers  d-none d-md-block">
-        <div class="container collapsed">
+        <div class="container">
             <div class="row g-4 action-trim">
                  <div class="col-4 col-lg-3 action-trim-item">
                     <div class="livestock-auctioneers-content col-left">
@@ -194,8 +194,8 @@ if ( !empty( $image_private ) ) { ?>
                 <?php endwhile; ?><?php endif;?>
             </div>
         </div>
-        <button class="load-more btn-cs-dark toogle-expert">Load More</button>
-        <button class="load-less btn-cs-dark toogle-expert" style="display:none;">Load Less</button>
+        <!-- <button class="load-more btn-cs-dark toogle-expert">Load More</button>
+        <button class="load-less btn-cs-dark toogle-expert" style="display:none;">Load Less</button> -->
     </section>
     <?php endif; ?>
     <!-- Livestock Auctioneers ends here -->

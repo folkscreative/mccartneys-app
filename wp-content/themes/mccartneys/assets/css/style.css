@@ -11724,6 +11724,24 @@ body.post-type-archive-property .search-form--department {
 
 
 /* livestock auctioneer */
+.page-id-1236 .livestock-auctioneers .container.collapsed::after{
+    display: none !important;
+}
+.page-id-1236 .livestock-auctioneers .toogle-expert{
+    display: none !important;
+}
+.page-id-1268 .livestock-auctioneers .container.collapsed::after{
+    display: none !important;
+}
+.page-id-1268 .livestock-auctioneers .toogle-expert{
+    display: none !important;
+}
+.page-id-1279 .livestock-auctioneers .container.collapsed::after{
+    display: none !important;
+}
+.page-id-1279 .livestock-auctioneers .toogle-expert{
+    display: none !important;
+}
 
 .livestock-auctioneers {
     position: relative;
