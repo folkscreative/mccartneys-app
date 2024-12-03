@@ -95,32 +95,38 @@ get_header();
                 <?php if ($filtered_query->have_posts()) :
                 while ($filtered_query->have_posts()) : $filtered_query->the_post(); ?>
   
-                            <div class="show-dates-content">
-                                <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                                <?php echo get_post_meta(get_the_ID(), 'show_date', true); ?>
-                                <?php echo get_post_meta(get_the_ID(), 'location', true); ?>
-                                <?php
-                                $show_types = get_the_terms(get_the_ID(), 'show_type');
-                                if ($show_types && !is_wp_error($show_types)) {
-                                    
-                                    $show_type_names = array();
-                                    foreach ($show_types as $type) {
-                                        $show_type_names[] = esc_html($type->name);
-                                    }
-                                    echo implode(', ', $show_type_names);
-                                  
-                                }
-                                ?>
+                <div class="show-dates-content">
+                    <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                    <?php echo get_post_meta(get_the_ID(), 'show_date', true); ?>
+                    <?php echo get_post_meta(get_the_ID(), 'location', true); ?>
+                    <?php
+                    $show_types = get_the_terms(get_the_ID(), 'show_type');
+                    if ($show_types && !is_wp_error($show_types)) {
+                        $show_type_names = array();
+                        foreach ($show_types as $type) {
+                            $show_type_names[] = esc_html($type->name);
+                        }
+                        echo implode(', ', $show_type_names);
+                    }
+                    ?>
 
                     <?php echo nl2br(esc_html(get_post_meta(get_the_ID(), 'additional_info', true))); ?>
-                    
-                <a class="btn-cs-dark" href="<?php echo esc_url(get_post_meta(get_the_ID(), 'enter_now', true)); ?>" class="button">Enter Now</a>
-           
-                <a class="btn-sale" href="<?php echo esc_url(get_post_meta(get_the_ID(), 'download_url', true)); ?>" class="button">Download</a>
-           
-                                      
+
+                    <?php
+                    // Check and display 'Enter Now' button
+                    $enter_now_url = get_post_meta(get_the_ID(), 'enter_now', true);
+                    if (!empty($enter_now_url)) : ?>
+                        <a class="btn-cs-dark" href="<?php echo esc_url($enter_now_url); ?>" class="button">Enter Now</a>
+                    <?php endif; ?>
+
+                    <?php
+                    // Check and display 'Download' button
+                    $download_url = get_post_meta(get_the_ID(), 'download_url', true);
+                    if (!empty($download_url)) : ?>
+                        <a class="btn-sale" href="<?php echo esc_url($download_url); ?>" class="button">Download</a>
+                    <?php endif; ?>
                 </div>
-                    <?php   endwhile;
+                    <?php endwhile;
 
                 // Pagination
                 echo '<div class="pagination">';
