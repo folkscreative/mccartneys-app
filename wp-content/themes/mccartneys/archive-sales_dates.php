@@ -90,7 +90,7 @@ get_header();
         <div class="container">
             <div class="row g-0">
                 <div class="col-12">
-                if ($filtered_query->have_posts()) :
+                <?php if ($filtered_query->have_posts()) :
                 while ($filtered_query->have_posts()) : $filtered_query->the_post(); ?>
   
                             <div class="show-dates-content">
