@@ -5,27 +5,7 @@
 get_header();
 ?>
 
-<!-- <main class="pedigree-sales page-wrap">  -->
-    <!-- Inner Banner -->
-    <?php //if( have_rows('blocks') ): ?>
-        <?php //while( have_rows('blocks') ): the_row(); ?>
-        <?php //if( get_row_layout() == 'livestock_banner' ): ?>
-           <?php
-            //$image_private = get_sub_field( 'livestock_background_image' );
-//if ( !empty( $image_private ) ) { ?>
-    <!-- <section class="inner-banner-wrapper" style="background-image:url('<?php //echo $image_private['url']; ?>');"> -->
-<?php// }?>
-        <!-- <div class="container">
-            <div class="content">
-            <div class="breadcrumb"><?php //if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
-            <h1><?php //the_sub_field('livestock_banner_title'); ?></h1>
-            <p><?php //the_sub_field('livestock_banner_content'); ?></p>
-            </div>
-        </div> -->
-     <!-- </section> -->
-    <!-- Inner Bnner ends -->
-    <?php //endif; ?>
-   
+
 
     <!-- Filter Form -->
     <form method="GET" action="" class="filter-form">
@@ -102,15 +82,16 @@ get_header();
         'paged'          => get_query_var('paged') ? get_query_var('paged') : 1,
     );
 
-    $filtered_query = new WP_Query($args);
+    $filtered_query = new WP_Query($args);?>
 
-    if ($filtered_query->have_posts()) :?>
+    
        
     <section class="show-dates">
         <div class="container">
             <div class="row g-0">
                 <div class="col-12">
-                <?php while ($filtered_query->have_posts()) : $filtered_query->the_post(); ?>
+                if ($filtered_query->have_posts()) :
+                while ($filtered_query->have_posts()) : $filtered_query->the_post(); ?>
   
                             <div class="show-dates-content">
                                 <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
@@ -137,19 +118,19 @@ get_header();
                 <a class="btn-sale" href="<?php echo esc_url(get_post_meta(get_the_ID(), 'download_url', true)); ?>" class="button">Download</a>
             </p>
                                       
-            </div>
-                        <?php endwhile; ?>
+                </div>
+                    <?php   endwhile;
 
-                       <?php // Pagination
-                        echo '<div class="pagination">';
-                        echo paginate_links(array(
-                            'total' => $filtered_query->max_num_pages,
-                        ));
-                        echo '</div>';
-                        echo '</div>';
-                    else :
-                        echo '<p>No results found for your filters.</p>';
-                   
+                // Pagination
+                echo '<div class="pagination">';
+                echo paginate_links(array(
+                    'total' => $filtered_query->max_num_pages,
+                ));
+                echo '</div>';
+                echo '</div>';
+                else :
+                echo '<p>No results found for your filters.</p>';
+                endif;
 
     // Reset post data
     wp_reset_postdata();
@@ -159,7 +140,7 @@ get_header();
         </div>
     </section>
     <!-- Show Dates ends -->
-    <?php endif; ?>
+    
 
 
 
