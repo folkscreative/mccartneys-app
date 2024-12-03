@@ -133,7 +133,7 @@ get_header();
                     // Check and display 'Download' button
                     $download_url = get_post_meta(get_the_ID(), 'download_url', true);
                     if (!empty($download_url)) : ?>
-                        <a class="btn-sale" href="<?php echo esc_url($download_url); ?>" class="button">Download</a>
+                        <a class="btn-cs-dark" href="<?php echo esc_url($download_url); ?>" class="button">Download</a>
                     <?php endif; ?>
                 </div>
                     <?php endwhile;
