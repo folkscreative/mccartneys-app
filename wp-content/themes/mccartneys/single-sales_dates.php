@@ -38,22 +38,6 @@ get_header();
                 <a href="<?php echo esc_url(get_post_meta(get_the_ID(), 'download_url', true)); ?>" class="button">Download</a>
             </p>
         </article>
-
-        <?php
-// Get the post type category terms
-$post_type_categories = get_the_terms(get_the_ID(), 'post_type_category');
-
-if ($post_type_categories && !is_wp_error($post_type_categories)) {
-    echo '<p><strong>Category:</strong> ';
-    $category_names = array();
-    foreach ($post_type_categories as $category) {
-        $category_names[] = esc_html($category->name);
-    }
-    echo implode(', ', $category_names); // Display categories as a comma-separated list
-    echo '</p>';
-}
-?>
-
     <?php endwhile; ?>
 </div>
 

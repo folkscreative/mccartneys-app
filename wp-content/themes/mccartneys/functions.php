@@ -1875,39 +1875,3 @@ function register_show_type_taxonomy() {
 add_action('init', 'register_show_type_taxonomy');
 
 
-function register_post_type_category_taxonomy() {
-    $labels = array(
-        'name'              => _x('Post Type Categories', 'taxonomy general name'),
-        'singular_name'     => _x('Post Type Category', 'taxonomy singular name'),
-        'search_items'      => __('Search Categories'),
-        'all_items'         => __('All Categories'),
-        'edit_item'         => __('Edit Category'),
-        'update_item'       => __('Update Category'),
-        'add_new_item'      => __('Add New Category'),
-        'new_item_name'     => __('New Category Name'),
-        'menu_name'         => __('Post Type Categories'),
-    );
-
-    $args = array(
-        'hierarchical'      => true, // Acts like categories
-        'labels'            => $labels,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'rewrite'           => array('slug' => 'post-type-category'),
-    );
-
-    register_taxonomy('post_type_category', array('sales_dates'), $args);
-
-    // Add predefined terms (if not already existing)
-    if (!term_exists('Livestock', 'post_type_category')) {
-        wp_insert_term('Livestock', 'post_type_category');
-    }
-    if (!term_exists('Equine', 'post_type_category')) {
-        wp_insert_term('Equine', 'post_type_category');
-    }
-    if (!term_exists('Rural', 'post_type_category')) {
-        wp_insert_term('Rural', 'post_type_category');
-    }
-}
-add_action('init', 'register_post_type_category_taxonomy');
