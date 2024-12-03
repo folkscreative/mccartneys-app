@@ -149,7 +149,7 @@ get_header();
                         echo '</div>';
                     else :
                         echo '<p>No results found for your filters.</p>';
-                    endif;
+                   
 
     // Reset post data
     wp_reset_postdata();
