@@ -5,7 +5,16 @@
 get_header();
 ?>
 
-
+<section class="inner-banner-wrapper" style="background-image:url('https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/show-dates-banner-1.jpg');">
+        <div class="container">
+            <div class="content">
+            <div class="breadcrumb"><nav aria-label="breadcrumbs" class="rank-math-breadcrumb"><p><a href="https://wordpress-1285863-4695980.cloudwaysapps.com">Home</a><span class="separator"> - </span><a href="https://wordpress-1285863-4695980.cloudwaysapps.com/livestock-services/">Livestock Services</a><span class="separator"> - </span><span class="last">Sales Dates</span></p></nav></div>
+            <h1>Sales Dates</h1>
+            <p></p><p>Each year McCartneys attends agricultural and livestock shows across the country, in an opportunity to meet new and old faces and provide direction on how McCartneys can help you.</p>
+<p></p>
+            </div>
+        </div>
+     </section>
 
 
 <section class="archive-filter">
