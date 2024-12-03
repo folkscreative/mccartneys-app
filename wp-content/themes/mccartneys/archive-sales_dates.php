@@ -7,7 +7,14 @@ get_header();
 
 
 
-    <!-- Filter Form -->
+
+
+    
+       
+    <section class="show-dates">
+        
+        <div class="container">
+                <!-- Filter Form -->
     <form method="GET" action="" class="filter-form">
         <!-- Filter by Date -->
         <label for="filter_date">Show Date:</label>
@@ -83,11 +90,6 @@ get_header();
     );
 
     $filtered_query = new WP_Query($args);?>
-
-    
-       
-    <section class="show-dates">
-        <div class="container">
             <div class="row g-0">
                 <div class="col-12">
                 <?php if ($filtered_query->have_posts()) :
