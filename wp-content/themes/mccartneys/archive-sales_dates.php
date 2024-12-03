@@ -29,7 +29,19 @@ get_header();
                     }
                     ?>
 
-                    <a href="<?php the_permalink(); ?>" class="read-more">Read More</a>
+
+            <div class="additional-info">
+                <h2>Additional Information</h2>
+                <p><?php echo nl2br(esc_html(get_post_meta(get_the_ID(), 'additional_info', true))); ?></p>
+            </div>
+
+            <p>
+                <a href="<?php echo esc_url(get_post_meta(get_the_ID(), 'enter_now', true)); ?>" class="button">Enter Now</a>
+            </p>
+            <p>
+                <a href="<?php echo esc_url(get_post_meta(get_the_ID(), 'download_url', true)); ?>" class="button">Download</a>
+            </p>
+                    <!-- <a href="<?php the_permalink(); ?>" class="read-more">Read More</a> -->
                 </article>
             <?php endwhile; ?>
 
