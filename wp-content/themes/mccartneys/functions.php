@@ -1795,7 +1795,7 @@ add_action('add_meta_boxes', 'sales_dates_meta_boxes');
 
 function sales_dates_meta_box_callback($post) {
     // Retrieve existing values
-    $show_name = get_post_meta($post->ID, 'show_name', true);
+   
     $show_date = get_post_meta($post->ID, 'show_date', true);
     $location = get_post_meta($post->ID, 'location', true);
     $additional_info = get_post_meta($post->ID, 'additional_info', true);
@@ -1804,10 +1804,7 @@ function sales_dates_meta_box_callback($post) {
 
     // Fields
     ?>
-    <p>
-        <label for="show_name">Show Name</label><br>
-        <input type="text" id="show_name" name="show_name" value="<?php echo esc_attr($show_name); ?>" style="width: 100%;">
-    </p>
+    
     <p>
         <label for="show_date">Show Date</label><br>
         <input type="date" id="show_date" name="show_date" value="<?php echo esc_attr($show_date); ?>" style="width: 100%;">
@@ -1833,9 +1830,7 @@ function sales_dates_meta_box_callback($post) {
 
 function save_sales_dates_meta($post_id) {
     // Save custom fields
-    if (array_key_exists('show_name', $_POST)) {
-        update_post_meta($post_id, 'show_name', sanitize_text_field($_POST['show_name']));
-    }
+  
     if (array_key_exists('show_date', $_POST)) {
         update_post_meta($post_id, 'show_date', sanitize_text_field($_POST['show_date']));
     }
