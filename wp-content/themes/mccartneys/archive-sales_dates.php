@@ -116,8 +116,8 @@ get_header();
   
                 <div class="show-dates-content">
                     <h3><?php the_title(); ?></h3>
-                    <?php echo get_post_meta(get_the_ID(), 'show_date', true); ?>
-                    <?php echo get_post_meta(get_the_ID(), 'location', true); ?>
+                    <p><?php echo get_post_meta(get_the_ID(), 'show_date', true); ?></p>
+                    <p><?php echo get_post_meta(get_the_ID(), 'location', true); ?></p>
                     <?php
                     $show_types = get_the_terms(get_the_ID(), 'show_type');
                     if ($show_types && !is_wp_error($show_types)) {
