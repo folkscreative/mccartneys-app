@@ -5,8 +5,27 @@
 get_header();
 ?>
 
-<div class="container">
-    <h1>Sales Dates</h1>
+<main class="pedigree-sales page-wrap"> 
+    <!-- Inner Banner -->
+    <?php if( have_rows('blocks') ): ?>
+        <?php while( have_rows('blocks') ): the_row(); ?>
+        <?php if( get_row_layout() == 'livestock_banner' ): ?>
+           <?php
+            $image_private = get_sub_field( 'livestock_background_image' );
+if ( !empty( $image_private ) ) { ?>
+    <section class="inner-banner-wrapper" style="background-image:url('<?php echo $image_private['url']; ?>');">
+<?php }?>
+        <div class="container">
+            <div class="content">
+            <div class="breadcrumb"><?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
+            <h1><?php the_sub_field('livestock_banner_title'); ?></h1>
+            <p><?php the_sub_field('livestock_banner_content'); ?></p>
+            </div>
+        </div>
+     </section>
+    <!-- Inner Bnner ends -->
+    <?php endif; ?>
+   
 
     <!-- Filter Form -->
     <form method="GET" action="" class="filter-form">
@@ -85,57 +104,151 @@ get_header();
 
     $filtered_query = new WP_Query($args);
 
-    if ($filtered_query->have_posts()) :
-        echo '<div class="sales-dates-list">';
-        while ($filtered_query->have_posts()) : $filtered_query->the_post();
-            ?>
-            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                <p><strong>Show Date:</strong> <?php echo get_post_meta(get_the_ID(), 'show_date', true); ?></p>
-                <p><strong>Location:</strong> <?php echo get_post_meta(get_the_ID(), 'location', true); ?></p>
+    if ($filtered_query->have_posts()) :?>
+       
+    <section class="show-dates">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-12">
+                <?php while ($filtered_query->have_posts()) : $filtered_query->the_post(); ?>
+  
+                            <div class="show-dates-content">
+                                <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                                <p><strong>Show Date:</strong> <?php echo get_post_meta(get_the_ID(), 'show_date', true); ?></p>
+                                <p><strong>Location:</strong> <?php echo get_post_meta(get_the_ID(), 'location', true); ?></p>
+                                <?php
+                                $show_types = get_the_terms(get_the_ID(), 'show_type');
+                                if ($show_types && !is_wp_error($show_types)) {
+                                    echo '<p><strong>Show Type:</strong> ';
+                                    $show_type_names = array();
+                                    foreach ($show_types as $type) {
+                                        $show_type_names[] = esc_html($type->name);
+                                    }
+                                    echo implode(', ', $show_type_names);
+                                    echo '</p>';
+                                }
+                                ?>
 
-                <?php
-                $show_types = get_the_terms(get_the_ID(), 'show_type');
-                if ($show_types && !is_wp_error($show_types)) {
-                    echo '<p><strong>Show Type:</strong> ';
-                    $show_type_names = array();
-                    foreach ($show_types as $type) {
-                        $show_type_names[] = esc_html($type->name);
-                    }
-                    echo implode(', ', $show_type_names);
-                    echo '</p>';
-                }
-                ?>
-            <div class="additional-info">
-                <h2>Additional Information</h2>
-                <p><?php echo nl2br(esc_html(get_post_meta(get_the_ID(), 'additional_info', true))); ?></p>
+                    <p><?php echo nl2br(esc_html(get_post_meta(get_the_ID(), 'additional_info', true))); ?></p>
+                    <p>
+                <a class="btn-cs-dark" href="<?php echo esc_url(get_post_meta(get_the_ID(), 'enter_now', true)); ?>" class="button">Enter Now</a>
+            </p>
+            <p>
+                <a class="btn-sale" href="<?php echo esc_url(get_post_meta(get_the_ID(), 'download_url', true)); ?>" class="button">Download</a>
+            </p>
+                                      
             </div>
+                        <?php endwhile; ?>
 
-            <p>
-                <a href="<?php echo esc_url(get_post_meta(get_the_ID(), 'enter_now', true)); ?>" class="button">Enter Now</a>
-            </p>
-            <p>
-                <a href="<?php echo esc_url(get_post_meta(get_the_ID(), 'download_url', true)); ?>" class="button">Download</a>
-            </p>
-                <!-- <a href="<?php the_permalink(); ?>" class="read-more">Read More</a> -->
-            </article>
-            <?php
-        endwhile;
-
-        // Pagination
-        echo '<div class="pagination">';
-        echo paginate_links(array(
-            'total' => $filtered_query->max_num_pages,
-        ));
-        echo '</div>';
-        echo '</div>';
-    else :
-        echo '<p>No results found for your filters.</p>';
-    endif;
+                       <?php // Pagination
+                        echo '<div class="pagination">';
+                        echo paginate_links(array(
+                            'total' => $filtered_query->max_num_pages,
+                        ));
+                        echo '</div>';
+                        echo '</div>';
+                    else :
+                        echo '<p>No results found for your filters.</p>';
+                    endif;
 
     // Reset post data
     wp_reset_postdata();
     ?>
-</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Show Dates ends -->
+    <?php endif; ?>
 
-<?php get_footer(); ?>
+<!--  faqs -->
+<?php if( get_row_layout() == 'frequently_asked_questions' ): ?>
+    <section class="livestock-faqs faqs-wrap equine">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-12">
+                    <div class="col-left">
+                         <h2><?php the_sub_field('frequently_asked_question_title'); ?></h2>
+                         <p><?php the_sub_field('frequently_asked_question_description'); ?></p>
+                    </div>
+                </div>
+                <div class="col-12">
+                     <div class="faqs-wrapper">
+                     <?php if( have_rows('frequently_asked_question_detail') ):
+                             while ( have_rows('frequently_asked_question_detail') ) : the_row();?>
+                        <div class="faqs-item">
+                             <div class="top-bar">
+                                <h4><?php the_sub_field('frequently_asked_questions_question'); ?></h4>
+                                <span class="plus-icon"><i class="fa-solid fa-plus"></i></span>
+                             </div>
+                             <div class="bottom-bar">
+                             <div class="content">
+                             <?php the_sub_field('frequently_asked_questions_answers'); ?>
+                                 
+                             </div>
+                             <span class="x-icon"><i class="fa-solid fa-xmark"></i></span>
+                             </div>
+                        </div>
+                        <?php endwhile; ?>
+                        <?php endif; ?> 
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>  
+    <?php endwhile; ?>
+    <?php endif; ?>
+    
+     <!-- Departments -->
+     <section class="departments other">
+        <div class="container">
+            <div class="content">
+                <?php if( get_field('our_departments_title', 'option') ): ?>
+                        <h2><?php the_field('our_departments_title', 'option'); ?></h2>
+                    <?php endif; ?>
+                    <?php if( get_field('our_departments_description', 'option') ): ?>
+                        <p><?php the_field('our_departments_description', 'option'); ?></p>
+                    <?php endif; ?>
+            </div>
+            <?php if( have_rows('our_departments_slider', 'option') ): ?>
+            <div class="depart-slider depar">
+            <?php while( have_rows('our_departments_slider', 'option') ): the_row(); ?>
+            <div class="slide-wrap">
+            <?php 
+                        $department_cartneys_slider_link = get_sub_field('department_slider_button', 'option');
+                        if( $department_cartneys_slider_link ): 
+                            $department_cartneys_slider_link_url = $department_cartneys_slider_link['url'];
+                            $department_cartneys_slider_link_title = $department_cartneys_slider_link['title'];
+                            $department_cartneys_slider_link_target = $department_cartneys_slider_link['target'] ? $department_cartneys_slider_link['target'] : '_self';
+                            ?>
+                            <a class="btn-transparent" href="<?php echo esc_url( $department_cartneys_slider_link_url ); ?>" target="<?php echo esc_attr( $department_cartneys_slider_link_target ); ?>"><?php echo esc_html( $department_cartneys_slider_link_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                        <?php endif; ?>
+            <?php
+                $department_slider_bg_image = get_sub_field('our_departments_thumbnail', 'option');
+                if( !empty($department_slider_bg_image) ):?>
+                <img src="<?php echo $department_slider_bg_image['url']; ?>" alt="<?php echo $department_slider_bg_image['alt']; ?>">
+                <?php endif; ?>
+                <div class="inner-content">
+                    <h3><?php the_sub_field('department_cart_title', 'option'); ?></h3>
+                    <p><?php the_sub_field('department_cart_description', 'option'); ?></p>
+                    <?php 
+                        $department_cartneys_slider_link = get_sub_field('department_slider_button', 'option');
+                        if( $department_cartneys_slider_link ): 
+                            $department_cartneys_slider_link_url = $department_cartneys_slider_link['url'];
+                            $department_cartneys_slider_link_title = $department_cartneys_slider_link['title'];
+                            $department_cartneys_slider_link_target = $department_cartneys_slider_link['target'] ? $department_cartneys_slider_link['target'] : '_self';
+                            ?>
+                            <a class="btn-cs-light" href="<?php echo esc_url( $department_cartneys_slider_link_url ); ?>" target="<?php echo esc_attr( $department_cartneys_slider_link_target ); ?>"><?php echo esc_html( $department_cartneys_slider_link_title ); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                        <?php endif; ?>
+                </div>
+                </div>
+                <?php endwhile; ?>
+                </div>
+            <?php endif; ?>                     
+        </div>
+     </section>
+     <!-- Departments ends -->
+</main>
+
+<?php get_footer();?>
