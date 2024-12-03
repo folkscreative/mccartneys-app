@@ -1770,7 +1770,7 @@ function register_sales_dates_cpt() {
         'show_ui'            => true,
         'show_in_menu'       => true,
         'menu_position'      => 20,
-        'supports'           => array('title', 'editor', 'custom-fields'),
+        'supports'           => array('title', 'custom-fields'),
         'has_archive'        => true,
         'rewrite'            => array('slug' => 'sales-dates'),
     );
