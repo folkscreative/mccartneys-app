@@ -95,28 +95,27 @@ get_header();
   
                             <div class="show-dates-content">
                                 <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                                <p><strong>Show Date:</strong> <?php echo get_post_meta(get_the_ID(), 'show_date', true); ?></p>
-                                <p><strong>Location:</strong> <?php echo get_post_meta(get_the_ID(), 'location', true); ?></p>
+                                <?php echo get_post_meta(get_the_ID(), 'show_date', true); ?>
+                                <?php echo get_post_meta(get_the_ID(), 'location', true); ?>
                                 <?php
                                 $show_types = get_the_terms(get_the_ID(), 'show_type');
                                 if ($show_types && !is_wp_error($show_types)) {
-                                    echo '<p><strong>Show Type:</strong> ';
+                                    
                                     $show_type_names = array();
                                     foreach ($show_types as $type) {
                                         $show_type_names[] = esc_html($type->name);
                                     }
                                     echo implode(', ', $show_type_names);
-                                    echo '</p>';
+                                  
                                 }
                                 ?>
 
-                    <p><?php echo nl2br(esc_html(get_post_meta(get_the_ID(), 'additional_info', true))); ?></p>
-                    <p>
+                    <?php echo nl2br(esc_html(get_post_meta(get_the_ID(), 'additional_info', true))); ?>
+                    
                 <a class="btn-cs-dark" href="<?php echo esc_url(get_post_meta(get_the_ID(), 'enter_now', true)); ?>" class="button">Enter Now</a>
-            </p>
-            <p>
+           
                 <a class="btn-sale" href="<?php echo esc_url(get_post_meta(get_the_ID(), 'download_url', true)); ?>" class="button">Download</a>
-            </p>
+           
                                       
                 </div>
                     <?php   endwhile;
