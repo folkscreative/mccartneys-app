@@ -126,6 +126,16 @@ get_header();
                         echo 'Date not available';
                     }
                 ?></p>
+                     <p><?php
+                    $end_date = get_post_meta(get_the_ID(), 'end_date', true);
+                    if ($end_date) {
+                        // Convert the date to the desired format
+                        $formatted_date = date('l jS F Y', strtotime($end_date));
+                        echo esc_html($formatted_date);
+                    } else {
+                        echo 'Date not available';
+                    }
+                ?></p>
                     <p><?php echo get_post_meta(get_the_ID(), 'location', true); ?></p>
                     
 

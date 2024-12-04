@@ -1797,6 +1797,7 @@ function sales_dates_meta_box_callback($post) {
     // Retrieve existing values
    
     $show_date = get_post_meta($post->ID, 'show_date', true);
+    $end_date = get_post_meta($post->ID, 'end_date', true);
     $location = get_post_meta($post->ID, 'location', true);
     $additional_info = get_post_meta($post->ID, 'additional_info', true);
     $enter_now = get_post_meta($post->ID, 'enter_now', true);
@@ -1808,6 +1809,11 @@ function sales_dates_meta_box_callback($post) {
     <p>
         <label for="show_date">Show Date</label><br>
         <input type="date" id="show_date" name="show_date" value="<?php echo esc_attr($show_date); ?>" style="width: 100%;">
+    </p>
+
+    <p>
+        <label for="end_date">End Date</label><br>
+        <input type="date" id="end_date" name="end_date" value="<?php echo esc_attr($end_date); ?>" style="width: 100%;">
     </p>
     <p>
         <label for="location">Location</label><br>
@@ -1833,6 +1839,9 @@ function save_sales_dates_meta($post_id) {
   
     if (array_key_exists('show_date', $_POST)) {
         update_post_meta($post_id, 'show_date', sanitize_text_field($_POST['show_date']));
+    }
+    if (array_key_exists('end_date', $_POST)) {
+        update_post_meta($post_id, 'end_date', sanitize_text_field($_POST['end_date']));
     }
     if (array_key_exists('location', $_POST)) {
         update_post_meta($post_id, 'location', sanitize_text_field($_POST['location']));
