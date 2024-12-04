@@ -11923,3 +11923,29 @@ body.post-type-archive-property .search-form--department {
     color: #8d1f56 !important;
     font-weight: 500 !important;
 }
+/* livestock popup */
+.livestock-auctioneers .livestock-auctioneers-content .pop-wr{
+    position: fixed;
+    width: 100%;
+    max-width: 950px;
+    background-color: #8d1f56;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    overflow-y: auto;
+    padding: 62px 40px;
+    border-radius: 30px;
+    height: 100%;
+    max-height: fit-content;
+    display: none;
+}
+.livestock-auctioneers .livestock-auctioneers-content .pop-wr.active{
+    display: block;
+}
+.livestock-auctioneers .livestock-auctioneers-content .pop-wr .close{
+    color: #fff !important;
+}
+.livestock-auctioneers .livestock-auctioneers-content .pop-wr p{
+    color: #fff !important;
+}
