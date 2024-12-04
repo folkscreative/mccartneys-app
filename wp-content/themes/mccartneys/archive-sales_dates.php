@@ -22,7 +22,7 @@ get_header();
         <div class="row">
             <div class="col-12">
                 <div class="filter-content">
-                               <!-- Filter Form -->
+     <!-- Filter Form -->
     <form method="GET" action="" class="filter-form">
         <!-- Filter by Date -->
         <label for="filter_date">Show Date:</label>

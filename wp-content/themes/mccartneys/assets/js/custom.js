@@ -14,6 +14,12 @@ jQuery(document).ready(function ($) {
     $('.main-popup .outer').click(function () {
         $(this).children('.sub-menu').addClass('show');
     });
+    $('.livestock-auctioneers-content').click(function () {
+        $(this).children('.pop-wr').addClass('active');
+    });
+    $('.livestock-auctioneers-content .pop-wr .close').click(function () {
+        $('pop-wr').removeClass('active');
+    });
     $(".mobile-filter .filter-btn").click(function () {
         $(this).toggleClass("active");
         $(".popup-filter").toggleClass("active");

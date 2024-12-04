@@ -279,6 +279,10 @@ if ( !empty( $image_private ) ) { ?>
                             <h4><?php the_sub_field('livestock_auctioneers_name'); ?></h4>
                             <p><?php the_sub_field('livestock_auctioneers_post_title'); ?></p>
                         </div>
+                        <div class="pop-wr">
+                            <span class="close">X</span>
+                            <?php the_sub_field('livestock_auctioneers_blurb'); ?>
+                        </div>
                     </div>
                 </div>      
                 <?php endwhile; ?><?php endif;?>
