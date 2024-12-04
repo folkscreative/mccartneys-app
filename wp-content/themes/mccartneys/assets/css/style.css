@@ -9230,6 +9230,12 @@ section.search-outer.filter .container {
         font-size: 36px !important;
         line-height: 36px !important;
     }
+    .livestock-auctioneers .slick-list.trans{
+        transform: none !important;
+    }
+    .livestock-auctioneers .slick-track.trans{
+        transform: none !important;
+    }
 }
 
 @media (max-width: 575px) {
@@ -11926,7 +11932,7 @@ body.post-type-archive-property .search-form--department {
 /* livestock popup */
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr{
     position: fixed;
-    width: 100%;
+    width: 95%;
     max-width: 950px;
     background-color: #8d1f56;
     top: 50%;
