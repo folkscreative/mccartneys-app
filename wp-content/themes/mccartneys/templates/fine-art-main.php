@@ -169,6 +169,12 @@ get_header(); ?>
                             <h4><?php the_sub_field('livestock_auctioneers_name'); ?></h4>
                             <p><?php the_sub_field('livestock_auctioneers_post_title'); ?></p>
                         </div>
+                        <?php if( get_sub_field('livestock_auctioneers_blurb') ): ?>
+                        <div class="pop-wr">
+                            <span class="closed">X</span>
+                            <?php the_sub_field('livestock_auctioneers_blurb'); ?>
+                        </div>
+                    <?php endif; ?>
                     </div>
                 </div>      
                 <?php endwhile; ?><?php endif;?>
@@ -229,6 +235,12 @@ get_header(); ?>
                         <h4><?php the_sub_field('livestock_auctioneers_name'); ?></h4>
                         <p><?php the_sub_field('livestock_auctioneers_post_title'); ?></p>
                         </div>
+                        <?php if( get_sub_field('livestock_auctioneers_blurb') ): ?>
+                        <div class="pop-wr">
+                            <span class="closed">X</span>
+                            <?php the_sub_field('livestock_auctioneers_blurb'); ?>
+                        </div>
+                    <?php endif; ?>
                     </div>
                 </div>
                 <?php endwhile; ?><?php endif;?>
