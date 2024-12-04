@@ -141,14 +141,14 @@ get_header();
                     // Check and display 'Enter Now' button
                     $enter_now_url = get_post_meta(get_the_ID(), 'enter_now', true);
                     if (!empty($enter_now_url)) : ?>
-                        <a class="btn-cs-dark" href="<?php echo esc_url($enter_now_url); ?>" class="button">Enter Now ></a>
+                        <a class="btn-cs-dark" href="<?php echo esc_url($enter_now_url); ?>" class="button">Enter Now </a>
                     <?php endif; ?>
 
                     <?php
                     // Check and display 'Download' button
                     $download_url = get_post_meta(get_the_ID(), 'download_url', true);
                     if (!empty($download_url)) : ?>
-                        <a class="btn-cs-dark" href="<?php echo esc_url($download_url); ?>" class="button">Download Calendar ></a>
+                        <a class="btn-cs-dark" href="<?php echo esc_url($download_url); ?>" class="button">Download Calendar </a>
                     <?php endif; ?>
                 </div>
                     <?php endwhile;
