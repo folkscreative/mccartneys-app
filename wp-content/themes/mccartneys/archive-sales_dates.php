@@ -118,16 +118,7 @@ get_header();
                     <h3><?php the_title(); ?></h3>
                     <p><?php echo get_post_meta(get_the_ID(), 'show_date', true); ?></p>
                     <p><?php echo get_post_meta(get_the_ID(), 'location', true); ?></p>
-                    <?php
-                    $show_types = get_the_terms(get_the_ID(), 'show_type');
-                    if ($show_types && !is_wp_error($show_types)) {
-                        $show_type_names = array();
-                        foreach ($show_types as $type) {
-                            $show_type_names[] = esc_html($type->name);
-                        }
-                        echo implode(', ', $show_type_names);
-                    }
-                    ?>
+                    
 
                     <?php echo nl2br(esc_html(get_post_meta(get_the_ID(), 'additional_info', true))); ?>
 

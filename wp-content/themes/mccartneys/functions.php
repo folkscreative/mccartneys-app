@@ -1859,6 +1859,7 @@ function register_show_type_taxonomy() {
         'all_items'         => __('All Show Types'),
         'edit_item'         => __('Edit Show Type'),
         'add_new_item'      => __('Add New Show Type'),
+        'menu_name'         => __('Show Types'),
     );
 
     $args = array(
@@ -1870,7 +1871,22 @@ function register_show_type_taxonomy() {
         'rewrite'           => array('slug' => 'show-type'),
     );
 
+    // Register the taxonomy
     register_taxonomy('show_type', array('sales_dates'), $args);
+
+    // Add predefined terms (main and subcategories)
+    if (!term_exists('Concerts', 'show_type')) {
+        $concerts = wp_insert_term('Concerts', 'show_type');
+    }
+    if (!term_exists('Theater', 'show_type')) {
+        $theater = wp_insert_term('Theater', 'show_type');
+    }
+    if (!term_exists('Rock', 'show_type')) {
+        wp_insert_term('Rock', 'show_type', array('parent' => $concerts['term_id']));
+    }
+    if (!term_exists('Classical', 'show_type')) {
+        wp_insert_term('Classical', 'show_type', array('parent' => $concerts['term_id']));
+    }
 }
 add_action('init', 'register_show_type_taxonomy');
 
