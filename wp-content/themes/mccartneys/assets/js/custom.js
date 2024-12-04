@@ -184,7 +184,7 @@ jQuery(document).ready(function ($) {
         dots: true,
         arrows: true,
         infinite: true,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 2000,
         slidesToShow: 4,
         slideToScroll: 1,

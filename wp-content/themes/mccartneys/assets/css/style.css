@@ -11944,12 +11944,12 @@ body.post-type-archive-property .search-form--department {
     display: block;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .closed{
-    color: #fff !important;
     right: 10px;
     top: 10px;
     font-size: 27px;
     position: absolute;
     color: #fff;
+    cursor: pointer;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr p{
     color: #fff !important;
