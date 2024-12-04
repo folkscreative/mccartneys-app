@@ -16,6 +16,7 @@ jQuery(document).ready(function ($) {
     });
     $('.livestock-auctioneers .livestock-auctioneers-content').click(function () {
         $(this).children('.pop-wr').addClass('active');
+        $(this).closest('.slick-track').addClass('trans');
     });
     $(document).on('click', '.closed', function () {
         $(this).parent('.pop-wr').removeClass('active');
