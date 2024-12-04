@@ -17,7 +17,8 @@ jQuery(document).ready(function ($) {
     $('.livestock-auctioneers .livestock-auctioneers-content').click(function () {
         $(this).children('.pop-wr').addClass('active');
     });
-    $('.livestock-auctioneers .livestock-auctioneers-content .pop-wr .close').click(function () {
+    $('.livestock-auctioneers .livestock-auctioneers-content .pop-wr .closed').click(function () {
+        console.log('sdfsdf');
         $(this).parent().removeClass('active');
     });
     $(".mobile-filter .filter-btn").click(function () {

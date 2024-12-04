@@ -281,7 +281,7 @@ if ( !empty( $image_private ) ) { ?>
                         </div>
                         <?php if( get_sub_field('livestock_auctioneers_blurb') ): ?>
                         <div class="pop-wr">
-                            <span class="close">X</span>
+                            <span class="closed">X</span>
                             <?php the_sub_field('livestock_auctioneers_blurb'); ?>
                         </div>
                     <?php endif; ?>
@@ -348,7 +348,7 @@ if ( !empty( $image_private ) ) { ?>
                         </div>
                         <?php if( get_sub_field('livestock_auctioneers_blurb') ): ?>
                         <div class="pop-wr">
-                            <span class="close">X</span>
+                            <span class="closed">X</span>
                             <?php the_sub_field('livestock_auctioneers_blurb'); ?>
                         </div>
                     <?php endif; ?>
