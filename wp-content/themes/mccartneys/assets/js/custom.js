@@ -14,10 +14,10 @@ jQuery(document).ready(function ($) {
     $('.main-popup .outer').click(function () {
         $(this).children('.sub-menu').addClass('show');
     });
-    $('.livestock-auctioneers-content').click(function () {
+    $('.livestock-auctioneers .livestock-auctioneers-content').click(function () {
         $(this).children('.pop-wr').addClass('active');
     });
-    $('.livestock-auctioneers-content .pop-wr .close').click(function () {
+    $('.livestock-auctioneers .livestock-auctioneers-content .pop-wr .close').click(function () {
         $('pop-wr').removeClass('active');
     });
     $(".mobile-filter .filter-btn").click(function () {
