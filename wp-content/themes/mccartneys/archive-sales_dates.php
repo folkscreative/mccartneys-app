@@ -135,7 +135,7 @@ get_header();
                     <p><?php echo get_post_meta(get_the_ID(), 'location', true); ?></p>
                     
 
-                    <?php echo nl2br(esc_html(get_post_meta(get_the_ID(), 'additional_info', true))); ?>
+                   <p> <?php echo nl2br(esc_html(get_post_meta(get_the_ID(), 'additional_info', true))); ?></p>
 
                     <?php
                     // Check and display 'Enter Now' button
