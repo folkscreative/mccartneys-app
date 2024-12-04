@@ -116,7 +116,16 @@ get_header();
   
                 <div class="show-dates-content">
                     <h3><?php the_title(); ?></h3>
-                    <p><?php echo get_post_meta(get_the_ID(), 'show_date', true); ?></p>
+                <p><?php
+                    $show_date = get_post_meta(get_the_ID(), 'show_date', true);
+                    if ($show_date) {
+                        // Convert the date to the desired format
+                        $formatted_date = date('l jS F Y', strtotime($show_date));
+                        echo esc_html($formatted_date);
+                    } else {
+                        echo 'Date not available';
+                    }
+                ?></p>
                     <p><?php echo get_post_meta(get_the_ID(), 'location', true); ?></p>
                     
 
