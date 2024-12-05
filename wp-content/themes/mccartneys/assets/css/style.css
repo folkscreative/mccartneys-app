@@ -11963,9 +11963,20 @@ body.post-type-archive-property .search-form--department {
     gap: 20px;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left{
-    max-width: 270px;
-    width: 100%;
+    width: 26%;
+    font-size: 13px;
     color: #fff;
+}
+.livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left li a{
     color: #fff !important;
