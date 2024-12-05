@@ -25,8 +25,8 @@ get_header();
      <!-- Filter Form -->
     <form method="GET" action="" class="filter-form">
         <!-- Filter by Date -->
-        <label for="filter_date">Show Date:</label>
-        <input type="date" name="filter_date" id="filter_date" value="<?php echo isset($_GET['filter_date']) ? esc_attr($_GET['filter_date']) : ''; ?>">
+        <!-- <label for="filter_date">Show Date:</label> -->
+        <!-- <input type="date" name="filter_date" id="filter_date" value="<?php //echo isset($_GET['filter_date']) ? esc_attr($_GET['filter_date']) : ''; ?>"> -->
 
         <!-- Filter by Show Type -->
         <label for="filter_show_type">Show Type:</label>
@@ -47,8 +47,8 @@ get_header();
         </select>
 
         <!-- Filter by Location -->
-        <label for="filter_location">Location:</label>
-        <input type="text" name="filter_location" id="filter_location" value="<?php echo isset($_GET['filter_location']) ? esc_attr($_GET['filter_location']) : ''; ?>" placeholder="Enter location">
+        <!-- <label for="filter_location">Location:</label> -->
+        <!-- <input type="text" name="filter_location" id="filter_location" value="<?php //echo isset($_GET['filter_location']) ? esc_attr($_GET['filter_location']) : ''; ?>" placeholder="Enter location"> -->
 
         <!-- Submit Button -->
         <button type="submit">Filter</button>
