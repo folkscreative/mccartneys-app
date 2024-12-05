@@ -95,6 +95,9 @@ get_header();
         'meta_query'     => $meta_query,
         'tax_query'      => $tax_query,
         'paged'          => get_query_var('paged') ? get_query_var('paged') : 1,
+        'meta_key'       => 'show_date', // Replace with the correct meta key for the date
+        'orderby'        => 'meta_value',
+        'order'          => 'DESC',     // Sort by descending order for newest dates first
     );
 
     $filtered_query = new WP_Query($args);?>
