@@ -11960,3 +11960,6 @@ body.post-type-archive-property .search-form--department {
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr p{
     color: #fff !important;
 }
+.archive-filter .container{
+    max-width: 790px;
+}
