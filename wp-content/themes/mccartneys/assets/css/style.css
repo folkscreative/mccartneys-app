@@ -9409,6 +9409,12 @@ section.search-outer.filter .container {
     .auction-gallery #lightbox img {
         max-width: 80%;
     }
+    .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap{
+        flex-direction: column;
+    }
+    .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left{
+        width: 100%;
+    }
 }
 
 
