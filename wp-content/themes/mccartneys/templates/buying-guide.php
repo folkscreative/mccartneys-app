@@ -126,12 +126,7 @@ get_header(); ?>
                             </li>
 							<?php endif; ?>
 
-                            <?php if( get_sub_field('livestock_auctioneers_email') ): ?>
-                            <li>
-                            <i class="fa-regular fa-envelope"></i>
-                            <a href="mailto:<?php the_sub_field('livestock_auctioneers_email'); ?>"><?php the_sub_field('livestock_auctioneers_email'); ?></a>
-                            </li>
-                            <?php endif; ?>
+                    
                         </ul>
                         </div>
                         <div class="team-content">
@@ -141,7 +136,47 @@ get_header(); ?>
                         <?php if( get_sub_field('livestock_auctioneers_blurb') ): ?>
                         <div class="pop-wr">
                             <span class="closed">X</span>
-                            <?php the_sub_field('livestock_auctioneers_blurb'); ?>
+                            <div class="inner-wrap">
+                                <div class="col-left">
+                                <?php
+                                $ac_image = get_sub_field('livestock_auctioneers_image');
+                                ?>
+                                <?php if( !empty($ac_image) ):?>
+                                    <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>" class="w-100">
+                                <?php endif; ?>
+                                <h4><?php the_sub_field('livestock_auctioneers_name'); ?></h4>
+                                <ul>
+                                <li>
+                                    <?php the_sub_field('livestock_auctioneers_office'); ?>
+                                </li>
+                                <li>
+                                <?php the_sub_field('livestock_auctioneers_post_title'); ?>
+                                </li>
+                                <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
+                                <li>
+                                <i class="fa-solid fa-phone"></i>
+                                <a href="tel:<?php the_sub_field('livestock_auctioneers_number'); ?>"><?php the_sub_field('livestock_auctioneers_number'); ?></a>
+                                </li>
+                                <?php endif; ?>
+                                <?php if( get_sub_field('livestock_auctioneers_second_number') ): ?>
+                                <li>
+                                <i class="fa-solid fa-phone"></i>
+                                <a href="tel:<?php the_sub_field('livestock_auctioneers_second_number'); ?>"><?php the_sub_field('livestock_auctioneers_second_number'); ?></a>
+                                </li>
+                                <?php endif; ?>
+                                <?php if( get_sub_field('livestock_auctioneers_email') ): ?>
+                                <li>
+                                <i class="fa-regular fa-envelope"></i>
+                                <a href="mailto:<?php the_sub_field('livestock_auctioneers_email'); ?>"><?php the_sub_field('livestock_auctioneers_email'); ?></a>
+                                </li>
+                                <?php endif; ?>
+                                
+                                </ul>
+                                </div>
+                                <div class="col-right">
+                                <?php the_sub_field('livestock_auctioneers_blurb'); ?>
+                                </div>
+                            </div>
                         </div>
                     <?php endif; ?>
                     </div>
@@ -192,12 +227,6 @@ get_header(); ?>
                             </li>
 							<?php endif; ?>
 
-                            <?php if( get_sub_field('livestock_auctioneers_email') ): ?>
-                            <li>
-                            <i class="fa-regular fa-envelope"></i>
-                            <a href="mailto:<?php the_sub_field('livestock_auctioneers_email'); ?>"><?php the_sub_field('livestock_auctioneers_email'); ?></a>
-                            </li>
-                            <?php endif; ?>
                         </ul>
                         </div>
                         <div class="team-content">
@@ -207,7 +236,47 @@ get_header(); ?>
                         <?php if( get_sub_field('livestock_auctioneers_blurb') ): ?>
                         <div class="pop-wr">
                             <span class="closed">X</span>
-                            <?php the_sub_field('livestock_auctioneers_blurb'); ?>
+                            <div class="inner-wrap">
+                                <div class="col-left">
+                                <?php
+                                $ac_image = get_sub_field('livestock_auctioneers_image');
+                                ?>
+                                <?php if( !empty($ac_image) ):?>
+                                    <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>" class="w-100">
+                                <?php endif; ?>
+                                <h4><?php the_sub_field('livestock_auctioneers_name'); ?></h4>
+                                <ul>
+                                <li>
+                                    <?php the_sub_field('livestock_auctioneers_office'); ?>
+                                </li>
+                                <li>
+                                <?php the_sub_field('livestock_auctioneers_post_title'); ?>
+                                </li>
+                                <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
+                                <li>
+                                <i class="fa-solid fa-phone"></i>
+                                <a href="tel:<?php the_sub_field('livestock_auctioneers_number'); ?>"><?php the_sub_field('livestock_auctioneers_number'); ?></a>
+                                </li>
+                                <?php endif; ?>
+                                <?php if( get_sub_field('livestock_auctioneers_second_number') ): ?>
+                                <li>
+                                <i class="fa-solid fa-phone"></i>
+                                <a href="tel:<?php the_sub_field('livestock_auctioneers_second_number'); ?>"><?php the_sub_field('livestock_auctioneers_second_number'); ?></a>
+                                </li>
+                                <?php endif; ?>
+                                <?php if( get_sub_field('livestock_auctioneers_email') ): ?>
+                                <li>
+                                <i class="fa-regular fa-envelope"></i>
+                                <a href="mailto:<?php the_sub_field('livestock_auctioneers_email'); ?>"><?php the_sub_field('livestock_auctioneers_email'); ?></a>
+                                </li>
+                                <?php endif; ?>
+                                
+                                </ul>
+                                </div>
+                                <div class="col-right">
+                                <?php the_sub_field('livestock_auctioneers_blurb'); ?>
+                                </div>
+                            </div>
                         </div>
                     <?php endif; ?>
                     </div>
