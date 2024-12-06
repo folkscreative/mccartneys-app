@@ -227,7 +227,7 @@ get_header(); ?>
     
     <?php if( get_row_layout() == 'livestock_auctioneers' ): ?>
         <section class="livestock-auctioneers d-none d-md-block" id="livestck-actioner">
-        <div class="container collapsed">
+        <div class="container">
             <div class="row g-4 action-trim">
                  <div class="col-4 col-lg-3 action-trim-item">
                     <div class="livestock-auctioneers-content col-left">
@@ -319,8 +319,8 @@ get_header(); ?>
                 <?php endwhile; ?><?php endif;?>
             </div>
         </div>
-        <button class="load-more btn-cs-dark toogle-expert">Load More</button>
-        <button class="load-less btn-cs-dark toogle-expert" style="display:none;">Load Less</button>
+        <!-- <button class="load-more btn-cs-dark toogle-expert">Load More</button>
+        <button class="load-less btn-cs-dark toogle-expert" style="display:none;">Load Less</button> -->
     </section>
     <?php endif;?>
     

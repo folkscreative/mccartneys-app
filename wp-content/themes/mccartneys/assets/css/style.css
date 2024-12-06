@@ -2350,6 +2350,7 @@ footer .cookies-menu ul li a {
     display: flex;
     flex-direction: column;
     height: 100%;
+    cursor: pointer;
 }
 
 .livestock-auctioneers .livestock-auctioneers-content.col-left {
@@ -2386,6 +2387,7 @@ footer .cookies-menu ul li a {
     transform: translateY(100%);
     transition: all .3s ease;
     opacity: 0;
+    display: none;
 }
 
 .livestock-auctioneers .livestock-auctioneers-content:hover .info-wrapper .info-box {
@@ -11978,7 +11980,7 @@ body.post-type-archive-property .search-form--department {
     gap: 10px;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left li{
-    display: flex;
+    /* display: flex; */
     flex-direction: row;
     align-items: center;
     gap: 6px;
