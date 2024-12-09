@@ -1751,7 +1751,7 @@ footer .col-right .links-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    column-gap: 45px;
+    column-gap: 10px;
 }
 
 footer .col-right .links-wrapper h3 {
@@ -1765,9 +1765,11 @@ footer .col-right .links-wrapper h3 {
 footer .col-right .links-wrapper ul li a {
     position: relative;
     font-size: 17px;
-    line-height: 35px;
+    line-height: 22px;
     color: #fff;
     font-weight: 300;
+    margin-bottom: 12px;
+    display: inline-block;
 }
 
 footer .col-right .links-wrapper ul li a:hover:after {
