@@ -2147,6 +2147,10 @@ footer .cookies-menu ul li a {
 .pedigree-center .col-right p {
     margin-bottom: 30px;
 }
+.pedigree-center .col-right p a{
+    color: #8d1f56;
+    font-weight: 500;
+}
 
 .pedigree-center .col-right h3 {
     margin-bottom: 34px;
@@ -2649,8 +2653,18 @@ footer .cookies-menu ul li a {
     border-bottom-left-radius: 135px;
     background-size: cover;
     background-position: center;
+    position: relative;
 }
 
+.main-banner::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    border-radius: 0px 0px 0 130px; 
+    background: linear-gradient(272deg, rgb(211 85 85 / 0%) 0%, rgb(0 0 0 / 63%) 106%);
+}
 .main-banner-sticky .banner-menu.fixed {
     position: fixed;
     top: 20px;
