@@ -2679,6 +2679,8 @@ footer .cookies-menu ul li a {
     display: flex;
     flex-direction: column;
     min-height: 668px;
+    position: relative;
+    z-index: 1;
 }
 
 .main-banner .breadcrumb {
@@ -10616,6 +10618,7 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
     gap: 5px;
     margin-top: 60px;
     align-items: center;
+    position: relative;
 }
 
 .propertyhive-pagination .page-numbers {
@@ -11251,6 +11254,9 @@ body.single-property.department-fine-and-country {
     display: flex !important;
     justify-content: start !important;
 }
+.branch-share-popup .sharethis-inline-share-buttons .st-btn{
+    display: block !important;
+}
 
 .branch-share-popup .sharethis-inline-share-buttons .st-btn {
     background-color: #707070 !important;
@@ -11388,15 +11394,20 @@ body.single-property .hidden {
     .single-property .property-gallery {
         flex-direction: column;
     }
-    .single-property .property-gallery .main-image {}
     .single-property .property-gallery .side-images {
         flex-direction: row;
     }
+    .single-property .property-gallery a{
+        width: 100%;
+    }
     .single-property .property-gallery .side-images img {
-        width: calc(50% - 10px)
+        width: 100%;
     }
     .single-property--info .summary {
         max-width: 100%
+    }
+    .single-property .branch-info{
+        padding: 50px 20px;
     }
 }
 

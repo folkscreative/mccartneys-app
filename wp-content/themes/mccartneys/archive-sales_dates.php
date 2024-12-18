@@ -5,10 +5,31 @@
 get_header();
 ?>
 
-<section class="inner-banner-wrapper" style="background-image:url('https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/12/shutterstock_2157695963-scaled.jpg');">
+
+
+<?php
+// Define default background image
+$background_image = 'https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/12/shutterstock_2157695963-scaled.jpg';
+
+// Check for the 'filter_show_type' parameter in the URL
+if (isset($_GET['filter_show_type'])) {
+    $filter_show_type = sanitize_text_field($_GET['filter_show_type']);
+
+    // Set different background images based on the query parameter value
+    if ($filter_show_type === 'fine-art-antiques') {
+        $background_image = 'https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/12/494.jpg';
+    } elseif ($filter_show_type === 'equine') {
+        $background_image = 'https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/12/shutterstock_2157695963-min-scaled.jpg';
+    }
+}
+?>
+
+<!-- Section with dynamic background image -->
+
+<section class="inner-banner-wrapper" style="background-image: url('<?php echo esc_url($background_image); ?>');">
         <div class="container">
             <div class="content">
-            <div class="breadcrumb"><?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
+            <?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?>
             <h1>Sales Dates</h1>
             <p></p><p>Each year McCartneys attends agricultural and livestock shows across the country, in an opportunity to meet new and old faces and provide direction on how McCartneys can help you.</p>
 <p></p>

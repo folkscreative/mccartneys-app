@@ -225,8 +225,8 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
 
                         <?php if ( $property->council_tax_band ) {?>
                         <li class="mcc-badge">
-                            <!-- <img class="badge-icon"
-                                src="<?php echo get_template_directory_uri(); ?>/assets/images/recep-room.png" alt=""> -->
+                            <img class="badge-icon"
+                                src="<?php echo get_template_directory_uri(); ?>/assets/images/councial-tax.png" alt="">
                             <div class="feature-info">
                                 <h6>Council Tax Band</h6>
                                 <span><?php echo $property->council_tax_band; ?></span>
@@ -299,7 +299,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                         </span>
                     </div>
                     <div class="branch-info mobile d-block d-md-none">
-                        <div class="img-wrap">
+                        <div class="img-wrap negotiator-profile-wrap">
                             <img src="<?php if ($property->department === "fine-and-country") {
                             echo $fine_country_logo;
                         } else {
