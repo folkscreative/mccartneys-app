@@ -53,12 +53,12 @@ $no_results_message = "No properties in this department for this branch"
                                
 
                             <a href="<?php 
-    if (is_page('contact-us')) { 
+    if (is_page('Contact Us')) { 
         // If you're on the Contact page, use the hardcoded Contact page URL
-        echo '/contact-us/#office-data'; 
+        echo 'https://wordpress-1285863-4695980.cloudwaysapps.com/contact-us/#office-data'; 
     } else { 
         // For any other page, use the hardcoded Home page URL
-        echo '/#office-data'; 
+        echo 'https://wordpress-1285863-4695980.cloudwaysapps.com/#office-data'; 
     }
 ?>" class="btn-cs-white">
     Go Back<span><i class="fa-solid fa-angle-left"></i></span>
