@@ -21,7 +21,7 @@ get_header(); ?>
             
            <div class="contact-form">
 
-           <iframe id="JotFormIFrame-242453847375061" title="Contact McCartneys" onload="window.parent.scrollTo(0,0)" allowtransparency="true" allow="geolocation; microphone; camera; fullscreen"
+           <iframe id="JotFormIFrame-242453847375061" title="Contact McCartneys"  allowtransparency="true" allow="geolocation; microphone; camera; fullscreen"
             src="https://form.jotform.com/242453847375061" frameborder="0" width="100%" height="1050px" scrolling="no">
             </iframe>
             <?php //echo do_shortcode('[contact-form-7 id="35180b3" title="Contact form 1"] '); ?>
@@ -152,3 +152,23 @@ get_header(); ?>
 </main>
 
 <?php get_footer();?>
+
+
+<!-- <script>
+    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    });
+});
+</script>
+
+<style>
+    html {
+    scroll-behavior: smooth;
+}
+
+</style> -->

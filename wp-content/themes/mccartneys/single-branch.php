@@ -50,19 +50,53 @@ $no_results_message = "No properties in this department for this branch"
                     <div class="single-content-details">
                         <div class="content">
                             <div>
+
+                            <?php
+// Get the referrer URL
+$referrer = wp_get_referer();
+
+if ($referrer) {
+    // Define specific URLs
+    $contact_us_url = get_permalink(get_page_by_path('contact-us')); // Replace 'contact-us' with your slug
+    $home_url = home_url('/');
+
+    // Define target links with specific anchors
+    $contact_us_target = '/contact-us/#office-data';
+
+    $home_target = '/#office-data';
+
+    if (strpos($referrer, $contact_us_url) !== false) {
+        $back_url = $contact_us_target;
+        $back_label = 'Back';
+    } elseif (strpos($referrer, $home_url) !== false) {
+        $back_url = $home_target;
+        $back_label = 'Back';
+    } else {
+        $back_url = $home_target; // Default fallback
+        $back_label = 'Back';
+    }
+
+    // Display the back button
+    echo '<a href="' . esc_url($back_url) . '" class="back-button btn-cs-white">' . esc_html($back_label) . '<span><i class="fa-solid fa-angle-left"></i></span>'. '</a>';
+} else {
+    // No referrer, fallback to home with specific anchor
+    echo '<a href="https://wordpress-1285863-4695980.cloudwaysapps.com/#office-data" class="back-button btn-cs-white">Back<span><i class="fa-solid fa-angle-left"></i></span></a>';
+}
+?>
+
                                
 
-                            <a href="<?php 
-    if (is_page('Contact Us')) { 
-        // If you're on the Contact page, use the hardcoded Contact page URL
-        echo 'https://wordpress-1285863-4695980.cloudwaysapps.com/contact-us/#office-data'; 
-    } else { 
-        // For any other page, use the hardcoded Home page URL
-        echo 'https://wordpress-1285863-4695980.cloudwaysapps.com/#office-data'; 
-    }
+                            <!-- <a href="<?php 
+   // if (is_page('Contact Us')) { 
+       
+        //echo 'https://wordpress-1285863-4695980.cloudwaysapps.com/contact-us/#office-data'; 
+    //} else { 
+       
+      //  echo 'https://wordpress-1285863-4695980.cloudwaysapps.com/#office-data'; 
+    //}
 ?>" class="btn-cs-white">
     Go Back<span><i class="fa-solid fa-angle-left"></i></span>
-</a>
+</a> -->
                         </div>
                             <h1><?php the_title(); ?></h1>
                             <?php the_excerpt(); ?>
