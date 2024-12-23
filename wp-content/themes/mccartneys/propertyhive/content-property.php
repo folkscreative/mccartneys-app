@@ -135,7 +135,7 @@ jQuery(document).ready(function ($) {
         dots: true,
         infinite: true,
         speed: 300,
-        slidesToShow: 25,  // Show one slide at a time
+        slidesToShow: 1,  // Show one slide at a time
         slidesToScroll: 1, // Scroll one slide at a time
         adaptiveHeight: true, // Adjust height to current slide
         autoplay: true, // Enable autoplay
