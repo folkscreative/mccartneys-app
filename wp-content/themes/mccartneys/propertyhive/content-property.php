@@ -51,7 +51,10 @@ if ( $property->featured == 'yes' )
                 alt="><?php the_title(); ?>">
         </a>
 
-        <div class="container property-gallery-mb d-block d-md-none">
+    
+    </div>
+
+    <div class="container property-gallery-mb d-block d-md-none">
 
 <div class="gallery-thumbnail">
     <?php 
@@ -72,7 +75,7 @@ echo '<p>No images found in the gallery.</p>';
 }
 ?>
 </div>
-    </div>
+
     <div class="col-right">
         <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
         <h3 class="price-info price"><?php echo $property->get_formatted_price(); ?></h3>
