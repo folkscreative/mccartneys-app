@@ -11,7 +11,13 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+
+$gallery_attachments = $property->get_gallery_attachment_ids();
+$galleryAttachmentCount = count($gallery_attachments);
+
 global $property, $propertyhive_loop;
+
+
 
 // Store loop count we're currently on
 if ( empty( $propertyhive_loop['loop'] ) )
@@ -44,6 +50,15 @@ if ( $property->featured == 'yes' )
             <img src="<?php echo $property->get_main_photo_src( $size = 'large' ) ?>" class="property-featured-image"
                 alt="><?php the_title(); ?>">
         </a>
+
+        <div class="side-images">
+                <a data-glightbox='gallery-images' class="glightbox"><img
+                        src="<?php echo wp_get_attachment_url($gallery_attachments[1], $size = 'property-square') ?>"
+                        class="property-secondary-image" alt="><?php the_title(); ?>"></a>
+                <a data-glightbox='gallery-images' class="glightbox"><img
+                        src="<?php echo wp_get_attachment_url($gallery_attachments[2], $size = 'property-square') ?>"
+                        class="property-secondary-image" alt="><?php the_title(); ?>"></a>
+            </div>
     </div>
     <div class="col-right">
         <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
