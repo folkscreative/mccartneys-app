@@ -10692,9 +10692,9 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
     padding: 10px 12px;
 }
 
-.propertyhive-pagination span.page-numbers:not(.page-numbers.dots) {
+/* .propertyhive-pagination span.page-numbers:not(.page-numbers.dots) {
     margin-left: auto;
-}
+} */
 
 body[class*="paged-"] .propertyhive-pagination span.page-numbers {
     margin-left: unset !important;
