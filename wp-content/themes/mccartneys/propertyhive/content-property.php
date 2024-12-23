@@ -51,14 +51,27 @@ if ( $property->featured == 'yes' )
                 alt="><?php the_title(); ?>">
         </a>
 
-        <div class="side-images">
-                <a data-glightbox='gallery-images' class="glightbox"><img
-                        src="<?php echo wp_get_attachment_url($gallery_attachments[1], $size = 'property-square') ?>"
-                        class="property-secondary-image" alt="><?php the_title(); ?>"></a>
-                <a data-glightbox='gallery-images' class="glightbox"><img
-                        src="<?php echo wp_get_attachment_url($gallery_attachments[2], $size = 'property-square') ?>"
-                        class="property-secondary-image" alt="><?php the_title(); ?>"></a>
-            </div>
+        <div class="container property-gallery-mb d-block d-md-none">
+
+<div class="gallery-thumbnail">
+    <?php 
+if ($gallery_attachments && is_array($gallery_attachments)) {
+foreach ($gallery_attachments as $attachment_id) {
+// Get the URL of the attachment image
+$image_url = wp_get_attachment_url($attachment_id);
+
+// Output the image
+if ($image_url) {
+    echo '<div class="gallery-slide-item">';
+    echo '<img src="' . esc_url($image_url) . '" class="property-primary-image" alt="' . esc_attr(get_the_title()) . '">';
+    echo '</div>';
+}            
+}
+} else {
+echo '<p>No images found in the gallery.</p>';
+}
+?>
+</div>
     </div>
     <div class="col-right">
         <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
