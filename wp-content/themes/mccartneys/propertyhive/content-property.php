@@ -12,6 +12,8 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $property, $propertyhive_loop;
+$gallery_attachments = $property->get_gallery_attachment_ids();
+$galleryAttachmentCount = count($gallery_attachments);
 
 // Store loop count we're currently on
 if ( empty( $propertyhive_loop['loop'] ) )
@@ -39,19 +41,21 @@ if ( $property->featured == 'yes' )
 ?>
 <div <?php post_class( $classes ); ?>>
 
-
 <div class="col-left">
     <a href="<?php the_permalink(); ?>">
         <div class="property-image-carousel">
             <?php
-            $gallery_images = $property->get_gallery_photos(); // Fetch all gallery images
-            if ($gallery_images) :
-                foreach ($gallery_images as $image) :
+            $gallery_attachments = $property->gallery_attachments; // Fetch gallery attachments
+            if (!empty($gallery_attachments)) :
+                foreach ($gallery_attachments as $attachment_id) :
+                    $image_url = wp_get_attachment_image_url($attachment_id, 'large'); // Get the image URL
+                    if ($image_url) :
             ?>
                     <div class="carousel-slide">
-                        <img src="<?php echo esc_url($image); ?>" alt="<?php the_title(); ?>" class="property-carousel-image">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php the_title(); ?>" class="property-carousel-image">
                     </div>
             <?php
+                    endif;
                 endforeach;
             else :
             ?>
@@ -101,6 +105,8 @@ if ( $property->featured == 'yes' )
 <?php do_action( 'propertyhive_after_search_results_loop_item' ); ?>
 
 </div>
+
+
 
 
 <script>
