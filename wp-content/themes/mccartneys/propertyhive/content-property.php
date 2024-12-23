@@ -40,29 +40,31 @@ if ( $property->featured == 'yes' )
     $classes[] = 'featured';
 ?>
 <div <?php post_class( $classes ); ?>>
-
-<div class="col-left">
-    <a href="<?php the_permalink(); ?>">
-        <div class="property-image-carousel">
-            <?php
-            $gallery_attachments = $property->gallery_attachments; // Fetch gallery attachments
-            if (!empty($gallery_attachments)) :
-                foreach ($gallery_attachments as $attachment_id) :
-                    $image_url = wp_get_attachment_image_url($attachment_id, 'large'); // Get the image URL
-                    if ($image_url) :
-            ?>
+    <div class="col-left">
+        <a href="<?php the_permalink(); ?>">
+            <div class="property-image-carousel">
+                <?php
+                $gallery_attachments = $property->gallery_attachments; // Fetch gallery attachments
+                if (!empty($gallery_attachments)) :
+                    foreach ($gallery_attachments as $attachment_id) :
+                        $image_url = wp_get_attachment_image_url($attachment_id, 'large'); // Get the image URL
+                        if ($image_url) :
+                ?>
+                        <div class="carousel-slide"> <!-- Each slide must have the same class -->
+                            <img src="<?php echo esc_url($image_url); ?>" alt="<?php the_title(); ?>" class="property-carousel-image">
+                        </div>
+                <?php
+                        endif;
+                    endforeach;
+                else :
+                ?>
                     <div class="carousel-slide">
-                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php the_title(); ?>" class="property-carousel-image">
+                        <img src="<?php echo $property->get_main_photo_src( $size = 'large' ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
                     </div>
-            <?php
-                    endif;
-                endforeach;
-            else :
-            ?>
-                <img src="<?php echo $property->get_main_photo_src( $size = 'large' ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
-            <?php endif; ?>
-        </div>
-    </a>
+                <?php endif; ?>
+            </div>
+        </a>
+    </div>
 </div>
 
 <div class="col-right">
@@ -111,7 +113,7 @@ if ( $property->featured == 'yes' )
 
 <script>
 jQuery(document).ready(function ($) {
-    jQuery('.property-image-carousel').slick({
+    $('.property-image-carousel').slick({
         dots: true,
         infinite: true,
         speed: 300,
