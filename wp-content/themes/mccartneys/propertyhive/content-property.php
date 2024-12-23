@@ -40,12 +40,9 @@ if ( $property->featured == 'yes' )
 <div <?php post_class( $classes ); ?>>
 
     <div class="col-left">
-
-    
-    <?php echo do_shortcode('[featured_properties carousel="yes" column="2"]');?>
-
-        <a data-glightbox='gallery-images' class="glightbox">
-        <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>" class="main-image property-featured-image" alt="<?php the_title(); ?>">
+        <a href="<?php the_permalink(); ?>">
+            <img src="<?php echo $property->get_main_photo_src( $size = 'large' ) ?>" class="property-featured-image"
+                alt="><?php the_title(); ?>">
         </a>
     </div>
     <div class="col-right">
