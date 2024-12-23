@@ -41,55 +41,57 @@ if ( $property->featured == 'yes' )
 ?>
 <div <?php post_class( $classes ); ?>>
 
-<div class="col-left">
-    <div class="swiper-container property-carousel">
-        <div class="swiper-wrapper">
-            <!-- Main Image -->
-            <div class="swiper-slide">
-                <img src="<?php echo $property->get_main_photo_src( $size = 'large' ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
+    <div class="col-left">
+        <div class="swiper-container property-carousel">
+            <div class="swiper-wrapper">
+                <!-- Main Image -->
+                <div class="swiper-slide">
+                    <a href="<?php the_permalink(); ?>">
+                        <img src="<?php echo $property->get_main_photo_src( $size = 'large' ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
+                    </a>
+                </div>
+                <!-- Gallery Images -->
+                <?php if ( $galleryAttachmentCount > 0 ) : ?>
+                    <?php foreach ( $gallery_attachments as $attachment_id ) : ?>
+                        <div class="swiper-slide">
+                            <a href="<?php the_permalink(); ?>">
+                                <img src="<?php echo wp_get_attachment_image_url( $attachment_id, 'large' ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
-            <!-- Gallery Images -->
-            <?php 
-            $gallery_attachments = $property->get_gallery_attachment_ids();
-            if ( $gallery_attachments ) : 
-                foreach ( $gallery_attachments as $attachment_id ) : ?>
-                    <div class="swiper-slide">
-                        <img src="<?php echo wp_get_attachment_image_url( $attachment_id, 'large' ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
-                    </div>
-            <?php endforeach; endif; ?>
+            <!-- Add Pagination and Navigation -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
-        <!-- Pagination and Navigation -->
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
     </div>
-</div>
 
+    <div class="col-right">
+        <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
+        <h3 class="price-info price"><?php echo $property->get_formatted_price(); ?></h3>
 
-<div class="col-right">
-    <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
-    <h3 class="price-info price"><?php echo $property->get_formatted_price(); ?></h3>
+        <ul class="features">
+            <!-- Feature Items -->
+            <?php if (!is_null($property->property_type) && trim($property->property_type) !== ''): ?>
+                <li>
+                    <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-property-type.svg" alt="">
+                    <span><?php echo $property->property_type; ?></span>
+                </li>
+            <?php endif; ?>
+            <?php if ( $property->bedrooms > 0 ): ?>
+                <li>
+                    <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/bed-vector.svg" alt="">
+                    <span><?php echo $property->bedrooms; ?></span>
+                </li>
+            <?php endif; ?>
+            <!-- Add other feature conditions here -->
+        </ul>
+        <h4 class="property-address"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+        <p><?php echo mb_strimwidth(get_the_excerpt(), 0, 250, "..."); ?></p>
+    </div>
 
-    <ul class="features">
-        <!-- Feature Items -->
-        <?php if (!is_null($property->property_type) && trim($property->property_type) !== ''): ?>
-            <li>
-                <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-property-type.svg" alt="">
-                <span><?php echo $property->property_type; ?></span>
-            </li>
-        <?php endif; ?>
-        <?php if ( $property->bedrooms > 0 ): ?>
-            <li>
-                <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/bed-vector.svg" alt="">
-                <span><?php echo $property->bedrooms; ?></span>
-            </li>
-        <?php endif; ?>
-        <!-- Add other feature conditions here -->
-    </ul>
-    <h4 class="property-address"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-    <p><?php echo mb_strimwidth(get_the_excerpt(), 0, 250, "..."); ?></p>
-</div>
-
-<?php do_action( 'propertyhive_after_search_results_loop_item' ); ?>
+    <?php do_action( 'propertyhive_after_search_results_loop_item' ); ?>
 
 </div>

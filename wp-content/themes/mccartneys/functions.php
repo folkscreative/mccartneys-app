@@ -1886,20 +1886,17 @@ add_action('init', 'register_show_type_taxonomy');
 
 
 
-function enqueue_swiper_assets_conditionally() {
-    if ( is_singular( 'property' ) ) { // Load only on individual property pages
-        wp_enqueue_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css' );
-        wp_enqueue_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js', [], false, true );
-        wp_add_inline_script( 'swiper-js', "
-            document.addEventListener('DOMContentLoaded', function () {
-                new Swiper('.swiper-container', {
-                    loop: true,
-                    pagination: { el: '.swiper-pagination', clickable: true },
-                    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-                });
+function enqueue_swiper_assets() {
+    wp_enqueue_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css' );
+    wp_enqueue_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js', [], false, true );
+    wp_add_inline_script( 'swiper-js', "
+        document.addEventListener('DOMContentLoaded', function () {
+            new Swiper('.swiper-container', {
+                loop: true,
+                pagination: { el: '.swiper-pagination', clickable: true },
+                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
             });
-        " );
-    }
+        });
+    " );
 }
-add_action( 'wp_enqueue_scripts', 'enqueue_swiper_assets_conditionally' );
-
+add_action( 'wp_enqueue_scripts', 'enqueue_swiper_assets' );
