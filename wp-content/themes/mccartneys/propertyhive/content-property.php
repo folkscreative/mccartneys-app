@@ -12,12 +12,12 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 
-$gallery_attachments = $property->get_gallery_attachment_ids();
-$galleryAttachmentCount = count($gallery_attachments);
+
 
 global $property, $propertyhive_loop;
 
-
+$gallery_attachments = $property->get_gallery_attachment_ids();
+$galleryAttachmentCount = count($gallery_attachments);
 
 // Store loop count we're currently on
 if ( empty( $propertyhive_loop['loop'] ) )
