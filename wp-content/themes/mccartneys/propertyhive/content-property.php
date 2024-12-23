@@ -41,8 +41,7 @@ if ( $property->featured == 'yes' )
 
     <div class="col-left">
         <a data-glightbox='gallery-images' class="glightbox" href="<?php the_permalink(); ?>">
-            <img src="<?php echo $property->get_main_photo_src( $size = 'large' ) ?>" class="property-featured-image"
-                alt="><?php the_title(); ?>">
+        <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>" class="main-image property-featured-image" alt="<?php the_title(); ?>">
         </a>
     </div>
     <div class="col-right">
