@@ -52,7 +52,8 @@ if ( $property->featured == 'yes' )
             <?php foreach ( $property->get_gallery_images() as $image ) : ?>
                 <div class="swiper-slide">
                     <a href="<?php the_permalink(); ?>">
-                        <img src="<?php echo esc_url( $image['src'] ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
+                    <img src="<?php echo $property->get_main_photo_src( $size = 'large' ) ?>" class="property-featured-image"
+                    alt="><?php the_title(); ?>">
                     </a>
                 </div>
             <?php endforeach; ?>
