@@ -46,27 +46,25 @@ if ( $property->featured == 'yes' )
         <div class="swiper-wrapper">
             <!-- Main Image -->
             <div class="swiper-slide">
-                <a href="<?php the_permalink(); ?>">
-                    <img src="<?php echo $property->get_main_photo_src( $size = 'large' ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
-                </a>
+                <img src="<?php echo $property->get_main_photo_src( $size = 'large' ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
             </div>
             <!-- Gallery Images -->
-            <?php if ( $galleryAttachmentCount > 0 ) : ?>
-                <?php foreach ( $gallery_attachments as $attachment_id ) : ?>
+            <?php 
+            $gallery_attachments = $property->get_gallery_attachment_ids();
+            if ( $gallery_attachments ) : 
+                foreach ( $gallery_attachments as $attachment_id ) : ?>
                     <div class="swiper-slide">
-                        <a href="<?php the_permalink(); ?>">
-                            <img src="<?php echo wp_get_attachment_image_url( $attachment_id, 'large' ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
-                        </a>
+                        <img src="<?php echo wp_get_attachment_image_url( $attachment_id, 'large' ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
                     </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
+            <?php endforeach; endif; ?>
         </div>
-        <!-- Add Pagination and Navigation -->
+        <!-- Pagination and Navigation -->
         <div class="swiper-pagination"></div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
     </div>
 </div>
+
 
 <div class="col-right">
     <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
