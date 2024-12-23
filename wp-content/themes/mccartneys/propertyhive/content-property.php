@@ -39,68 +39,78 @@ if ( $property->featured == 'yes' )
 ?>
 <div <?php post_class( $classes ); ?>>
 
-    <div class="col-left">
-        <a href="<?php the_permalink(); ?>">
-            <img src="<?php echo $property->get_main_photo_src( $size = 'large' ) ?>" class="property-featured-image"
-                alt="><?php the_title(); ?>">
-        </a>
-    </div>
-    <div class="col-right">
-        <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
-        <h3 class="price-info price"><?php echo $property->get_formatted_price(); ?></h3>
 
-        <ul class="features">
+<div class="col-left">
+    <a href="<?php the_permalink(); ?>">
+        <div class="property-image-carousel">
+            <?php
+            $gallery_images = $property->get_gallery_photos(); // Fetch all gallery images
+            if ($gallery_images) :
+                foreach ($gallery_images as $image) :
+            ?>
+                    <div class="carousel-slide">
+                        <img src="<?php echo esc_url($image); ?>" alt="<?php the_title(); ?>" class="property-carousel-image">
+                    </div>
+            <?php
+                endforeach;
+            else :
+            ?>
+                <img src="<?php echo $property->get_main_photo_src( $size = 'large' ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
+            <?php endif; ?>
+        </div>
+    </a>
+</div>
 
-            <?php if (!is_null($property->property_type) && $property->property_type !== '' && trim($property->property_type) !== '') { ?>
-            <!-- <li>
-                <img class="feature-icon"
-                    src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-property-type.svg" alt="">
-                <span class=""><?php echo $property->property_type; ?></span>
-            </li> -->
-            <?php }?>
-            <?php if ( $property->bedrooms > 0 ): ?>
+<div class="col-right">
+    <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
+    <h3 class="price-info price"><?php echo $property->get_formatted_price(); ?></h3>
+
+    <ul class="features">
+        <?php if ( $property->bedrooms > 0 ): ?>
             <li>
-                <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/bed-vector.svg"
-                    alt="">
+                <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/bed-vector.svg" alt="">
                 <span><?php echo $property->bedrooms; ?></span>
             </li>
-            <?php endif; ?>
-
-            <?php if ( $property->bathrooms > 0 ): ?>
+        <?php endif; ?>
+        <?php if ( $property->bathrooms > 0 ): ?>
             <li>
-                <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/bath-logo.svg"
-                    alt="">
+                <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/bath-logo.svg" alt="">
                 <span><?php echo $property->bathrooms; ?></span>
             </li>
-            <?php endif; ?>
-            <?php if ( $property->reception_rooms > 0 ): ?>
+        <?php endif; ?>
+        <?php if ( $property->reception_rooms > 0 ): ?>
             <li>
-                <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/recep-room.png"
-                    alt="">
+                <img class="feature-icon" src="<?php echo get_template_directory_uri(); ?>/assets/images/recep-room.png" alt="">
                 <span><?php echo $property->reception_rooms; ?></span>
             </li>
-            <?php endif; ?>
-
-            <?php if (
-    				(!is_null($property->floor_area_to_sqft) && $property->floor_area_to_sqft !== '' && $property->floor_area_to_sqft != 0) ||
-    				(!is_null($property->floor_area_from_sqft) && $property->floor_area_from_sqft !== '' && $property->floor_area_from_sqft != 0)
-				)  { ?>
-
-
+        <?php endif; ?>
+        <?php if (
+            (!is_null($property->floor_area_to_sqft) && $property->floor_area_to_sqft !== '' && $property->floor_area_to_sqft != 0) ||
+            (!is_null($property->floor_area_from_sqft) && $property->floor_area_from_sqft !== '' && $property->floor_area_from_sqft != 0)
+        ) : ?>
             <li>
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sq-ft-logo.svg" alt="">
                 <span><?php echo $property->get_formatted_floor_area(); ?></span>
             </li>
-            <?php }?>
+        <?php endif; ?>
+    </ul>
+    <h4 class="property-address"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+    <p><?php echo mb_strimwidth(get_the_excerpt(), 0, 250, "..."); ?></p>
+</div>
 
-
-
-        </ul>
-        <h4 class="property-address"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-        <p><?php echo mb_strimwidth(get_the_excerpt(), 0, 250, "..."); ?></p>
-
-    </div>
-
-    <?php do_action( 'propertyhive_after_search_results_loop_item' ); ?>
+<?php do_action( 'propertyhive_after_search_results_loop_item' ); ?>
 
 </div>
+
+
+<script>
+jQuery(document).ready(function ($) {
+    $('.property-image-carousel').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true
+    });
+});
+</script>
