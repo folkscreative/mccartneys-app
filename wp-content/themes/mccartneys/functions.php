@@ -1884,8 +1884,3 @@ function register_show_type_taxonomy() {
 add_action('init', 'register_show_type_taxonomy');
 
 
-function enqueue_property_slider_assets() {
-    wp_enqueue_style( 'slick-slider-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' );
-    wp_enqueue_script( 'slick-slider-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array('jquery'), null, true );
-}
-add_action( 'wp_enqueue_scripts', 'enqueue_property_slider_assets' );
