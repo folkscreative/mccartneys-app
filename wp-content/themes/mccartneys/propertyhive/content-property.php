@@ -11,13 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-
-
-
 global $property, $propertyhive_loop;
-
-$gallery_attachments = $property->get_gallery_attachment_ids();
-$galleryAttachmentCount = count($gallery_attachments);
 
 // Store loop count we're currently on
 if ( empty( $propertyhive_loop['loop'] ) )
@@ -50,32 +44,7 @@ if ( $property->featured == 'yes' )
             <img src="<?php echo $property->get_main_photo_src( $size = 'large' ) ?>" class="property-featured-image"
                 alt="><?php the_title(); ?>">
         </a>
-
-    
     </div>
-
-    <div class="container property-gallery-mb d-block d-md-none">
-
-<div class="gallery-thumbnail">
-    <?php 
-if ($gallery_attachments && is_array($gallery_attachments)) {
-foreach ($gallery_attachments as $attachment_id) {
-// Get the URL of the attachment image
-$image_url = wp_get_attachment_url($attachment_id);
-
-// Output the image
-if ($image_url) {
-    echo '<div class="gallery-slide-item">';
-    echo '<img src="' . esc_url($image_url) . '" class="property-primary-image" alt="' . esc_attr(get_the_title()) . '">';
-    echo '</div>';
-}            
-}
-} else {
-echo '<p>No images found in the gallery.</p>';
-}
-?>
-</div>
-
     <div class="col-right">
         <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
         <h3 class="price-info price"><?php echo $property->get_formatted_price(); ?></h3>
