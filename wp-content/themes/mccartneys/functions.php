@@ -1884,4 +1884,3 @@ function register_show_type_taxonomy() {
 add_action('init', 'register_show_type_taxonomy');
 
 
-

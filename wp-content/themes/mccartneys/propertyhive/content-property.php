@@ -111,7 +111,7 @@ if ( $property->featured == 'yes' )
 
 <script>
 jQuery(document).ready(function ($) {
-    $('.property-image-carousel').slick({
+    jQuery('.property-image-carousel').slick({
         dots: true,
         infinite: true,
         speed: 300,
