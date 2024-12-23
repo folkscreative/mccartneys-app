@@ -39,12 +39,33 @@ if ( $property->featured == 'yes' )
 ?>
 <div <?php post_class( $classes ); ?>>
 
-    <div class="col-left">
+    <!-- <div class="col-left">
         <a href="<?php the_permalink(); ?>">
             <img src="<?php echo $property->get_main_photo_src( $size = 'large' ) ?>" class="property-featured-image"
                 alt="><?php the_title(); ?>">
         </a>
+    </div> -->
+
+    <div class="col-left">
+    <div class="swiper-container property-carousel">
+        <div class="swiper-wrapper">
+            <?php foreach ( $property->get_gallery_images() as $image ) : ?>
+                <div class="swiper-slide">
+                    <a href="<?php the_permalink(); ?>">
+                        <img src="<?php echo esc_url( $image['src'] ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <!-- Add Pagination and Navigation -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
     </div>
+</div>
+
+
+
     <div class="col-right">
         <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
         <h3 class="price-info price"><?php echo $property->get_formatted_price(); ?></h3>
