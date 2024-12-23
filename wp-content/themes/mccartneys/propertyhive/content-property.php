@@ -40,7 +40,7 @@ if ( $property->featured == 'yes' )
 <div <?php post_class( $classes ); ?>>
 
     <div class="col-left">
-        <a data-glightbox='gallery-images' class="glightbox" href="<?php the_permalink(); ?>">
+        <a data-glightbox='gallery-images' class="glightbox">
         <img src="<?php echo $property->get_main_photo_src( $size = 'property-square' ) ?>" class="main-image property-featured-image" alt="<?php the_title(); ?>">
         </a>
     </div>
