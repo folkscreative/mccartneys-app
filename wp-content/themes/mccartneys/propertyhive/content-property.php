@@ -13,9 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $property, $propertyhive_loop;
 
-$gallery_attachments = $property->get_gallery_attachment_ids();
-$galleryAttachmentCount = count($gallery_attachments);
-
 // Store loop count we're currently on
 if ( empty( $propertyhive_loop['loop'] ) )
 	$propertyhive_loop['loop'] = 0;
@@ -41,33 +38,13 @@ if ( $property->featured == 'yes' )
     $classes[] = 'featured';
 ?>
 <div <?php post_class( $classes ); ?>>
+
     <div class="col-left">
         <a href="<?php the_permalink(); ?>">
-            <div class="property-image-carousel">
-                <?php
-                $gallery_attachments = $property->gallery_attachments; // Fetch gallery attachments
-                if (!empty($gallery_attachments)) :
-                    foreach ($gallery_attachments as $attachment_id) :
-                        $image_url = wp_get_attachment_image_url($attachment_id, 'large'); // Get the image URL
-                        if ($image_url) :
-                ?>
-                        <div class="carousel-slide"> <!-- Each slide must have the same class -->
-                            <img src="<?php echo esc_url($image_url); ?>" alt="<?php the_title(); ?>" class="property-carousel-image">
-                        </div>
-                <?php
-                        endif;
-                    endforeach;
-                else :
-                ?>
-                    <div class="carousel-slide">
-                        <img src="<?php echo $property->get_main_photo_src( $size = 'large' ); ?>" class="property-featured-image" alt="<?php the_title(); ?>">
-                    </div>
-                <?php endif; ?>
-            </div>
+            <img src="<?php echo $property->get_main_photo_src( $size = 'large' ) ?>" class="property-featured-image"
+                alt="><?php the_title(); ?>">
         </a>
     </div>
-</div>
-
     <div class="col-right">
         <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
         <h3 class="price-info price"><?php echo $property->get_formatted_price(); ?></h3>
@@ -127,31 +104,3 @@ if ( $property->featured == 'yes' )
     <?php do_action( 'propertyhive_after_search_results_loop_item' ); ?>
 
 </div>
-
-<script>
-
-jQuery(document).ready(function ($) {
-    jQuery('.property-image-carousel').slick({
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,  // Show one slide at a time
-        slidesToScroll: 1, // Scroll one slide at a time
-        adaptiveHeight: true, // Adjust height to current slide
-        autoplay: true, // Enable autoplay
-        autoplaySpeed: 3000 // Set autoplay speed
-    });
-});
-
-</script>
-<style>
-
-.property-image-carousel .carousel-slide {
-    display: block; /* Ensure all slides are visible in their container */
-}
-
-.slick-slide {
-    display: block; /* Override any display: none from Slick */
-}
-
-</style>
