@@ -12,6 +12,8 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $property, $propertyhive_loop;
+$gallery_attachments = $property->get_gallery_attachment_ids();
+$galleryAttachmentCount = count($gallery_attachments);
 
 // Store loop count we're currently on
 if ( empty( $propertyhive_loop['loop'] ) )
@@ -39,7 +41,7 @@ if ( $property->featured == 'yes' )
 ?>
 <div <?php post_class( $classes ); ?>>
 
-    <div class="col-left">
+    <div class="col-left property-carousel">
         <a href="<?php the_permalink(); ?>">
             <img src="<?php echo $property->get_main_photo_src( $size = 'large' ) ?>" class="property-featured-image"
                 alt="><?php the_title(); ?>">
@@ -92,9 +94,6 @@ if ( $property->featured == 'yes' )
                 <span><?php echo $property->get_formatted_floor_area(); ?></span>
             </li>
             <?php }?>
-
-
-
         </ul>
         <h4 class="property-address"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
         <p><?php echo mb_strimwidth(get_the_excerpt(), 0, 250, "..."); ?></p>
@@ -104,3 +103,14 @@ if ( $property->featured == 'yes' )
     <?php do_action( 'propertyhive_after_search_results_loop_item' ); ?>
 
 </div>
+
+
+<script>
+jQuery(document).ready(function(){
+  jQuery('.carousel').slick({
+  slidesToShow: 1,
+  dots:true,
+  centerMode: true,
+  });
+});
+</script>
