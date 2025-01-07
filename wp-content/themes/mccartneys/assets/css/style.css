@@ -3665,6 +3665,7 @@ footer .cookies-menu ul li a {
     display: flex;
     flex-direction: row;
     column-gap: 15px;
+    row-gap: 30px;
     margin-top: 30px;
 }
 
@@ -9061,9 +9062,9 @@ section.search-outer.filter .container {
     .box-banner.auction {
         margin-bottom: 70px;
     }
-    .properties-center .col-right a {
+    /* .properties-center .col-right a {
         margin-top: 40px;
-    }
+    } */
     .search-results .property .col-left img {
         min-height: 300px !important;
         max-height: 300px;
@@ -12077,4 +12078,8 @@ body.post-type-archive-property .search-form--department {
 }
 .col-left .property-carousel .slick-list .slick-track{
     height: 100% !important;
+}
+
+.page-id-973 .agricultural-letting .properties-center:nth-child(2){
+    background-color: #000;
 }
