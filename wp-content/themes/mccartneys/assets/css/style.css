@@ -9066,6 +9066,7 @@ section.search-outer.filter .container {
     }
     .search-results .property .col-left img {
         min-height: 300px !important;
+        max-height: 300px;
     }
     .general-page-outer p {
         font-size: 14px;
@@ -12042,4 +12043,38 @@ body.post-type-archive-property .search-form--department {
 }
 .archive-filter .container{
     max-width: 790px;
+}
+
+.results .properties .pre-arrow.slick-arrow{
+    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+    min-height: auto !important;
+    left: 10px;
+    cursor: pointer;
+    border-radius: 0;
+}
+.results .properties .nxt-arrow.slick-arrow{
+    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+    min-height: auto !important;
+    right: 10px;
+    cursor: pointer;
+    border-radius: 0;
+}
+.col-left .property-carousel  {
+    height: 100%;
+}
+.col-left .property-carousel .slick-list{
+    height: 100% !important;
+}
+.col-left .property-carousel .slick-list .slick-track{
+    height: 100% !important;
 }

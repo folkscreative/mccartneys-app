@@ -41,12 +41,47 @@ if ( $property->featured == 'yes' )
 ?>
 <div <?php post_class( $classes ); ?>>
 
-    <div class="col-left property-carousel">
+<div class="col-left">
+
+<div class="property-carousel">
+
+<?php 
+if ($gallery_attachments && is_array($gallery_attachments)) {
+    foreach ($gallery_attachments as $attachment_id) {
+        // Get the URL of the attachment image
+        $image_url = wp_get_attachment_url($attachment_id);
+
+        // Get the permalink of the post
+        $post_permalink = get_permalink();
+
+        // Output the image wrapped with an anchor link
+        if ($image_url) {
+            echo '<a href="' . esc_url($post_permalink) . '">';
+            echo '<img src="' . esc_url($image_url) . '" class="property-primary-image" alt="' . esc_attr(get_the_title()) . '">';
+            echo '</a>';
+        }            
+    }
+} else {
+    echo '<p>No images found in the gallery.</p>';
+}
+?>
+
+    
+           </div>
+           
+           </div>
+
+
+
+
+
+
+    <!-- <div class="col-left ">
         <a href="<?php the_permalink(); ?>">
             <img src="<?php echo $property->get_main_photo_src( $size = 'large' ) ?>" class="property-featured-image"
                 alt="><?php the_title(); ?>">
         </a>
-    </div>
+    </div> -->
     <div class="col-right">
         <span class="price-info price-qualifier"><?php echo $property->price_qualifier; ?></span>
         <h3 class="price-info price"><?php echo $property->get_formatted_price(); ?></h3>
@@ -107,10 +142,14 @@ if ( $property->featured == 'yes' )
 
 <script>
 jQuery(document).ready(function(){
-  jQuery('.carousel').slick({
+  jQuery('.property-carousel').slick({
   slidesToShow: 1,
-  dots:true,
-  centerMode: true,
+  dots:false,
+  centerMode: false,
+  adaptiveHeight: true,
+  arrows: true,
+  prevArrow: '<img src="/wp-content/themes/mccartneys/assets/images/de-arrows.png" class="pre-arrow">',
+  nextArrow: '<img src="/wp-content/themes/mccartneys/assets/images/de-arrow-right.png" class="nxt-arrow">',
   });
 });
 </script>

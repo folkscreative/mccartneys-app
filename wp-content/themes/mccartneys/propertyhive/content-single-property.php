@@ -105,6 +105,7 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
     }
     ?>
             </div>
+            
             <div class="number-indicator">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/gallery-icon.svg" alt=""
                     class="badge-icon">
