@@ -48,7 +48,7 @@
 	<div class="container">
 		<div class="header-inner-wrap">
 		<?php
-    	$website_logo = get_field('phipps_and_pritchard_icon', 'option');
+    	$website_logo = get_field('upload_logo', 'option');
 		if( !empty($website_logo) ):?>
 		<a href="<?php echo site_url(); ?>" class="logo"><img src="<?php echo $website_logo['url']; ?>" alt="<?php echo $website_logo['alt']; ?>"></a>
 	<?php endif; ?>
@@ -114,34 +114,6 @@
 
 
 	<!-- For Mobile -->
-	<?php if ( is_page( 'phipps-pritchard' ) ) { ?>
-	<header class="header-mb-wrapper d-block d-lg-none">
-		<div class="container">
-			<div class="wrapper home">
-				<a href="#" class="hamburger-icn">
-				<img src="<?php echo get_template_directory_uri()?>/assets/images/hamburger-icon.svg" alt="">
-				</a>
-				<a href="<?php echo site_url(); ?>">
-				<img src="<?php echo get_template_directory_uri()?>/assets/images/mask-group-home.svg" alt="" class="site-logo">
-				</a>
-					<a href="<?php echo site_url(); ?>/contact-us/"><img src="<?php echo get_template_directory_uri()?>/assets/images/call-home-btn.svg" alt="" class="search-icn"></a>
-				
-
-			</div>
-			<div class="wrapper">
-				<a href="#" class="hamburger-icn">
-				<img src="<?php echo get_template_directory_uri()?>/assets/images/ham-icon-dark-mb.svg" alt="">
-				</a>
-				<a href="<?php echo site_url(); ?>">
-				<img src="<?php echo get_template_directory_uri()?>/assets/images/phipps-logo.svg" alt="" class="site-logo">
-				</a>
-				<a href="<?php echo site_url(); ?>/contact-us/"><img src="<?php echo get_template_directory_uri()?>/assets/images/call-dark-btn.svg" alt="" class="search-icn"></a>
-				
-			</div>
-		</div>
-	</header>
-	<?php } else { ?>
-	<!-- For Mobile dafault -->
 	<header class="header-mb-wrapper d-block d-lg-none">
 		<div class="container">
 			<div class="wrapper home">
@@ -167,7 +139,6 @@
 			</div>
 		</div>
 	</header>
-	<?php }?>
 <!-- Popup menu -->
  <div class="main-popup">
 	<div class="container">
