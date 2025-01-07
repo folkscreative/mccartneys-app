@@ -52,17 +52,30 @@ if ( !empty( $image_private ) ) { ?>
                     <div class="col-right">
                         <h2 class="title d-none d-md-block"><?php the_sub_field('livestock_sales_title'); ?></h2>
                         <?php the_sub_field('forthcoming_sales_right_content_area'); ?>
-                        <?php 
-                        $pc_top_button = get_sub_field('forthcoming_sales_&_catalogues_cta_link');
-                        if( $pc_top_button ): 
-                            $pc_top_button_url = $pc_top_button['url'];
-                            $pc_top_button_title = $pc_top_button['title'];
-                            $pc_top_button_target = $pc_top_button['target'] ? $pc_top_button['target'] : '_self';
+                        <div class="btn-wrap-csf">
+                            <?php 
+                        $center_buy_button = get_sub_field('forthcoming_sales_&_catalogues_cta_link');
+                        if( $center_buy_button ): 
+                            $center_buy_button_url = $center_buy_button['url'];
+                            $center_buy_button_title = $center_buy_button['title'];
+                            $center_buy_button_target = $center_buy_button['target'] ? $center_buy_button['target'] : '_self';
                             ?>
-                        <a class="btn-cs-dark" href="<?php echo esc_url( $pc_top_button_url ); ?>"
-                            target="<?php echo esc_attr( $pc_top_button_target ); ?>"><?php echo esc_html( $pc_top_button_title ); ?><span><i
-                                    class="fa-solid fa-angle-right"></i></span></a>
-                        <?php endif; ?>
+                            <a class="btn-cs-dark" href="<?php echo esc_url( $center_buy_button_url ); ?>"
+                                target="<?php echo esc_attr( $center_buy_button_target ); ?>"><?php echo esc_html( $center_buy_button_title ); ?><span><i
+                                        class="fa-solid fa-angle-right"></i></span></a>
+                            <?php endif; ?>
+                            <?php 
+                        $center_sell_button = get_sub_field('forthcoming_sales_report_cta_link');
+                        if( $center_sell_button ): 
+                            $center_sell_button_url = $center_sell_button['url'];
+                            $center_sell_button_title = $center_sell_button['title'];
+                            $center_sell_button_target = $center_sell_button['target'] ? $center_sell_button['target'] : '_self';
+                            ?>
+                            <a class="btn-cs-white" href="<?php echo esc_url( $center_sell_button_url ); ?>"
+                                target="<?php echo esc_attr( $center_sell_button_target ); ?>"><?php echo esc_html( $center_sell_button_title ); ?><span><i
+                                        class="fa-solid fa-angle-right"></i></span></a>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>

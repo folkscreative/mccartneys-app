@@ -3555,6 +3555,7 @@ footer .cookies-menu ul li a {
 
 .properties-center .col-right a {
     min-width: 224px;
+    max-width: fit-content;
 }
 
 
@@ -12080,6 +12081,9 @@ body.post-type-archive-property .search-form--department {
     height: 100% !important;
 }
 
-.page-id-973 .agricultural-letting .properties-center:nth-child(2){
-    background-color: #000;
+.page-id-973 .agricultural-letting .properties-center:nth-child(2) .btn-wrap-csf{
+    flex-direction: column-reverse;
+}
+.page-id-922 .agricultural-letting .properties-center:nth-child(2) .btn-wrap-csf{
+    flex-direction: column-reverse;
 }
