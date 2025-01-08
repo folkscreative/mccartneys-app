@@ -4237,7 +4237,7 @@ footer .cookies-menu ul li a {
 
 .our-marketer.rural .mark-buttons a {
     min-width: 199px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .inner-banner-wrapper.rural .content {
@@ -12089,5 +12089,9 @@ body.post-type-archive-property .search-form--department {
     flex-direction: column-reverse;
 }
 .page-id-922 .agricultural-letting .properties-center:nth-child(2) .btn-wrap-csf{
+    flex-direction: column-reverse;
+}
+.page-id-1236 .our-marketer .col-left .mark-buttons{
+    display: flex;
     flex-direction: column-reverse;
 }
