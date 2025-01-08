@@ -9451,17 +9451,17 @@ section.search-outer.filter .container {
         max-width: 80%;
     }
     .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap{
-        flex-direction: column;
+        flex-direction: column !important;
     }
     .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left{
-        width: 100%;
-        flex-direction: column;
+        width: 100% !important;
+        flex-direction: column !important;
     }
     .livestock-auctioneers .livestock-auctioneers-content .pop-wr{
-        padding: 50px 30px;
+        padding: 50px 30px !important;
     }
     .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left ul li:nth-child(2){
-        font-size: 14px;
+        font-size: 14px !important;
     }
 }
 
