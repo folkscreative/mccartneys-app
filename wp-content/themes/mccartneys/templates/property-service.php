@@ -335,9 +335,9 @@ get_header(); ?>
                         </div>
                         <?php if( get_sub_field('livestock_auctioneers_blurb') ): ?>
                         <div class="pop-wr">
-                            <span class="closed">X</span>
+                            
                             <div class="inner-wrap">
-
+                            <span class="closed">X</span>
                                 <div class="col-left">
 
                                 <?php
