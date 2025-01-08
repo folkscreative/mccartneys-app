@@ -455,6 +455,7 @@ get_header(); ?>
                                 <?php if( !empty($ac_image) ):?>
                                     <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>" class="w-100">
                                 <?php endif; ?>
+                                <div class="left-content">
                                 <h4><?php the_sub_field('livestock_auctioneers_name'); ?></h4>
                                 <ul>
                                 <li>
@@ -483,6 +484,7 @@ get_header(); ?>
                                 <?php endif; ?>
                                 
                                 </ul>
+                                </div>
                                 </div>
                                 <div class="col-right">
                                 <?php the_sub_field('livestock_auctioneers_blurb'); ?>
