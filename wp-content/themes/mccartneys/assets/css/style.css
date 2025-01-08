@@ -12001,6 +12001,10 @@ body.post-type-archive-property .search-form--department {
     max-height: fit-content;
     display: none;
 }
+.livestock-auctioneers .livestock-auctioneers-content .pop-wr::after{
+    content: "";
+    position: absolute;
+}
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr.active{
     display: block;
 }
@@ -12014,22 +12018,37 @@ body.post-type-archive-property .search-form--department {
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     gap: 20px;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left{
-    width: 27%;
+    width: 100%;
     font-size: 13px;
     color: #fff;
+    display: flex;
+    flex-direction: row;
+    column-gap: 36px;
+}
+.livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left img{
+    max-width: 200px;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-right{
-    width: 70%;
+    width: 100%;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left ul{
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+.livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left ul li:first-child{
+    display: none;
+}
+.livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left ul li:nth-child(2){
+    font-size: 18.136px;
+    font-weight: 300;
+    line-height: 31.091px;
+    margin-bottom: 17px;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left li{
     /* display: flex; */
@@ -12042,7 +12061,7 @@ body.post-type-archive-property .search-form--department {
     word-wrap: break-word;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left h4{
-    margin: 20px 0;
+    margin: 0;
 }
 
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr p{
