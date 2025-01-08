@@ -9455,6 +9455,13 @@ section.search-outer.filter .container {
     }
     .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left{
         width: 100%;
+        flex-direction: column;
+    }
+    .livestock-auctioneers .livestock-auctioneers-content .pop-wr{
+        padding: 50px 30px;
+    }
+    .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left ul li:nth-child(2){
+        font-size: 14px;
     }
 }
 
@@ -11998,7 +12005,7 @@ body.post-type-archive-property .search-form--department {
     overflow-y: auto;
     padding: 50px 65px;
     border-radius: 8px;
-    height: 100%;
+    height: 95%;
     max-height: fit-content;
     display: none;
 }
