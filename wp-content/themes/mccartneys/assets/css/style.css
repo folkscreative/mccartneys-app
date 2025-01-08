@@ -12055,13 +12055,17 @@ body.post-type-archive-property .search-form--department {
     gap: 10px;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left ul li:first-child{
-    display: none;
+    /* display: none; */
+    font-size: 18.136px;
+    font-weight: 300;
+    line-height: 31.091px;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left ul li:nth-child(2){
     font-size: 18.136px;
     font-weight: 300;
     line-height: 31.091px;
     margin-bottom: 17px;
+    margin-top: -10px;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left li{
     display: flex;
