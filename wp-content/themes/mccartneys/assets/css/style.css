@@ -9452,6 +9452,7 @@ section.search-outer.filter .container {
     }
     .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap{
         flex-direction: column !important;
+        padding: 50px 30px !important;
     }
     .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left{
         width: 100% !important;
@@ -12032,6 +12033,7 @@ body.post-type-archive-property .search-form--department {
     height: fit-content;
     margin: auto;
     border-radius: 8px;
+    position: relative;
 }
 .livestock-auctioneers .livestock-auctioneers-content .pop-wr .inner-wrap .col-left{
     width: 100%;

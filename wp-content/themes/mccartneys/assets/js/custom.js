@@ -20,7 +20,7 @@ jQuery(document).ready(function ($) {
         $(this).parents('.slick-list').addClass('trans');
     });
     $(document).on('click', '.closed', function () {
-        $(this).parent('.pop-wr').removeClass('active');
+        $(this).parent().parent('.pop-wr').removeClass('active');
         $(this).closest('.slick-track').removeClass('trans');
         $(this).parents('.slick-list').removeClass('trans');
     });
