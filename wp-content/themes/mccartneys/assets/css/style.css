@@ -181,6 +181,10 @@ P {
     display: none;
 }
 
+.top-nav ul li:first-child a {
+    font-weight: bold;
+}
+
 .top-nav ul li:last-child a {
     font-weight: bold;
 }
@@ -3666,7 +3670,7 @@ footer .cookies-menu ul li a {
     display: flex;
     flex-direction: row;
     column-gap: 15px;
-    row-gap: 30px;
+    row-gap: 15px;
     margin-top: 30px;
 }
 

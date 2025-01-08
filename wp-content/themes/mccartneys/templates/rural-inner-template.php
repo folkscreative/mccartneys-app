@@ -65,6 +65,14 @@ get_header(); ?>
                                 ?>
                                 <a class="btn-cs-dark" href="<?php echo esc_url($eq_primary_button_url); ?>" target="<?php echo esc_attr($eq_primary_button_target); ?>"><?php echo esc_html($eq_primary_button_title); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
                             <?php endif; ?>
+                            <?php 
+                            if ($eq_secondary_button): 
+                                $eq_secondary_button_url = $eq_secondary_button['url'];
+                                $eq_secondary_button_title = $eq_secondary_button['title'];
+                                $eq_secondary_button_target = $eq_secondary_button['target'] ? $eq_secondary_button['target'] : '_self';
+                                ?>
+                                <a class="btn-cs-white" href="<?php echo esc_url($eq_secondary_button_url); ?>" target="<?php echo esc_attr($eq_secondary_button_target); ?>"><?php echo esc_html($eq_secondary_button_title); ?><span><i class="fa-solid fa-angle-right"></i></span></a>
+                            <?php endif; ?>
                         </div>
                     <?php endif; ?>
 
