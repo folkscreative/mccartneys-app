@@ -320,9 +320,9 @@ if ( !empty( $image_private ) ) { ?>
                             <p><?php the_sub_field('livestock_auctioneers_post_title'); ?></p>
                         </div>
                         <?php if( get_sub_field('livestock_auctioneers_blurb') ): ?>
-                        <div class="pop-wr">
-                            <span class="closed">X</span>
+                            <div class="pop-wr">
                             <div class="inner-wrap">
+                            <span class="closed">X</span>
                                 <div class="col-left">
                                 <?php
                                 $ac_image = get_sub_field('livestock_auctioneers_image');
@@ -330,6 +330,7 @@ if ( !empty( $image_private ) ) { ?>
                                 <?php if( !empty($ac_image) ):?>
                                     <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>" class="w-100">
                                 <?php endif; ?>
+                                <div class="left-content">
                                 <h4><?php the_sub_field('livestock_auctioneers_name'); ?></h4>
                                 <ul>
                                 <li>
@@ -356,8 +357,8 @@ if ( !empty( $image_private ) ) { ?>
                                 <a href="mailto:<?php the_sub_field('livestock_auctioneers_email'); ?>"><?php the_sub_field('livestock_auctioneers_email'); ?></a>
                                 </li>
                                 <?php endif; ?>
-                                
                                 </ul>
+                                </div>
                                 </div>
                                 <div class="col-right">
                                 <?php the_sub_field('livestock_auctioneers_blurb'); ?>
@@ -419,9 +420,9 @@ if ( !empty( $image_private ) ) { ?>
                             <p><?php the_sub_field('livestock_auctioneers_post_title'); ?></p>
                         </div>
                         <?php if( get_sub_field('livestock_auctioneers_blurb') ): ?>
-                        <div class="pop-wr">
-                            <span class="closed">X</span>
+                            <div class="pop-wr">
                             <div class="inner-wrap">
+                            <span class="closed">X</span>
                                 <div class="col-left">
                                 <?php
                                 $ac_image = get_sub_field('livestock_auctioneers_image');
@@ -429,6 +430,7 @@ if ( !empty( $image_private ) ) { ?>
                                 <?php if( !empty($ac_image) ):?>
                                     <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>" class="w-100">
                                 <?php endif; ?>
+                                <div class="left-content">
                                 <h4><?php the_sub_field('livestock_auctioneers_name'); ?></h4>
                                 <ul>
                                 <li>
@@ -455,8 +457,8 @@ if ( !empty( $image_private ) ) { ?>
                                 <a href="mailto:<?php the_sub_field('livestock_auctioneers_email'); ?>"><?php the_sub_field('livestock_auctioneers_email'); ?></a>
                                 </li>
                                 <?php endif; ?>
-                                
                                 </ul>
+                                </div>
                                 </div>
                                 <div class="col-right">
                                 <?php the_sub_field('livestock_auctioneers_blurb'); ?>
