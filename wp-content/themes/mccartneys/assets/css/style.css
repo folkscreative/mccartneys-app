@@ -9072,10 +9072,10 @@ section.search-outer.filter .container {
     /* .properties-center .col-right a {
         margin-top: 40px;
     } */
-    .search-results .property .col-left img {
+    /* .search-results .property .col-left img {
         min-height: 300px !important;
         max-height: 300px;
-    }
+    } */
     .general-page-outer p {
         font-size: 14px;
         line-height: 25px;
@@ -10527,7 +10527,7 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
     height: 100%;
     width: 100%;
     object-fit: cover;
-    min-height: 430px;
+    /* min-height: 430px; */
     border-radius: 8px;
     transition: all .3s;
 }
@@ -10627,8 +10627,8 @@ section.results-overview .results-overview--info .results-sorting .propertyhive-
 }
 
 .search-results.grid-view .property .col-left img {
-    max-height: 225px;
-    min-height: 225px;
+    max-height: 200px;
+    min-height: 116px;
 }
 
 
@@ -12132,4 +12132,45 @@ body.post-type-archive-property .search-form--department {
 .page-id-1236 .our-marketer .col-left .mark-buttons{
     display: flex;
     flex-direction: column-reverse;
+}
+.results .property-cs-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 4px;
+    height: 100%;
+}
+.results .property-cs-wrap a{
+    display: none;
+}
+.results .property-cs-wrap a:first-child{
+    display: block;
+    width: 100%;
+}
+.results .property-cs-wrap a:first-child img{
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.results .property-cs-wrap a:nth-child(2){
+    display: block;
+    width: 33%;
+}
+.results .property-cs-wrap a:nth-child(2) img{
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.results .property-cs-wrap a:nth-child(3){
+    display: block;
+    width: 33%;
+}
+.results .property-cs-wrap a:nth-child(3) img{
+    border-radius: 0;
+}
+.results .property-cs-wrap a:nth-child(4){
+    display: block;
+    width: 33%;
+}
+.results .property-cs-wrap a:nth-child(4) img{
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
 }

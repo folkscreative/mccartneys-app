@@ -335,11 +335,9 @@ get_header(); ?>
                         </div>
                         <?php if( get_sub_field('livestock_auctioneers_blurb') ): ?>
                         <div class="pop-wr">
-                            
                             <div class="inner-wrap">
                             <span class="closed">X</span>
                                 <div class="col-left">
-
                                 <?php
                                 $ac_image = get_sub_field('livestock_auctioneers_image');
                                 ?>
@@ -375,9 +373,7 @@ get_header(); ?>
                                 <?php endif; ?>
                                 </ul>
                                 </div>
-
                                 </div>
-
                                 <div class="col-right">
                                 <?php the_sub_field('livestock_auctioneers_blurb'); ?>
                                 </div>

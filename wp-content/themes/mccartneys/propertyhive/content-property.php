@@ -43,7 +43,7 @@ if ( $property->featured == 'yes' )
 
 <div class="col-left">
 
-<div class="property-carousel">
+<div class="property-cs-wrap">
 
 <?php 
 if ($gallery_attachments && is_array($gallery_attachments)) {
@@ -57,7 +57,7 @@ if ($gallery_attachments && is_array($gallery_attachments)) {
         // Output the image wrapped with an anchor link
         if ($image_url) {
             echo '<a href="' . esc_url($post_permalink) . '">';
-            echo '<img src="' . esc_url($image_url) . '" class="property-primary-image" alt="' . esc_attr(get_the_title()) . '">';
+            echo '<img src="' . esc_url($image_url) . '" class="pr-cf-images" alt="' . esc_attr(get_the_title()) . '">';
             echo '</a>';
         }            
     }
