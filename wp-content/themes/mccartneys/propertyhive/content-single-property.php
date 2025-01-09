@@ -12,7 +12,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 $website_logo = get_field('upload_logo', 'option');
 $fine_country_logo = wp_get_attachment_url('325');
-global $property;
+global $property; 
 
 
 $gallery_attachments = $property->get_gallery_attachment_ids();
