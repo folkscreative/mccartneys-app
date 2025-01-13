@@ -44,7 +44,8 @@ if ( $property->featured == 'yes' )
 <div class="col-left">
 
 <div class="property-cs-wrap">
-
+<?php if (isset($_REQUEST['include_sold_stc'])) { echo ' checked'; } ?>> <span>Include Under
+                            Offer, Sold STC</span>
 <?php 
 if ($gallery_attachments && is_array($gallery_attachments)) {
     foreach ($gallery_attachments as $attachment_id) {
