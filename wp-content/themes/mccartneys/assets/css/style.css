@@ -12189,4 +12189,5 @@ body.post-type-archive-property .search-form--department {
     font-weight: bold;
     font-size: 11px;
     text-transform: uppercase;
+    filter: drop-shadow(0 0 0.15rem #000);v
 }

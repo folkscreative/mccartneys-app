@@ -42,15 +42,7 @@ if ( $property->featured == 'yes' )
 <div <?php post_class( $classes ); ?>>
 
 
-<?php
-// Retrieve the custom field value
-$custom_field_value = get_post_meta($property_id, 'availability', true);
 
-// Display the custom field value
-if ($custom_field_value) {
-    echo '<p>Custom Field: ' . esc_html($custom_field_value) . '</p>';
-}
-?>
 
 <?php
 // Get the classes for the current post or page
@@ -82,9 +74,6 @@ if (in_array('availability-for-sale', $post_classes)) {
     echo '<div class="stc-sold">Under Offer</div>';
 }
 ?>
-
-
-
 
 <div class="col-left">
 
