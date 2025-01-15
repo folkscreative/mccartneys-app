@@ -12182,12 +12182,12 @@ body.post-type-archive-property .search-form--department {
 .results .stc-sold  {
     position: absolute;
     background-color: #F7EBEE;
-    padding: 5px 15px;
+    padding: 8px 10px;
     border-radius: 41px;
     margin-top: 12px;
     margin-left: 12px;
     font-weight: bold;
     font-size: 11px;
     text-transform: uppercase;
-    filter: drop-shadow(0 0 0.15rem #000);v
+    filter: drop-shadow(0 0 0.15rem #000);
 }
