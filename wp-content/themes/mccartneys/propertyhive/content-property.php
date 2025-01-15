@@ -42,9 +42,41 @@ if ( $property->featured == 'yes' )
 <div <?php post_class( $classes ); ?>>
 
 
-<div class="stc-sold">
-<?php if (isset($_REQUEST['include_sold_stc'])) { echo ' checked'; } ?> <span> Under Offer</span>
-</div>
+<?php
+// Retrieve the custom field value
+$custom_field_value = get_post_meta($property_id, 'availability', true);
+
+// Display the custom field value
+if ($custom_field_value) {
+    echo '<p>Custom Field: ' . esc_html($custom_field_value) . '</p>';
+}
+?>
+
+<?php
+// Get the classes for the current post or page
+$post_classes = get_post_class();
+
+// Check if "availability-under-offer" exists in the array of classes
+if (in_array('availability-under-offer', $post_classes)) {
+    echo '<div class="stc-sold">Under Offer</div>';
+}
+?>
+
+
+<?php
+// Get the classes for the current post or page
+$post_classes = get_post_class();
+
+// Check if "availability-under-offer" exists in the array of classes
+if (in_array('availability-let', $post_classes)) {
+    echo '<div class="stc-sold">Let</div>';
+}
+?>
+
+
+
+
+
 <div class="col-left">
 
 <div class="property-cs-wrap">
