@@ -65,15 +65,7 @@ if (in_array('availability-let', $post_classes)) {
 }
 ?>
 
-<?php
-// Get the classes for the current post or page
-$post_classes = get_post_class();
 
-// Check if "availability-under-offer" exists in the array of classes
-if (in_array('availability-for-sale', $post_classes)) {
-    echo '<div class="stc-sold">Under Offer</div>';
-}
-?>
 
 <div class="col-left">
 
