@@ -22,7 +22,7 @@ $brochures = $property->get_brochure_attachment_ids();
 $epcs = $property->get_epc_attachment_ids();
 $virtual_tours = $property->get_virtual_tours();
 $virtual_tour_urls = $property->get_virtual_tour_urls();
-
+$get_negotiator_photo = get_avatar_url($property->negotiator_id, array('size' => 450));
 
      if ( post_password_required() ) 
      {
@@ -304,7 +304,8 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                             <img src="<?php if ($property->department === "fine-and-country") {
                             echo $fine_country_logo;
                         } else {
-                        echo $website_logo['url']; 
+                        // echo $website_logo['url']; 
+                        echo $get_negotiator_photo;
                         };?>" alt="<?php if ($property->department === "fine-and-country") {
                             echo 'Fine & Country Logo';
                         } else { echo $website_logo['alt']; };?>" class="negotiatior-profile">
@@ -373,12 +374,13 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                 </div>
 
                 <div class="col-12 col-md-4 branch-info-wrap d-none d-md-block">
-
+                
                     <div class="branch-info">
                         <div class="negotiator-profile-wrap"><img src="<?php if ($property->department === "fine-and-country") {
                             echo $fine_country_logo;
                         } else {
-                        echo $website_logo['url']; 
+                        // echo $website_logo['url']; 
+                        echo $get_negotiator_photo;
                         };?>" alt="<?php if ($property->department === "fine-and-country") {
                             echo 'Fine & Country Logo';
                         } else { echo $website_logo['alt']; };?>" class="negotiatior-profile"></div>
