@@ -373,12 +373,15 @@ $virtual_tour_urls = $property->get_virtual_tour_urls();
                 </div>
 
                 <div class="col-12 col-md-4 branch-info-wrap d-none d-md-block">
-
+                <?php 
+                    $get_author_gravatar = get_avatar_url($property->negotiator_id, array('size' => 450));
+                    ?>
                     <div class="branch-info">
                         <div class="negotiator-profile-wrap"><img src="<?php if ($property->department === "fine-and-country") {
                             echo $fine_country_logo;
                         } else {
-                        echo $website_logo['url']; 
+                        // echo $website_logo['url']; 
+                        echo $get_author_gravatar; 
                         };?>" alt="<?php if ($property->department === "fine-and-country") {
                             echo 'Fine & Country Logo';
                         } else { echo $website_logo['alt']; };?>" class="negotiatior-profile"></div>
