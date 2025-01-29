@@ -14,7 +14,6 @@ $website_logo = get_field('upload_logo', 'option');
 $fine_country_logo = wp_get_attachment_url('325');
 global $property; 
 
-
 $gallery_attachments = $property->get_gallery_attachment_ids();
 $galleryAttachmentCount = count($gallery_attachments);
 $floorplans = $property->get_floorplan_attachment_ids();
@@ -22,7 +21,12 @@ $brochures = $property->get_brochure_attachment_ids();
 $epcs = $property->get_epc_attachment_ids();
 $virtual_tours = $property->get_virtual_tours();
 $virtual_tour_urls = $property->get_virtual_tour_urls();
-$get_negotiator_photo = get_avatar_url($property->negotiator_id, array('size' => 450));
+
+$negotiatorId =  get_negotiatorId(get_post_meta( get_the_ID(), '_reference_number', true ));
+$negotiatorsInfo = get_negotiatorsInfo($negotiatorId);
+
+
+// print_r($negotiatorsInfo);
 
      if ( post_password_required() ) 
      {
@@ -301,14 +305,9 @@ $get_negotiator_photo = get_avatar_url($property->negotiator_id, array('size' =>
                     </div>
                     <div class="branch-info mobile d-block d-md-none">
                         <div class="img-wrap negotiator-profile-wrap">
-                            <img src="<?php if ($property->department === "fine-and-country") {
-                            echo $fine_country_logo;
-                        } else {
-                        // echo $website_logo['url']; 
-                        echo $get_negotiator_photo;
-                        };?>" alt="<?php if ($property->department === "fine-and-country") {
-                            echo 'Fine & Country Logo';
-                        } else { echo $website_logo['alt']; };?>" class="negotiatior-profile">
+                           
+                            <img src="<?php echo ($negotiatorsInfo['profileImageUrl']) ? $negotiatorsInfo['profileImageUrl'] : $website_logo['url']; ?>" alt="<?php echo $negotiatorsInfo['name'];?>" class="negotiatior-profile">
+                          
                         </div>
                         <div class="content">
                             <h5>Get In Touch</h5>
@@ -321,9 +320,9 @@ $get_negotiator_photo = get_avatar_url($property->negotiator_id, array('size' =>
                             ?>
                             <span
                                 class="branch-name"><?php echo $property->get_office_address( $separator = ', ' ); ?></span>
-                            <?php if ( $property->negotiator_name != '' )
+                            <?php if ( $negotiatorsInfo['name'] != '' )
 		                    { ?>
-                            <span class="negotiator-name"><?php echo $property->negotiator_name; ?></span>
+                            <span class="negotiator-name"><?php echo $negotiatorsInfo['name']; ?></span>
                             <?php } ?>
                         </div>
                     </div>
@@ -376,28 +375,28 @@ $get_negotiator_photo = get_avatar_url($property->negotiator_id, array('size' =>
                 <div class="col-12 col-md-4 branch-info-wrap d-none d-md-block">
                 
                     <div class="branch-info">
-                        <div class="negotiator-profile-wrap"><img src="<?php if ($property->department === "fine-and-country") {
-                            echo $fine_country_logo;
-                        } else {
-                        // echo $website_logo['url']; 
-                        echo $get_negotiator_photo;
-                        };?>" alt="<?php if ($property->department === "fine-and-country") {
-                            echo 'Fine & Country Logo';
-                        } else { echo $website_logo['alt']; };?>" class="negotiatior-profile"></div>
+                        <div class="negotiator-profile-wrap">
+
+                            
+                            <img src="<?php echo ($negotiatorsInfo['profileImageUrl']) ? $negotiatorsInfo['profileImageUrl'] : $website_logo['url']; ?>" alt="<?php echo $negotiatorsInfo['name'];?>" class="negotiatior-profile">
+                           
+                        </div>
                         <h5>Get In Touch</h5>
                         <?php if ( $property->office_telephone_number != '' )
                         {	
                             echo '<a class="telephone-number" href="tel:' . esc_attr($property->office_telephone_number) . '">';
-                            echo $property->office_telephone_number;
+                            echo $property->office_telephone_number; 
                             echo '</a>';
                             }
                             ?>
                         <span
                             class="branch-name"><?php echo $property->get_office_address( $separator = ', ' ); ?></span>
-                        <?php if ( $property->negotiator_name != '' )
+                       
+
+                        <?php if ( $negotiatorsInfo['name'] != '' )
 		                    { ?>
-                        <span class="negotiator-name"><?php echo $property->negotiator_name; ?></span>
-                        <?php } ?>
+                            <span class="negotiator-name"><?php echo $negotiatorsInfo['name']; ?></span>
+                            <?php } ?>
                         <a class="btn-bn-light" id="enquiryTrigger">Request a viewing<span><svg
                                     class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
                                     data-prefix="fas" data-icon="angle-right" role="img"
