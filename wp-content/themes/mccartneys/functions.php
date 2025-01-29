@@ -1883,4 +1883,81 @@ function register_show_type_taxonomy() {
 }
 add_action('init', 'register_show_type_taxonomy');
 
+/* Function to create the negotiator id from the property id */
+function get_negotiatorId($propertyId){
 
+    $access_token = get_access_token();
+    if (!$access_token) {
+        return false;
+    }
+
+    $api_url = "https://platform.reapit.cloud/properties/$propertyId";
+    $response = wp_remote_get($api_url, array(
+        'headers' => array(
+            'Authorization' => 'Bearer ' . $access_token,
+            'api-version' => '2020-01-31',
+            'reapit-customer' => 'MCC'
+        )
+    ));
+
+    if (is_wp_error($response)) {
+        echo '<p>Error: ' . $response->get_error_message() . '</p>';
+        return false;
+    }
+
+    $body = wp_remote_retrieve_body($response);
+    $data = json_decode($body, true);
+    return $data['negotiatorId'];
+}
+/* Function to get the negotiator information from its ID */
+function get_negotiatorsInfo($negotiatorId){
+
+    $access_token = get_access_token();
+    $negotiators_url = "https://platform.reapit.cloud/negotiators/".$negotiatorId;
+$responseNeg = wp_remote_get($negotiators_url, array(
+    'headers' => array(
+        'Authorization' => 'Bearer ' . $access_token,
+        'api-version' => '2020-01-31',
+        'reapit-customer' => 'MCC'
+    )
+));
+
+if (is_wp_error($responseNeg)) {
+    echo '<p>Error: ' . $responseNeg->get_error_message() . '</p>';
+    return false;
+}
+$bodyNeg = wp_remote_retrieve_body($responseNeg);
+return json_decode($bodyNeg, true);
+}
+/*Function to generate the required access token */
+function get_access_token()
+{
+    $client_id = '4h1h83g37v2488nk3qnbc9dhin';
+    $client_secret = '1s1n72ic94njnlqsbl433tpaaqdnkso6olj9bo7rpb3es9255dsk';
+    $auth_url = 'https://connect.reapit.cloud/token';
+
+    $response = wp_remote_post($auth_url, array(
+        'headers' => array(
+            'Authorization' => 'Basic ' . base64_encode($client_id . ':' . $client_secret),
+            'Content-Type' => 'application/x-www-form-urlencoded',
+        ),
+        'body' => array(
+            'grant_type' => 'client_credentials'
+        )
+    ));
+
+    if (is_wp_error($response)) {
+        echo '<p>Error: ' . $response->get_error_message() . '</p>';
+        return false;
+    }
+
+    $body = wp_remote_retrieve_body($response);
+    $data = json_decode($body);
+
+    if (isset($data->access_token)) {
+        return $data->access_token;
+    } else {
+        echo '<p>Failed to obtain access token. Response: ' . $body . '</p>';
+        return false;
+    }
+}
