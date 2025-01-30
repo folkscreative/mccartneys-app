@@ -306,7 +306,7 @@ $negotiatorsInfo = get_negotiatorsInfo($negotiatorId);
                     <div class="branch-info mobile d-block d-md-none">
                         <div class="img-wrap negotiator-profile-wrap">
                            
-                            <img src="<?php echo ($negotiatorsInfo['profileImageUrl']) ? $negotiatorsInfo['profileImageUrl'] : $website_logo['url']; ?>" alt="<?php echo $negotiatorsInfo['name'];?>" class="negotiatior-profile">
+                            <img src="<?php echo ($negotiatorsInfo['profileImageUrl']) ? $negotiatorsInfo['profileImageUrl'] : $website_logo['url']; ?>" alt="<?php echo $negotiatorsInfo['name'];?>" class="negotiatior-profile <?php echo ($negotiatorsInfo['profileImageUrl']) ? 'image-from-api' : ''; ?>">
                           
                         </div>
                         <div class="content">
@@ -378,7 +378,7 @@ $negotiatorsInfo = get_negotiatorsInfo($negotiatorId);
                         <div class="negotiator-profile-wrap">
 
                             
-                            <img src="<?php echo ($negotiatorsInfo['profileImageUrl']) ? $negotiatorsInfo['profileImageUrl'] : $website_logo['url']; ?>" alt="<?php echo $negotiatorsInfo['name'];?>" class="negotiatior-profile">
+                            <img src="<?php echo ($negotiatorsInfo['profileImageUrl']) ? $negotiatorsInfo['profileImageUrl'] : $website_logo['url']; ?>" alt="<?php echo $negotiatorsInfo['name'];?>" class="negotiatior-profile <?php echo ($negotiatorsInfo['profileImageUrl']) ? 'image-from-api' : ''; ?>">
                            
                         </div>
                         <h5>Get In Touch</h5>
