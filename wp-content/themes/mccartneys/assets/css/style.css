@@ -6870,7 +6870,18 @@ guide-boxez .container {
 
 .our-branches .livestock-auctioneers .wrapp .items {
     margin: 0 10px;
+    height: inherit !important;
 }
+.our-branches .livestock-auctioneers .wrapp .slick-list.trans{
+    transform: none !important;
+}
+.our-branches .livestock-auctioneers .wrapp .slick-track{
+    display: flex !important;
+}
+.our-branches .livestock-auctioneers .wrapp .slick-track.trans{
+    transform: none !important;
+}
+
 
 .our-branches .livestock-auctioneers .container {
     padding: 0;
@@ -8345,6 +8356,9 @@ section.search-outer.filter .container {
         column-gap: 5px;
         margin-top: 15px;
         flex-wrap: wrap;
+    }
+    .our-branches .livestock-auctioneers .wrapp .slick-dots{
+        display: flex !important;
     }
     .livestock-auctioneers .slick-dots li button {
         font-size: 0;
@@ -10926,7 +10940,7 @@ section.recent-properties::before {
 }
 
 .single-property.department-fine-and-country .branch-info {
-    background-color: #A78F51;
+    /* background-color: #A78F51; */
 }
 
 .single-property.department-fine-and-country .btn-cs-dark {
@@ -11225,7 +11239,7 @@ body.single-property {
 }
 
 body.single-property.department-fine-and-country {
-    --mcc-accent-colour: rgba(167, 143, 81, 0.80);
+    /* --mcc-accent-colour: rgba(167, 143, 81, 0.80); */
 }
 
 .single-property .property-media li.property-media--floorplan {
@@ -12190,4 +12204,23 @@ body.post-type-archive-property .search-form--department {
     font-size: 11px;
     text-transform: uppercase;
     filter: drop-shadow(0 0 0.15rem #000);
+}
+
+.branch-info-wrap .fine-country-logo {
+    margin:20px 0;
+    padding: 15px;
+    background: #fff;
+    border-radius: 2px;
+}
+
+
+/* Joform sstyle override */
+
+#text_8 > p > a {
+    color: #fff !important;
+}
+
+#text_8 > p > a:hover {
+    font-weight:600;
+    transition: 0.3s;
 }

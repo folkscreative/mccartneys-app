@@ -179,7 +179,9 @@ get_header(); ?>
                 <?php endwhile; ?>
             </ul>
 
-            <?php 
+            <?php endif ?>
+
+                    <?php 
                         $pcr_top_button = get_sub_field('our_branches_button');
                         if( $pcr_top_button ): 
                             $pcr_top_button_url = $pcr_top_button['url'];
@@ -189,10 +191,10 @@ get_header(); ?>
                         <a class="btn-cs-dark" href="<?php echo esc_url( $pcr_top_button_url ); ?>"
                             target="<?php echo esc_attr( $pcr_top_button_target ); ?>"><?php echo esc_html( $pcr_top_button_title ); ?><span><i
                                     class="fa-solid fa-angle-right"></i></span></a>
-                        <?php endif; ?>
-                        </div>
-
+        <?php endif; ?>
+    </div>
             <div class="tabs-content">
+            <?php if( have_rows('phipps_branches_repeater') ): ?>
                 <?php while ( have_rows('phipps_branches_repeater') ) : the_row(); ?>
                     <div class="tab-content" id="tab-<?php echo get_row_index(); ?>">
                         
@@ -203,9 +205,9 @@ get_header(); ?>
                     
                     while ( have_rows('phipps_branches_social_buttons') ) : the_row();?>
                         
-                            <li>
-                                <a href="<?php the_sub_field('branches_social_media_link'); ?>"><?php the_sub_field('branches_social_media_label'); ?></a>
-                            </li>
+                        <li>
+                            <a href="<?php the_sub_field('branches_social_media_link'); ?>"><?php the_sub_field('branches_social_media_label'); ?></a>
+                        </li>
                         
                     <?php endwhile; ?>
                     
@@ -240,7 +242,6 @@ get_header(); ?>
 
         <section class="livestock-auctioneers">
         <div class="container">
-           
                 <div class="wrapp livestocks">
                 <?php if( have_rows('branches_team_repeater') ):
                      while ( have_rows('branches_team_repeater') ) : the_row();
@@ -253,90 +254,83 @@ get_header(); ?>
                         <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>" class="w-100">
                     <?php endif; ?>
                         <ul class="info-box">
-                        <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
+                        <?php if( get_sub_field('branch_team_number') ): ?>
                         <li>
                             <i class="fa-solid fa-phone"></i>
-                            <a href="tel:<?php the_sub_field('livestock_auctioneers_number'); ?>"><?php the_sub_field('livestock_auctioneers_number'); ?></a>
+                            <a href="tel:<?php the_sub_field('branch_team_number'); ?>"><?php the_sub_field('branch_team_number'); ?></a>
                             </li>
                             <?php endif; ?>
-                            <?php if( get_sub_field('livestock_auctioneers_second_number') ): ?>
+                            <!-- <?php //if( get_sub_field('livestock_auctioneers_second_number') ): ?>
                             <li>
                             <i class="fa-solid fa-phone"></i>
-                            <a href="tel:<?php the_sub_field('livestock_auctioneers_second_number'); ?>"><?php the_sub_field('livestock_auctioneers_second_number'); ?></a>
+                            <a href="tel:<?php //the_sub_field('livestock_auctioneers_second_number'); ?>"><?php //the_sub_field('livestock_auctioneers_second_number'); ?></a>
                             </li>
-							<?php endif; ?>
+							<?php //endif; ?> -->
 
-                            
+                            <?php if( get_sub_field('branch_team_email') ): ?>
+                            <li>
+                            <i class="fa-regular fa-envelope"></i>
+                            <a href="mailto:<?php the_sub_field('branch_team_email'); ?>"><?php the_sub_field('branch_team_email'); ?></a>
+                            </li>
+                            <?php endif; ?>
                         </ul>
                         </div>
                         <div class="team-content">
                         <h4><?php the_sub_field('branch_team_name'); ?></h4>
                         <p><?php the_sub_field('branch_team_post_title'); ?></p>
                         </div>
-                        <?php if( get_sub_field('livestock_auctioneers_blurb') ): ?>
+
+                        <?php if( get_sub_field('team_member_biography') ): ?>
                             <div class="pop-wr">
                             <div class="inner-wrap">
                             <span class="closed">X</span>
                                 <div class="col-left">
                                 <?php
-                                $ac_image = get_sub_field('livestock_auctioneers_image');
+                                $ac_image = get_sub_field('branch_team_image');
                                 ?>
                                 <?php if( !empty($ac_image) ):?>
                                     <img src="<?php echo $ac_image['url']; ?>" alt="<?php echo $ac_image['alt']; ?>" class="w-100">
                                 <?php endif; ?>
                                 <div class="left-content">
-                                <h4><?php the_sub_field('livestock_auctioneers_name'); ?></h4>
+                                <h4><?php the_sub_field('branch_team_name'); ?></h4>
                                 <ul>
+                               
                                 <li>
-                                    <?php the_sub_field('livestock_auctioneers_office'); ?>
+                                <?php the_sub_field('branch_team_post_title'); ?>
                                 </li>
-                                <li>
-                                <?php the_sub_field('livestock_auctioneers_post_title'); ?>
-                                </li>
-                                <?php if( get_sub_field('livestock_auctioneers_number') ): ?>
+                                <?php if( get_sub_field('branch_team_number') ): ?>
                                 <li>
                                 <i class="fa-solid fa-phone"></i>
-                                <a href="tel:<?php the_sub_field('livestock_auctioneers_number'); ?>"><?php the_sub_field('livestock_auctioneers_number'); ?></a>
+                                <a href="tel:<?php the_sub_field('branch_team_number'); ?>"><?php the_sub_field('branch_team_number'); ?></a>
                                 </li>
                                 <?php endif; ?>
-                                <?php if( get_sub_field('livestock_auctioneers_second_number') ): ?>
-                                <li>
-                                <i class="fa-solid fa-phone"></i>
-                                <a href="tel:<?php the_sub_field('livestock_auctioneers_second_number'); ?>"><?php the_sub_field('livestock_auctioneers_second_number'); ?></a>
-                                </li>
-                                <?php endif; ?>
-                                <?php if( get_sub_field('livestock_auctioneers_email') ): ?>
+                                
+                                <?php if( get_sub_field('branch_team_email') ): ?>
                                 <li>
                                 <i class="fa-regular fa-envelope"></i>
-                                <a href="mailto:<?php the_sub_field('livestock_auctioneers_email'); ?>"><?php the_sub_field('livestock_auctioneers_email'); ?></a>
+                                <a href="mailto:<?php the_sub_field('branch_team_email'); ?>"><?php the_sub_field('branch_team_email'); ?></a>
                                 </li>
                                 <?php endif; ?>
                                 </ul>
                                 </div>
                                 </div>
                                 <div class="col-right">
-                                <?php the_sub_field('livestock_auctioneers_blurb'); ?>
+                                <?php the_sub_field('team_member_biography'); ?>
                                 </div>
                             </div>
                         </div>
-                    <?php endif; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <?php endwhile; ?><?php endif;?>
             </div>
         </div>
     </section>
-
-                    </div>
-                <?php endwhile; ?>
+ </div>
+<?php endwhile; ?> <?php endif; ?>
             </div>
-        <?php endif; ?>
+        
             </div>
-
-
-
-
-
         </div>
      </section>
      <?php endif; ?>
@@ -463,3 +457,42 @@ get_header(); ?>
 </main>
 
 <?php get_footer();?>
+
+
+<script>
+    jQuery(document).ready(function ($) {
+    // Tab Click Event
+    $(".tab").click(function () {
+        var tab_id = $(this).attr("data-tab");
+
+        $(".tab").removeClass("active");
+        $(".tab-content").removeClass("active");
+
+        $(this).addClass("active");
+        $("#" + tab_id).addClass("active");
+
+        // Reinitialize Slick Slider inside the newly active tab
+        $("#" + tab_id + " .livestocks").slick("setPosition");
+    });
+
+    // Initialize first tab as active
+    $(".tab:first").addClass("active");
+    $(".tab-content:first").addClass("active");
+});
+
+</script>
+
+
+<style>
+
+.tabs-content .tab-content {
+    display: none;
+}
+.tabs-content .tab-content.active {
+    display: block;
+}
+.tabs .tab.active {
+    background-color: #ddd;
+}
+
+</style>
