@@ -141,6 +141,70 @@ P {
     margin: 0 auto;
 }
 
+/* tenant page */
+.tenant-page .livestock-faqs{
+    padding-top: 137px;
+}
+.tenant-page .livestock-faqs:nth-child(3){
+    padding: 74px 0 100px;
+}
+.tenant-page .livestock-faqs .col-left{
+    max-width: 100%;
+    text-align: center;
+    margin: 0 0 74px;
+}
+.tenant-page .livestock-faqs .faqs-wrapper .faqs-item{
+    background-color: #8D1F56;
+}
+.tenant-page .livestock-faqs .faqs-wrapper .top-bar h4{
+    color: #fff;
+} 
+.tenant-page .livestock-faqs .faqs-wrapper .faqs-item.active .top-bar h4{
+    color: #707070;
+}
+.tenant-page .livestock-faqs .faqs-wrapper .top-bar .plus-icon{
+    color: #fff;
+    pointer-events: auto;
+}
+.tenant-page .livestock-faqs .faqs-wrapper .faqs-item.active{
+    background-color: #fff;
+    pointer-events: none;
+}
+.tenant-page .livestock-faqs .faqs-wrapper .faqs-item.active .top-bar .plus-icon{
+    color: #8d1f56;
+}
+.tenant-page .livestock-faqs .faqs-wrapper .bottom-bar .content p{
+    color: #707070;
+}
+.tenant-page .livestock-faqs .faqs-wrapper .bottom-bar .content p strong{
+    font-weight: 700;
+}
+.tenant-page .livestock-faqs .faqs-wrapper .bottom-bar .content h4{
+    color: #707070;
+}
+.tenant-page .livestock-faqs .faqs-wrapper .bottom-bar .content h3{
+    color: #707070;
+    margin-bottom: 15px;
+}
+.tenant-page .livestock-faqs .faqs-wrapper .faqs-item.active .top-bar{
+    border-bottom: 2px solid #8d1f56;
+}
+.tenant-page .livestock-faqs .faqs-wrapper .bottom-bar{
+    padding-top: 25px;
+}
+.tenant-page .livestock-faqs .faqs-wrapper .faqs-item a{
+    color: #8d1f56;
+    pointer-events: auto;    
+}
+.tenant-page .faqs-wrapper .content table td{
+    padding: 8px 20px;
+}
+.tenant-page .content table tbody tr:nth-child(even){
+    background-color: #8D1F56;
+    color: #fff; 
+}
+/* tenant page */
+
 
 /* Header */
 
@@ -6529,10 +6593,10 @@ guide-boxez .container {
 /* phipps richard page */
 
 .main-phipps-banner {
-    padding: 93px 0 33px;
+    padding: 103px 0 63px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top 10% left 10%;
     border-top: 1px solid #D0D3D4;
 }
 
@@ -6540,16 +6604,25 @@ guide-boxez .container {
     max-width: 555px;
     width: 100%;
     color: #444;
+    padding:40px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.6);
+    margin-bottom: 78px;
+
 }
 
 .main-phipps-banner .content p {
     margin: 14px 0 30px;
+    color:#fff;
+}
+
+.main-phipps-banner h1 {
+    color: #fff;
 }
 
 .main-phipps-banner .content img {
     max-width: 114px;
     width: 100%;
-    margin-bottom: 78px;
 }
 
 .home-filter-pr .search-form-control.last-visible {
@@ -7815,6 +7888,13 @@ section.search-outer.filter .container {
     p {
         font-size: 15px;
         line-height: 24px;
+    }
+    .tenant-page .faqs-wrapper .content table td{
+        font-size: 13px;
+        padding: 8px 8px;
+    }
+    .tenant-page .livestock-faqs{
+        padding-top: 80px;
     }
     .main-banner {
         position: relative;
