@@ -463,7 +463,7 @@ jQuery(document).ready(function ($) {
           $(".insight-content .branch-pst-wr:hidden").slice(0, 1).slideDown();
       
           if ($(".insight-content .branch-pst-wr:hidden").length == 0) {
-            $(".insight-content #loadMore").text('Load only the first one');
+            $(".insight-content #loadMore").text('Load less');
             isComplete = true;
           }
       
