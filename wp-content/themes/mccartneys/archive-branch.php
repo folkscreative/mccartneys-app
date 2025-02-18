@@ -5,23 +5,22 @@ get_header(); ?>
 
 <section class="insight-content">
         <div class="container">
-            <div class="content">
+        <div class="content">
                 <h1>McCartneys Branches</h1>
                 <p>We share our team's expertise across McCartneys' fields, including properties, livestock, fine art and antiques, and more.</p>
             </div>
-        
-    
      <?php
 global $post;
 $current_post_id = $post->ID;
 // The query to get the specific post
 $query = new WP_Query(array(
     'post_type' => 'branch',
-    'posts_per_page' => 1, 
+    'posts_per_page' => -1, 
     'order' => 'DESC' )); 
 if ($query->have_posts()) :
     while ($query->have_posts()) : $query->the_post(); ?>
-        <div class="post d-none d-md-flex">
+        <div class="branch-pst-wr">
+        <div class="post">
             <?php if (has_post_thumbnail()) : ?>
                 <div class="post-thumbnail">
                 <a class="btn-transparent" href="<?php the_permalink(); ?>">Link</a>
@@ -50,11 +49,14 @@ if ($query->have_posts()) :
                 <p class="author"><?php the_author(); ?></p>
             </div>
         </div>
+        </div>                  
+
     <?php endwhile;
 endif;
 
 // Reset Post Data
 wp_reset_postdata();?>
+<a href="#" class="btn-cs-dark" id="loadMore">Load More</a>
 </div>
  </section>
 

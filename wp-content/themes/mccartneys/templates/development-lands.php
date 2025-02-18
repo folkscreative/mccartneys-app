@@ -229,7 +229,7 @@ if ( !empty( $image_private ) ) { ?>
                 <?php while( have_rows('property_blocks_section_repeater') ): the_row(); ?>
                 <div class="col-12 col-sm-4">
                     <div class="blocks">
-                        <h4><?php the_sub_field('block_repeater_title'); ?></h4>
+                        <h3><?php the_sub_field('block_repeater_title'); ?></h3>
                         <p><?php the_sub_field('block_repeater_description'); ?></p>
                     </div>
                 </div>

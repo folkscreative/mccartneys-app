@@ -446,7 +446,32 @@ jQuery(document).ready(function ($) {
             $contents.first().addClass('active');
         }
     });
-
+    // branches
+    $(function() {
+        var isComplete = false; // a status class to check if all divs are visible or not
+        $(".insight-content .branch-pst-wr").slice(0, 1).show();
+        
+        $(".insight-content #loadMore").on('click', function(e) {
+          e.preventDefault();
+      
+          if (isComplete === true) {
+            $(".insight-content .branch-pst-wr").hide();
+            isComplete = false;
+            $(".insight-content #loadMore").text('Load More');
+          }
+      
+          $(".insight-content .branch-pst-wr:hidden").slice(0, 1).slideDown();
+      
+          if ($(".insight-content .branch-pst-wr:hidden").length == 0) {
+            $(".insight-content #loadMore").text('Load only the first one');
+            isComplete = true;
+          }
+      
+          $('html,body').animate({
+            scrollTop: $(this).offset().top
+          }, 1500);
+        });
+      });
 
     $(document).ready(function () {
 	

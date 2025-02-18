@@ -3661,6 +3661,9 @@ footer .cookies-menu ul li a {
 .sell-properties-blocks .blocks h4 {
     margin-bottom: 21px;
 }
+.sell-properties-blocks .blocks h3{
+    margin-bottom: 21px;
+}
 
 
 /* Sell properties blocks ernds */
@@ -3955,6 +3958,9 @@ footer .cookies-menu ul li a {
 .box-banner .content h1 {
     color: #707070;
     margin-top: 30px;
+    font-size: 32px;
+    line-height: 35px;
+    font-weight: 500;
 }
 
 .box-banner {
@@ -5869,6 +5875,9 @@ footer .cookies-menu ul li a {
     overflow: hidden;
     margin: 0;
 }
+.insight-content #loadMore{
+    margin: 40px auto 0;
+}
 
 .post-content .category-date {
     display: flex;
@@ -5913,6 +5922,7 @@ footer .cookies-menu ul li a {
 .insight-content .post .post-thumbnail {
     position: relative;
     min-width: 515px;
+    max-width: 515px;
     min-height: 100%;
 }
 
@@ -6606,7 +6616,7 @@ guide-boxez .container {
     color: #444;
     padding:40px;
     border-radius: 10px;
-    background: rgba(0,0,0,0.6);
+    /* background: rgba(0,0,0,0.6); */
     margin-bottom: 78px;
 
 }
@@ -7822,6 +7832,7 @@ section.search-outer.filter .container {
     }
     .insight-content .post .post-thumbnail {
         min-width: 350px;
+        max-width: 350px;
     }
     .post-boxes .category-nav {
         flex-direction: column;
@@ -7888,6 +7899,13 @@ section.search-outer.filter .container {
     p {
         font-size: 15px;
         line-height: 24px;
+    }
+    .insight-content .post .post-thumbnail {
+        max-width: 100%;
+    }
+    .box-banner .content h1{
+        font-size: 23px;
+        line-height: 27px;
     }
     .tenant-page .faqs-wrapper .content table td{
         font-size: 13px;
@@ -12303,4 +12321,14 @@ body.post-type-archive-property .search-form--department {
 #text_8 > p > a:hover {
     font-weight:600;
     transition: 0.3s;
+}
+
+@media only screen and (max-width:900px) {
+    .gslide-media {
+        width:100vw !important;
+    }
+
+    #JotFormIFrame-242453847375061 {
+        height: 1800px;
+    }
 }
