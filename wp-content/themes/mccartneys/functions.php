@@ -1782,6 +1782,16 @@ add_action('init', 'register_sales_dates_cpt');
 
 
 
+function my_enqueue_ckeditor($hook) {
+    global $post;
+    if ($hook === 'post.php' || $hook === 'post-new.php') {
+        if ($post->post_type === 'sales_dates') {  // Change to your actual CPT slug
+            wp_enqueue_script('ckeditor', 'https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js', array(), null, true);
+        }
+    }
+}
+add_action('admin_enqueue_scripts', 'my_enqueue_ckeditor');
+
 // add meta boxes
 
 function sales_dates_meta_boxes() {
@@ -1822,7 +1832,18 @@ function sales_dates_meta_box_callback($post) {
     </p>
     <p>
         <label for="additional_info">Additional Information</label><br>
-        <textarea id="additional_info" name="additional_info" style="width: 100%;"><?php echo esc_textarea($additional_info); ?></textarea>
+       
+    
+        <textarea id="editor" name="additional_info" style="width: 100%; height: 200px;"><?php echo htmlspecialchars_decode($additional_info, ENT_QUOTES); ?></textarea>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof CKEDITOR !== "undefined") {
+            CKEDITOR.replace('editor');
+        }
+    });
+</script>
+    
     </p>
     <p>
         <label for="enter_now">Enter Now (URL)</label><br>
