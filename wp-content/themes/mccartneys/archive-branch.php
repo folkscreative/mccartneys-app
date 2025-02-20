@@ -6,8 +6,8 @@ get_header(); ?>
 <section class="insight-content">
         <div class="container">
         <div class="content">
-                <h1>McCartneys Branches</h1>
-                <p>We share our team's expertise across McCartneys' fields, including properties, livestock, fine art and antiques, and more.</p>
+                <h1><?php the_field('branches_title', 'option'); ?></h1>
+                <p><?php the_field('branches_description', 'option'); ?></p>
             </div>
      <?php
 global $post;
@@ -59,6 +59,16 @@ wp_reset_postdata();?>
 <a href="#" class="btn-cs-dark" id="loadMore">Load More</a>
 </div>
  </section>
+
+<!-- locations -->
+<section class="property-wrapper" id="loc-data-branch">
+        <div class="container">
+            <h2 class="title"><?php the_field('branch_locations_title', 'option'); ?></h2>
+            <p class="description"><?php the_field('branch_location_description', 'option'); ?></p>
+            <?php echo do_shortcode('[property_tabs]'); ?>
+        </div>
+    </section>
+<!-- locations ends -->
 
 <div class="post-boxes">
 <div class="container">

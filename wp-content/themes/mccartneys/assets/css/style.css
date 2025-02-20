@@ -1066,6 +1066,9 @@ P {
 
 
 /* property */
+#loc-data-branch{
+    margin-top: 100px;
+}
 
 .property-wrapper {
     padding: 69px 0 114px;
@@ -6616,7 +6619,7 @@ guide-boxez .container {
     color: #444;
     padding:40px;
     border-radius: 10px;
-    /* background: rgba(0,0,0,0.6); */
+    background: rgba(0,0,0,0.6);
     margin-bottom: 78px;
 
 }
