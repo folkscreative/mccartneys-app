@@ -1640,35 +1640,35 @@ function property_mobile_tabs_shortcode() {
 
                     // Sales number
                     echo '<div class="sale-nmbr">';
-                    echo '<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">';
+                    echo '<img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/phone-icon-1.svg">';
                     echo '<span><strong>Sales </strong><a href="tel:' . get_field('sales_number') . '">' . get_field('sales_number') . '</a></span>';
                     echo '</div>';
 
                     // Lettings number (shown only on larger screens)
                     echo '<div class="sale-nmbr d-none d-md-flex">';
-                    echo '<img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">';
+                    echo '<img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/phone-icon-1.svg">';
                     echo '<span><strong>Lettings </strong><a href="tel:' . get_field('lettings_number') . '">' . get_field('lettings_number') . '</a></span>';
                     echo '</div>';
 
                     // Categories list
                     echo '<ul class="office-cat-wrap">';
                     if(get_field('properties') == 'True') {
-                        echo '<li class="items-wrap"><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/properties-vector-1.svg"><span>Properties</span></li>';
+                        echo '<li class="items-wrap"><img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/properties-vector-1.svg"><span>Properties</span></li>';
                     }
                     if(get_field('livestock') == 'True') {
-                        echo '<li class="items-wrap"><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/livestock-logo-1.svg"><span>Livestock</span></li>';
+                        echo '<li class="items-wrap"><img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/livestock-logo-1.svg"><span>Livestock</span></li>';
                     }
                     if(get_field('planning_survey') == 'True') {
-                        echo '<li class="items-wrap"><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/planning-logo-1.svg"><span>Planning & Survay</span></li>';
+                        echo '<li class="items-wrap"><img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/planning-logo-1.svg"><span>Planning & Survay</span></li>';
                     }
                     if(get_field('antiques') == 'True') {
-                        echo '<li class="items-wrap"><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/antiques-logo-1.svg"><span>Antiques</span></li>';
+                        echo '<li class="items-wrap"><img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/antiques-logo-1.svg"><span>Antiques</span></li>';
                     }
                     if(get_field('equine') == 'True') {
-                        echo '<li class="items-wrap"><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/equine-icon.svg"><span>Equine</span></li>';
+                        echo '<li class="items-wrap"><img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/07/equine-icon.svg"><span>Equine</span></li>';
                     }
                     if(get_field('rural') == 'True') {
-                        echo '<li class="items-wrap"><img src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/rural-icon.svg"><span>Rural</span></li>';
+                        echo '<li class="items-wrap"><img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/07/rural-icon.svg"><span>Rural</span></li>';
                     }
                     echo '</ul>';
 
