@@ -50,7 +50,7 @@ if (isset($_GET['filter_show_type'])) {
         <!-- <input type="date" name="filter_date" id="filter_date" value="<?php //echo isset($_GET['filter_date']) ? esc_attr($_GET['filter_date']) : ''; ?>"> -->
 
         <!-- Filter by Show Type -->
-        <label for="filter_show_type">Show Type:</label>
+        <label for="filter_show_type">All Sales Type:</label>
         <select name="filter_show_type" id="filter_show_type">
             <option value="">All Show Types</option>
             <?php
@@ -159,7 +159,7 @@ if (isset($_GET['filter_show_type'])) {
                     <p><?php echo get_post_meta(get_the_ID(), 'location', true); ?></p>
                     
 
-                   <p> <?php echo nl2br(esc_html(get_post_meta(get_the_ID(), 'additional_info', true))); ?></p>
+                   <p> <?php echo wpautop(wp_kses_post(get_post_meta(get_the_ID(), 'additional_info', true))); ?></p>
 
                     <?php
                     // Check and display 'Enter Now' button
