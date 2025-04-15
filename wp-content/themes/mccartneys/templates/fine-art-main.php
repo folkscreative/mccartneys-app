@@ -48,7 +48,7 @@ get_header(); ?>
 
     <!-- Department Services -->
     <?php if( get_row_layout() == 'livestock_services' ): ?>
-        <section class="departments equine art">
+        <section class="departments equine art" id="our-auction-rooms">
         <div class="container">
             <div class="content">
                     <h2><?php the_sub_field('livestock_service_title'); ?></h2>

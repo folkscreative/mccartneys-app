@@ -498,7 +498,7 @@ function property_tabs_shortcode() {
                     <?php if($properties_data=='True') { ?>
                     <li class="items-wrap">
                         <img
-                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/properties-vector-1.svg">
+                            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/properties-vector-1.svg">
                         <span>Properties</span>
                     </li>
                     <?Php }
@@ -506,7 +506,7 @@ function property_tabs_shortcode() {
                     <?php if($livestock_data=='True') { ?>
                     <li class="items-wrap">
                         <img
-                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/livestock-logo-1.svg">
+                            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/livestock-logo-1.svg">
                         <span>Livestock</span>
                     </li>
                     <?Php }?>
@@ -514,7 +514,7 @@ function property_tabs_shortcode() {
                     <?php if($planning_survey_data=='True') { ?>
                     <li class="items-wrap">
                         <img
-                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/planning-logo-1.svg">
+                            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/planning-logo-1.svg">
                         <span>Planning & Survey</span>
                     </li>
                     <?Php }?>
@@ -522,7 +522,7 @@ function property_tabs_shortcode() {
                     <?php if($antiques_data=='True') { ?>
                     <li class="items-wrap">
                         <img
-                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/antiques-logo-1.svg">
+                            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/antiques-logo-1.svg">
                         <span>Antiques</span>
                     </li>
                     <?Php }?>
@@ -531,7 +531,7 @@ function property_tabs_shortcode() {
                     <?php if($equine_data=='True') { ?>
                     <li class="items-wrap">
                         <img
-                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/equine-icon.svg">
+                            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/07/equine-icon.svg">
                         <span>Equine</span>
                     </li>
                     <?Php }?>
@@ -539,7 +539,7 @@ function property_tabs_shortcode() {
                     <?php if($rural_data=='True') { ?>
                     <li class="items-wrap">
                         <img
-                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/rural-icon.svg">
+                            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/07/rural-icon.svg">
                         <span>Rural</span>
                     </li>
                     <?Php }?>
@@ -677,7 +677,7 @@ function Fc_property_tabs_shortcode() {
                     <?php if($properties_data=='True') { ?>
                     <li class="items-wrap">
                         <img
-                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/properties-vector-1.svg">
+                            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/properties-vector-1.svg">
                         <span>Properties</span>
                     </li>
                     <?Php }
@@ -685,7 +685,7 @@ function Fc_property_tabs_shortcode() {
                     <?php if($livestock_data=='True') { ?>
                     <li class="items-wrap">
                         <img
-                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/livestock-logo-1.svg">
+                            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/livestock-logo-1.svg">
                         <span>Livestock</span>
                     </li>
                     <?Php }?>
@@ -693,7 +693,7 @@ function Fc_property_tabs_shortcode() {
                     <?php if($planning_survey_data=='True') { ?>
                     <li class="items-wrap">
                         <img
-                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/planning-logo-1.svg">
+                            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/planning-logo-1.svg">
                         <span>Planning & Survey</span>
                     </li>
                     <?Php }?>
@@ -701,7 +701,7 @@ function Fc_property_tabs_shortcode() {
                     <?php if($antiques_data=='True') { ?>
                     <li class="items-wrap">
                         <img
-                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/antiques-logo-1.svg">
+                            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/antiques-logo-1.svg">
                         <span>Antiques</span>
                     </li>
                     <?Php }?>
@@ -710,7 +710,7 @@ function Fc_property_tabs_shortcode() {
                     <?php if($equine_data=='True') { ?>
                     <li class="items-wrap">
                         <img
-                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/equine-icon.svg">
+                            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/07/equine-icon.svg">
                         <span>Equine</span>
                     </li>
                     <?Php }?>
@@ -718,7 +718,7 @@ function Fc_property_tabs_shortcode() {
                     <?php if($rural_data=='True') { ?>
                     <li class="items-wrap">
                         <img
-                            src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/07/rural-icon.svg">
+                            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/07/rural-icon.svg">
                         <span>Rural</span>
                     </li>
                     <?Php }?>

@@ -50,7 +50,7 @@ if (isset($_GET['filter_show_type'])) {
         <!-- <input type="date" name="filter_date" id="filter_date" value="<?php //echo isset($_GET['filter_date']) ? esc_attr($_GET['filter_date']) : ''; ?>"> -->
 
         <!-- Filter by Show Type -->
-        <label for="filter_show_type">All Sales Type:</label>
+        <label for="filter_show_type">All Sales:</label>
         <select name="filter_show_type" id="filter_show_type">
             <option value="">All Show Types</option>
             <?php
