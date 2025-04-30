@@ -31,8 +31,7 @@ if (isset($_GET['filter_show_type'])) {
             <div class="content">
             <div class="breadcrumb"><?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?></div>
             <h1>Sales Dates</h1>
-            <p></p><p>Each year McCartneys attends agricultural and livestock shows across the country, in an opportunity to meet new and old faces and provide direction on how McCartneys can help you.</p>
-<p></p>
+            <p>See below for forthcoming sales</p>
             </div>
         </div>
      </section>
