@@ -1747,163 +1747,68 @@ add_filter( 'acf/settings/save_json', 'my_acf_json_save_point' );
 
 
 
-// Sales date CPT
-function register_sales_dates_cpt() {
+// Register Custom Post Type: Sales Date
+function register_sales_date_post_type() {
     $labels = array(
-        'name'               => _x('Sales Dates', 'post type general name'),
-        'singular_name'      => _x('Sales Date', 'post type singular name'),
-        'menu_name'          => __('Sales Dates'),
-        'name_admin_bar'     => __('Sales Date'),
-        'add_new'            => __('Add New'),
-        'add_new_item'       => __('Add New Sales Date'),
-        'edit_item'          => __('Edit Sales Date'),
-        'new_item'           => __('New Sales Date'),
-        'view_item'          => __('View Sales Date'),
-        'all_items'          => __('All Sales Dates'),
-        'search_items'       => __('Search Sales Dates'),
-        'not_found'          => __('No Sales Dates found.'),
-        'not_found_in_trash' => __('No Sales Dates found in Trash.'),
+        'name' => 'Sales Dates',
+        'singular_name' => 'Sales Date',
+        'menu_name' => 'Sales Dates',
+        'name_admin_bar' => 'Sales Date',
+        'add_new' => 'Add New',
+        'add_new_item' => 'Add New Sales Date',
+        'new_item' => 'New Sales Date',
+        'edit_item' => 'Edit Sales Date',
+        'view_item' => 'View Sales Date',
+        'all_items' => 'All Sales Dates',
+        'search_items' => 'Search Sales Dates',
     );
 
     $args = array(
-        'labels'             => $labels,
-        'public'             => true,
-        'show_ui'            => true,
-        'show_in_menu'       => true,
-        'menu_position'      => 20,
-        'supports'           => array('title', 'custom-fields'),
-        'has_archive'        => true,
-        'rewrite'            => array('slug' => 'sales-dates'),
+        'label' => 'Sales Dates',
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => array('slug' => 'sales-dates'),
+        'menu_icon' => 'dashicons-calendar-alt',
+        'supports' => array('title', 'editor'),
+        'show_in_rest' => true,
+        'taxonomies' => array('sale_type')
     );
 
-    register_post_type('sales_dates', $args);
+    register_post_type('sales_date', $args);
 }
-add_action('init', 'register_sales_dates_cpt');
+add_action('init', 'register_sales_date_post_type');
 
-
-
-function my_enqueue_ckeditor($hook) {
-    global $post;
-    if ($hook === 'post.php' || $hook === 'post-new.php') {
-        if ($post->post_type === 'sales_dates') {  // Change to your actual CPT slug
-            wp_enqueue_script('ckeditor', 'https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js', array(), null, true);
-        }
-    }
-}
-add_action('admin_enqueue_scripts', 'my_enqueue_ckeditor');
-
-// add meta boxes
-
-function sales_dates_meta_boxes() {
-    add_meta_box(
-        'sales_dates_meta_box',
-        'Sales Date Details',
-        'sales_dates_meta_box_callback',
-        'sales_dates'
-    );
-}
-add_action('add_meta_boxes', 'sales_dates_meta_boxes');
-
-function sales_dates_meta_box_callback($post) {
-    // Retrieve existing values
-   
-    $show_date = get_post_meta($post->ID, 'show_date', true);
-    $end_date = get_post_meta($post->ID, 'end_date', true);
-    $location = get_post_meta($post->ID, 'location', true);
-    $additional_info = get_post_meta($post->ID, 'additional_info', true);
-    $enter_now = get_post_meta($post->ID, 'enter_now', true);
-    $download_url = get_post_meta($post->ID, 'download_url', true);
-
-    // Fields
-    ?>
-    
-    <p>
-        <label for="show_date">Show Date</label><br>
-        <input type="date" id="show_date" name="show_date" value="<?php echo esc_attr($show_date); ?>" style="width: 100%;">
-    </p>
-
-    <p>
-        <label for="end_date">End Date</label><br>
-        <input type="date" id="end_date" name="end_date" value="<?php echo esc_attr($end_date); ?>" style="width: 100%;">
-    </p>
-    <p>
-        <label for="location">Location</label><br>
-        <input type="text" id="location" name="location" value="<?php echo esc_attr($location); ?>" style="width: 100%;">
-    </p>
-    <p>
-        <label for="additional_info">Additional Information</label><br>
-       
-    
-        <textarea id="editor" name="additional_info" style="width: 100%; height: 200px;"><?php echo htmlspecialchars_decode($additional_info, ENT_QUOTES); ?></textarea>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        if (typeof CKEDITOR !== "undefined") {
-            CKEDITOR.replace('editor');
-        }
-    });
-</script>
-    
-    </p>
-    <p>
-        <label for="enter_now">Enter Now (URL)</label><br>
-        <input type="url" id="enter_now" name="enter_now" value="<?php echo esc_url($enter_now); ?>" style="width: 100%;">
-    </p>
-    <p>
-        <label for="download_url">Download URL</label><br>
-        <input type="url" id="download_url" name="download_url" value="<?php echo esc_url($download_url); ?>" style="width: 100%;">
-    </p>
-    <?php
-}
-
-function save_sales_dates_meta($post_id) {
-    // Save custom fields
-  
-    if (array_key_exists('show_date', $_POST)) {
-        update_post_meta($post_id, 'show_date', sanitize_text_field($_POST['show_date']));
-    }
-    if (array_key_exists('end_date', $_POST)) {
-        update_post_meta($post_id, 'end_date', sanitize_text_field($_POST['end_date']));
-    }
-    if (array_key_exists('location', $_POST)) {
-        update_post_meta($post_id, 'location', sanitize_text_field($_POST['location']));
-    }
-    if (array_key_exists('additional_info', $_POST)) {
-        update_post_meta($post_id, 'additional_info', sanitize_textarea_field($_POST['additional_info']));
-    }
-    if (array_key_exists('enter_now', $_POST)) {
-        update_post_meta($post_id, 'enter_now', esc_url_raw($_POST['enter_now']));
-    }
-    if (array_key_exists('download_url', $_POST)) {
-        update_post_meta($post_id, 'download_url', esc_url_raw($_POST['download_url']));
-    }
-}
-add_action('save_post', 'save_sales_dates_meta');
-
-
-
-function register_show_type_taxonomy() {
+// Register Custom Taxonomy: Sale Type
+function register_sale_type_taxonomy() {
     $labels = array(
-        'name'              => _x('Show Types', 'taxonomy general name'),
-        'singular_name'     => _x('Show Type', 'taxonomy singular name'),
-        'search_items'      => __('Search Show Types'),
-        'all_items'         => __('All Show Types'),
-        'edit_item'         => __('Edit Show Type'),
-        'add_new_item'      => __('Add New Show Type'),
+        'name' => 'Sale Types',
+        'singular_name' => 'Sale Type',
+        'search_items' => 'Search Sale Types',
+        'all_items' => 'All Sale Types',
+        'edit_item' => 'Edit Sale Type',
+        'update_item' => 'Update Sale Type',
+        'add_new_item' => 'Add New Sale Type',
+        'new_item_name' => 'New Sale Type Name',
+        'menu_name' => 'Sale Types',
     );
 
     $args = array(
-        'hierarchical'      => true,
-        'labels'            => $labels,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'rewrite'           => array('slug' => 'show-type'),
+        'labels' => $labels,
+        'public' => true,
+        'hierarchical' => true,
+        'rewrite' => array('slug' => 'sale-type'),
+        'show_in_rest' => true,
     );
 
-    register_taxonomy('show_type', array('sales_dates'), $args);
+    register_taxonomy('sale_type', array('sales_date'), $args);
 }
-add_action('init', 'register_show_type_taxonomy');
+add_action('init', 'register_sale_type_taxonomy');
+
+
+
+
+
 
 /* Function to create the negotiator id from the property id */
 function get_negotiatorId($propertyId){
