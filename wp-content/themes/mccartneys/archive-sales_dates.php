@@ -141,10 +141,18 @@ if (isset($_GET['filter_show_type'])) {
                 </div>
  </div>
             <?php endwhile;
+
+// Pagination
+                echo '<div class="pagination">';
+                echo paginate_links(array(
+                    'total' => $sales_query->max_num_pages,
+                ));
+                echo '</div>';
+                echo '</div>';
+                else :
+                echo '<p>No results found for your filters.</p>';
+                endif;
             wp_reset_postdata();
-        else :
-            echo "<p>No sales found.</p>";
-        endif;
         ?>
 </div>
     </div>
