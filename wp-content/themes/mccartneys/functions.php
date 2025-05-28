@@ -1775,7 +1775,7 @@ function register_sales_date_post_type() {
         'taxonomies' => array('sale_type')
     );
 
-    register_post_type('sales_date', $args);
+    register_post_type('sales_dates', $args);
 }
 add_action('init', 'register_sales_date_post_type');
 
