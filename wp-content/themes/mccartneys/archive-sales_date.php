@@ -37,7 +37,12 @@ if (isset($_GET['filter_show_type'])) {
      </section>
 
 
-<!-- Filter Form -->
+<section class="archive-filter">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="filter-content">
+
     <form method="GET" action="<?php echo get_post_type_archive_link('sales_date'); ?>" class="sales-filter">
         <select name="sale_type">
             <option value="">All Sale Types</option>
@@ -64,7 +69,20 @@ if (isset($_GET['filter_show_type'])) {
         <button type="submit">Filter</button>
     </form>
 
+
+        </div>
+        </div>
+        </div>
+        </div>
+</section>
+
     <!-- Sales Dates Loop -->
+         <section class="show-dates archive-tem">
+        
+        <div class="container">
+     
+            <div class="row g-0">
+                <div class="col-12">
     <div class="sales-list">
         <?php
         $args = array(
@@ -129,6 +147,9 @@ if (isset($_GET['filter_show_type'])) {
         endif;
         ?>
 </div>
-
+    </div>
+    </div>
+    </div>
+</section>
 
 <?php get_footer();?>
