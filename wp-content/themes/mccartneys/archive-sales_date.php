@@ -113,7 +113,7 @@ if (isset($_GET['filter_show_type'])) {
 
         if ($sales_query->have_posts()) :
             while ($sales_query->have_posts()) : $sales_query->the_post(); ?>
-
+   <div class="show-dates-content">
                 <div class="sale-item">
                     <h2><?php the_title(); ?></h2>
                     <p><strong>Sale Name:</strong> <?php the_field('sale_name'); ?></p>
@@ -139,7 +139,7 @@ if (isset($_GET['filter_show_type'])) {
                         </div>
                     <?php endif; ?>
                 </div>
-
+ </div>
             <?php endwhile;
             wp_reset_postdata();
         else :
