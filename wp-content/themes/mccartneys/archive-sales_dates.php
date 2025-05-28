@@ -86,7 +86,7 @@ if (isset($_GET['filter_show_type'])) {
     <div class="sales-list">
         <?php
         $args = array(
-            'post_type' => 'sales_date',
+            'post_type' => 'sales_dates',
             'posts_per_page' => -1,
         );
 
