@@ -86,8 +86,10 @@ if (isset($_GET['filter_show_type'])) {
     <div class="sales-list">
         <?php
         $args = array(
-            'post_type' => 'sales_dates',
-            'posts_per_page' => -1,
+              'post_type'      => 'sales_dates',
+            'posts_per_page' => 10,
+            'paged'          => get_query_var('paged') ? get_query_var('paged') : 1,
+            'order'          => 'DESC',     // Sort by descending order for newest dates first
         );
 
         // Filter: Sale Type
