@@ -43,7 +43,7 @@ if (isset($_GET['filter_show_type'])) {
             <div class="col-12">
                 <div class="filter-content">
 
-    <form method="GET" action="<?php echo get_post_type_archive_link('sales_date'); ?>" class="sales-filter">
+    <form method="GET" action="<?php echo get_post_type_archive_link('sales_date'); ?>" class="sales-filter filter-form">
         <select name="sale_type">
             <option value="">All Sale Types</option>
             <?php
