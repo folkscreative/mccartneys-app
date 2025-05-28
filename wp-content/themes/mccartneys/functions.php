@@ -1801,7 +1801,7 @@ function register_sale_type_taxonomy() {
         'show_in_rest' => true,
     );
 
-    register_taxonomy('sale_type', array('sales_date'), $args);
+    register_taxonomy('sale_type', array('sales_dates'), $args);
 }
 add_action('init', 'register_sale_type_taxonomy');
 
