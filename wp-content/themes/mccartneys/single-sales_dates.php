@@ -4,41 +4,60 @@
  */
 get_header();
 ?>
-
 <div class="container">
-    <?php while (have_posts()) : the_post(); ?>
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
+        <article class="sales-date-single">
             <h1><?php the_title(); ?></h1>
 
-            <p><strong>Show Date:</strong> <?php echo get_post_meta(get_the_ID(), 'show_date', true); ?></p>
-            <p><strong>Location:</strong> <?php echo get_post_meta(get_the_ID(), 'location', true); ?></p>
+            <p><strong>Sale Name:</strong> <?php the_field('sale_name'); ?></p>
 
-            <?php
-            $show_types = get_the_terms(get_the_ID(), 'show_type');
-            if ($show_types && !is_wp_error($show_types)) {
-                echo '<p><strong>Show Type:</strong> ';
-                $show_type_names = array();
-                foreach ($show_types as $type) {
-                    $show_type_names[] = esc_html($type->name);
-                }
-                echo implode(', ', $show_type_names);
-                echo '</p>';
-            }
-            ?>
+            <p><strong>Start Date:</strong> <?php the_field('sale_start_date'); ?></p>
+            <p><strong>End Date:</strong> <?php the_field('sale_end_date'); ?></p>
+
+            <p><strong>Location:</strong> <?php the_field('sale_location'); ?></p>
 
             <div class="additional-info">
-                <h2>Additional Information</h2>
-                <p><?php echo nl2br(esc_html(get_post_meta(get_the_ID(), 'additional_info', true))); ?></p>
+                <strong>Additional Information:</strong>
+                <?php the_field('sale_additional_info'); ?>
             </div>
 
-            <p>
-                <a href="<?php echo esc_url(get_post_meta(get_the_ID(), 'enter_now', true)); ?>" class="button">Enter Now</a>
-            </p>
-            <p>
-                <a href="<?php echo esc_url(get_post_meta(get_the_ID(), 'download_url', true)); ?>" class="button">Download</a>
-            </p>
+            <?php
+            $terms = get_the_terms(get_the_ID(), 'sale_type');
+            if ($terms && !is_wp_error($terms)) : ?>
+                <p><strong>Sale Type:</strong>
+                    <?php
+                    $sale_types = array();
+                    foreach ($terms as $term) {
+                        $sale_types[] = esc_html($term->name);
+                    }
+                    echo implode(', ', $sale_types);
+                    ?>
+                </p>
+            <?php endif; ?>
+
+            <?php if (have_rows('attachments')) : ?>
+                <div class="attachments">
+                    <h3>Attachments:</h3>
+                    <?php while (have_rows('attachments')) : the_row();
+                        $name = get_sub_field('attachment_name');
+                        $file = get_sub_field('attachment_file');
+                        if ($file) : ?>
+                            <a class="btn" href="<?php echo esc_url($file['url']); ?>" target="_blank">
+                                <?php echo esc_html($name); ?>
+                            </a>
+                        <?php endif;
+                    endwhile; ?>
+                </div>
+            <?php endif; ?>
+
         </article>
-    <?php endwhile; ?>
+
+        <div class="back-link">
+            <a href="<?php echo get_post_type_archive_link('sales_date'); ?>">&larr; Back to Sales Dates</a>
+        </div>
+
+    <?php endwhile; endif; ?>
 </div>
 
 
