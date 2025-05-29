@@ -1888,3 +1888,14 @@ function get_access_token()
         return false;
     }
 }
+
+
+//hide editor 
+function hide_editor_for_sales_dates() {
+    // Check if we're in the admin area
+    if (is_admin()) {
+        // Remove the content editor from the 'sales-dates' post type
+        remove_post_type_support('sales-dates', 'editor');
+    }
+}
+add_action('admin_init', 'hide_editor_for_sales_dates');
