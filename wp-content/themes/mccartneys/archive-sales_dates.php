@@ -117,7 +117,7 @@ if (isset($_GET['filter_show_type'])) {
             while ($sales_query->have_posts()) : $sales_query->the_post(); ?>
    <div class="show-dates-content">
                 <div class="sale-item">
-                    <h2><?php the_title(); ?></h2>
+                    <h3><?php the_title(); ?></h3>
                     <p><strong>Sale Name:</strong> <?php the_field('sale_name'); ?></p>
                     <p><strong>Date:</strong>
                         <?php the_field('sale_start_date'); ?>
