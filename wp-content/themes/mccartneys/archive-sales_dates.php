@@ -133,7 +133,7 @@ if (isset($_GET['filter_show_type'])) {
                                 $name = get_sub_field('attachment_name');
                                 $file = get_sub_field('attachment_file');
                                 if ($file): ?>
-                                    <a class="btn" href="<?php echo esc_url($file['url']); ?>" target="_blank">
+                                    <a class="btn-cs-dark" href="<?php echo esc_url($file['url']); ?>" target="_blank">
                                         <?php echo esc_html($name); ?>
                                     </a>
                                 <?php endif;
