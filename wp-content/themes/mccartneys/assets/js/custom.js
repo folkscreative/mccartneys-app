@@ -543,6 +543,12 @@ jQuery(document).ready(function ($) {
             link.attr('href', '#' + itemId);
         });
     });
+
+    $(document).ready(function() {
+        if ($('body').hasClass('single-property')) {
+            $('.availability-to-let .branch-info a.btn-bn-light').attr('href', 'https://eu.jotform.com/form/251773767756373');
+        }
+    });
     
 
     // timelineeeeeeeeeeeee
