@@ -125,7 +125,7 @@ $negotiatorsInfo = get_negotiatorsInfo($negotiatorId);
                             echo '</a>';
                             }
                             ?>
-            <a class="btn-bn-light" href="#" target="_self">Request a viewing</a>
+            <a class="btn-bn-light" href="https://eu.jotform.com/form/250264347840355" target="_blank">Request a viewing</a>
 
         </div>
 
