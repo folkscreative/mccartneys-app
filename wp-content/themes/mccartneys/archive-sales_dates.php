@@ -118,13 +118,20 @@ if (isset($_GET['filter_show_type'])) {
    <div class="show-dates-content">
                 <div class="sale-item">
                     <h3><?php the_title(); ?></h3>
+                    <?php if (get_field('sale_name')): ?>
                     <p><strong>Sale Name:</strong> <?php the_field('sale_name'); ?></p>
-                    <p><strong>Date:</strong>
-                        <?php the_field('sale_start_date'); ?>
-                        to
-                        <?php the_field('sale_end_date'); ?>
-                    </p>
-                    <p><strong>Location:</strong> <?php the_field('sale_location'); ?></p>
+                    <?php endif; ?>
+                    <?php if (get_field('sale_start_date')): ?>
+                        <p><strong>Date:</strong>
+                            <?php the_field('sale_start_date'); ?>
+                            <?php if (get_field('sale_end_date')): ?>
+                                to <?php the_field('sale_end_date'); ?>
+                            <?php endif; ?>
+                        </p>
+                    <?php endif; ?>
+                    <?php if (get_field('sale_location')): ?>
+                        <p><strong>Location:</strong> <?php the_field('sale_location'); ?></p>
+                    <?php endif; ?>
                     <div><?php the_field('sale_additional_info'); ?></div>
 
                     <?php if (have_rows('attachments')): ?>
