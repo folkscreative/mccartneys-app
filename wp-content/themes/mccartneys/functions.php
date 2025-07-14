@@ -1,4 +1,5 @@
 <?php
+
 /**
  * mccartneys functions and definitions
  *
@@ -7,9 +8,9 @@
  * @package mccartneys
  */
 
-if ( ! defined( '_S_VERSION' ) ) {
-	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.1' );
+if (! defined('_S_VERSION')) {
+    // Replace the version number of the theme on each release.
+    define('_S_VERSION', '1.0.1');
 }
 
 /**
@@ -19,88 +20,89 @@ if ( ! defined( '_S_VERSION' ) ) {
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function mccartneys_setup() {
-	/*
+function mccartneys_setup()
+{
+    /*
 		* Make theme available for translation.
 		* Translations can be filed in the /languages/ directory.
 		* If you're building a theme based on mccartneys, use a find and replace
 		* to change 'mccartneys' to the name of your theme in all the template files.
 		*/
-	load_theme_textdomain( 'mccartneys', get_template_directory() . '/languages' );
+    load_theme_textdomain('mccartneys', get_template_directory() . '/languages');
 
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
+    // Add default posts and comments RSS feed links to head.
+    add_theme_support('automatic-feed-links');
 
-	/*
+    /*
 		* Let WordPress manage the document title.
 		* By adding theme support, we declare that this theme does not use a
 		* hard-coded <title> tag in the document head, and expect WordPress to
 		* provide it for us.
 		*/
-	add_theme_support( 'title-tag' );
+    add_theme_support('title-tag');
 
-	/*
+    /*
 		* Enable support for Post Thumbnails on posts and pages.
 		*
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
-	add_theme_support( 'post-thumbnails' );
+    add_theme_support('post-thumbnails');
 
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus(
-		array(
-			'menu-1' => esc_html__( 'Primary', 'mccartneys' ),
-		)
-	);
+    // This theme uses wp_nav_menu() in one location.
+    register_nav_menus(
+        array(
+            'menu-1' => esc_html__('Primary', 'mccartneys'),
+        )
+    );
 
-	/*
+    /*
 		* Switch default core markup for search form, comment form, and comments
 		* to output valid HTML5.
 		*/
-	add_theme_support(
-		'html5',
-		array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-			'style',
-			'script',
-		)
-	);
+    add_theme_support(
+        'html5',
+        array(
+            'search-form',
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'caption',
+            'style',
+            'script',
+        )
+    );
 
-	// Set up the WordPress core custom background feature.
-	add_theme_support(
-		'custom-background',
-		apply_filters(
-			'mccartneys_custom_background_args',
-			array(
-				'default-color' => 'ffffff',
-				'default-image' => '',
-			)
-		)
-	);
+    // Set up the WordPress core custom background feature.
+    add_theme_support(
+        'custom-background',
+        apply_filters(
+            'mccartneys_custom_background_args',
+            array(
+                'default-color' => 'ffffff',
+                'default-image' => '',
+            )
+        )
+    );
 
-	// Add theme support for selective refresh for widgets.
-	add_theme_support( 'customize-selective-refresh-widgets' );
+    // Add theme support for selective refresh for widgets.
+    add_theme_support('customize-selective-refresh-widgets');
 
-	/**
-	 * Add support for core custom logo.
-	 *
-	 * @link https://codex.wordpress.org/Theme_Logo
-	 */
-	add_theme_support(
-		'custom-logo',
-		array(
-			'height'      => 250,
-			'width'       => 250,
-			'flex-width'  => true,
-			'flex-height' => true,
-		)
-	);
+    /**
+     * Add support for core custom logo.
+     *
+     * @link https://codex.wordpress.org/Theme_Logo
+     */
+    add_theme_support(
+        'custom-logo',
+        array(
+            'height'      => 250,
+            'width'       => 250,
+            'flex-width'  => true,
+            'flex-height' => true,
+        )
+    );
 }
-add_action( 'after_setup_theme', 'mccartneys_setup' );
+add_action('after_setup_theme', 'mccartneys_setup');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -109,64 +111,67 @@ add_action( 'after_setup_theme', 'mccartneys_setup' );
  *
  * @global int $content_width
  */
-function mccartneys_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'mccartneys_content_width', 640 );
+function mccartneys_content_width()
+{
+    $GLOBALS['content_width'] = apply_filters('mccartneys_content_width', 640);
 }
-add_action( 'after_setup_theme', 'mccartneys_content_width', 0 );
+add_action('after_setup_theme', 'mccartneys_content_width', 0);
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function mccartneys_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'mccartneys' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'mccartneys' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
+function mccartneys_widgets_init()
+{
+    register_sidebar(
+        array(
+            'name'          => esc_html__('Sidebar', 'mccartneys'),
+            'id'            => 'sidebar-1',
+            'description'   => esc_html__('Add widgets here.', 'mccartneys'),
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        )
+    );
 }
-add_action( 'widgets_init', 'mccartneys_widgets_init' );
+add_action('widgets_init', 'mccartneys_widgets_init');
 
 /**
  * Enqueue scripts and styles.
  */
-function mccartneys_scripts() {
-	wp_enqueue_style( 'mccartneys-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'mccartneys-style', 'rtl', 'replace' );
+function mccartneys_scripts()
+{
+    wp_enqueue_style('mccartneys-style', get_stylesheet_uri(), array(), _S_VERSION);
+    wp_style_add_data('mccartneys-style', 'rtl', 'replace');
 
-	wp_enqueue_script( 'mccartneys-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-    wp_enqueue_script( 'mccartneys-ph-search-features', get_template_directory_uri() . '/js/ph-search-features.js', array( 'jquery' ), _S_VERSION, true );
-    wp_enqueue_script( 'jquery-ui-core', array( 'jquery' ), true );
-    wp_enqueue_script( 'jquery-ui-slider', array( 'jquery' ), true );
-    wp_enqueue_script( 'jquery-ui-touch-punch', get_template_directory_uri() . '/assets/js/jquery.ui.touch-punch.min.js', array('jquery', 'jquery-ui-core', 'jquery-ui-slider'), _S_VERSION, true );
-    wp_enqueue_style( 'jquery-ui-css', get_template_directory_uri() . '/assets/css/jquery-ui.min.css', _S_VERSION );
-    wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBA8L29YbEABF_9_LOdMzdoXt3gaLV3mWs&libraries=places', '', _S_VERSION , true );
+    wp_enqueue_script('mccartneys-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
+    wp_enqueue_script('mccartneys-ph-search-features', get_template_directory_uri() . '/js/ph-search-features.js', array('jquery'), _S_VERSION, true);
+    wp_enqueue_script('jquery-ui-core', array('jquery'), true);
+    wp_enqueue_script('jquery-ui-slider', array('jquery'), true);
+    wp_enqueue_script('jquery-ui-touch-punch', get_template_directory_uri() . '/assets/js/jquery.ui.touch-punch.min.js', array('jquery', 'jquery-ui-core', 'jquery-ui-slider'), _S_VERSION, true);
+    wp_enqueue_style('jquery-ui-css', get_template_directory_uri() . '/assets/css/jquery-ui.min.css', _S_VERSION);
+    wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBA8L29YbEABF_9_LOdMzdoXt3gaLV3mWs&libraries=places', '', _S_VERSION, true);
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-    if ( is_singular('property') ) {
+    if (is_singular() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
+    }
+    if (is_singular('property')) {
 
-        
-        wp_enqueue_script( 'lightbox-js', get_template_directory_uri() . '/assets/js/glightbox.min.js', array( 'jquery' ), _S_VERSION, true );
-        wp_enqueue_style( 'lightbox-css', get_template_directory_uri() . '/assets/css/glightbox.min.css', _S_VERSION );
+
+        wp_enqueue_script('lightbox-js', get_template_directory_uri() . '/assets/js/glightbox.min.js', array('jquery'), _S_VERSION, true);
+        wp_enqueue_style('lightbox-css', get_template_directory_uri() . '/assets/css/glightbox.min.css', _S_VERSION);
         wp_enqueue_script(
-            'single-property', 
-            get_template_directory_uri() . '/js/single-property.js', 
+            'single-property',
+            get_template_directory_uri() . '/js/single-property.js',
             array('jquery'),
-            _S_VERSION, 
-            true 
+            _S_VERSION,
+            true
         );
     }
 }
-add_action( 'wp_enqueue_scripts', 'mccartneys_scripts' );
+add_action('wp_enqueue_scripts', 'mccartneys_scripts');
 
 
 
@@ -194,79 +199,83 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Load Jetpack compatibility file.
  */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
+if (defined('JETPACK__VERSION')) {
+    require get_template_directory() . '/inc/jetpack.php';
 }
 
 
 function mccartneys()
 {
 
-	// Register main stylesheet
-	wp_enqueue_style( 'load-fa', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
-	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '', 'all');
-	wp_enqueue_style('slick-css', get_template_directory_uri() . '/assets/css/slick.css', array(), '', 'all');
-	wp_enqueue_style('style-cs', get_template_directory_uri() . '/assets/css/style.css','', 'all');
+    // Register main stylesheet
+    wp_enqueue_style('load-fa', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
+    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '', 'all');
+    wp_enqueue_style('slick-css', get_template_directory_uri() . '/assets/css/slick.css', array(), '', 'all');
+    wp_enqueue_style('style-cs', get_template_directory_uri() . '/assets/css/style.css', '', 'all');
 
     // Adding scripts file in the footer
-	// wp_enqueue_script('Jquery','https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js', array('jquery'), '', true);
+    // wp_enqueue_script('Jquery','https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js', array('jquery'), '', true);
     wp_enqueue_script('jquery', true);
-    wp_enqueue_script('load-lightbox-script','https://mreq.github.io/slick-lightbox/dist/slick-lightbox.js');
-    wp_enqueue_script('load-fa-script','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js');
-    wp_enqueue_script('load-zopla','https://api.zooplavaluations.co.uk/resource/widgetiframeloader?key=6c6f59de-0996-4851-8433-4da120b9a1e3');
-	wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '', 'all');
-	wp_enqueue_script('slick-js', get_template_directory_uri() . '/assets/js/slick.min.js', array(), '', 'all');
-	wp_enqueue_script('custom', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'), '', true);
+    wp_enqueue_script('load-lightbox-script', 'https://mreq.github.io/slick-lightbox/dist/slick-lightbox.js');
+    wp_enqueue_script('load-fa-script', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js');
+    wp_enqueue_script('load-zopla', 'https://api.zooplavaluations.co.uk/resource/widgetiframeloader?key=6c6f59de-0996-4851-8433-4da120b9a1e3');
+    wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '', 'all');
+    wp_enqueue_script('slick-js', get_template_directory_uri() . '/assets/js/slick.min.js', array(), '', 'all');
+    wp_enqueue_script('custom', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'), '', true);
 }
 
 add_action('wp_enqueue_scripts', 'mccartneys', 999);
 
 // upload svg image
-function enable_svg_upload( $upload_mimes ) {
+function enable_svg_upload($upload_mimes)
+{
     $upload_mimes['svg'] = 'image/svg+xml';
     $upload_mimes['svgz'] = 'image/svg+xml';
     return $upload_mimes;
 }
-add_filter( 'upload_mimes', 'enable_svg_upload', 10, 1 );
+add_filter('upload_mimes', 'enable_svg_upload', 10, 1);
 
 // hide editor
-add_action( 'admin_init', 'hide_editor' );
-function hide_editor() {
-  $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
-  if( !isset( $post_id ) ) return;
-  $pagetitle = get_the_title($post_id);
-  if($pagetitle == 'Home'){
-    remove_post_type_support('page', 'editor');
-  }
+add_action('admin_init', 'hide_editor');
+function hide_editor()
+{
+    $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
+    if (!isset($post_id)) return;
+    $pagetitle = get_the_title($post_id);
+    if ($pagetitle == 'Home') {
+        remove_post_type_support('page', 'editor');
+    }
 }
 
 
-function register_my_menus() {
-	register_nav_menus(
-	  array('main-menu' => __( 'Main Menu' ) )
-	);
-  }
+function register_my_menus()
+{
+    register_nav_menus(
+        array('main-menu' => __('Main Menu'))
+    );
+}
 
-  add_action( 'init', 'register_my_menus' );
+add_action('init', 'register_my_menus');
 
 
 
 
 
 // shortcode
-function custom_list_shortcode() {
-    ?>
+function custom_list_shortcode()
+{
+?>
 <div class="news-wrapper-mega">
     <?php
-		$args = array(
-			'post_type' => 'post',
-			'posts_per_page' => 1,
-		);
+        $args = array(
+            'post_type' => 'post',
+            'posts_per_page' => 1,
+        );
 
-		$insight_query = new WP_Query( $args );
+        $insight_query = new WP_Query($args);
 
-		if ( $insight_query->have_posts() ) :
-			while ( $insight_query->have_posts() ) : $insight_query->the_post(); ?>
+        if ($insight_query->have_posts()) :
+            while ($insight_query->have_posts()) : $insight_query->the_post(); ?>
     <div class="outer row gx-2 align-items-center">
         <div class="col-4 col-left">
             <img src="<?php the_post_thumbnail_url(); ?>" alt="">
@@ -277,11 +286,11 @@ function custom_list_shortcode() {
         </div>
     </div>
     <?php endwhile;
-			wp_reset_postdata();
-		else :
-			echo '<p>No insights found.</p>';
-		endif;
-		?>
+            wp_reset_postdata();
+        else :
+            echo '<p>No insights found.</p>';
+        endif;
+        ?>
 </div>
 <?php
 }
@@ -289,36 +298,37 @@ add_shortcode('custom_list', 'custom_list_shortcode');
 
 
 // case study shortcode
-function custom_case_shortcode() {
-    ?>
+function custom_case_shortcode()
+{
+?>
 <div class="case-posts">
     <?php
-$args = array(
-    'post_type' => 'case-studies',
-    'posts_per_page' => -1,
-);
+        $args = array(
+            'post_type' => 'case-studies',
+            'posts_per_page' => -1,
+        );
 
-$case_query = new WP_Query( $args );
+        $case_query = new WP_Query($args);
 
-if ( $case_query->have_posts() ) :
-    while ( $case_query->have_posts() ) : $case_query->the_post(); ?>
+        if ($case_query->have_posts()) :
+            while ($case_query->have_posts()) : $case_query->the_post(); ?>
     <div class="outer row g-0">
         <div class="col-12 col-md-5 col-left">
             <img src="<?php the_post_thumbnail_url(); ?>" alt="">
         </div>
         <div class="col-12 col-md-7 col-right-text align-content-center">
-            <h4><strong><?php the_title(); ?>,</strong><?php the_field('case_study_sub_title');?></h4>
-            <p><?php the_excerpt();?></p>
+            <h4><strong><?php the_title(); ?>,</strong><?php the_field('case_study_sub_title'); ?></h4>
+            <p><?php the_excerpt(); ?></p>
             <a href="<?php the_permalink(); ?>" class="btn-cs-dark">Read more<span><i
                         class="fa-solid fa-angle-right"></i></span></a>
         </div>
     </div>
     <?php endwhile;
-    wp_reset_postdata();
-else :
-    echo '<p>No case study found.</p>';
-endif;
-?>
+            wp_reset_postdata();
+        else :
+            echo '<p>No case study found.</p>';
+        endif;
+        ?>
 </div>
 <?php
 }
@@ -327,25 +337,26 @@ add_shortcode('custom_study_list', 'custom_case_shortcode');
 
 // Register Custom Post Type
 // Offices renamed to branches to avoid clash with PH inbuilt CPT
-function create_branch_cpt() {
+function create_branch_cpt()
+{
     $labels = array(
-        'name' => _x( 'Branches', 'Post Type General Name', 'mccartneys' ),
-        'singular_name' => _x( 'Branch', 'Post Type Singular Name', 'mccartneys' ),
-        'menu_name' => _x( 'Branches', 'Admin Menu text', 'mccartneys' ),
-        'name_admin_bar' => _x( 'Branches', 'Add New on Toolbar', 'mccartneys' ),
+        'name' => _x('Branches', 'Post Type General Name', 'mccartneys'),
+        'singular_name' => _x('Branch', 'Post Type Singular Name', 'mccartneys'),
+        'menu_name' => _x('Branches', 'Admin Menu text', 'mccartneys'),
+        'name_admin_bar' => _x('Branches', 'Add New on Toolbar', 'mccartneys'),
     );
     $args = array(
-        'label' => __( 'Office', 'mccartneys' ),
-        'description' => __( 'Office Description', 'mccartneys' ),
+        'label' => __('Office', 'mccartneys'),
+        'description' => __('Office Description', 'mccartneys'),
         'labels' => $labels,
-        'supports' => array( 'title', 'editor', 'thumbnail' ),
-        'taxonomies' => array( 'office' ),
+        'supports' => array('title', 'editor', 'thumbnail'),
+        'taxonomies' => array('office'),
         'public' => true,
         'show_ui' => true,
         'show_in_menu' => true,
         'menu_position' => 5,
         'show_in_admin_bar' => true,
-        'rewrite' => array( 'slug' => 'branches' ),
+        'rewrite' => array('slug' => 'branches'),
         'show_in_nav_menus' => true,
         'can export' => true,
         'has_archive' => true,
@@ -353,16 +364,17 @@ function create_branch_cpt() {
         'publicly_queryable' => true,
         'capability_type' => 'post',
     );
-    register_post_type( 'branch', $args );
+    register_post_type('branch', $args);
 }
-add_action( 'init', 'create_branch_cpt', 0 );
+add_action('init', 'create_branch_cpt', 0);
 
 // Register Custom Taxonomy
-function create_branch_taxonomy() {
+function create_branch_taxonomy()
+{
     $labels = array(
-        'name' => _x( 'Offices Location', 'Taxonomy General Name', 'mccartneys' ),
-        'singular_name' => _x( 'Office Location', 'Taxonomy Singular Name', 'mccartneys' ),
-        'menu_name' => __( 'Offices Location', 'mccartneys' ),
+        'name' => _x('Offices Location', 'Taxonomy General Name', 'mccartneys'),
+        'singular_name' => _x('Office Location', 'Taxonomy Singular Name', 'mccartneys'),
+        'menu_name' => __('Offices Location', 'mccartneys'),
     );
     $args = array(
         'labels' => $labels,
@@ -374,16 +386,17 @@ function create_branch_taxonomy() {
         'show_tagcloud' => true,
 
     );
-    register_taxonomy( 'office location', array( 'branch' ), $args );
+    register_taxonomy('office location', array('branch'), $args);
 }
-add_action( 'init', 'create_branch_taxonomy', 0 );
+add_action('init', 'create_branch_taxonomy', 0);
 
 // Register Custom Taxonomy FC office location
-function create_fc_branch_taxonomy() {
+function create_fc_branch_taxonomy()
+{
     $labels = array(
-        'name' => _x( 'Fc Offices Location', 'Taxonomy General Name', 'mccartneys' ),
-        'singular_name' => _x( 'Fc Office Location', 'Taxonomy Singular Name', 'mccartneys' ),
-        'menu_name' => __( 'Fc Offices Location', 'mccartneys' ),
+        'name' => _x('Fc Offices Location', 'Taxonomy General Name', 'mccartneys'),
+        'singular_name' => _x('Fc Office Location', 'Taxonomy Singular Name', 'mccartneys'),
+        'menu_name' => __('Fc Offices Location', 'mccartneys'),
     );
     $args = array(
         'labels' => $labels,
@@ -395,17 +408,18 @@ function create_fc_branch_taxonomy() {
         'show_tagcloud' => true,
 
     );
-    register_taxonomy( 'fc office location', array( 'branch' ), $args );
+    register_taxonomy('fc office location', array('branch'), $args);
 }
-add_action( 'init', 'create_fc_branch_taxonomy', 0 );
+add_action('init', 'create_fc_branch_taxonomy', 0);
 
 
 // Register Custom Taxonomy
-function create_property_type_taxonomy() {
+function create_property_type_taxonomy()
+{
     $labels = array(
-        'name' => _x( 'Office Types', 'Taxonomy General Name', 'mccartneys' ),
-        'singular_name' => _x( 'Office Type', 'Taxonomy Singular Name', 'mccartneys' ),
-        'menu_name' => __( 'Office Types', 'mccartneys' ),
+        'name' => _x('Office Types', 'Taxonomy General Name', 'mccartneys'),
+        'singular_name' => _x('Office Type', 'Taxonomy Singular Name', 'mccartneys'),
+        'menu_name' => __('Office Types', 'mccartneys'),
     );
     $args = array(
         'labels' => $labels,
@@ -416,26 +430,27 @@ function create_property_type_taxonomy() {
         'show_in_nav_menus' => true,
         'show_tagcloud' => true,
     );
-    register_taxonomy( 'office type', array( 'branch' ), $args );
+    register_taxonomy('office type', array('branch'), $args);
 }
-add_action( 'init', 'create_property_type_taxonomy', 0 );
+add_action('init', 'create_property_type_taxonomy', 0);
 
 // office tabs
-function property_tabs_shortcode() {
+function property_tabs_shortcode()
+{
     // Get all office categories
-    $terms = get_terms( array(
+    $terms = get_terms(array(
         'taxonomy' => 'office location',
         'hide_empty' => false,
-    ) );
+    ));
 
-    if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+    if (! empty($terms) && ! is_wp_error($terms)) {
         ob_start(); // Start output buffering
 
         echo '<ul class="nav nav-tabs" id="propertyTab" role="tablist">';
         $first_tab = true;
-        foreach ( $terms as $term ) {
+        foreach ($terms as $term) {
             echo '<li class="nav-item">';
-            echo '<a class="nav-link' . ( $first_tab ? ' active' : '' ) . '" id="tab-' . esc_attr( $term->slug ) . '" data-bs-toggle="tab" href="#' . esc_attr( $term->slug ) . '" role="tab" aria-controls="' . esc_attr( $term->slug ) . '" aria-selected="' . ( $first_tab ? 'true' : 'false' ) . '">' . esc_html( $term->name ) . '</a>';
+            echo '<a class="nav-link' . ($first_tab ? ' active' : '') . '" id="tab-' . esc_attr($term->slug) . '" data-bs-toggle="tab" href="#' . esc_attr($term->slug) . '" role="tab" aria-controls="' . esc_attr($term->slug) . '" aria-selected="' . ($first_tab ? 'true' : 'false') . '">' . esc_html($term->name) . '</a>';
             echo '</li>';
             $first_tab = false;
         }
@@ -443,10 +458,10 @@ function property_tabs_shortcode() {
 
         echo '<div class="tab-content" id="propertyTabContent">';
         $first_tab = true;
-        foreach ( $terms as $term ) {
-            echo '<div class="tab-pane fade' . ( $first_tab ? ' show active' : '' ) . '" id="' . esc_attr( $term->slug ) . '" role="tabpanel" aria-labelledby="tab-' . esc_attr( $term->slug ) . '">';
+        foreach ($terms as $term) {
+            echo '<div class="tab-pane fade' . ($first_tab ? ' show active' : '') . '" id="' . esc_attr($term->slug) . '" role="tabpanel" aria-labelledby="tab-' . esc_attr($term->slug) . '">';
 
-            $query = new WP_Query( array(
+            $query = new WP_Query(array(
                 'post_type' => 'branch',
                 'tax_query' => array(
                     array(
@@ -455,110 +470,104 @@ function property_tabs_shortcode() {
                         'terms'    => $term->slug,
                     ),
                 ),
-            ) );
+            ));
 
-    if ( $query->have_posts() ) {?>
+            if ($query->have_posts()) { ?>
 <div class="outer-wrap">
     <?php
-                while ( $query->have_posts() ) {
-                    $query->the_post();?>
+                    while ($query->have_posts()) {
+                        $query->the_post(); ?>
 
     <div class="row g-0 flex-column-reverse flex-md-row">
         <div class="col-12 col-md-7">
             <div class="col-left">
-                <h4 class="d-none d-md-block"><?php the_title();?></h4>
-                <p><?php the_field('stree_no');?> <?php the_field('stree_name'); ?> <?php the_field('town'); ?>
+                <h4 class="d-none d-md-block"><?php the_title(); ?></h4>
+                <p><?php the_field('stree_no'); ?> <?php the_field('stree_name'); ?> <?php the_field('town'); ?>
                     <?php the_field('postcode'); ?></p>
 
-                <?php if( get_field('sales_number') ): ?>
+                <?php if (get_field('sales_number')): ?>
                 <div class="sale-nmbr">
                     <img
                         src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
                     <span><strong>Sales </strong><a
-                            href="tel:<?php the_field('sales_number');?>"><?php the_field('sales_number');?></a></span>
+                            href="tel:<?php the_field('sales_number'); ?>"><?php the_field('sales_number'); ?></a></span>
                 </div>
-                <?php endif;?>
-                <?php if( get_field('lettings_number') ): ?>
+                <?php endif; ?>
+                <?php if (get_field('lettings_number')): ?>
                 <div class="sale-nmbr d-none d-md-flex">
                     <img
                         src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
                     <span><strong>Lettings </strong><a
-                            href="tel:<?php the_field('lettings_number');?>"><?php the_field('lettings_number');?></a></span>
+                            href="tel:<?php the_field('lettings_number'); ?>"><?php the_field('lettings_number'); ?></a></span>
                 </div>
-                <?php endif;?>
-                <?php $properties_data=get_field('properties',get_the_ID());
-								  $livestock_data=get_field('livestock',get_the_ID());
-								 $planning_survey_data=get_field('planning_survey',get_the_ID());
-								 $antiques_data=get_field('antiques',get_the_ID());
-					             $equine_data=get_field('equine',get_the_ID());
-								 $rural_data=get_field('rural',get_the_ID());
-							?>
+                <?php endif; ?>
+                <?php $properties_data = get_field('properties', get_the_ID());
+                                    $livestock_data = get_field('livestock', get_the_ID());
+                                    $planning_survey_data = get_field('planning_survey', get_the_ID());
+                                    $antiques_data = get_field('antiques', get_the_ID());
+                                    $equine_data = get_field('equine', get_the_ID());
+                                    $rural_data = get_field('rural', get_the_ID());
+                                    ?>
 
                 <ul class="office-cat-wrap">
-                    <?php if($properties_data=='True') { ?>
+                    <?php if ($properties_data == 'True') { ?>
                     <li class="items-wrap">
-                        <img
-                            src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/properties-vector-1.svg">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/properties-vector-1.svg">
                         <span>Properties</span>
                     </li>
                     <?Php }
-							?>
-                    <?php if($livestock_data=='True') { ?>
+                                        ?>
+                    <?php if ($livestock_data == 'True') { ?>
                     <li class="items-wrap">
-                        <img
-                            src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/livestock-logo-1.svg">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/livestock-logo-1.svg">
                         <span>Livestock</span>
                     </li>
-                    <?Php }?>
+                    <?Php } ?>
 
-                    <?php if($planning_survey_data=='True') { ?>
+                    <?php if ($planning_survey_data == 'True') { ?>
                     <li class="items-wrap">
-                        <img
-                            src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/planning-logo-1.svg">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/planning-logo-1.svg">
                         <span>Planning & Survey</span>
                     </li>
-                    <?Php }?>
+                    <?Php } ?>
 
-                    <?php if($antiques_data=='True') { ?>
+                    <?php if ($antiques_data == 'True') { ?>
                     <li class="items-wrap">
-                        <img
-                            src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/antiques-logo-1.svg">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/antiques-logo-1.svg">
                         <span>Antiques</span>
                     </li>
-                    <?Php }?>
+                    <?Php } ?>
 
 
-                    <?php if($equine_data=='True') { ?>
+                    <?php if ($equine_data == 'True') { ?>
                     <li class="items-wrap">
-                        <img
-                            src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/07/equine-icon.svg">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/07/equine-icon.svg">
                         <span>Equine</span>
                     </li>
-                    <?Php }?>
+                    <?Php } ?>
 
-                    <?php if($rural_data=='True') { ?>
+                    <?php if ($rural_data == 'True') { ?>
                     <li class="items-wrap">
-                        <img
-                            src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/07/rural-icon.svg">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/07/rural-icon.svg">
                         <span>Rural</span>
                     </li>
-                    <?Php }?>
+                    <?Php } ?>
                 </ul>
                 <div class="bottom-btn-wrap">
                     <a href="<?php the_permalink(); ?>" class="btn-cs-dark">View more <span><i
                                 class="fa-solid fa-angle-right"></i></span></a>
 
 
-                    <?php if( have_rows('office_share_buttons', 'option') ): ?>
+                    <?php if (have_rows('office_share_buttons', 'option')): ?>
                     <ul class="share-buttons-wrap d-none d-md-flex">
-                        <?php while( have_rows('office_share_buttons','option') ): the_row(); ?>
+                        <?php while (have_rows('office_share_buttons', 'option')): the_row(); ?>
 
                         <li class="item">
 
                             <a href="<?php the_sub_field('location_share_button_link'); ?>" target="_blank">
                                 <?php
-										$share_logo = get_sub_field('location_share_image');
-										if( !empty($share_logo) ):?>
+                                                            $share_logo = get_sub_field('location_share_image');
+                                                            if (!empty($share_logo)): ?>
                                 <img src="<?php echo $share_logo['url']; ?>" alt="<?php echo $share_logo['alt']; ?>">
                                 <?php endif; ?>
                             </a>
@@ -571,50 +580,51 @@ function property_tabs_shortcode() {
             </div>
         </div>
 
-        <?php if ( has_post_thumbnail() ) {?>
+        <?php if (has_post_thumbnail()) { ?>
         <div class="col-12 col-md-5">
             <div class="col-right">
-                <h4 class="d-block d-md-none"><?php the_title();?></h4>
-                <?php  the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );?>
+                <h4 class="d-block d-md-none"><?php the_title(); ?></h4>
+                <?php the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
             </div>
         </div>
-        <?php }?>
+        <?php } ?>
     </div>
-    <?php }?>
+    <?php } ?>
 </div>
-<?php } else {?>
+<?php } else { ?>
 <p>No properties found in this category.</p>
 <?php }
 
-            wp_reset_postdata();?>
+            wp_reset_postdata(); ?>
 </div>
 <?php $first_tab = false;
-        }?>
+        } ?>
 </div>
 
 <?php return ob_get_clean();
     }
 }
-add_shortcode( 'property_tabs', 'property_tabs_shortcode' );
+add_shortcode('property_tabs', 'property_tabs_shortcode');
 
 
 
 // FC offices tabs
-function Fc_property_tabs_shortcode() {
+function Fc_property_tabs_shortcode()
+{
     // Get all office categories
-    $terms = get_terms( array(
+    $terms = get_terms(array(
         'taxonomy' => 'fc office location',
         'hide_empty' => false,
-    ) );
+    ));
 
-    if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+    if (! empty($terms) && ! is_wp_error($terms)) {
         ob_start(); // Start output buffering
 
         echo '<ul class="nav nav-tabs" id="propertyTab" role="tablist">';
         $first_tab = true;
-        foreach ( $terms as $term ) {
+        foreach ($terms as $term) {
             echo '<li class="nav-item">';
-            echo '<a class="nav-link' . ( $first_tab ? ' active' : '' ) . '" id="tab-' . esc_attr( $term->slug ) . '" data-bs-toggle="tab" href="#' . esc_attr( $term->slug ) . '" role="tab" aria-controls="' . esc_attr( $term->slug ) . '" aria-selected="' . ( $first_tab ? 'true' : 'false' ) . '">' . esc_html( $term->name ) . '</a>';
+            echo '<a class="nav-link' . ($first_tab ? ' active' : '') . '" id="tab-' . esc_attr($term->slug) . '" data-bs-toggle="tab" href="#' . esc_attr($term->slug) . '" role="tab" aria-controls="' . esc_attr($term->slug) . '" aria-selected="' . ($first_tab ? 'true' : 'false') . '">' . esc_html($term->name) . '</a>';
             echo '</li>';
             $first_tab = false;
         }
@@ -622,10 +632,10 @@ function Fc_property_tabs_shortcode() {
 
         echo '<div class="tab-content" id="propertyTabContent">';
         $first_tab = true;
-        foreach ( $terms as $term ) {
-            echo '<div class="tab-pane fade' . ( $first_tab ? ' show active' : '' ) . '" id="' . esc_attr( $term->slug ) . '" role="tabpanel" aria-labelledby="tab-' . esc_attr( $term->slug ) . '">';
+        foreach ($terms as $term) {
+            echo '<div class="tab-pane fade' . ($first_tab ? ' show active' : '') . '" id="' . esc_attr($term->slug) . '" role="tabpanel" aria-labelledby="tab-' . esc_attr($term->slug) . '">';
 
-            $query = new WP_Query( array(
+            $query = new WP_Query(array(
                 'post_type' => 'branch',
                 'tax_query' => array(
                     array(
@@ -634,110 +644,104 @@ function Fc_property_tabs_shortcode() {
                         'terms'    => $term->slug,
                     ),
                 ),
-            ) );
+            ));
 
-    if ( $query->have_posts() ) {?>
+            if ($query->have_posts()) { ?>
 <div class="outer-wrap">
     <?php
-                while ( $query->have_posts() ) {
-                    $query->the_post();?>
+                    while ($query->have_posts()) {
+                        $query->the_post(); ?>
 
     <div class="row g-0 flex-column-reverse flex-md-row">
         <div class="col-12 col-md-7">
             <div class="col-left">
-                <h4 class="d-none d-md-block"><?php the_title();?></h4>
-                <p><?php the_field('stree_no');?> <?php the_field('stree_name'); ?> <?php the_field('town'); ?>
+                <h4 class="d-none d-md-block"><?php the_title(); ?></h4>
+                <p><?php the_field('stree_no'); ?> <?php the_field('stree_name'); ?> <?php the_field('town'); ?>
                     <?php the_field('postcode'); ?></p>
 
-                <?php if( get_field('sales_number') ): ?>
+                <?php if (get_field('sales_number')): ?>
                 <div class="sale-nmbr">
                     <img
                         src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
                     <span><strong>Sales </strong><a
-                            href="tel:<?php the_field('sales_number');?>"><?php the_field('sales_number');?></a></span>
+                            href="tel:<?php the_field('sales_number'); ?>"><?php the_field('sales_number'); ?></a></span>
                 </div>
-                <?php endif;?>
-                <?php if( get_field('lettings_number') ): ?>
+                <?php endif; ?>
+                <?php if (get_field('lettings_number')): ?>
                 <div class="sale-nmbr d-none d-md-flex">
                     <img
                         src="https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/06/phone-icon-1.svg">
                     <span><strong>Lettings </strong><a
-                            href="tel:<?php the_field('lettings_number');?>"><?php the_field('lettings_number');?></a></span>
+                            href="tel:<?php the_field('lettings_number'); ?>"><?php the_field('lettings_number'); ?></a></span>
                 </div>
-                <?php endif;?>
-                <?php $properties_data=get_field('properties',get_the_ID());
-								  $livestock_data=get_field('livestock',get_the_ID());
-								 $planning_survey_data=get_field('planning_survey',get_the_ID());
-								 $antiques_data=get_field('antiques',get_the_ID());
-					             $equine_data=get_field('equine',get_the_ID());
-								 $rural_data=get_field('rural',get_the_ID());
-							?>
+                <?php endif; ?>
+                <?php $properties_data = get_field('properties', get_the_ID());
+                                    $livestock_data = get_field('livestock', get_the_ID());
+                                    $planning_survey_data = get_field('planning_survey', get_the_ID());
+                                    $antiques_data = get_field('antiques', get_the_ID());
+                                    $equine_data = get_field('equine', get_the_ID());
+                                    $rural_data = get_field('rural', get_the_ID());
+                                    ?>
 
                 <ul class="office-cat-wrap">
-                    <?php if($properties_data=='True') { ?>
+                    <?php if ($properties_data == 'True') { ?>
                     <li class="items-wrap">
-                        <img
-                            src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/properties-vector-1.svg">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/properties-vector-1.svg">
                         <span>Properties</span>
                     </li>
                     <?Php }
-							?>
-                    <?php if($livestock_data=='True') { ?>
+                                        ?>
+                    <?php if ($livestock_data == 'True') { ?>
                     <li class="items-wrap">
-                        <img
-                            src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/livestock-logo-1.svg">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/livestock-logo-1.svg">
                         <span>Livestock</span>
                     </li>
-                    <?Php }?>
+                    <?Php } ?>
 
-                    <?php if($planning_survey_data=='True') { ?>
+                    <?php if ($planning_survey_data == 'True') { ?>
                     <li class="items-wrap">
-                        <img
-                            src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/planning-logo-1.svg">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/planning-logo-1.svg">
                         <span>Planning & Survey</span>
                     </li>
-                    <?Php }?>
+                    <?Php } ?>
 
-                    <?php if($antiques_data=='True') { ?>
+                    <?php if ($antiques_data == 'True') { ?>
                     <li class="items-wrap">
-                        <img
-                            src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/antiques-logo-1.svg">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/06/antiques-logo-1.svg">
                         <span>Antiques</span>
                     </li>
-                    <?Php }?>
+                    <?Php } ?>
 
 
-                    <?php if($equine_data=='True') { ?>
+                    <?php if ($equine_data == 'True') { ?>
                     <li class="items-wrap">
-                        <img
-                            src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/07/equine-icon.svg">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/07/equine-icon.svg">
                         <span>Equine</span>
                     </li>
-                    <?Php }?>
+                    <?Php } ?>
 
-                    <?php if($rural_data=='True') { ?>
+                    <?php if ($rural_data == 'True') { ?>
                     <li class="items-wrap">
-                        <img
-                            src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/07/rural-icon.svg">
+                        <img src="<?php echo get_site_url(); ?>/wp-content/uploads/2024/07/rural-icon.svg">
                         <span>Rural</span>
                     </li>
-                    <?Php }?>
+                    <?Php } ?>
                 </ul>
                 <div class="bottom-btn-wrap">
                     <a href="<?php the_permalink(); ?>" class="btn-cs-dark">View more <span><i
                                 class="fa-solid fa-angle-right"></i></span></a>
 
 
-                    <?php if( have_rows('office_share_buttons', 'option') ): ?>
+                    <?php if (have_rows('office_share_buttons', 'option')): ?>
                     <ul class="share-buttons-wrap d-none d-md-flex">
-                        <?php while( have_rows('office_share_buttons','option') ): the_row(); ?>
+                        <?php while (have_rows('office_share_buttons', 'option')): the_row(); ?>
 
                         <li class="item">
 
                             <a href="<?php the_sub_field('location_share_button_link'); ?>" target="_blank">
                                 <?php
-										$share_logo = get_sub_field('location_share_image');
-										if( !empty($share_logo) ):?>
+                                                            $share_logo = get_sub_field('location_share_image');
+                                                            if (!empty($share_logo)): ?>
                                 <img src="<?php echo $share_logo['url']; ?>" alt="<?php echo $share_logo['alt']; ?>">
                                 <?php endif; ?>
                             </a>
@@ -750,44 +754,45 @@ function Fc_property_tabs_shortcode() {
             </div>
         </div>
 
-        <?php if ( has_post_thumbnail() ) {?>
+        <?php if (has_post_thumbnail()) { ?>
         <div class="col-12 col-md-5">
             <div class="col-right">
-                <h4 class="d-block d-md-none"><?php the_title();?></h4>
-                <?php  the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );?>
+                <h4 class="d-block d-md-none"><?php the_title(); ?></h4>
+                <?php the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
             </div>
         </div>
-        <?php }?>
+        <?php } ?>
     </div>
-    <?php }?>
+    <?php } ?>
 </div>
-<?php } else {?>
+<?php } else { ?>
 <p>No properties found in this category.</p>
 <?php }
 
-            wp_reset_postdata();?>
+            wp_reset_postdata(); ?>
 </div>
 <?php $first_tab = false;
-        }?>
+        } ?>
 </div>
 
 <?php return ob_get_clean();
     }
 }
-add_shortcode( 'fc_property_tabs', 'Fc_property_tabs_shortcode' );
+add_shortcode('fc_property_tabs', 'Fc_property_tabs_shortcode');
 
 // recent tabs
-function recent_property_tabs_shortcode() {
+function recent_property_tabs_shortcode()
+{
     // Get all office categories
-    $terms = get_terms( array(
+    $terms = get_terms(array(
         'taxonomy' => 'office type',
         'hide_empty' => false,
-		'order'=>'DESC',
-    ) );
+        'order' => 'DESC',
+    ));
 
-    if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+    if (! empty($terms) && ! is_wp_error($terms)) {
         ob_start(); // Start output buffering
-		?>
+    ?>
 <div class="outer-wrapper">
     <h2 class="title"><?php the_sub_field('recent_property_title'); ?></h2>
     <ul class="nav nav-tabs" id="propertyTab" role="tablist">
@@ -827,10 +832,10 @@ function recent_property_tabs_shortcode() {
 <?php
         echo '<div class="tab-content" id="propertyTabContent">';
         $first_tab = true;
-        foreach ( $terms as $term ) {
-            echo '<div class="tab-pane fade' . ( $first_tab ? ' show active' : '' ) . '" id="' . esc_attr( $term->slug ) . '" role="tabpanel" aria-labelledby="tab-' . esc_attr( $term->slug ) . '">';
+        foreach ($terms as $term) {
+            echo '<div class="tab-pane fade' . ($first_tab ? ' show active' : '') . '" id="' . esc_attr($term->slug) . '" role="tabpanel" aria-labelledby="tab-' . esc_attr($term->slug) . '">';
 
-            $query = new WP_Query( array(
+            $query = new WP_Query(array(
                 'post_type' => 'branch',
                 'tax_query' => array(
                     array(
@@ -839,61 +844,62 @@ function recent_property_tabs_shortcode() {
                         'terms'    => $term->slug,
                     ),
                 ),
-            ) );
+            ));
 
-            if ( $query->have_posts() ) {?>
+            if ($query->have_posts()) { ?>
 <div class="inner-tabs pr">
     <?php
-                while ( $query->have_posts() ) {
-                    $query->the_post();?>
+                    while ($query->have_posts()) {
+                        $query->the_post(); ?>
 
     <div class="office-slider">
-        <?php if ( has_post_thumbnail() ) {?>
+        <?php if (has_post_thumbnail()) { ?>
         <div class="col-left">
-            <?php  the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );?>
+            <?php the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
         </div>
         <div class="col-right">
-            <h4><?php the_title();?></h4>
+            <h4><?php the_title(); ?></h4>
             <?php the_excerpt(); ?>
             <ul class="features">
                 <li>
-                    <img src="<?php echo get_template_directory_uri()?>/assets/images/bed-vector.svg" alt="">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/bed-vector.svg" alt="">
                     <span>0</span>
                 </li>
                 <li>
-                    <img src="<?php echo get_template_directory_uri()?>/assets/images/bath-logo.svg" alt="">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/bath-logo.svg" alt="">
                     <span>0</span>
                 </li>
                 <li>
-                    <img src="<?php echo get_template_directory_uri()?>/assets/images/sq-ft-logo.svg" alt="">
+                    <img src="<?php echo get_template_directory_uri() ?>/assets/images/sq-ft-logo.svg" alt="">
                     <span>0 sq.ft</span>
                 </li>
             </ul>
             <p class="price">£000.000,00</p>
         </div>
-        <?php }?>
+        <?php } ?>
     </div>
-    <?php }?>
+    <?php } ?>
 </div>
-<?php } else {?>
+<?php } else { ?>
 <p style="margin: 25px 0;">No properties found in this category.</p>
 <?php }
 
-            wp_reset_postdata();?>
+            wp_reset_postdata(); ?>
 </div>
 <?php $first_tab = false;
-        }?>
+        } ?>
 </div>
 
 <?php return ob_get_clean();
     }
 }
-add_shortcode( 'recent_property_tabs', 'recent_property_tabs_shortcode' );
+add_shortcode('recent_property_tabs', 'recent_property_tabs_shortcode');
 
 
 // Hide Editor on Specific pages
 
-function hide_editor_on_specific_pages() {
+function hide_editor_on_specific_pages()
+{
     global $pagenow;
     // Only do this check in the admin area and on post.php or post-new.php
     if (is_admin() && ($pagenow == 'post.php' || $pagenow == 'post-new.php')) {
@@ -918,46 +924,48 @@ add_action('admin_head', 'hide_editor_on_specific_pages');
 
 
 // create case studie post
-function create_casestudy_posttype() {
+function create_casestudy_posttype()
+{
 
-    register_post_type( 'case-studies',
+    register_post_type(
+        'case-studies',
         // CPT Options
         array(
             'labels' => array(
-                'name' => __( 'Case Studies' ),
-                'singular_name' => __( 'Case Study' ),
-                'add_new' => __( 'Add New' ),
-                'add_new_item' => __( 'Add New Case Study' ),
-                'edit_item' => __( 'Edit Case Study' ),
-                'new_item' => __( 'New Case Study' ),
-                'view_item' => __( 'View Case Study' ),
-                'search_items' => __( 'Search Case Studies' ),
-                'not_found' => __( 'No Case Studies found' ),
-                'not_found_in_trash' => __( 'No Case Studies found in Trash' ),
-                'all_items' => __( 'All Case Studies' ),
-                'archives' => __( 'Case Study Archives' ),
-                'insert_into_item' => __( 'Insert into Case Study' ),
-                'uploaded_to_this_item' => __( 'Uploaded to this Case Study' ),
-                'featured_image' => __( 'Featured Image' ),
-                'set_featured_image' => __( 'Set featured image' ),
-                'remove_featured_image' => __( 'Remove featured image' ),
-                'use_featured_image' => __( 'Use as featured image' ),
-                'menu_name' => __( 'Case Studies' ),
-                'filter_items_list' => __( 'Filter Case Studies list' ),
-                'items_list_navigation' => __( 'Case Studies list navigation' ),
-                'items_list' => __( 'Case Studies list' ),
+                'name' => __('Case Studies'),
+                'singular_name' => __('Case Study'),
+                'add_new' => __('Add New'),
+                'add_new_item' => __('Add New Case Study'),
+                'edit_item' => __('Edit Case Study'),
+                'new_item' => __('New Case Study'),
+                'view_item' => __('View Case Study'),
+                'search_items' => __('Search Case Studies'),
+                'not_found' => __('No Case Studies found'),
+                'not_found_in_trash' => __('No Case Studies found in Trash'),
+                'all_items' => __('All Case Studies'),
+                'archives' => __('Case Study Archives'),
+                'insert_into_item' => __('Insert into Case Study'),
+                'uploaded_to_this_item' => __('Uploaded to this Case Study'),
+                'featured_image' => __('Featured Image'),
+                'set_featured_image' => __('Set featured image'),
+                'remove_featured_image' => __('Remove featured image'),
+                'use_featured_image' => __('Use as featured image'),
+                'menu_name' => __('Case Studies'),
+                'filter_items_list' => __('Filter Case Studies list'),
+                'items_list_navigation' => __('Case Studies list navigation'),
+                'items_list' => __('Case Studies list'),
             ),
-            'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' ),
+            'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt'),
             'public' => true,
             'has_archive' => true,
-            'rewrite' => array( 'slug' => 'case-studies' ),
+            'rewrite' => array('slug' => 'case-studies'),
             'show_in_rest' => true,
         )
     );
 }
 
 // Hooking up our function to theme setup
-add_action( 'init', 'create_casestudy_posttype' );
+add_action('init', 'create_casestudy_posttype');
 
 
 // Extend PropertyHive with some features
@@ -967,8 +975,7 @@ add_action( 'init', 'create_casestudy_posttype' );
 add_action('init', 'my_start_session', 1);
 function my_start_session()
 {
-    if (!session_id())
-    {
+    if (!session_id()) {
         session_start();
     }
 }
@@ -980,38 +987,34 @@ function my_end_session()
     session_destroy();
 }
 // Store search query within session
-add_action( 'init', 'set_last_search' );
+add_action('init', 'set_last_search');
 function set_last_search()
 {
-    if ( !function_exists('ph_get_page_id') )
-    {
+    if (!function_exists('ph_get_page_id')) {
         // Prevent fatal error, just in case Property Hive isn't active
         return false;
     }
-    if ( !isset($_SESSION['last_search']) )
-    {
+    if (!isset($_SESSION['last_search'])) {
         $_SESSION['last_search'] = '';
     }
     if (
         (strpos(
             "http://" . strtolower($_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']),
-            strtolower(get_permalink(ph_get_page_id( 'search_results' )))
+            strtolower(get_permalink(ph_get_page_id('search_results')))
         )
-        !==
-        FALSE)
+            !==
+            FALSE)
         ||
         (strpos(
             "https://" . strtolower($_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']),
-            strtolower(get_permalink(ph_get_page_id( 'search_results' )))
+            strtolower(get_permalink(ph_get_page_id('search_results')))
         )
-        !==
-        FALSE)
-    )
-    {
+            !==
+            FALSE)
+    ) {
         // if on the property search pages and a query string set
         $_SESSION['last_search'] = $_SERVER['REQUEST_URI'];
-        if (strpos($_SERVER['REQUEST_URI'], '?') === FALSE)
-        {
+        if (strpos($_SERVER['REQUEST_URI'], '?') === FALSE) {
             $_SESSION['last_search'] = $_SERVER['REQUEST_URI'] . '?' . $_SERVER['QUERY_STRING'];
         }
     }
@@ -1020,13 +1023,13 @@ function set_last_search()
 
 // 2. Include Sold STC
 // See snippet here: https://docs.wp-property-hive.com/article/613-add-include-sold-stc-checkbox-to-search-forms
-add_action( 'pre_get_posts', 'remove_sold_stc_by_default' );
-function remove_sold_stc_by_default( $q ) 
+add_action('pre_get_posts', 'remove_sold_stc_by_default');
+function remove_sold_stc_by_default($q)
 {
     if (is_admin())
         return;
 
-    if ( defined('DOING_CRON') && DOING_CRON )
+    if (defined('DOING_CRON') && DOING_CRON)
         return;
 
     if (!$q->is_post_type_archive('property') && !$q->is_tax(get_object_taxonomies('property')))
@@ -1037,16 +1040,17 @@ function remove_sold_stc_by_default( $q )
 
     $tax_query = $q->get('tax_query');
 
-    if ( !isset($_REQUEST['include_sold_stc']) ) 
-    {
-        if (!is_array($tax_query)) { $tax_query = array(); }
+    if (!isset($_REQUEST['include_sold_stc'])) {
+        if (!is_array($tax_query)) {
+            $tax_query = array();
+        }
 
         // NOTE: change (10, 14) to the IDS of 'For Sale' and 'To Let'
         // These can be found under 'Property Hive > Setting > Custom Fields'
         $tax_query[] = array(
             'taxonomy' => 'availability',
             'field' => 'term_id',
-            'terms' => array(103, 109), 
+            'terms' => array(103, 109),
             'operator' => 'IN'
         );
     }
@@ -1144,30 +1148,25 @@ function remove_sold_stc_by_default( $q )
 
 // 4. SEO Friendly Property URLs
 // See snippet here: https://docs.wp-property-hive.com/article/619-creating-seo-friendly-property-details-urls
-add_filter( 'post_type_link', 'customise_property_post_type_link', 10, 4 );
-function customise_property_post_type_link( $post_link, $post, $leavename, $sample )
+add_filter('post_type_link', 'customise_property_post_type_link', 10, 4);
+function customise_property_post_type_link($post_link, $post, $leavename, $sample)
 {
-    if ( get_post_type($post->ID) == 'property' )
-    {
+    if (get_post_type($post->ID) == 'property') {
         $property = new PH_Property($post->ID);
 
         $suffix = 'for-sale';
-        if ( $property->department == 'residential-lettings' )
-        {
+        if ($property->department == 'residential-lettings') {
             $suffix = 'to-rent';
         }
 
         $area = $property->address_three;
-        if ( $area == '' )
-        {
+        if ($area == '') {
             $area = $property->address_four;
         }
-        if ( $area == '' )
-        {
+        if ($area == '') {
             $area = $property->address_two;
         }
-        if ( $area == '' )
-        {
+        if ($area == '') {
             $area = 'property';
         }
 
@@ -1177,77 +1176,72 @@ function customise_property_post_type_link( $post_link, $post, $leavename, $samp
     return $post_link;
 }
 
-add_action( 'init', 'rewrites_init' );
+add_action('init', 'rewrites_init');
 function rewrites_init()
 {
     add_rewrite_rule(
         'property-for-sale/([^/]+)/([^/]+)/?$',
         'index.php?post_type=property&name=$matches[2]',
-        'top' );
+        'top'
+    );
     add_rewrite_rule(
         'property-to-rent/([^/]+)/([^/]+)/?$',
         'index.php?post_type=property&name=$matches[2]',
-        'top' );
+        'top'
+    );
 }
 
 
-add_action( "propertyhive_property_imported_reapit_foundations_json", 'mcc_ph_import_maps', 10, 2 );
+add_action("propertyhive_property_imported_reapit_foundations_json", 'mcc_ph_import_maps', 10, 2);
 function mcc_ph_import_maps($post_id, $property)
 {
     // Properties arriving from branch codes BRF, HOW, FCL, FCM or WPL should be assigned to the department Fine and Country.
-    if ( isset( $property['officeIds'] ) && is_array( $property['officeIds'] ) && count( $property['officeIds'] ) > 0 )
-    {
-        foreach ( $property['officeIds'] as $office_id )
-        {
-            if ( $office_id == 'BRF' || $office_id == 'HOW' || $office_id == 'FCL' || $office_id == 'FCM' || $office_id == 'WPL' )
-            {
-                update_post_meta( $post_id, '_department', 'fine-and-country' );
+    if (isset($property['officeIds']) && is_array($property['officeIds']) && count($property['officeIds']) > 0) {
+        foreach ($property['officeIds'] as $office_id) {
+            if ($office_id == 'BRF' || $office_id == 'HOW' || $office_id == 'FCL' || $office_id == 'FCM' || $office_id == 'WPL') {
+                update_post_meta($post_id, '_department', 'fine-and-country');
             }
         }
     }
-    
+
     // Properties arriving with a disposal containing Auction should be assigned to the Property & Land department.
-    if ( isset($property['selling']['disposal']) && strtolower($property['selling']['disposal']) == 'auction' )
-    {
-        update_post_meta( $post_id, '_department', 'property-land-auctions' );
-    }
-    
-    // Anything arriving with a type of Farm or Agricultural should be assigned to the Agricultural department
-    if ( isset($property['type']) && ( in_array('farm', $property['type']) || in_array('agricultural', $property['type']) ) )
-    {
-        update_post_meta( $post_id, '_department', 'agricultural' );
+    if (isset($property['selling']['disposal']) && strtolower($property['selling']['disposal']) == 'auction') {
+        update_post_meta($post_id, '_department', 'property-land-auctions');
     }
 
-    
-    // Anything received with a type of developmentOpportunity should be assigned to the Development Land department
-    if ( isset($property['type']) && ( in_array('developmentOpportunity', $property['type']) ) )
-    {
-        update_post_meta( $post_id, '_department', 'development-land' );
+    // Anything arriving with a type of Farm or Agricultural should be assigned to the Agricultural department
+    if (isset($property['type']) && (in_array('farm', $property['type']) || in_array('agricultural', $property['type']))) {
+        update_post_meta($post_id, '_department', 'agricultural');
     }
-    
+
+
+    // Anything received with a type of developmentOpportunity should be assigned to the Development Land department
+    if (isset($property['type']) && (in_array('developmentOpportunity', $property['type']))) {
+        update_post_meta($post_id, '_department', 'development-land');
+    }
+
     // Anything received with no type
     // AND
     // a bedroom count of 0
     // AND
     // a situation containing Land, Paddock or Land/Paddock should also be assigned to The Agricultural department
-    if ( 
-        ( !isset($property['type']) || empty($property['type']) ) 
-        && 
+    if (
+        (!isset($property['type']) || empty($property['type']))
+        &&
         empty($property['bedrooms'])
         &&
-        ( isset($property['situation']) && ( 
-            in_array('land', $property['situation']) || 
-            in_array('paddock', $property['situation']) ) || 
-            in_array('land/paddock', $property['situation']) ) 
-        )
-    {
-        update_post_meta( $post_id, '_department', 'agricultural' );
+        (isset($property['situation']) && (
+            in_array('land', $property['situation']) ||
+            in_array('paddock', $property['situation'])) ||
+            in_array('land/paddock', $property['situation']))
+    ) {
+        update_post_meta($post_id, '_department', 'agricultural');
     }
 
     // Assign parent department value depending on department
     // If you're in residential lettings, set parent to Lettings
     // Otherwise, set it to Sales
-    if ($department == 'residential-lettings' || !empty($property['letting']) || $property['marketingMode'] == 'letting' ) {
+    if ($department == 'residential-lettings' || !empty($property['letting']) || $property['marketingMode'] == 'letting') {
         update_post_meta($post_id, '_parent_department', 'Lettings');
     } else {
         update_post_meta($post_id, '_parent_department', 'Sales');
@@ -1256,24 +1250,25 @@ function mcc_ph_import_maps($post_id, $property)
     // New Homes - if age contains "New", let's stick it in New Homes
     // Check if 'age' contains 'new'
     if (isset($property['age'])) {
-    if (is_array($property['age'])) {
-        // Convert all elements of the array to lowercase and check if 'new' is in the array
-        if (in_array('new', array_map('strtolower', $property['age']))) {
+        if (is_array($property['age'])) {
+            // Convert all elements of the array to lowercase and check if 'new' is in the array
+            if (in_array('new', array_map('strtolower', $property['age']))) {
+                update_post_meta($post_id, '_department', 'new-homes');
+            }
+        } elseif (strtolower($property['age']) == 'new') {
             update_post_meta($post_id, '_department', 'new-homes');
         }
-    } elseif (strtolower($property['age']) == 'new') {
-        update_post_meta($post_id, '_department', 'new-homes');
     }
-}
 
-    
+
     // Anything NOT IN Residential lettings OR that is a commercial that is for sale will be assigned to a parent department of Sales.
     // PROPERTY HIVE COMMENT: Ensure the 'commercial' department is deactivated and this should happen by default. No snippet needed
 }
 
 
 // Populate post types dropdown
-function populate_property_types_dropdown() {
+function populate_property_types_dropdown()
+{
     global $wp_query;
 
     // Get all post IDs from the entire search query (not just the current page)
@@ -1305,14 +1300,14 @@ function populate_property_types_dropdown() {
         echo ' <div class="search-form-dropdown">';
         echo '<div class="search-form-dropdown--trigger">Property Type</div>';
         echo '<div class="search-form-dropdown--options">';
-        echo '<label class="search-form-checkboxes--option' . esc_attr( $term->slug ) . ' show-all">';
+        echo '<label class="search-form-checkboxes--option' . esc_attr($term->slug) . ' show-all">';
         echo '<input type="checkbox" name="' . esc_attr($taxonomy) . '[]" checked value="">';
         echo '<span class="search-form-checkboxes--checkbox-label"></span>';
         echo 'Show All';
         echo '</label>';
 
         foreach ($terms as $term) {
-            echo '<label class="search-form-checkboxes--option ' . esc_attr( $term->slug ) . '">';
+            echo '<label class="search-form-checkboxes--option ' . esc_attr($term->slug) . '">';
             echo '<input type="checkbox" name="' . esc_attr($taxonomy) . '[]" value="' . esc_attr($term->term_id) . '">';
             echo '<span class="search-form-checkboxes--checkbox-label"></span>';
             echo esc_html($term->name);
@@ -1328,7 +1323,8 @@ function populate_property_types_dropdown() {
     }
 }
 
-function display_fallback_property_types() {
+function display_fallback_property_types()
+{
     echo '<div class="search-form-control search-form-control--checkboxes search-form--type">';
     echo ' <div class="search-form-dropdown">';
     echo '<div class="search-form-dropdown--trigger">Property Type</div>';
@@ -1354,12 +1350,13 @@ function display_fallback_property_types() {
 
 
 // PH MCC Search Form shortcode
-function mcc_ph_search() {
+function mcc_ph_search()
+{
 
     ?>
 
 <form class="property-search"
-    action="<?php echo apply_filters( 'propertyhive_search_form_action', get_post_type_archive_link( 'property' ) ); ?>"
+    action="<?php echo apply_filters('propertyhive_search_form_action', get_post_type_archive_link('property')); ?>"
     method="get" role="form">
     <div class="search-form-control search-form--radio-toggle">
         <input type="radio" id="_parent_department_sales" name="_parent_department" value="Sales">
@@ -1483,8 +1480,8 @@ function mcc_ph_search() {
 
 
 
-        <?php 
-        populate_property_types_dropdown(); ?>
+        <?php
+            populate_property_types_dropdown(); ?>
         <div class="search-form-control search-form-control--checkboxes search-form--department">
             <div class="search-form-dropdown">
                 <div class="search-form-dropdown--trigger">Department</div>
@@ -1554,22 +1551,24 @@ add_shortcode('property_search', 'mcc_ph_search');
 
 // Replace the default search on the properties archive
 // Remove the original propertyhive_search_form function
-remove_action( 'propertyhive_before_search_results_loop', 'propertyhive_search_form', 10 );
+remove_action('propertyhive_before_search_results_loop', 'propertyhive_search_form', 10);
 
 
 // Deregister PH Default Styles
-function dereg_ph_styles() {
-    wp_deregister_style( 'propertyhive-general' );
+function dereg_ph_styles()
+{
+    wp_deregister_style('propertyhive-general');
 }
-add_action( 'wp_enqueue_scripts', 'dereg_ph_styles', 100 );
+add_action('wp_enqueue_scripts', 'dereg_ph_styles', 100);
 
 // Add some image sizes
-add_image_size( 'property-square', 1024, 1024, true );
+add_image_size('property-square', 1024, 1024, true);
 
 
 
 // Allow iframes for admin users
-function allow_iframes_for_admins($allowedposttags) {
+function allow_iframes_for_admins($allowedposttags)
+{
     if (current_user_can('administrator')) {
         $allowedposttags['iframe'] = array(
             'src'             => true,
@@ -1587,35 +1586,36 @@ add_filter('wp_kses_allowed_html', 'allow_iframes_for_admins', 1);
 
 //Office Accordian for mobile
 
-function property_mobile_tabs_shortcode() {
+function property_mobile_tabs_shortcode()
+{
     // Get all office categories
-    $terms = get_terms( array(
+    $terms = get_terms(array(
         'taxonomy' => 'office location',
         'hide_empty' => false,
-    ) );
+    ));
 
-    if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+    if (! empty($terms) && ! is_wp_error($terms)) {
         ob_start(); // Start output buffering
 
         echo '<div class="accordion" id="propertyAccordion">'; // Accordion wrapper
         $first_item = true;
-        foreach ( $terms as $term ) {
-            $term_slug = esc_attr( $term->slug );
-            $term_name = esc_html( $term->name );
+        foreach ($terms as $term) {
+            $term_slug = esc_attr($term->slug);
+            $term_name = esc_html($term->name);
 
             // Accordion item
             echo '<div class="accordion-item">';
             echo '<h2 class="accordion-header" id="heading-' . $term_slug . '">';
-            echo '<button class="accordion-button' . ( $first_item ? '' : ' collapsed' ) . '" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-' . $term_slug . '" aria-expanded="' . ( $first_item ? 'true' : 'false' ) . '" aria-controls="collapse-' . $term_slug . '">';
+            echo '<button class="accordion-button' . ($first_item ? '' : ' collapsed') . '" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-' . $term_slug . '" aria-expanded="' . ($first_item ? 'true' : 'false') . '" aria-controls="collapse-' . $term_slug . '">';
             echo $term_name;
             echo '</button>';
             echo '</h2>';
 
             // Accordion body
-            echo '<div id="collapse-' . $term_slug . '" class="accordion-collapse collapse' . ( $first_item ? ' show' : '' ) . '" aria-labelledby="heading-' . $term_slug . '" data-bs-parent="#propertyAccordion">';
+            echo '<div id="collapse-' . $term_slug . '" class="accordion-collapse collapse' . ($first_item ? ' show' : '') . '" aria-labelledby="heading-' . $term_slug . '" data-bs-parent="#propertyAccordion">';
             echo '<div class="accordion-body">';
 
-            $query = new WP_Query( array(
+            $query = new WP_Query(array(
                 'post_type' => 'branch',
                 'tax_query' => array(
                     array(
@@ -1624,11 +1624,11 @@ function property_mobile_tabs_shortcode() {
                         'terms'    => $term->slug,
                     ),
                 ),
-            ) );
+            ));
 
-            if ( $query->have_posts() ) {
+            if ($query->have_posts()) {
                 echo '<div class="outer-wrap">';
-                while ( $query->have_posts() ) {
+                while ($query->have_posts()) {
                     $query->the_post();
 
                     // Accordion content for each post
@@ -1641,167 +1641,186 @@ function property_mobile_tabs_shortcode() {
                     // Sales number
                     echo '<div class="sale-nmbr">';
                     echo '<img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/phone-icon-1.svg">';
-                    echo '<span><strong>Sales </strong><a href="tel:' . get_field('sales_number') . '">' . get_field('sales_number') . '</a></span>';
-                    echo '</div>';
+echo '<span><strong>Sales </strong><a href="tel:' . get_field('sales_number') . '">' . get_field('sales_number') .
+        '</a></span>';
+echo '</div>';
 
-                    // Lettings number (shown only on larger screens)
-                    echo '<div class="sale-nmbr d-none d-md-flex">';
-                    echo '<img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/phone-icon-1.svg">';
-                    echo '<span><strong>Lettings </strong><a href="tel:' . get_field('lettings_number') . '">' . get_field('lettings_number') . '</a></span>';
-                    echo '</div>';
+// Lettings number (shown only on larger screens)
+echo '<div class="sale-nmbr d-none d-md-flex">';
+    echo '<img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/phone-icon-1.svg">';
+    echo '<span><strong>Lettings </strong><a href="tel:' . get_field('lettings_number') . '">' .
+            get_field('lettings_number') . '</a></span>';
+    echo '</div>';
 
-                    // Categories list
-                    echo '<ul class="office-cat-wrap">';
-                    if(get_field('properties') == 'True') {
-                        echo '<li class="items-wrap"><img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/properties-vector-1.svg"><span>Properties</span></li>';
-                    }
-                    if(get_field('livestock') == 'True') {
-                        echo '<li class="items-wrap"><img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/livestock-logo-1.svg"><span>Livestock</span></li>';
-                    }
-                    if(get_field('planning_survey') == 'True') {
-                        echo '<li class="items-wrap"><img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/planning-logo-1.svg"><span>Planning & Survay</span></li>';
-                    }
-                    if(get_field('antiques') == 'True') {
-                        echo '<li class="items-wrap"><img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/antiques-logo-1.svg"><span>Antiques</span></li>';
-                    }
-                    if(get_field('equine') == 'True') {
-                        echo '<li class="items-wrap"><img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/07/equine-icon.svg"><span>Equine</span></li>';
-                    }
-                    if(get_field('rural') == 'True') {
-                        echo '<li class="items-wrap"><img src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/07/rural-icon.svg"><span>Rural</span></li>';
-                    }
-                    echo '</ul>';
-
-                    // View more and share buttons
-                    echo '<div class="bottom-btn-wrap">';
-                    echo '<a href="' . get_permalink() . '" class="btn-cs-dark">View more <span><i class="fa-solid fa-angle-right"></i></span></a>';
-                    if( have_rows('office_share_buttons', 'option') ) {
-                        echo '<ul class="share-buttons-wrap d-none d-md-flex">';
-                        while( have_rows('office_share_buttons', 'option') ): the_row();
-                            $share_logo = get_sub_field('location_share_image');
-                            echo '<li class="item"><a href="' . get_sub_field('location_share_button_link') . '" target="_blank">';
-                            if( !empty($share_logo) ) {
-                                echo '<img src="' . $share_logo['url'] . '" alt="' . $share_logo['alt'] . '">';
-                            }
-                            echo '</a></li>';
-                        endwhile;
-                        echo '</ul>';
-                    }
-                    echo '</div>'; // .bottom-btn-wrap
-                    echo '</div>'; // .col-left
-                    echo '</div>'; // .col-12.col-md-7
-
-                    // Post thumbnail
-                    if ( has_post_thumbnail() ) {
-                        echo '<div class="col-12 col-md-5">';
-                        echo '<div class="col-right">';
-                        echo '<h4 class="d-block d-md-none">' . get_the_title() . '</h4>';
-                        the_post_thumbnail( 'full', array( 'class' => 'img-fluid' ) );
-                        echo '</div>'; // .col-right
-                        echo '</div>'; // .col-12.col-md-5
-                    }
-
-                    echo '</div>'; // .row.g-0
-                } // endwhile
-                echo '</div>'; // .outer-wrap
-            } else {
-                echo '<p>No properties found in this category.</p>';
-            }
-
-            wp_reset_postdata();
-            echo '</div>'; // .accordion-body
-            echo '</div>'; // .accordion-collapse
-            echo '</div>'; // .accordion-item
-
-            $first_item = false;
-        } // endforeach
-
-        echo '</div>'; // #propertyAccordion
-
-        return ob_get_clean();
+// Categories list
+echo '<ul class="office-cat-wrap">';
+    if (get_field('properties') == 'True') {
+    echo '<li class="items-wrap"><img
+            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/properties-vector-1.svg"><span>Properties</span>
+    </li>';
     }
+    if (get_field('livestock') == 'True') {
+    echo '<li class="items-wrap"><img
+            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/livestock-logo-1.svg"><span>Livestock</span>
+    </li>';
+    }
+    if (get_field('planning_survey') == 'True') {
+    echo '<li class="items-wrap"><img
+            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/planning-logo-1.svg"><span>Planning
+            & Survay</span></li>';
+    }
+    if (get_field('antiques') == 'True') {
+    echo '<li class="items-wrap"><img
+            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/06/antiques-logo-1.svg"><span>Antiques</span>
+    </li>';
+    }
+    if (get_field('equine') == 'True') {
+    echo '<li class="items-wrap"><img
+            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/07/equine-icon.svg"><span>Equine</span>
+    </li>';
+    }
+    if (get_field('rural') == 'True') {
+    echo '<li class="items-wrap"><img
+            src="<?php echo get_template_directory_uri(); ?>/wp-content/uploads/2024/07/rural-icon.svg"><span>Rural</span>
+    </li>';
+    }
+    echo '</ul>';
+
+// View more and share buttons
+echo '<div class="bottom-btn-wrap">';
+    echo '<a href="' . get_permalink() . '" class="btn-cs-dark">View more <span><i
+                class="fa-solid fa-angle-right"></i></span></a>';
+    if (have_rows('office_share_buttons', 'option')) {
+    echo '<ul class="share-buttons-wrap d-none d-md-flex">';
+        while (have_rows('office_share_buttons', 'option')): the_row();
+        $share_logo = get_sub_field('location_share_image');
+        echo '<li class="item"><a href="' . get_sub_field('location_share_button_link') . '" target="_blank">';
+                if (!empty($share_logo)) {
+                echo '<img src="' . $share_logo['url'] . '" alt="' . $share_logo['alt'] . '">';
+                }
+                echo '</a></li>';
+        endwhile;
+        echo '</ul>';
+    }
+    echo '</div>'; // .bottom-btn-wrap
+echo '</div>'; // .col-left
+echo '</div>'; // .col-12.col-md-7
+
+// Post thumbnail
+if (has_post_thumbnail()) {
+echo '<div class="col-12 col-md-5">';
+    echo '<div class="col-right">';
+        echo '<h4 class="d-block d-md-none">' . get_the_title() . '</h4>';
+        the_post_thumbnail('full', array('class' => 'img-fluid'));
+        echo '</div>'; // .col-right
+    echo '</div>'; // .col-12.col-md-5
 }
-add_shortcode( 'property_mobile_tabs', 'property_mobile_tabs_shortcode' );
+
+echo '</div>'; // .row.g-0
+} // endwhile
+echo '</div>'; // .outer-wrap
+} else {
+echo '<p>No properties found in this category.</p>';
+}
+
+wp_reset_postdata();
+echo '</div>'; // .accordion-body
+echo '</div>'; // .accordion-collapse
+echo '</div>'; // .accordion-item
+
+$first_item = false;
+} // endforeach
+
+echo '</div>'; // #propertyAccordion
+
+return ob_get_clean();
+}
+}
+add_shortcode('property_mobile_tabs', 'property_mobile_tabs_shortcode');
 
 
 // JSON Load Path
-function my_acf_json_load_point( $paths ) {
-    // Remove the original path (optional).
-    unset($paths[0]);
+function my_acf_json_load_point($paths)
+{
+// Remove the original path (optional).
+unset($paths[0]);
 
-    // Append the new path and return it.
-    $paths[] = get_stylesheet_directory() . '/acf-json';
+// Append the new path and return it.
+$paths[] = get_stylesheet_directory() . '/acf-json';
 
-    return $paths;
+return $paths;
 }
-add_filter( 'acf/settings/load_json', 'my_acf_json_load_point' );
+add_filter('acf/settings/load_json', 'my_acf_json_load_point');
 
 // JSON Save Path
-function my_acf_json_save_point( $path ) {
-    // Update the path where ACF saves JSON data.
-    $path = get_stylesheet_directory() . '/acf-json';
-    return $path;
+function my_acf_json_save_point($path)
+{
+// Update the path where ACF saves JSON data.
+$path = get_stylesheet_directory() . '/acf-json';
+return $path;
 }
-add_filter( 'acf/settings/save_json', 'my_acf_json_save_point' );
+add_filter('acf/settings/save_json', 'my_acf_json_save_point');
 
 
 
 
 // Register Custom Post Type: Sales Date
-function register_sales_date_post_type() {
-    $labels = array(
-        'name' => 'Sales Dates',
-        'singular_name' => 'Sales Date',
-        'menu_name' => 'Sales Dates',
-        'name_admin_bar' => 'Sales Date',
-        'add_new' => 'Add New',
-        'add_new_item' => 'Add New Sales Date',
-        'new_item' => 'New Sales Date',
-        'edit_item' => 'Edit Sales Date',
-        'view_item' => 'View Sales Date',
-        'all_items' => 'All Sales Dates',
-        'search_items' => 'Search Sales Dates',
-    );
+function register_sales_date_post_type()
+{
+$labels = array(
+'name' => 'Sales Dates',
+'singular_name' => 'Sales Date',
+'menu_name' => 'Sales Dates',
+'name_admin_bar' => 'Sales Date',
+'add_new' => 'Add New',
+'add_new_item' => 'Add New Sales Date',
+'new_item' => 'New Sales Date',
+'edit_item' => 'Edit Sales Date',
+'view_item' => 'View Sales Date',
+'all_items' => 'All Sales Dates',
+'search_items' => 'Search Sales Dates',
+);
 
-    $args = array(
-        'label' => 'Sales Dates',
-        'labels' => $labels,
-        'public' => true,
-        'has_archive' => true,
-        'rewrite' => array('slug' => 'sales-dates'),
-        'menu_icon' => 'dashicons-calendar-alt',
-        'supports' => array('title', 'editor'),
-        'show_in_rest' => true,
-        'taxonomies' => array('sale_type')
-    );
+$args = array(
+'label' => 'Sales Dates',
+'labels' => $labels,
+'public' => true,
+'has_archive' => true,
+'rewrite' => array('slug' => 'sales-dates'),
+'menu_icon' => 'dashicons-calendar-alt',
+'supports' => array('title', 'editor'),
+'show_in_rest' => true,
+'taxonomies' => array('sale_type')
+);
 
-    register_post_type('sales_dates', $args);
+register_post_type('sales_dates', $args);
 }
 add_action('init', 'register_sales_date_post_type');
 
 // Register Custom Taxonomy: Sale Type
-function register_sale_type_taxonomy() {
-    $labels = array(
-        'name' => 'Sale Types',
-        'singular_name' => 'Sale Type',
-        'search_items' => 'Search Sale Types',
-        'all_items' => 'All Sale Types',
-        'edit_item' => 'Edit Sale Type',
-        'update_item' => 'Update Sale Type',
-        'add_new_item' => 'Add New Sale Type',
-        'new_item_name' => 'New Sale Type Name',
-        'menu_name' => 'Sale Types',
-    );
+function register_sale_type_taxonomy()
+{
+$labels = array(
+'name' => 'Sale Types',
+'singular_name' => 'Sale Type',
+'search_items' => 'Search Sale Types',
+'all_items' => 'All Sale Types',
+'edit_item' => 'Edit Sale Type',
+'update_item' => 'Update Sale Type',
+'add_new_item' => 'Add New Sale Type',
+'new_item_name' => 'New Sale Type Name',
+'menu_name' => 'Sale Types',
+);
 
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'hierarchical' => true,
-        'rewrite' => array('slug' => 'sale-type'),
-        'show_in_rest' => true,
-    );
+$args = array(
+'labels' => $labels,
+'public' => true,
+'hierarchical' => true,
+'rewrite' => array('slug' => 'sale-type'),
+'show_in_rest' => true,
+);
 
-    register_taxonomy('sale_type', array('sales_dates'), $args);
+register_taxonomy('sale_type', array('sales_dates'), $args);
 }
 add_action('init', 'register_sale_type_taxonomy');
 
@@ -1811,47 +1830,49 @@ add_action('init', 'register_sale_type_taxonomy');
 
 
 /* Function to create the negotiator id from the property id */
-function get_negotiatorId($propertyId){
+function get_negotiatorId($propertyId)
+{
 
-    $access_token = get_access_token();
-    if (!$access_token) {
-        return false;
-    }
+$access_token = get_access_token();
+if (!$access_token) {
+return false;
+}
 
-    $api_url = "https://platform.reapit.cloud/properties/$propertyId";
-    $response = wp_remote_get($api_url, array(
-        'headers' => array(
-            'Authorization' => 'Bearer ' . $access_token,
-            'api-version' => '2020-01-31',
-            'reapit-customer' => 'MCC'
-        )
-    ));
+$api_url = "https://platform.reapit.cloud/properties/$propertyId";
+$response = wp_remote_get($api_url, array(
+'headers' => array(
+'Authorization' => 'Bearer ' . $access_token,
+'api-version' => '2020-01-31',
+'reapit-customer' => 'MCC'
+)
+));
 
-    if (is_wp_error($response)) {
-        echo '<p>Error: ' . $response->get_error_message() . '</p>';
-        return false;
-    }
+if (is_wp_error($response)) {
+echo '<p>Error: ' . $response->get_error_message() . '</p>';
+return false;
+}
 
-    $body = wp_remote_retrieve_body($response);
-    $data = json_decode($body, true);
-    return $data['negotiatorId'];
+$body = wp_remote_retrieve_body($response);
+$data = json_decode($body, true);
+return $data['negotiatorId'];
 }
 /* Function to get the negotiator information from its ID */
-function get_negotiatorsInfo($negotiatorId){
+function get_negotiatorsInfo($negotiatorId)
+{
 
-    $access_token = get_access_token();
-    $negotiators_url = "https://platform.reapit.cloud/negotiators/".$negotiatorId;
+$access_token = get_access_token();
+$negotiators_url = "https://platform.reapit.cloud/negotiators/" . $negotiatorId;
 $responseNeg = wp_remote_get($negotiators_url, array(
-    'headers' => array(
-        'Authorization' => 'Bearer ' . $access_token,
-        'api-version' => '2020-01-31',
-        'reapit-customer' => 'MCC'
-    )
+'headers' => array(
+'Authorization' => 'Bearer ' . $access_token,
+'api-version' => '2020-01-31',
+'reapit-customer' => 'MCC'
+)
 ));
 
 if (is_wp_error($responseNeg)) {
-    echo '<p>Error: ' . $responseNeg->get_error_message() . '</p>';
-    return false;
+echo '<p>Error: ' . $responseNeg->get_error_message() . '</p>';
+return false;
 }
 $bodyNeg = wp_remote_retrieve_body($responseNeg);
 return json_decode($bodyNeg, true);
@@ -1859,43 +1880,61 @@ return json_decode($bodyNeg, true);
 /*Function to generate the required access token */
 function get_access_token()
 {
-    $client_id = '4h1h83g37v2488nk3qnbc9dhin';
-    $client_secret = '1s1n72ic94njnlqsbl433tpaaqdnkso6olj9bo7rpb3es9255dsk';
-    $auth_url = 'https://connect.reapit.cloud/token';
+$client_id = '4h1h83g37v2488nk3qnbc9dhin';
+$client_secret = '1s1n72ic94njnlqsbl433tpaaqdnkso6olj9bo7rpb3es9255dsk';
+$auth_url = 'https://connect.reapit.cloud/token';
 
-    $response = wp_remote_post($auth_url, array(
-        'headers' => array(
-            'Authorization' => 'Basic ' . base64_encode($client_id . ':' . $client_secret),
-            'Content-Type' => 'application/x-www-form-urlencoded',
-        ),
-        'body' => array(
-            'grant_type' => 'client_credentials'
-        )
-    ));
+$response = wp_remote_post($auth_url, array(
+'headers' => array(
+'Authorization' => 'Basic ' . base64_encode($client_id . ':' . $client_secret),
+'Content-Type' => 'application/x-www-form-urlencoded',
+),
+'body' => array(
+'grant_type' => 'client_credentials'
+)
+));
 
-    if (is_wp_error($response)) {
-        echo '<p>Error: ' . $response->get_error_message() . '</p>';
-        return false;
-    }
+if (is_wp_error($response)) {
+echo '<p>Error: ' . $response->get_error_message() . '</p>';
+return false;
+}
 
-    $body = wp_remote_retrieve_body($response);
-    $data = json_decode($body);
+$body = wp_remote_retrieve_body($response);
+$data = json_decode($body);
 
-    if (isset($data->access_token)) {
-        return $data->access_token;
-    } else {
-        echo '<p>Failed to obtain access token. Response: ' . $body . '</p>';
-        return false;
-    }
+if (isset($data->access_token)) {
+return $data->access_token;
+} else {
+echo '<p>Failed to obtain access token. Response: ' . $body . '</p>';
+return false;
+}
 }
 
 
-//hide editor 
-function hide_editor_for_sales_dates() {
-    // Check if we're in the admin area
-    if (is_admin()) {
-        // Remove the content editor from the 'sales-dates' post type
-        remove_post_type_support('sales_dates', 'editor');
-    }
+//hide editor
+function hide_editor_for_sales_dates()
+{
+// Check if we're in the admin area
+if (is_admin()) {
+// Remove the content editor from the 'sales-dates' post type
+remove_post_type_support('sales_dates', 'editor');
+}
 }
 add_action('admin_init', 'hide_editor_for_sales_dates');
+
+// Exclude KID properties from importing
+add_filter('propertyhive_before_property_import', 'exclude_kid_branch_properties', 10, 2);
+function exclude_kid_branch_properties($should_import, $property_data)
+{
+// Check if branch ID or name matches 'KID'
+if (isset($property_data['branch_id']) && $property_data['branch_id'] === 'KID') {
+return false; // Skip importing this property
+}
+
+// If branch name is provided instead of ID
+if (isset($property_data['branch']) && strtoupper($property_data['branch']) === 'KID') {
+return false;
+}
+
+return $should_import; // Proceed with import for other properties
+}
