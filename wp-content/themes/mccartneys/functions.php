@@ -1924,52 +1924,18 @@ add_action('admin_init', 'hide_editor_for_sales_dates');
 
 
 
-// Exclude KID properties from importing and log each one
-add_filter('propertyhive_before_property_import', 'exclude_kid_properties_on_import', 10, 2);
-add_filter('propertyhive_before_property_update', 'exclude_kid_properties_on_update', 10, 2);
-
-function exclude_kid_properties_on_import($should_import, $property_data)
+add_action("propertyhive_property_imported_reapit_foundations_json", 'mcc_block_kid_properties', 5, 2);
+function mcc_block_kid_properties($post_id, $property)
 {
-return should_skip_kid_property($should_import, $property_data, 'import');
-}
+// Skip properties from KID office
+if (isset($property['officeIds']) && in_array('KID', $property['officeIds'])) {
+$property_id = isset($property['id']) ? $property['id'] : 'UNKNOWN';
+$message = "[" . date('Y-m-d H:i:s') . "] Deleted property [{$property_id}] from KID branch (post-import)";
 
-function exclude_kid_properties_on_update($should_update, $property_data)
-{
-return should_skip_kid_property($should_update, $property_data, 'update');
-}
-
-function should_skip_kid_property($should_process, $property_data, $mode = 'import')
-{
-$is_kid = false;
-
-// Check for office ID match (typically where 'KID' is stored)
-if (isset($property_data['officeIds']) && is_array($property_data['officeIds']) && in_array(
-'KID',
-$property_data['officeIds']
-)) {
-$is_kid = true;
-}
-
-// Fallback to branch_id or branch
-if (
-(isset($property_data['branch_id']) && $property_data['branch_id'] === 'KID') ||
-(isset($property_data['branch']) && strtoupper($property_data['branch']) === 'KID')
-) {
-$is_kid = true;
-}
-
-if ($is_kid) {
-$property_id = isset($property_data['id']) ? $property_data['id'] : 'UNKNOWN';
-$message = "[" . date('Y-m-d H:i:s') . "] Skipped {$mode} of property [{$property_id}] from KID branch";
-
-// Log to debug log
 error_log($message);
-
-// Log to custom file
 file_put_contents(WP_CONTENT_DIR . '/property-import.log', $message . "\n", FILE_APPEND);
 
-return false; // Prevent import or update
+// Delete the post to fully remove it
+wp_delete_post($post_id, true);
 }
-
-return $should_process;
 }
