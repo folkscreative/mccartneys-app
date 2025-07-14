@@ -1922,19 +1922,23 @@ remove_post_type_support('sales_dates', 'editor');
 }
 add_action('admin_init', 'hide_editor_for_sales_dates');
 
-// Exclude KID properties from importing
+// Exclude KID properties from importing and log each one
 add_filter('propertyhive_before_property_import', 'exclude_kid_branch_properties', 10, 2);
 function exclude_kid_branch_properties($should_import, $property_data)
 {
-// Check if branch ID or name matches 'KID'
+// Check if branch ID matches 'KID'
 if (isset($property_data['branch_id']) && $property_data['branch_id'] === 'KID') {
-return false; // Skip importing this property
-}
-
-// If branch name is provided instead of ID
-if (isset($property_data['branch']) && strtoupper($property_data['branch']) === 'KID') {
+$property_id = isset($property_data['id']) ? $property_data['id'] : 'UNKNOWN';
+error_log("Skipped property [{$property_id}] from branch ID KID");
 return false;
 }
 
-return $should_import; // Proceed with import for other properties
+// Check if branch name matches 'KID'
+if (isset($property_data['branch']) && strtoupper($property_data['branch']) === 'KID') {
+$property_id = isset($property_data['id']) ? $property_data['id'] : 'UNKNOWN';
+error_log("Skipped property [{$property_id}] from branch name KID");
+return false;
+}
+
+return $should_import;
 }
