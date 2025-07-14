@@ -1926,17 +1926,19 @@ add_action('admin_init', 'hide_editor_for_sales_dates');
 add_filter('propertyhive_before_property_import', 'exclude_kid_branch_properties', 10, 2);
 function exclude_kid_branch_properties($should_import, $property_data)
 {
-// Check if branch ID matches 'KID'
-if (isset($property_data['branch_id']) && $property_data['branch_id'] === 'KID') {
+if (
+(isset($property_data['branch_id']) && $property_data['branch_id'] === 'KID') ||
+(isset($property_data['branch']) && strtoupper($property_data['branch']) === 'KID')
+) {
 $property_id = isset($property_data['id']) ? $property_data['id'] : 'UNKNOWN';
-error_log("Skipped property [{$property_id}] from branch ID KID");
-return false;
-}
+$message = "[" . date('Y-m-d H:i:s') . "] Skipped property [$property_id] from KID branch";
 
-// Check if branch name matches 'KID'
-if (isset($property_data['branch']) && strtoupper($property_data['branch']) === 'KID') {
-$property_id = isset($property_data['id']) ? $property_data['id'] : 'UNKNOWN';
-error_log("Skipped property [{$property_id}] from branch name KID");
+// Log to WP debug log
+error_log($message);
+
+// Log to custom file
+file_put_contents(WP_CONTENT_DIR . '/property-import.log', $message . "\n", FILE_APPEND);
+
 return false;
 }
 
