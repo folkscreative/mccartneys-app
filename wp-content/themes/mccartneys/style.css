@@ -1089,3 +1089,83 @@ form.property-search-form-department_sepecific .control-department {
     margin-right: auto;
     margin-bottom: 1.5em;
 }
+
+/*****************Form css*********************/
+
+form.property-enquiry-form .control {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    align-items: center;
+}
+form.property-enquiry-form .control label {
+    font-weight: 500;
+    color: #000;
+}
+
+form.property-enquiry-form input[type="submit"] {
+    
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    color: #fff !important;
+    background-color: #602644;
+    border-radius: 30px;
+    padding: 10px 20px;
+    max-width: 160px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 1px solid #00000000;
+    position: relative;
+    box-shadow: inset 0px -1px 0 0 #472336;
+}
+div#makeEnquiry104760 p {
+    FONT-WEIGHT: 400;
+}
+div#makeEnquiry104760 h2 {
+    color: #000;
+}
+form.property-enquiry-form .control input, form.property-enquiry-form .control textarea, form.property-enquiry-form .control select, form.property-enquiry-form .control select {
+    width: 351px;
+    box-shadow: inset 1px 1px 1px #0000001a;
+    background: #f2f2f2;
+    padding: 12px;
+    border-radius: 0;
+}
+input[type="submit"]:hover {
+    background-color: #8d1f56;
+    border: 1px solid;
+}
+li.action-make-enquiry a {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+   color: #707070 !important;
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    align-items: center;
+    border: 1px solid #00000000;
+    position: relative;
+    top: 15px;
+}
+li.action-make-enquiry a:hover {
+      background-color:#f7ebee;
+    color: #fff;
+   
+}
+
+@media (max-width: 767px) {
+form.property-enquiry-form .control input, form.property-enquiry-form .control textarea, form.property-enquiry-form .control select, form.property-enquiry-form .control select {
+    width: 100% !important;
+}
+form.property-enquiry-form .control {
+    flex-direction: column;
+    align-items: baseline;
+}
+li.action-make-enquiry a {
+    top: 8px;
+}
+}

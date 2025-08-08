@@ -125,8 +125,30 @@ $negotiatorsInfo = get_negotiatorsInfo($negotiatorId);
                             echo '</a>';
                             }
                             ?>
-            <a class="btn-bn-light" href="https://eu.jotform.com/form/250264347840355" target="_blank">Request a viewing</a>
+         <div class="property_actions">
 
+	<?php do_action( 'propertyhive_property_actions_start' ); ?>
+    
+    <ul>
+        
+        <?php 
+           /**
+             * propertyhive_single_property_summary hook
+             *
+             * @hooked propertyhive_make_enquiry_button - 10
+             * 
+             */
+            do_action( 'propertyhive_property_actions_list_start' ); 
+        ?>
+        
+    
+    	<?php do_action( 'propertyhive_property_actions_list_end' ); ?>
+
+    </ul>
+
+	<?php do_action( 'propertyhive_property_actions_end' ); ?>
+    
+</div>
         </div>
 
         <!-- <div class="container gallery-info">
@@ -397,14 +419,30 @@ $negotiatorsInfo = get_negotiatorsInfo($negotiatorId);
 		                    { ?>
                             <span class="negotiator-name"><?php echo $negotiatorsInfo['name']; ?></span>
                             <?php } ?>
-                        <a href="https://eu.jotform.com/form/250264347840355" target="_blank" class="btn-bn-light">Request a viewing<span><svg
-                                    class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
-                                    data-prefix="fas" data-icon="angle-right" role="img"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
-                                    <path fill="currentColor"
-                                        d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
-                                    </path>
-                                </svg></span></a>
+                      <div class="property_actions">
+
+	<?php do_action( 'propertyhive_property_actions_start' ); ?>
+    
+    <ul>
+        
+        <?php 
+           /**
+             * propertyhive_single_property_summary hook
+             *
+             * @hooked propertyhive_make_enquiry_button - 10
+             * 
+             */
+            do_action( 'propertyhive_property_actions_list_start' ); 
+        ?>
+        
+    
+    	<?php do_action( 'propertyhive_property_actions_list_end' ); ?>
+
+    </ul>
+
+	<?php do_action( 'propertyhive_property_actions_end' ); ?>
+    
+</div>
 
                         <!-- Div content to open in lightbox -->
                         <div id="enquiryModal" style="display:none;">
