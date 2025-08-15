@@ -9,7 +9,7 @@ get_header();
 
 <?php
 // Define default background image
-$background_image = 'https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/12/shutterstock_2157695963-scaled.jpg';
+$background_image = 'https://mccartneys.co.uk/wp-content/uploads/2024/12/shutterstock_2157695963-scaled.jpg';
 
 // Check for the 'filter_show_type' parameter in the URL
 if (isset($_GET['filter_show_type'])) {
@@ -17,9 +17,9 @@ if (isset($_GET['filter_show_type'])) {
 
     // Set different background images based on the query parameter value
     if ($filter_show_type === 'fine-art-antiques') {
-        $background_image = 'https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/12/494.jpg';
+        $background_image = 'https://mccartneys.co.uk/wp-content/uploads/2024/12/494.jpg';
     } elseif ($filter_show_type === 'equine') {
-        $background_image = 'https://wordpress-1285863-4695980.cloudwaysapps.com/wp-content/uploads/2024/12/shutterstock_2157695963-min-scaled.jpg';
+        $background_image = 'https://mccartneys.co.uk/wp-content/uploads/2024/12/shutterstock_2157695963-min-scaled.jpg';
     }
 }
 ?>
