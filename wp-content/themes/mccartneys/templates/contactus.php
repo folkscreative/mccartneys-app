@@ -21,8 +21,8 @@ get_header(); ?>
             
            <div class="contact-form">
 
-           <iframe id="JotFormIFrame-242453847375061" title="Contact McCartneys"  allowtransparency="true" allow="geolocation; microphone; camera; fullscreen"
-            src="https://form.jotform.com/242453847375061" frameborder="0" width="100%" height="1050px" scrolling="no">
+           <iframe id="JotFormIFrame-242623720052042" title="Contact McCartneys"  allowtransparency="true" allow="geolocation; microphone; camera; fullscreen"
+            src="https://eu.jotform.com/form/242623720052042" frameborder="0" width="100%" height="1050px" scrolling="no">
             </iframe>
             <?php //echo do_shortcode('[contact-form-7 id="35180b3" title="Contact form 1"] '); ?>
            </div>
