@@ -158,11 +158,13 @@ if (isset($_GET['filter_show_type'])) {
 
                         // Pagination with filters preserved
                         echo '<div class="pagination">';
+                        $big = 999999999;
                         echo paginate_links(array(
-                            'total'   => $sales_query->max_num_pages,
-                            'current' => $paged,
-                            'format'  => '?paged=%#%',
-                            'add_args' => array(
+                            'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+                            'format'    => 'page/%#%/', // ensures pretty permalink structure
+                            'current'   => $paged,
+                            'total'     => $sales_query->max_num_pages,
+                            'add_args'  => array(
                                 'sale_type'  => isset($_GET['sale_type']) ? sanitize_text_field($_GET['sale_type']) : '',
                                 'sale_month' => isset($_GET['sale_month']) ? sanitize_text_field($_GET['sale_month']) : '',
                             ),
